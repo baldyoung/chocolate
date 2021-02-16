@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="translated-ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<title>::爱立信::课程</title>
+
+		<!-- Bootstrap Core and vandor -->
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+		<link rel="stylesheet" href="../assets/plugins/dropify/css/dropify.min.css">
+
+		<!-- Core css -->
+		<link rel="stylesheet" href="../assets/css/style.min.css">
+		<style>
+			::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 4px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+				scrollbar-arrow-color: red;
+
+			}
+		</style>
+		<style type="text/css">
+			.jqstooltip {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				visibility: hidden;
+				background: rgb(0, 0, 0) transparent;
+				background-color: rgba(0, 0, 0, 0.6);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+				white-space: nowrap;
+				padding: 5px;
+				border: 1px solid white;
+				box-sizing: content-box;
+				z-index: 10000;
+			}
+
+			.jqsfield {
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+			}
+		</style>
+		<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+	</head>
+
+	<body class="font-muli theme-cyan gradient close_rightbar">
+
+		<!-- Page Loader -->
+		<div class="page-loader-wrapper" style="display: none;">
+			<div class="loader">
+			</div>
+		</div>
+
+		<div id="main_content">
+			<!-- Start project content area -->
+			<div class="page">
+				<!-- Start Page header -->
+				<div class="section-body" id="page_top">
+					<div class="container-fluid">
+						<div class="page-header">
+							<div class="left">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="您想找到什么">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">搜索</font>
+											</font>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="right">
+								<ul class="nav nav-pills">
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">页数</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="page-empty.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">空白页</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-profile.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">个人资料</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-search.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">搜索结果</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-timeline.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时间线</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-invoices.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">发票</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-pricing.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">价钱</font>
+												</font>
+											</a>
+										</div>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">验证码</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="login.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">登录</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="register.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">寄存器</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="forgot-password.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">忘记密码</font>
+												</font>
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="404.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">404错误</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="500.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">500错误</font>
+												</font>
+											</a>
+										</div>
+									</li>
+								</ul>
+								<div class="notification d-flex">
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-language"></i></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">英语</font>
+												</font>
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">西班牙文</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">日本</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">法国</font>
+												</font>
+											</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-envelope"></i><span
+											 class="badge badge-success nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="right_chat list-unstyled w350 p-0">
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object" src="../assets/images/xs/avatar4.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">唐纳德·加德纳</font>
+																</font>
+															</span>
+															<div class="message">It is a long established fact that a reader</div>
+															<small>11 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Wendy Keen</span>
+															<div class="message">There are many variations of passages of Lorem Ipsum</div>
+															<small>18 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="offline">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Matt Rosales</span>
+															<div class="message">Contrary to popular belief, Lorem Ipsum is not simply</div>
+															<small>27 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Phillip Smith</span>
+															<div class="message">It has roots in a piece of classical Latin literature from 45 BC</div>
+															<small>33 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span
+											 class="badge badge-primary nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="list-unstyled feeds_widget">
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-blue"><i class="fa fa-check"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">Campaign <strong class="text-blue font-weight-bold">Holiday</strong> is nearly
+															reach budget limit.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-green"><i class="fa fa-user"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">New admission <strong class="text-green font-weight-bold">32</strong> in
+															computer department.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-red"><i class="fa fa-info"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">6th sem result <strong class="text-red font-weight-bold">67%</strong> in
+															computer department.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-azure"><i class="fa fa-thumbs-o-up"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">New Feedback <strong class="text-azure font-weight-bold">53</strong> for
+															university assessment.</p>
+													</div>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
+											<span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;"> 乔治</font>
+											</font>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
+											<a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
+											<a class="dropdown-item" href="app-email.html"><span class="float-right"><span class="badge badge-primary">6</span></span><i
+												 class="dropdown-icon fe fe-mail"></i> Inbox</a>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need
+												help?</a>
+											<a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start Page title and tab -->
+				<div class="section-body">
+					<div class="container-fluid">
+						<div class="d-flex justify-content-between align-items-center ">
+							<div class="header-action">
+								<h1 class="page-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">联系</font>
+									</font>
+								</h1>
+								<ol class="breadcrumb page-breadcrumb">
+									<li class="breadcrumb-item"><a href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">爱立信</font>
+											</font>
+										</a></li>
+									<li class="breadcrumb-item active" aria-current="page">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">联系</font>
+										</font>
+									</li>
+								</ol>
+							</div>
+							<ul class="nav nav-tabs page-header-tab">
+								<li class="nav-item"><a class="nav-link active" id="list-tab" data-toggle="tab" href="#list"><i class="fa fa-list-ul"></i>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;"> 清单</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" id="grid-tab" data-toggle="tab" href="#grid"><i class="fa fa-th"></i>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;"> 格</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" id="addnew-tab" data-toggle="tab" href="#addnew"><i class="fa fa-plus"></i>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;"> 添新</font>
+										</font>
+									</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="section-body mt-4">
+					<div class="container-fluid">
+						<div class="tab-content">
+							<div class="tab-pane fade show active" id="list" role="tabpanel">
+								<div class="table-responsive" id="users">
+									<table class="table table-hover table-vcenter text-nowrap table_custom list">
+										<tbody>
+											<tr class="">
+												<td class="width35 hidden-xs">
+													<a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar4.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">约翰·史密斯</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-2583</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">johnsmith@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">455 S.Airport St.Moncks Corner，SC 29461</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="width35 hidden-xs">
+													<a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar2.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">梅里·戴蒙德</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-2583</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">hermanbeck@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">455 S.Airport St.Moncks Corner，SC 29461</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="hidden-xs">
+													<a href="javascript:void(0);" class="mail-star love"><i class="fa fa-heart"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar3.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div class="from"><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">萨拉·霍普金斯</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-3333</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">maryadams@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">俄亥俄州圣斯内维尔维尔19号，乔治亚州30039</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="hidden-xs">
+													<a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar7.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div class="from"><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">安德鲁·帕特里克</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-2586</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">mikethimas@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">728布莱克本圣安多佛，MA 01810</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="hidden-xs">
+													<a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar5.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div class="from"><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">克莱尔·彼得斯（Claire Peters）</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-3333</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">clairepeters@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">俄亥俄州圣斯内维尔维尔19号，乔治亚州30039</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="hidden-xs">
+													<a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar6.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div class="from"><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">艾伦·柯林斯</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-4526</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">kenpatrick@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">728布莱克本圣安多佛，MA 01810</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="width35 hidden-xs">
+													<a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar4.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">艾琳·冈萨雷斯（Erin Gonzales）</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-1593</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">eringonzales@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">455 S.Airport St.Moncks Corner，SC 29461</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+											<tr class="">
+												<td class="hidden-xs">
+													<a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
+												</td>
+												<td class="text-center width40">
+													<div class="avatar d-block">
+														<img class="avatar" src="../assets/images/xs/avatar5.jpg" alt="头像">
+													</div>
+												</td>
+												<td>
+													<div class="from"><a href="javascript:void(0);">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">哈里·麦考尔</font>
+															</font>
+														</a></div>
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">+ 264-625-2468</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-xs">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">susiewillis@info.com</font>
+														</font>
+													</div>
+												</td>
+												<td class="hidden-sm">
+													<div class="text-muted">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">俄亥俄州圣斯内维尔维尔19号，乔治亚州30039</font>
+														</font>
+													</div>
+												</td>
+												<td class="text-right">
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Phone"><i class="fa fa-phone"></i></a>
+													<a class="btn btn-icon btn-sm" href="javascript:void(0)" data-toggle="tooltip" title=""
+													 data-original-title="Mail"><i class="fa fa-envelope"></i></a>
+													<a class="btn btn-icon btn-sm text-danger hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)"
+													 data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="grid" role="tabpanel">
+								<div class="row row-deck">
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="card-status bg-blue"></div>
+												<div class="mb-3"> <img src="../assets/images/sm/avatar1.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Paul Schmidt</h5>
+													<p class="text-muted">Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar8.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="mb-3"> <img src="../assets/images/sm/avatar2.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Andrew Patrick</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar3.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar4.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="mb-3"> <img src="../assets/images/sm/avatar3.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Mary Schneider</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="card-status bg-green"></div>
+												<div class="mb-3"> <img src="../assets/images/sm/avatar4.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Sean Black</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar6.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar5.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar7.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="mb-3"> <img src="../assets/images/sm/avatar5.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">David Wallace</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar3.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar4.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="card-status bg-pink"></div>
+												<div class="mb-3"> <img src="../assets/images/sm/avatar6.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Andrew Patrick</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar5.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar6.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="mb-3"> <img src="../assets/images/sm/avatar2.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Michelle Green</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar8.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar7.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="card ">
+											<div class="card-body">
+												<div class="mb-3"> <img src="../assets/images/sm/avatar4.jpg" class="rounded-circle w100" alt=""> </div>
+												<div class="mb-2">
+													<h5 class="mb-0">Mary Schneider</h5>
+													<p>Aalizeethomas@info.com</p>
+													<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
+												</div>
+												<span class="font-12 text-muted">Common Contact</span>
+												<ul class="list-unstyled team-info margin-0 pt-2">
+													<li><img src="../assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+													<li><img src="../assets/images/xs/avatar7.jpg" alt="Avatar"></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="addnew" role="tabpanel">
+								<div class="card">
+									<div class="card-body">
+										<div class="row clearfix">
+											<div class="col-lg-4 col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="Enter Name">
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-12">
+												<div class="form-group">
+													<input type="number" class="form-control" placeholder="Enter Number">
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-12">
+												<div class="form-group">
+													<input type="email" class="form-control" placeholder="Enter Email">
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12">
+												<div class="form-group">
+													<textarea type="text" class="form-control" rows="4">Enter your Address</textarea>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="dropify-wrapper">
+													<div class="dropify-message"><span class="file-icon"></span>
+														<p>Drag and drop a file here or click</p>
+														<p class="dropify-error">Ooops, something wrong appended.</p>
+													</div>
+													<div class="dropify-loader"></div>
+													<div class="dropify-errors-container">
+														<ul></ul>
+													</div><input type="file" class="dropify"><button type="button" class="dropify-clear">Remove</button>
+													<div class="dropify-preview"><span class="dropify-render"></span>
+														<div class="dropify-infos">
+															<div class="dropify-infos-inner">
+																<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>
+																<p class="dropify-infos-message">Drag and drop or click to replace</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12 mt-3">
+												<button type="submit" class="btn btn-primary">Add</button>
+												<button type="submit" class="btn btn-default">Cancel</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start main footer -->
+				<div class="section-body">
+					<footer class="footer">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">
+											版权所有©2019 </font>
+									</font><a href="https://themeforest.net/user/puffintheme/portfolio">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">PuffinTheme</font>
+										</font>
+									</a>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">。
+										</font>
+									</font>
+								</div>
+								<div class="col-md-6 col-sm-12 text-md-right">
+									<ul class="list-inline mb-0">
+										<li class="list-inline-item"><a href="../doc/index.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">文献资料</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">常问问题</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">立即购买</font>
+												</font>
+											</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+
+		<!-- Start Main project js, jQuery, Bootstrap -->
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+
+		<!-- Start Plugin Js -->
+		<script src="../assets/bundles/sweetalert.bundle.js"></script>
+		<script src="../assets/plugins/dropify/js/dropify.min.js"></script>
+
+		<!-- Start project main js  and page js -->
+		<script src="../assets/js/core.js"></script>
+		<script src="assets/js/page/index.js"></script>
+		<script src="assets/js/page/dialogs.js"></script>
+		<script>
+			$(function() {
+				"use strict";
+
+				$('.dropify').dropify();
+
+				var drEvent = $('#dropify-event').dropify();
+				drEvent.on('dropify.beforeClear', function(event, element) {
+					return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+				});
+
+				drEvent.on('dropify.afterClear', function(event, element) {
+					alert('File deleted');
+				});
+
+				$('.dropify-fr').dropify({
+					messages: {
+						default: 'Glissez-déposez un fichier ici ou cliquez',
+						replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+						remove: 'Supprimer',
+						error: 'Désolé, le fichier trop volumineux'
+					}
+				});
+			});
+		</script>
+		<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+			<div style="padding: 8px;">
+				<div>
+					<div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20"
+						 height="20" alt="Google 翻译"></div>
+				</div>
+			</div>
+			<div class="top" style="padding: 8px; float: left; width: 100%;">
+				<h1 class="title gray">原文</h1>
+			</div>
+			<div class="middle" style="padding: 8px;">
+				<div class="original-text"></div>
+			</div>
+			<div class="bottom" style="padding: 8px;">
+				<div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div>
+				<div class="started-activity-container">
+					<hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+					<div class="activity-root"></div>
+				</div>
+			</div>
+			<div class="status-message" style="display: none;"></div>
+		</div>
+
+
+		<div class="goog-te-spinner-pos">
+			<div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px"
+				 height="96px" viewBox="0 0 66 66">
+					<circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+				</svg></div>
+		</div>
+	</body>
+</html>

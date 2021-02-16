@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="translated-ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<title>::爱立信::任务板</title>
+
+		<!-- Bootstrap Core and vandor -->
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/plugins/nestable/jquery-nestable.css">
+		<link rel="stylesheet" href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+
+		<!-- Core css -->
+		<link rel="stylesheet" href="../assets/css/style.min.css">
+		<script src="assets/js/page/index.js"></script>
+		<style>
+			::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 4px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+				scrollbar-arrow-color: red;
+
+			}
+		</style>
+		<style type="text/css">
+			.jqstooltip {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				visibility: hidden;
+				background: rgb(0, 0, 0) transparent;
+				background-color: rgba(0, 0, 0, 0.6);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+				white-space: nowrap;
+				padding: 5px;
+				border: 1px solid white;
+				box-sizing: content-box;
+				z-index: 10000;
+			}
+
+			.jqsfield {
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+			}
+		</style>
+		<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+	</head>
+
+	<body class="font-muli theme-cyan gradient close_rightbar">
+
+		<!-- Page Loader -->
+		<div class="page-loader-wrapper" style="display: none;">
+			<div class="loader">
+			</div>
+		</div>
+
+		<div id="main_content">
+			<!-- Start project content area -->
+			<div class="page">
+				<!-- Start Page header -->
+				<div class="section-body" id="page_top">
+					<div class="container-fluid">
+						<div class="page-header">
+							<div class="left">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="您想找到什么">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">搜索</font>
+											</font>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="right">
+								<ul class="nav nav-pills">
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">页数</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="page-empty.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">空白页</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-profile.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">个人资料</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-search.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">搜索结果</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-timeline.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时间线</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-invoices.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">发票</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-pricing.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">价钱</font>
+												</font>
+											</a>
+										</div>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">验证码</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="login.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">登录</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="register.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">寄存器</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="forgot-password.html">Forgot password</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="404.html">404 error</a>
+											<a class="dropdown-item" href="500.html">500 error</a>
+										</div>
+									</li>
+								</ul>
+								<div class="notification d-flex">
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-language"></i></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">English</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">Spanish</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">japanese</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">France</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-envelope"></i><span
+											 class="badge badge-success nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="right_chat list-unstyled w350 p-0">
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object" src="../assets/images/xs/avatar4.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Donald Gardner</span>
+															<div class="message">It is a long established fact that a reader</div>
+															<small>11 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Wendy Keen</span>
+															<div class="message">There are many variations of passages of Lorem Ipsum</div>
+															<small>18 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="offline">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Matt Rosales</span>
+															<div class="message">Contrary to popular belief, Lorem Ipsum is not simply</div>
+															<small>27 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
+														<div class="media-body">
+															<span class="name">Phillip Smith</span>
+															<div class="message">It has roots in a piece of classical Latin literature from 45 BC</div>
+															<small>33 mins ago</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span
+											 class="badge badge-primary nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="list-unstyled feeds_widget">
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-blue"><i class="fa fa-check"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">Campaign <strong class="text-blue font-weight-bold">Holiday</strong> is nearly
+															reach budget limit.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-green"><i class="fa fa-user"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">New admission <strong class="text-green font-weight-bold">32</strong> in
+															computer department.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-red"><i class="fa fa-info"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">6th sem result <strong class="text-red font-weight-bold">67%</strong> in
+															computer department.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-azure"><i class="fa fa-thumbs-o-up"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">New Feedback <strong class="text-azure font-weight-bold">53</strong> for
+															university assessment.</p>
+													</div>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
+											<span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;"> 乔治</font>
+											</font>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
+											<a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
+											<a class="dropdown-item" href="app-email.html"><span class="float-right"><span class="badge badge-primary">6</span></span><i
+												 class="dropdown-icon fe fe-mail"></i> Inbox</a>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need
+												help?</a>
+											<a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start Page title and tab -->
+				<div class="section-body">
+					<div class="container-fluid">
+						<div class="d-flex justify-content-between align-items-center ">
+							<div class="header-action">
+								<h1 class="page-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">任务板</font>
+									</font>
+								</h1>
+								<ol class="breadcrumb page-breadcrumb">
+									<li class="breadcrumb-item"><a href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">爱立信</font>
+											</font>
+										</a></li>
+									<li class="breadcrumb-item active" aria-current="page">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">任务板</font>
+										</font>
+									</li>
+								</ol>
+							</div>
+							<ul class="nav nav-tabs page-header-tab">
+								<li class="nav-item"><a class="nav-link active" id="TaskBoard-tab" data-toggle="tab" href="#TaskBoard-all">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">任务列表</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab" href="#TaskBoard-Scrum">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">Scrum类型</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab" href="#TaskBoard-add">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">添加任务</font>
+										</font>
+									</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="section-body mt-4">
+					<div class="container-fluid">
+						<div class="tab-content">
+							<div class="tab-pane active" id="TaskBoard-all">
+								<div class="row clearfix mt-2">
+									<div class="col-lg-3 col-md-6">
+										<div class="card">
+											<div class="card-body text-center">
+												<h6>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">计划</font>
+													</font>
+												</h6>
+												<div style="display:inline;width:90px;height:90px;"><canvas width="90" height="90"></canvas><input type="text"
+													 class="knob" value="23" data-width="90" data-height="90" data-thickness="0.1" data-fgcolor="#2185d0"
+													 style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background: none; font: bold 18px Arial; text-align: center; color: rgb(33, 133, 208); padding: 0px; appearance: none;"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6">
+										<div class="card">
+											<div class="card-body text-center">
+												<h6>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">进行中</font>
+													</font>
+												</h6>
+												<div style="display:inline;width:90px;height:90px;"><canvas width="90" height="90"></canvas><input type="text"
+													 class="knob" value="43" data-width="90" data-height="90" data-thickness="0.1" data-fgcolor="#f2711c"
+													 style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background: none; font: bold 18px Arial; text-align: center; color: rgb(242, 113, 28); padding: 0px; appearance: none;"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6">
+										<div class="card">
+											<div class="card-body text-center">
+												<h6>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">已完成</font>
+													</font>
+												</h6>
+												<div style="display:inline;width:90px;height:90px;"><canvas width="90" height="90"></canvas><input type="text"
+													 class="knob" value="83" data-width="90" data-height="90" data-thickness="0.1" data-fgcolor="#21ba45"
+													 style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background: none; font: bold 18px Arial; text-align: center; color: rgb(33, 186, 69); padding: 0px; appearance: none;"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-6">
+										<div class="card">
+											<div class="card-body text-center">
+												<h6>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">在完成</font>
+													</font>
+												</h6>
+												<div style="display:inline;width:90px;height:90px;"><canvas width="90" height="90"></canvas><input type="text"
+													 class="knob" value="12" data-width="90" data-height="90" data-thickness="0.1" data-fgcolor="#e03997"
+													 style="width: 49px; height: 30px; position: absolute; vertical-align: middle; margin-top: 30px; margin-left: -69px; border: 0px; background: none; font: bold 18px Arial; text-align: center; color: rgb(224, 57, 151); padding: 0px; appearance: none;"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-hover table-vcenter mb-0 table_custom spacing8 text-nowrap">
+										<thead>
+											<tr>
+												<th>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">＃</font>
+													</font>
+												</th>
+												<th>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">任务</font>
+													</font>
+												</th>
+												<th>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">球队</font>
+													</font>
+												</th>
+												<th>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">持续时间</font>
+													</font>
+												</th>
+												<th>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">行动</font>
+													</font>
+												</th>
+												<th class="w200"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">01</font>
+													</font>
+												</td>
+												<td>
+													<h6 class="mb-0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">github上的新代码更新</font>
+														</font>
+													</h6>
+													<span>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">早已确定的事实是，读者会分心。</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<ul class="list-unstyled team-info mb-0 w150">
+														<li><img src="../assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+													</ul>
+												</td>
+												<td>
+													<div class="text-info">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">开始：2019年6月3日</font>
+														</font>
+													</div>
+													<div class="text-pink">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">结束：2019年6月15日</font>
+														</font>
+													</div>
+												</td>
+												<td>
+													<span class="tag tag-blue">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">计划</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<div class="clearfix">
+														<div class="float-left"><strong>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">0％</font>
+																</font>
+															</strong></div>
+														<div class="float-right"><small class="text-muted">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">进展</font>
+																</font>
+															</small></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-azure" role="progressbar" style="width: 0%" aria-valuenow="42" aria-valuemin="0"
+														 aria-valuemax="100"></div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">02</font>
+													</font>
+												</td>
+												<td>
+													<h6 class="mb-0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">设计活动</font>
+														</font>
+													</h6>
+													<span>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">早已确定的事实是，读者会分心。</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<ul class="list-unstyled team-info mb-0 w150">
+														<li><img src="../assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+													</ul>
+												</td>
+												<td>
+													<div class="text-info">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">开始时间：2019年6月2日</font>
+														</font>
+													</div>
+													<div class="text-pink">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">结束：2019年6月8日</font>
+														</font>
+													</div>
+												</td>
+												<td>
+													<span class="tag tag-green">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">已完成</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<div class="clearfix">
+														<div class="float-left"><strong>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">100％</font>
+																</font>
+															</strong></div>
+														<div class="float-right"><small class="text-muted">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">进展</font>
+																</font>
+															</small></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-green" role="progressbar" style="width: 100%" aria-valuenow="42"
+														 aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">03</font>
+													</font>
+												</td>
+												<td>
+													<h6 class="mb-0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">运球细节</font>
+														</font>
+													</h6>
+													<span>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">使用Lorem Ipsum的要点是...</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<ul class="list-unstyled team-info mb-0 w150">
+														<li><img src="../assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+													</ul>
+												</td>
+												<td>
+													<div class="text-info">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">开始：2019年6月3日</font>
+														</font>
+													</div>
+													<div class="text-pink">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">结束：2019年6月15日</font>
+														</font>
+													</div>
+												</td>
+												<td>
+													<span class="tag tag-orange">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">进行中</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<div class="clearfix">
+														<div class="float-left"><strong>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">35％</font>
+																</font>
+															</strong></div>
+														<div class="float-right"><small class="text-muted">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">进展</font>
+																</font>
+															</small></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-azure" role="progressbar" style="width: 35%" aria-valuenow="42" aria-valuemin="0"
+														 aria-valuemax="100"></div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">04</font>
+													</font>
+												</td>
+												<td>
+													<h6 class="mb-0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">github上的新代码更新</font>
+														</font>
+													</h6>
+													<span>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">早已确定的事实是，读者会分心。</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<ul class="list-unstyled team-info mb-0 w150">
+														<li><img src="../assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+													</ul>
+												</td>
+												<td>
+													<div class="text-info">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">开始：2019年6月13日</font>
+														</font>
+													</div>
+													<div class="text-pink">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">结束：2019年6月23日</font>
+														</font>
+													</div>
+												</td>
+												<td>
+													<span class="tag tag-orange">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">进行中</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<div class="clearfix">
+														<div class="float-left"><strong>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">75％</font>
+																</font>
+															</strong></div>
+														<div class="float-right"><small class="text-muted">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">进展</font>
+																</font>
+															</small></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-green" role="progressbar" style="width: 75%" aria-valuenow="42" aria-valuemin="0"
+														 aria-valuemax="100"></div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">05</font>
+													</font>
+												</td>
+												<td>
+													<h6 class="mb-0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">github上的新代码更新</font>
+														</font>
+													</h6>
+													<span>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">与普遍的看法相反，Lorem Ipsum不仅仅是简单的随机文本。</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<ul class="list-unstyled team-info mb-0 w150">
+														<li><img src="../assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+													</ul>
+												</td>
+												<td>
+													<div class="text-info">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">开始：2019年6月8日</font>
+														</font>
+													</div>
+													<div class="text-pink">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">结束：2019年6月15日</font>
+														</font>
+													</div>
+												</td>
+												<td>
+													<span class="tag tag-orange">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">进行中</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<div class="clearfix">
+														<div class="float-left"><strong>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">35％</font>
+																</font>
+															</strong></div>
+														<div class="float-right"><small class="text-muted">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">进展</font>
+																</font>
+															</small></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-azure" role="progressbar" style="width: 35%" aria-valuenow="42" aria-valuemin="0"
+														 aria-valuemax="100"></div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">06</font>
+													</font>
+												</td>
+												<td>
+													<h6 class="mb-0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">Angular App设计错误</font>
+														</font>
+													</h6>
+													<span>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">Lorem Ipsum的段落有很多变化...</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<ul class="list-unstyled team-info mb-0 w150">
+														<li><img src="../assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+														<li><img src="../assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="" alt="头像"
+															 data-original-title="Avatar"></li>
+													</ul>
+												</td>
+												<td>
+													<div class="text-info">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">开始：2019年6月3日</font>
+														</font>
+													</div>
+													<div class="text-pink">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">结束：2019年6月15日</font>
+														</font>
+													</div>
+												</td>
+												<td>
+													<span class="tag tag-orange">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">计划</font>
+														</font>
+													</span>
+												</td>
+												<td>
+													<div class="clearfix">
+														<div class="float-left"><strong>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">35％</font>
+																</font>
+															</strong></div>
+														<div class="float-right"><small class="text-muted">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">进展</font>
+																</font>
+															</small></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-azure" role="progressbar" style="width: 35%" aria-valuenow="42" aria-valuemin="0"
+														 aria-valuemax="100"></div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="tab-pane" id="TaskBoard-Scrum">
+								<div class="row clearfix">
+									<div class="col-lg-4 col-md-12">
+										<div class="card planned_task">
+											<div class="card-header">
+												<h3 class="card-title">Planned</h3>
+												<div class="card-options">
+													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+													<a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+													<div class="item-action dropdown ml-2">
+														<a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details
+															</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share
+															</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i>
+																Download</a>
+															<div class="dropdown-divider"></div>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="card-body">
+												<div class="dd" data-plugin="nestable">
+													<ol class="dd-list">
+														<li class="dd-item" data-id="1">
+															<div class="dd-handle">
+																<h6>Dashbaord</h6>
+																<span class="time"><span class="text-primary">Start: 5 Aug</span> to <span class="text-danger">Complete:
+																		15 Aug</span></span>
+																<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+																<ul class="list-unstyled team-info">
+																	<li><img src="../assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																	<li><img src="../assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																	<li><img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																</ul>
+															</div>
+														</li>
+														<li class="dd-item" data-id="2">
+															<div class="dd-handle">
+																<h6>New project</h6>
+																<span class="time"><span class="text-primary">Start: 6 Aug</span> to <span class="text-danger">Complete:
+																		28 Aug</span></span>
+																<p>It is a long established fact that a reader will be distracted.</p>
+															</div>
+														</li>
+														<li class="dd-item" data-id="3">
+															<div class="dd-handle">
+																<h6>Feed Details</h6>
+																<p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
+															</div>
+														</li>
+													</ol>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-12">
+										<div class="card progress_task">
+											<div class="card-header">
+												<h3 class="card-title">In progress</h3>
+												<div class="card-options">
+													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+													<a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+													<div class="item-action dropdown ml-2">
+														<a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details
+															</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share
+															</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i>
+																Download</a>
+															<div class="dropdown-divider"></div>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="card-body">
+												<div class="dd" data-plugin="nestable">
+													<ol class="dd-list">
+														<li class="dd-item" data-id="1">
+															<div class="dd-handle">
+																<h6>New Code Update</h6>
+																<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+															</div>
+														</li>
+														<li class="dd-item" data-id="2">
+															<div class="dd-handle">
+																<h6>Meeting</h6>
+																<span class="time"><span class="text-primary">Start: 5 Aug</span> to <span class="text-danger">Complete:
+																		11 Aug</span></span>
+																<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+																	Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero</p>
+																<ul class="list-unstyled team-info">
+																	<li><img src="../assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																	<li><img src="../assets/images/xs/avatar9.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																</ul>
+															</div>
+														</li>
+														<li class="dd-item" data-id="2">
+															<div class="dd-handle">
+																<h6>New project</h6>
+																<p>It is a long established fact that a reader will be distracted.</p>
+															</div>
+														</li>
+														<li class="dd-item" data-id="3">
+															<div class="dd-handle">
+																<h6>Feed Details</h6>
+																<p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
+															</div>
+														</li>
+													</ol>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-12">
+										<div class="card completed_task">
+											<div class="card-header">
+												<h3 class="card-title">Completed</h3>
+												<div class="card-options">
+													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+													<a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+													<div class="item-action dropdown ml-2">
+														<a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details
+															</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share
+															</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i>
+																Download</a>
+															<div class="dropdown-divider"></div>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
+															<a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="card-body">
+												<div class="dd" data-plugin="nestable">
+													<ol class="dd-list">
+														<li class="dd-item" data-id="1">
+															<div class="dd-handle">
+																<h6>Job title</h6>
+																<p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+																	embarrassing hidden in the middle of text.</p>
+																<ul class="list-unstyled team-info">
+																	<li><img src="../assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																	<li><img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																	<li><img src="../assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																	<li><img src="../assets/images/xs/avatar8.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar"
+																		 data-original-title="Avatar"></li>
+																</ul>
+															</div>
+														</li>
+														<li class="dd-item" data-id="2">
+															<div class="dd-handle">
+																<h6>Event Done</h6>
+																<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+																	classical</p>
+															</div>
+														</li>
+														<li class="dd-item" data-id="1">
+															<div class="dd-handle">
+																<h6>New Code Update</h6>
+																<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+															</div>
+														</li>
+													</ol>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="TaskBoard-add">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Add Task</h3>
+										<div class="card-options ">
+											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+										</div>
+									</div>
+									<form class="card-body">
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Task no. <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Job title <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Select Team <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select class="form-control show-tick">
+													<option>Select</option>
+													<option>John Smith</option>
+													<option>Claire Peters</option>
+													<option>Allen Collins</option>
+													<option>Cory Carter</option>
+													<option>Rochelle Barton</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Description <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Range <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<div class="input-daterange input-group" data-provide="datepicker">
+													<input type="text" class="form-control" name="start">
+													<span class="input-group-addon"> to </span>
+													<input type="text" class="form-control" name="end">
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label"></label>
+											<div class="col-md-7">
+												<button type="submit" class="btn btn-primary">Submit</button>
+												<button type="submit" class="btn btn-outline-secondary">Cancel</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start main footer -->
+				<div class="section-body">
+					<footer class="footer">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">
+											版权所有©2019 </font>
+									</font><a href="https://themeforest.net/user/puffintheme/portfolio">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">PuffinTheme</font>
+										</font>
+									</a>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">。
+										</font>
+									</font>
+								</div>
+								<div class="col-md-6 col-sm-12 text-md-right">
+									<ul class="list-inline mb-0">
+										<li class="list-inline-item"><a href="../doc/index.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">文献资料</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">常问问题</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">立即购买</font>
+												</font>
+											</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+
+		<!-- Start Main project js, jQuery, Bootstrap -->
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+
+		<!-- Start Plugin Js -->
+		<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="../assets/bundles/knobjs.bundle.js"></script>
+		<script src="../assets/bundles/nestable.bundle.js"></script>
+
+		<!-- Start project main js  and page js -->
+		<script src="../assets/js/core.js"></script>
+		<script src="assets/js/page/sortable-nestable.js"></script>
+		<script src="assets/js/chart/knobjs.js"></script>
+		<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+			<div style="padding: 8px;">
+				<div>
+					<div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20"
+						 height="20" alt="Google 翻译"></div>
+				</div>
+			</div>
+			<div class="top" style="padding: 8px; float: left; width: 100%;">
+				<h1 class="title gray">原文</h1>
+			</div>
+			<div class="middle" style="padding: 8px;">
+				<div class="original-text"></div>
+			</div>
+			<div class="bottom" style="padding: 8px;">
+				<div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div>
+				<div class="started-activity-container">
+					<hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+					<div class="activity-root"></div>
+				</div>
+			</div>
+			<div class="status-message" style="display: none;"></div>
+		</div>
+
+
+		<div class="goog-te-spinner-pos">
+			<div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px"
+				 height="96px" viewBox="0 0 66 66">
+					<circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+				</svg></div>
+		</div>
+	</body>
+</html>
