@@ -1,0 +1,1661 @@
+<!doctype html>
+<html lang="en" dir="ltr" style='height:100%;'>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<title></title>
+		<!-- Bootstrap Core and vandor -->
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css" />
+		<!-- Core css -->
+		<link rel="stylesheet" href="../assets/css/style.min.css" />
+		<style>
+			#subWindow::-webkit-scrollbar {/*滚动条整体样式*/
+			            width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+			            height: 4px;
+			            scrollbar-arrow-color:red;
+			        }
+		</style>
+		<!-- Start Main project js, jQuery, Bootstrap -->
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+		<!-- Start project main js  and page js -->
+		<script src="../assets/js/core.js"></script>
+		<script>
+			// 全局样式
+			var currentGlobalClass = [];
+			// 子窗口链接
+			var currentSubWindowSrc = 'indexContent.html';
+			var ulCells;
+			var rUlCells;
+			var currentSelectMenuCell = undefined;
+			// 网页初始化
+			$(function() {
+				ulCells = document.getElementsByClassName('metismenu');
+				currentSelectMenuCell = document.getElementById('defaultSelectMenuCell');
+				currentGlobalClass = document.body.getAttribute('class').split(' ');
+				// 给菜单栏中所有的选项添加点击后的回调函数
+				for (var i=0; i<ulCells.length; i++) {
+					var liCells = ulCells[i].children;
+					for (var j=0; j<liCells.length; j++) {
+						var cell = liCells[j];
+						cell.setAttribute('onclick', 'menuCellClickFunction(this)');
+						var tempHref = cell.children[0].getAttribute('href');
+						cell.children[0].setAttribute('href', '#');
+						cell.setAttribute('targetUrl', tempHref);
+					}
+				}
+				// 给“夜间模式”按钮添加监听函数，让subWindow子窗口也同步“夜间模式”的效果
+				var darkModeBtnCell = document.getElementById('darkModeBtn');
+				darkModeBtnCell.setAttribute('onclick', 'rMenuCellClickFunction(this)');
+			});
+			// 左菜单栏选项点击回调函数
+			function menuCellClickFunction(ts){
+				if (undefined != currentSelectMenuCell) {
+					currentSelectMenuCell.children[0].children[1].style.color = '';
+				}
+				for(var t=0; t<ulCells.length; t++) {
+					var tempList = ulCells[t].children;
+					for (var k=0; k<tempList.length; k++) {
+						tempList[k].setAttribute('class', ' ');
+					}
+				}
+				ts.children[0].children[1].style.color = '#f1c232';
+				ts.setAttribute('class', 'active');
+				currentSelectMenuCell = ts;
+				changeSubWindowContent(ts.getAttribute('targetUrl'));
+			}
+			// 右菜单栏选项点击回调函数(让子窗口跟父窗口同步全局样式)
+			function rMenuCellClickFunction(ks) {
+				var cellValue = ks.getAttribute('cellValue');
+				if (cellValue == 'dark-mode' && ks.checked) {
+					$('#themeWhiteMenuCell').trigger('click');
+				}
+				changeGlobalClass(cellValue, ks.checked ? 'add' : 'del');
+				changeSubWindowContent(currentSubWindowSrc);
+			}
+			// 修改全局的样式
+			function changeGlobalClass(className, option) {
+				for (var i=0; i<currentGlobalClass.length; i++) {
+					if (currentGlobalClass[i] == className) {
+						if (option == 'del') {
+							currentGlobalClass.splice(i, 1);
+						} else if (option == 'add') {
+							return;
+						}
+					}
+				}
+				if (option == 'add') {
+					currentGlobalClass[currentGlobalClass.length] = className;
+				}
+			}
+			// 修改子窗口的链接
+			function changeSubWindowContent(newUrl) {
+				currentSubWindowSrc = newUrl;
+				var subW = document.getElementById('subWindow');
+				subW.src = currentSubWindowSrc + '?parentClass=' + currentGlobalClass.join(',');
+				console.log("子窗口："+subW.src);
+			}
+		</script>
+	</head>
+
+	<body class="font-muli theme-white gradient right_tb_toggle " style='height:100%;'>
+		<!-- 页面加载效果 -->
+		<div class="page-loader-wrapper">
+			<div class="loader">
+			</div>
+		</div>
+		<!-- 页面具体内容 -->
+		<div id="main_content" style='height:100%;'>
+			<!-- 最左侧导航栏 -->
+			<div id="header_top" class="header_top">
+				<div class="container">
+					<!-- 最左侧导航栏 上部 -->
+					<div class="hleft">
+						<a class="header-brand" href="index.html">
+							<i class="fa fa-graduation-cap brand-logo"></i>
+						</a>
+						<div class="dropdown">
+							<a href="javascript:void(0)" class="nav-link icon menu_toggle">
+								<i class="fe fe-align-center" data-toggle="tooltip" data-placement="right" title="菜单"></i>
+							</a>
+							<a target='subWindow' href="page-search.html" class="nav-link icon">
+								<i class="fe fe-search" data-toggle="tooltip" data-placement="right" title="搜索..."></i>
+							</a>
+							<a target='subWindow' href="app-email.html" class="nav-link icon app_inbox">
+								<i class="fe fe-inbox" data-toggle="tooltip" data-placement="right" title="邮箱"></i>
+							</a>
+							<a target='subWindow' href="app-filemanager.html" class="nav-link icon app_file xs-hide">
+								<i class="fe fe-folder" data-toggle="tooltip" data-placement="right" title="文件"></i></a>
+							<a target='subWindow' href="app-social.html" class="nav-link icon xs-hide">
+								<i class="fe fe-share-2" data-toggle="tooltip" data-placement="right" title="社交"></i></a>
+							<a href="javascript:void(0)" class="nav-link icon theme_btn">
+								<i class="fe fe-feather" data-toggle="tooltip" data-placement="right" title="信息面板A"></i></a>
+							<a href="javascript:void(0)" class="nav-link icon right_tab">
+								<i class="fe fe-align-right" data-toggle="tooltip" data-placement="right" title="信息面板B"></i></a>
+						</div>
+					</div>
+					<!-- 最左侧导航栏 下部 -->
+					<div class="hright">
+						<a href="javascript:void(0)" class="nav-link icon settingbar">
+							<i class="fe fe-settings" data-toggle="tooltip" data-placement="right" title="系统设置面板"></i></a>
+						<a href="login.html" class="nav-link icon settingbar">
+							<i class="fe fe-power" data-toggle="tooltip" data-placement="right" title="注销"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 右侧栏 信息面板B -->
+			<div class="user_div" style="">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#righttab-statistics">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">统计</font>
+							</font>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#righttab-Result">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">结果</font>
+							</font>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#righttab-Students">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">联系人</font>
+							</font>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#righttab-Todo">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">任务</font>
+							</font>
+						</a></li>
+				</ul>
+				<div class="tab-content mt-3">
+					<div class="tab-pane fade active show" id="righttab-statistics" role="tabpanel">
+						<div class="card">
+							<div class="card-body">
+								<div>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">总收入</font>
+									</font>
+								</div>
+								<div class="py-3 m-0 text-center h1 text-success">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">$ 79,452</font>
+									</font>
+								</div>
+								<div class="d-flex">
+									<span class="text-muted">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">收入</font>
+										</font>
+									</span>
+									<div class="ml-auto"><i class="fa fa-caret-up text-success"></i>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">4％</font>
+										</font>
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<ul class="list-unstyled mb-0">
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">$ 43,320</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">美国银行</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-azure" role="progressbar" style="width: 87%" aria-valuenow="42" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li>
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">$ 36,132</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">富国银行</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-green" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-yellow"><i class="fa fa-users"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">学生总数</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">2,051</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-gray"><i class="fa fa-sitemap"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">部门</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">14</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-dark"><i class="fa fa-black-tie"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">老师总数</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">27</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-azure"><i class="fa fa-tags"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">总课程</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">31</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-pink"><i class="fa fa-credit-card"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">费用</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">$ 7,254</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-green"><i class="fa fa-bank"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">总收入</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">$ 27,852</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-cyan"><i class="fa fa-map-o"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">我们的中心</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">52</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-body top_counter">
+								<div class="icon bg-indigo"><i class="fa fa-smile-o"></i> </div>
+								<div class="content">
+									<span>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">笑脸</font>
+										</font>
+									</span>
+									<h5 class="number mb-0">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">10K</font>
+										</font>
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="righttab-Result" role="tabpanel">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">结果2019</font>
+									</font>
+								</h3>
+								<div class="card-options">
+									<a href="#"><i class="fa fa-file-excel-o" data-toggle="tooltip" title="" data-original-title="Export Excel"></i></a>
+								</div>
+							</div>
+							<div class="card-body">
+								<ul class="list-unstyled">
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">87％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">艺术与设计</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-azure" role="progressbar" style="width: 87%" aria-valuenow="42" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">80％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">时尚</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-green" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">63％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">体育科学</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-orange" role="progressbar" style="width: 63%" aria-valuenow="36" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">91％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">电脑</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-indigo" role="progressbar" style="width: 91%" aria-valuenow="6" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li>
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">35％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">生物科学</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-pink" role="progressbar" style="width: 35%" aria-valuenow="6" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="card-footer">
+								<div class="row text-center">
+									<div class="col-6 border-right">
+										<label class="mb-0">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">总通行证</font>
+											</font>
+										</label>
+										<div class="font-20 font-weight-bold">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">1,052</font>
+											</font>
+										</div>
+									</div>
+									<div class="col-6">
+										<label class="mb-0">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">完全失败</font>
+											</font>
+										</label>
+										<div class="font-20 font-weight-bold">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">198</font>
+											</font>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">结果2018</font>
+									</font>
+								</h3>
+								<div class="card-options">
+									<a href="#"><i class="fa fa-file-excel-o" data-toggle="tooltip" title="" data-original-title="Export Excel"></i></a>
+								</div>
+							</div>
+							<div class="card-body">
+								<ul class="list-unstyled">
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">80％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">时尚</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-green" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">87％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">艺术与设计</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-azure" role="progressbar" style="width: 87%" aria-valuenow="42" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">91％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">电脑</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-indigo" role="progressbar" style="width: 91%" aria-valuenow="6" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li class="mb-3">
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">35％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">生物科学</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-pink" role="progressbar" style="width: 35%" aria-valuenow="6" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li>
+										<div class="clearfix">
+											<div class="float-left"><strong>
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">63％</font>
+													</font>
+												</strong></div>
+											<div class="float-right"><small class="text-muted">
+													<font style="vertical-align: inherit;">
+														<font style="vertical-align: inherit;">体育科学</font>
+													</font>
+												</small></div>
+										</div>
+										<div class="progress progress-xxs">
+											<div class="progress-bar bg-orange" role="progressbar" style="width: 63%" aria-valuenow="36" aria-valuemin="0"
+											 aria-valuemax="100"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="card-footer">
+								<div class="row text-center">
+									<div class="col-6 border-right">
+										<label class="mb-0">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">总通行证</font>
+											</font>
+										</label>
+										<div class="font-20 font-weight-bold">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">845</font>
+											</font>
+										</div>
+									</div>
+									<div class="col-6">
+										<label class="mb-0">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">完全失败</font>
+											</font>
+										</label>
+										<div class="font-20 font-weight-bold">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">142</font>
+											</font>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="righttab-Students" role="tabpanel">
+						<div id="users">
+							<div class="input-group mt-2 mb-2">
+								<input type="text" class="form-control search" placeholder="搜索学生">
+							</div>
+							<ul class="right_chat list-unstyled list">
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">一种</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar1.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">阿比盖尔·丘吉尔</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">艺术与设计</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar2.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">亚历山德拉·卡尔</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时尚</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar3.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">艾莉森·贝瑞（Alison Berry）</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时尚</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">乙</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar4.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">贝拉·艾伦</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">体育科学</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">C</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar5.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">卡罗琳·艾伦（Caroline Alan）</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">体育科学</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar6.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">康纳·坎贝尔</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">电脑</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar7.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">查尔斯·坎贝尔</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">电脑</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">d</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar8.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">唐娜·哈德森</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">电脑</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar9.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">迪伦·琼斯（Dylan Jones）</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">电脑</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">G</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar8.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">戈登·哈德森</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">体育科学</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar9.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">加布里埃尔·沃克（Gabrielle Walker）</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">电脑</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar10.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">加文·诺斯</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">电脑</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">小号</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar1.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">斯蒂芬妮·哈德森（Stephanie Hudson）</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">体育科学</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="alfabet">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">w ^</font>
+									</font>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="media">
+										<img class="media-object" src="../assets/images/xs/avatar1.jpg" alt="">
+										<div class="media-body">
+											<span class="name">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">威廉·佩奇</font>
+												</font>
+											</span>
+											<span class="message">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时尚</font>
+												</font>
+											</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="user_chatbody chat_app">
+							<div class="card-header bline pt-1 pl-0 pr-0">
+								<h3 class="card-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">阿比盖尔·丘吉尔 </font>
+									</font><small>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">线上</font>
+										</font>
+									</small>
+								</h3>
+								<div class="card-options">
+									<a href="javascript:void(0)" class="p-1" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<a class="dropdown-item active" href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">线上</font>
+											</font>
+										</a>
+										<a class="dropdown-item" href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">远</font>
+											</font>
+										</a>
+										<a class="dropdown-item" href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">请勿打扰</font>
+											</font>
+										</a>
+										<a class="dropdown-item" href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">无形</font>
+											</font>
+										</a>
+									</div>
+									<a href="javascript:void(0)" class="p-1 chat_close"><i class="fa fa-close"></i></a>
+								</div>
+							</div>
+							<div class="chat_windows">
+								<ul class="mb-0">
+									<li class="other-message">
+										<img class="avatar mr-3" src="../assets/images/xs/avatar1.jpg" alt="头像">
+										<div class="message">
+											<p class="bg-light-blue">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天要见面吗</font>
+												</font>
+											</p>
+											<span class="time">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天上午10:10</font>
+												</font>
+											</span>
+										</div>
+									</li>
+									<li class="other-message">
+										<img class="avatar mr-3" src="../assets/images/xs/avatar1.jpg" alt="头像">
+										<div class="message">
+											<p class="bg-light-blue">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">嗨艾登，你好吗？</font>
+													<font style="vertical-align: inherit;">项目进展如何？</font>
+												</font>
+											</p>
+											<p class="bg-light-blue">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天要见面吗</font>
+												</font>
+											</p>
+											<span class="time">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天上午10:15</font>
+												</font>
+											</span>
+										</div>
+									</li>
+									<li class="my-message">
+										<div class="message">
+											<p class="bg-light-gray">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">项目已经完成，我将向您展示结果。</font>
+												</font>
+											</p>
+											<div class="file_folder">
+												<a href="javascript:void(0);">
+													<div class="icon">
+														<i class="fa fa-file-excel-o text-success"></i>
+													</div>
+													<div class="file-name">
+														<p class="mb-0 text-muted">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">Report2017.xls</font>
+															</font>
+														</p>
+														<small>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">大小：68KB</font>
+															</font>
+														</small>
+													</div>
+												</a>
+											</div>
+											<span class="time">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天上午10:17</font>
+												</font>
+											</span>
+										</div>
+									</li>
+									<li class="other-message">
+										<img class="avatar mr-3" src="../assets/images/xs/avatar1.jpg" alt="头像">
+										<div class="message">
+											<div class="media_img">
+												<img src="../assets/images/gallery/1.jpg" class="w100 img-thumbnail" alt="">
+												<img src="../assets/images/gallery/2.jpg" class="w100 img-thumbnail" alt="">
+											</div>
+											<span class="time">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天上午10:15</font>
+												</font>
+											</span>
+										</div>
+									</li>
+									<li class="other-message">
+										<img class="avatar mr-3" src="../assets/images/xs/avatar1.jpg" alt="头像">
+										<div class="message">
+											<p class="bg-light-blue">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天有结果我要开会吗？</font>
+												</font>
+											</p>
+											<span class="time">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天上午10:18</font>
+												</font>
+											</span>
+										</div>
+									</li>
+									<li class="my-message">
+										<div class="message">
+											<p class="bg-light-gray">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">好吧，我们有很好的项目预算</font>
+												</font>
+											</p>
+											<span class="time">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">今天上午10:25</font>
+												</font>
+											</span>
+										</div>
+									</li>
+								</ul>
+								<div class="chat-message clearfix">
+									<a href="javascript:void(0);"><i class="icon-camera"></i></a>
+									<a href="javascript:void(0);"><i class="icon-camcorder"></i></a>
+									<a href="javascript:void(0);"><i class="icon-paper-plane"></i></a>
+									<div class="input-group mb-0">
+										<input type="text" class="form-control" placeholder="在此输入文字...">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="righttab-Todo" role="tabpanel">
+						<ul class="list-unstyled mb-0 todo_list">
+							<li>
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">报告面板Usag</font>
+										</font>
+									</span>
+								</label>
+							</li>
+							<li>
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">报告面板Usag</font>
+										</font>
+									</span>
+								</label>
+							</li>
+							<li>
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">Angular Admin的新徽标设计</font>
+										</font>
+									</span>
+								</label>
+							</li>
+							<li>
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">为Angular Admin设计PSD文件</font>
+										</font>
+									</span>
+								</label>
+							</li>
+							<li>
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">Angular Admin的新徽标设计</font>
+										</font>
+									</span>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 右侧栏 系统设置面板 -->
+			<div id="rightsidebar" class="right_sidebar ">
+				<a href="javascript:void(0)" class="p-3 settingbar float-right"><i class="fa fa-close"></i></a>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Settings" aria-expanded="true">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">设置面板</font>
+							</font>
+						</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#activity" aria-expanded="false">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">其它信息</font>
+							</font>
+						</a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane vivify fadeIn active" id="Settings" aria-expanded="true">
+						<div class="mb-4">
+							<h6 class="font-14 font-weight-bold text-muted">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">主题色</font>
+								</font>
+							</h6>
+							<ul class="choose-skin list-unstyled mb-0">
+								<li data-theme="azure">
+									<div class="azure"></div>
+								</li>
+								<li data-theme="indigo">
+									<div class="indigo"></div>
+								</li>
+								<li data-theme="purple">
+									<div class="purple"></div>
+								</li>
+								<li data-theme="orange">
+									<div class="orange"></div>
+								</li>
+								<li data-theme="green">
+									<div class="green"></div>
+								</li>
+								<li data-theme="cyan">
+									<div class="cyan"></div>
+								</li>
+								<li data-theme="blush">
+									<div class="blush"></div>
+								</li>
+								<li id='themeWhiteMenuCell' data-theme="white" class="active">
+									<div class="bg-white"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="mb-4">
+							<h6 class="font-14 font-weight-bold text-muted">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">字体样式</font>
+								</font>
+							</h6>
+							<div class="custom-controls-stacked font_setting">
+								<label class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" name="font" value="font-muli" checked="">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">Muli Google字体</font>
+										</font>
+									</span>
+								</label>
+								<label class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" name="font" value="font-montserrat">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">蒙特塞拉特Google字体</font>
+										</font>
+									</span>
+								</label>
+								<label class="custom-control custom-radio custom-control-inline">
+									<input type="radio" class="custom-control-input" name="font" value="font-poppins">
+									<span class="custom-control-label">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">Poppins Google字体</font>
+										</font>
+									</span>
+								</label>
+							</div>
+						</div>
+						<div>
+							<h6 class="font-14 font-weight-bold mt-4 text-muted">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">常规设置</font>
+								</font>
+							</h6>
+							<ul class="setting-list list-unstyled mt-1 setting_switch">
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">夜间模式</font>
+											</font>
+										</span>
+										<input id='darkModeBtn' cellValue='dark-mode' type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-darkmode">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">最小补充栏深色</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-min_sidebar">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">侧边栏深色</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-sidebar">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">图标颜色</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-iconcolor">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">渐变色</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-gradient" checked="">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">RTL支持</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-rtl">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">盒子布局</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-boxlayout">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<!-- 待扩展选项 -->
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">扩展选项一</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-fixnavbar">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">扩展选项二</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-pageheader">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+								<li>
+									<label class="custom-switch">
+										<span class="custom-switch-description">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">扩展选项三</font>
+											</font>
+										</span>
+										<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-boxshadow">
+										<span class="custom-switch-indicator"></span>
+									</label>
+								</li>
+							</ul>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label class="d-block">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">数据条 </font>
+								</font><span class="float-right">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">77％</font>
+									</font>
+								</span>
+							</label>
+							<div class="progress progress-sm">
+								<div class="progress-bar" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;"></div>
+							</div>
+							<button type="button" class="btn btn-primary btn-block mt-3">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">按 钮</font>
+								</font>
+							</button>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane vivify fadeIn" id="activity" aria-expanded="false">
+						<ul class="new_timeline mt-3">
+							<li>
+								<div class="bullet pink"></div>
+								<div class="time">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">11:00 AM</font>
+									</font>
+								</div>
+								<div class="desc">
+									<h3>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">出勤率</font>
+										</font>
+									</h3>
+									<h4>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">电脑课</font>
+										</font>
+									</h4>
+								</div>
+							</li>
+							<li>
+								<div class="bullet pink"></div>
+								<div class="time">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">上午11:30</font>
+									</font>
+								</div>
+								<div class="desc">
+									<h3>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">增加了兴趣</font>
+										</font>
+									</h3>
+									<h4>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">“志愿者活动”</font>
+										</font>
+									</h4>
+								</div>
+							</li>
+							<li>
+								<div class="bullet green"></div>
+								<div class="time">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">12:00 PM</font>
+									</font>
+								</div>
+								<div class="desc">
+									<h3>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">开发团队</font>
+										</font>
+									</h3>
+									<h4>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">环聊</font>
+										</font>
+									</h4>
+									<ul class="list-unstyled team-info margin-0 p-t-5">
+										<li><img src="../assets/images/xs/avatar1.jpg" alt="头像"></li>
+										<li><img src="../assets/images/xs/avatar2.jpg" alt="头像"></li>
+										<li><img src="../assets/images/xs/avatar3.jpg" alt="头像"></li>
+										<li><img src="../assets/images/xs/avatar4.jpg" alt="头像"></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<div class="bullet green"></div>
+								<div class="time">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">2:00 PM</font>
+									</font>
+								</div>
+								<div class="desc">
+									<h3>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">回应需求</font>
+										</font>
+									</h3>
+									<a href="javascript:void(0)">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">“亲切的机会”</font>
+										</font>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="bullet orange"></div>
+								<div class="time">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">下午1:30</font>
+									</font>
+								</div>
+								<div class="desc">
+									<h3>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">午休</font>
+										</font>
+									</h3>
+								</div>
+							</li>
+							<li>
+								<div class="bullet green"></div>
+								<div class="time">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">下午2:38</font>
+									</font>
+								</div>
+								<div class="desc">
+									<h3>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">完</font>
+										</font>
+									</h3>
+									<h4>
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">回家</font>
+										</font>
+									</h4>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 右侧栏 信息面板A -->
+			<div class="theme_div">
+				<div class="card">
+					<div class="card-body">
+						<ul class="list-group list-unstyled">
+							<li class="list-group-item mb-2">
+								<p>模块一</p>
+								<a href="#"><img src="../assets/images/themes/default.png" class="img-fluid" alt="" /></a>
+							</li>
+							<li class="list-group-item mb-2">
+								<p>模块二</p>
+								<a href="#"><img src="../assets/images/themes/dark.png" class="img-fluid" alt="" /></a>
+							</li>
+							<li class="list-group-item mb-2">
+								<p>模块三</p>
+								<a href="#"><img src="../assets/images/themes/rtl.png" class="img-fluid" alt="" /></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 左侧详情导航栏 -->
+			<div id="left-sidebar" class="sidebar">
+				<h5 class="brand-name">后台
+					<a href="javascript:void(0)" class="menu_option float-right">
+						<i class="icon-grid font-16" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle">
+						</i>
+					</a>
+				</h5>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#menu-uni">校园管理</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#menu-admin">系统管理</a>
+					</li>
+				</ul>
+				<div class="tab-content mt-3">
+					<!-- 列表一 -->
+					<div class="tab-pane fade show active" id="menu-uni" role="tabpanel">
+						<nav class="sidebar-nav">
+							<ul class="metismenu">
+								<li id='defaultSelectMenuCell' class="active">
+									<a href="indexContent.html">
+										<i class="fa fa-dashboard"></i>
+										<span style='color:#f1c232;'>仪表盘</span>
+									</a>
+								</li>
+								<li>
+									<a href="professors.html">
+										<i class="fa fa-black-tie"></i>
+										<span>教师</span>
+									</a>
+								</li>
+								<li>
+									<a href="students.html">
+										<i class="fa fa-users"></i>
+										<span>学生</span>
+									</a>
+								</li>
+								<li>
+									<a href="departments.html">
+										<i class="fa fa-users"></i>
+										<span>班级</span>
+									</a>
+								</li>
+								<li>
+									<a href="library.html">
+										<i class="fa fa-book"></i>
+										<span>课程</span>
+									</a>
+								</li>
+								<li>
+									<a href="courses.html">
+										<i class="fa fa-graduation-cap"></i>
+										<span>班级课程</span>
+									</a>
+								</li>
+								<li>
+									<a href="holiday.html">
+										<i class="fa fa-bullhorn"></i>
+										<span>活动</span>
+									</a>
+								</li>
+								<!-- <li class="g_heading">其它</li> -->
+								<li>
+									<a href="staff.html">
+										<i class="fa fa-user-circle-o"></i>
+										<span>员工</span>
+									</a>
+								</li>
+								<li>
+									<a href="events.html">
+										<i class="fa fa-calendar"></i>
+										<span>日历</span>
+									</a>
+								</li>
+								<li>
+									<a href="app-chat.html">
+										<i class="fa fa-comments-o"></i>
+										<span>聊天</span>
+									</a>
+								</li>
+								<li>
+									<a href="app-contact.html">
+										<i class="fa fa-address-book"></i>
+										<span>联系人</span>
+									</a>
+								</li>
+								<li>
+									<a href="app-filemanager.html">
+										<i class="fa fa-folder"></i>
+										<span>文件</span>
+									</a>
+								</li>
+								<li>
+									<a href="our-centres.html">
+										<i class="fa fa-map"></i>
+										<span>我们的中心</span>
+									</a>
+								</li>
+								<li>
+									<a href="gallery.html">
+										<i class="fa fa-camera-retro"></i>
+										<span>画廊</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<!-- 列表二 -->
+					<div class="tab-pane fade" id="menu-admin" role="tabpanel">
+						<nav class="sidebar-nav">
+							<ul class="metismenu">
+								<li>
+									<a href="payments.html">
+										<i class="fa fa-credit-card"></i>
+										<span>付款情况</span>
+									</a>
+								</li>
+								<li><a href="noticeboard.html"><i class="fa fa-dashboard"></i><span>公告栏</span></a></li>
+								<li><a href="taskboard.html"><i class="fa fa-list-ul"></i><span>任务面板</span></a></li>
+								<li><a href="hostel.html"><i class="fa fa-bed"></i><span>旅馆</span></a></li>
+								<li><a href="transport.html"><i class="fa fa-truck"></i><span>交通</span></a></li>
+								<li><a href="attendance.html"><i class="fa fa-calendar-check-o"></i><span>出勤率</span></a></li>
+								<li><a href="leave.html"><i class="fa fa-flag"></i><span>考勤</span></a></li>
+								<li><a href="setting.html"><i class="fa fa-gear"></i><span>系统设置</span></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<!-- subWindow子窗口 -->
+			<div class="page" style='height:100%;'>
+				<iframe id='subWindow' name='subWindow' src='indexContent.html' style='width:100%; height:100%; border:0px solid;'></iframe>
+			</div>
+		</div>
+
+
+	</body>
+</html>

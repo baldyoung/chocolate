@@ -1,0 +1,1329 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="translated-ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<title>::爱立信::费用</title>
+
+		<!-- Bootstrap Core and vandor -->
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+		<link rel="stylesheet" href="../assets/plugins/datatable/dataTables.bootstrap4.min.css">
+
+		<!-- Core css -->
+		<link rel="stylesheet" href="../assets/css/style.min.css">
+		<script src="assets/js/page/index.js"></script>
+		<style>
+			::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 4px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+				scrollbar-arrow-color: red;
+
+			}
+		</style>
+		<style type="text/css">
+			.jqstooltip {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				visibility: hidden;
+				background: rgb(0, 0, 0) transparent;
+				background-color: rgba(0, 0, 0, 0.6);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+				white-space: nowrap;
+				padding: 5px;
+				border: 1px solid white;
+				box-sizing: content-box;
+				z-index: 10000;
+			}
+
+			.jqsfield {
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+			}
+		</style>
+		<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+	</head>
+
+	<body class="font-muli theme-cyan gradient close_rightbar">
+
+		<!-- Page Loader -->
+		<div class="page-loader-wrapper" style="display: none;">
+			<div class="loader">
+			</div>
+		</div>
+
+		<div id="main_content">
+			<!-- Start project content area -->
+			<div class="page">
+				<!-- Start Page header -->
+				<div class="section-body" id="page_top">
+					<div class="container-fluid">
+						<div class="page-header">
+							<div class="left">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="您想找到什么">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">搜索</font>
+											</font>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="right">
+								<ul class="nav nav-pills">
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">页数</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="page-empty.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">空白页</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-profile.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">个人资料</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-search.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">搜索结果</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-timeline.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时间线</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-invoices.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">发票</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-pricing.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">价钱</font>
+												</font>
+											</a>
+										</div>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">验证码</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="login.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">登录</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="register.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">寄存器</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="forgot-password.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">忘记密码</font>
+												</font>
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="404.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">404错误</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="500.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">500错误</font>
+												</font>
+											</a>
+										</div>
+									</li>
+								</ul>
+								<div class="notification d-flex">
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-language"></i></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">英语</font>
+												</font>
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">西班牙文</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">日本</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">法国</font>
+												</font>
+											</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-envelope"></i><span
+											 class="badge badge-success nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="right_chat list-unstyled w350 p-0">
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object" src="../assets/images/xs/avatar4.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">唐纳德·加德纳</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">读者早已知道</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">11分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">温迪·基恩</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">Lorem Ipsum的段落有很多变化</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">18分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="offline">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">马特·罗萨莱斯（Matt Rosales）</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">与普遍的看法相反，Lorem Ipsum并非简单</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">27分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">菲利普·史密斯</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">它起源于公元前45年的一部古典拉丁文学作品</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">33分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">标记为已读</font>
+												</font>
+											</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span
+											 class="badge badge-primary nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="list-unstyled feeds_widget">
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-blue"><i class="fa fa-check"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">广告活动</font>
+															</font><strong class="text-blue font-weight-bold">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">假期</font>
+																</font>
+															</strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">即将达到预算上限。</font>
+															</font>
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-green"><i class="fa fa-user"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">计算机部门</font>
+																<font style="vertical-align: inherit;">新入学</font>
+															</font><strong class="text-green font-weight-bold">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">32</font>
+																</font>
+															</strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">。</font>
+															</font>
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-red"><i class="fa fa-info"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">6th sem result <strong class="text-red font-weight-bold">67%</strong> in
+															computer department.</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-azure"><i class="fa fa-thumbs-o-up"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">New Feedback <strong class="text-azure font-weight-bold">53</strong> for
+															university assessment.</p>
+													</div>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
+											<span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;"> 乔治</font>
+											</font>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
+											<a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
+											<a class="dropdown-item" href="app-email.html"><span class="float-right"><span class="badge badge-primary">6</span></span><i
+												 class="dropdown-icon fe fe-mail"></i> Inbox</a>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need
+												help?</a>
+											<a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start Page title and tab -->
+				<div class="section-body">
+					<div class="container-fluid">
+						<div class="d-flex justify-content-between align-items-center ">
+							<div class="header-action">
+								<h1 class="page-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">费用</font>
+									</font>
+								</h1>
+								<ol class="breadcrumb page-breadcrumb">
+									<li class="breadcrumb-item"><a href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">爱立信</font>
+											</font>
+										</a></li>
+									<li class="breadcrumb-item active" aria-current="page">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">费用</font>
+										</font>
+									</li>
+								</ol>
+							</div>
+							<ul class="nav nav-tabs page-header-tab">
+								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Fees-all">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">清单</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Fees-Receipt">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">费用收据</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Fees-add">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">加费</font>
+										</font>
+									</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="section-body mt-4">
+					<div class="container-fluid">
+						<div class="tab-content">
+							<div class="tab-pane active" id="Fees-all">
+								<div class="card">
+									<div class="card-body">
+										<div class="table-responsive">
+											<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+												<div class="row">
+													<div class="col-sm-12 col-md-6">
+														<div class="dataTables_length" id="DataTables_Table_0_length"><label>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">节目 </font>
+																</font><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control">
+																	<option value="10">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">10</font>
+																		</font>
+																	</option>
+																	<option value="25">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">25</font>
+																		</font>
+																	</option>
+																	<option value="50">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">50</font>
+																		</font>
+																	</option>
+																	<option value="100">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">100</font>
+																		</font>
+																	</option>
+																</select>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;"> 参赛作品</font>
+																</font>
+															</label></div>
+													</div>
+													<div class="col-sm-12 col-md-6">
+														<div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">搜索：</font>
+																</font><input type="search" class="form-control" placeholder="" aria-controls="DataTables_Table_0">
+															</label></div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-hover text-nowrap js-basic-example dataTable table-striped table_custom border-style spacing5 no-footer"
+														 id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+															<thead>
+																<tr role="row">
+																	<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+																	 aria-sort="ascending" aria-label="卷号：激活以对列降序进行排序" style="width: 74px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">卷号</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="学生姓名：激活以对列升序进行排序"
+																	 style="width: 120px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">学生姓名</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="费用类型：激活以对列升序进行排序"
+																	 style="width: 81px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">收费类型</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="日期：激活以对列升序排序"
+																	 style="width: 89px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">日期</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="发票编号：激活以对列升序进行排序"
+																	 style="width: 96px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">发票号码。</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="付款类型：激活以对列升序进行排序"
+																	 style="width: 115px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">支付方式</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="状态：激活以对列升序排序"
+																	 style="width: 61px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">状态</font>
+																		</font>
+																	</th>
+																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="数量：激活以对列升序进行排序"
+																	 style="width: 72px;">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">量</font>
+																		</font>
+																	</th>
+																</tr>
+															</thead>
+															<tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+																<tr role="row" class="odd">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">111</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">考林·约翰逊（Corrine Johnson）</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">年刊</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年1月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-4578</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">现金</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-green">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">已付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">248 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">112</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">格拉迪斯·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">学费</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年2月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-3695</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">检查</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-orange">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">待定</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">124 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">113</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">爱丽丝·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">年刊</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年2月24日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-4679</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">信用卡</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-red">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">未付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">340 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">114</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">格拉迪斯·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">学费</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年2月25日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-2839</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">Cashn</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-green">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">已付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">112 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">115</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">考林·约翰逊（Corrine Johnson）</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">运输</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年3月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-4916</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">检查</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-green">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">已付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">340 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">116</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">格拉迪斯·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">学费</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年5月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-7542</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">Cashn</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-red">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">未付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">421 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">117</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">爱丽丝·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">运输</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年5月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-8653</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">信用卡</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-orange">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">待定</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">124 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">118</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">格拉迪斯·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">图书馆</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年5月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-4859</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">检查</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-green">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">已付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">485 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="odd">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">119</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">爱丽丝·史密斯</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">年刊</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年6月12日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-2648</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">检查</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-orange">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">待定</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">231 $</font>
+																		</font>
+																	</td>
+																</tr>
+																<tr role="row" class="even">
+																	<td class="sorting_1">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">120</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">考林·约翰逊（Corrine Johnson）</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">学费</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2018年6月21日</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">IN-4875</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">Cashn</font>
+																		</font>
+																	</td>
+																	<td><span class="tag tag-green">
+																			<font style="vertical-align: inherit;">
+																				<font style="vertical-align: inherit;">已付</font>
+																			</font>
+																		</span></td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">4856 $</font>
+																		</font>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12 col-md-5">
+														<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">显示17个条目中的1至10</font>
+															</font>
+														</div>
+													</div>
+													<div class="col-sm-12 col-md-7">
+														<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+															<ul class="pagination">
+																<li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#"
+																	 aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">以前</font>
+																		</font>
+																	</a></li>
+																<li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1"
+																	 tabindex="0" class="page-link">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">1个</font>
+																		</font>
+																	</a></li>
+																<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2"
+																	 tabindex="0" class="page-link">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">2</font>
+																		</font>
+																	</a></li>
+																<li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0"
+																	 data-dt-idx="3" tabindex="0" class="page-link">
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">下一个</font>
+																		</font>
+																	</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Fees-Receipt">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">#AB0017</h3>
+										<div class="card-options">
+											<button type="button" class="btn btn-primary"><i class="si si-printer"></i> Print Invoice</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="row my-8">
+											<div class="col-6">
+												<p class="h3">Company</p>
+												<address>
+													Street Address<br>
+													State, City<br>
+													Region, Postal Code<br>
+													ltd@example.com
+												</address>
+											</div>
+											<div class="col-6 text-right">
+												<p class="h3">Client</p>
+												<address>
+													Street Address<br>
+													State, City<br>
+													Region, Postal Code<br>
+													ctr@example.com
+												</address>
+											</div>
+										</div>
+										<div class="table-responsive push">
+											<table class="table table-bordered table-hover text-nowrap">
+												<tbody>
+													<tr>
+														<th class="text-center width35"></th>
+														<th>Product</th>
+														<th class="text-center" style="width: 1%">Qnt</th>
+														<th class="text-right" style="width: 1%">Unit</th>
+														<th class="text-right" style="width: 1%">Amount</th>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td>
+															<p class="font600 mb-1">Logo Creation</p>
+															<div class="text-muted">Logo and business cards design</div>
+														</td>
+														<td class="text-center">1</td>
+														<td class="text-right">$1.800,00</td>
+														<td class="text-right">$1.800,00</td>
+													</tr>
+													<tr>
+														<td class="text-center">2</td>
+														<td>
+															<p class="font600 mb-1">Online Store Design &amp; Development</p>
+															<div class="text-muted">Design/Development for all popular modern browsers</div>
+														</td>
+														<td class="text-center">1</td>
+														<td class="text-right">$20.000,00</td>
+														<td class="text-right">$20.000,00</td>
+													</tr>
+													<tr>
+														<td class="text-center">3</td>
+														<td>
+															<p class="font600 mb-1">App Design</p>
+															<div class="text-muted">Promotional mobile application</div>
+														</td>
+														<td class="text-center">1</td>
+														<td class="text-right">$3.200,00</td>
+														<td class="text-right">$3.200,00</td>
+													</tr>
+													<tr>
+														<td colspan="4" class="font600 text-right">Subtotal</td>
+														<td class="text-right">$25.000,00</td>
+													</tr>
+													<tr class="bg-light">
+														<td colspan="4" class="font600 text-right">Vat Rate</td>
+														<td class="text-right">20%</td>
+													</tr>
+													<tr>
+														<td colspan="4" class="font600 text-right">Vat Due</td>
+														<td class="text-right">$5.000,00</td>
+													</tr>
+													<tr class="bg-green text-light">
+														<td colspan="4" class="font700 text-right">Total Due</td>
+														<td class="font700 text-right">$30.000,00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<p class="text-muted text-center">Thank you very much for doing business with us. We look forward to working
+											with you again!</p>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Fees-add">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Add Library</h3>
+										<div class="card-options ">
+											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+										</div>
+									</div>
+									<form class="card-body">
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Roll No <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Student Name <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Department/Class <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select class="form-control" name="select">
+													<option value="">Select...</option>
+													<option value="Category 1">Mathematics</option>
+													<option value="Category 2">Engineering</option>
+													<option value="Category 3">Science</option>
+													<option value="Category 3">M.B.A.</option>
+													<option value="Category 3">Music</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Fees Type <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select class="form-control" name="selectType">
+													<option value="">Select...</option>
+													<option value="Category 1">Annual</option>
+													<option value="Category 2">Tuition</option>
+													<option value="Category 3">Transport</option>
+													<option value="Category 3">Exam</option>
+													<option value="Category 3">Library</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Payment Duration <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="example-inline-radios" value="option1" checked="">
+														<span class="custom-control-label">Monthly</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="example-inline-radios" value="option2">
+														<span class="custom-control-label">Session</span>
+													</label>
+													<label class="custom-control custom-radio custom-control-inline">
+														<input type="radio" class="custom-control-input" name="example-inline-radios" value="option3">
+														<span class="custom-control-label">Yearly</span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Collection Date <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Amount <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Payment Method <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select class="form-control" name="select">
+													<option value="">Select...</option>
+													<option value="Category 1">Cash</option>
+													<option value="Category 2">Cheque</option>
+													<option value="Category 3">Credit Card</option>
+													<option value="Category 4">Debit Card</option>
+													<option value="Category 5">Netbanking</option>
+													<option value="Category 6">Other</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Payment Status <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select class="form-control" name="select">
+													<option value="">Select...</option>
+													<option value="Category 1">Paid</option>
+													<option value="Category 2">Unpaid</option>
+													<option value="Category 3">Pending</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Payment Reference No. <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Payment Details <span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label"></label>
+											<div class="col-md-7">
+												<button type="submit" class="btn btn-primary">Submit</button>
+												<button type="submit" class="btn btn-outline-secondary">Cancel</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start main footer -->
+				<div class="section-body">
+					<footer class="footer">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">
+											版权所有©2019 </font>
+									</font><a href="https://themeforest.net/user/puffintheme/portfolio">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">PuffinTheme</font>
+										</font>
+									</a>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">。
+										</font>
+									</font>
+								</div>
+								<div class="col-md-6 col-sm-12 text-md-right">
+									<ul class="list-inline mb-0">
+										<li class="list-inline-item"><a href="../doc/index.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">文献资料</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">常问问题</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">立即购买</font>
+												</font>
+											</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+
+		<!-- Start Main project js, jQuery, Bootstrap -->
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+
+		<!-- Start Plugin Js -->
+		<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="../assets/bundles/dataTables.bundle.js"></script>
+
+		<!-- Start project main js  and page js -->
+		<script src="../assets/js/core.js"></script>
+		<script src="assets/js/table/datatable.js"></script>
+		<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+			<div style="padding: 8px;">
+				<div>
+					<div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20"
+						 height="20" alt="Google 翻译"></div>
+				</div>
+			</div>
+			<div class="top" style="padding: 8px; float: left; width: 100%;">
+				<h1 class="title gray">原文</h1>
+			</div>
+			<div class="middle" style="padding: 8px;">
+				<div class="original-text"></div>
+			</div>
+			<div class="bottom" style="padding: 8px;">
+				<div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div>
+				<div class="started-activity-container">
+					<hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+					<div class="activity-root"></div>
+				</div>
+			</div>
+			<div class="status-message" style="display: none;"></div>
+		</div>
+
+
+		<div class="goog-te-spinner-pos">
+			<div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px"
+				 height="96px" viewBox="0 0 66 66">
+					<circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+				</svg></div>
+		</div>
+	</body>
+</html>

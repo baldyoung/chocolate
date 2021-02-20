@@ -1,0 +1,1925 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="translated-ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<title>::爱立信::设置</title>
+
+		<!-- Bootstrap Core and vandor -->
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/plugins/dropify/css/dropify.min.css">
+
+		<!-- Core css -->
+		<link rel="stylesheet" href="../assets/css/style.min.css">
+		<script src="assets/js/page/index.js"></script>
+		<style>
+			::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 4px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+				scrollbar-arrow-color: red;
+
+			}
+		</style>
+		<style type="text/css">
+			.jqstooltip {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				visibility: hidden;
+				background: rgb(0, 0, 0) transparent;
+				background-color: rgba(0, 0, 0, 0.6);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+				white-space: nowrap;
+				padding: 5px;
+				border: 1px solid white;
+				box-sizing: content-box;
+				z-index: 10000;
+			}
+
+			.jqsfield {
+				color: white;
+				font: 10px arial, san serif;
+				text-align: left;
+			}
+		</style>
+		<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+	</head>
+
+	<body class="font-muli theme-cyan gradient close_rightbar">
+
+		<!-- Page Loader -->
+		<div class="page-loader-wrapper" style="display: none;">
+			<div class="loader">
+			</div>
+		</div>
+
+		<div id="main_content">
+			<!-- Start project content area -->
+			<div class="page">
+				<!-- Start Page header -->
+				<div class="section-body" id="page_top">
+					<div class="container-fluid">
+						<div class="page-header">
+							<div class="left">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="您想找到什么">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">搜索</font>
+											</font>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="right">
+								<ul class="nav nav-pills">
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">页数</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="page-empty.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">空白页</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-profile.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">个人资料</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-search.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">搜索结果</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-timeline.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">时间线</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-invoices.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">发票</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="page-pricing.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">价钱</font>
+												</font>
+											</a>
+										</div>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+										 aria-expanded="false">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">验证码</font>
+											</font>
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="login.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">登录</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="register.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">寄存器</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="forgot-password.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">忘记密码</font>
+												</font>
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="404.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">404错误</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="500.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">500错误</font>
+												</font>
+											</a>
+										</div>
+									</li>
+								</ul>
+								<div class="notification d-flex">
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-language"></i></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">英语</font>
+												</font>
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">西班牙文</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">日本</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">法国</font>
+												</font>
+											</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-envelope"></i><span
+											 class="badge badge-success nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="right_chat list-unstyled w350 p-0">
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object" src="../assets/images/xs/avatar4.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">唐纳德·加德纳</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">读者早已知道</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">11分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">温迪·基恩</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">Lorem Ipsum的段落有很多变化</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">18分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="offline">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">马特·罗萨莱斯（Matt Rosales）</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">与普遍的看法相反，Lorem Ipsum并非简单</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">27分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+												<li class="online">
+													<a href="javascript:void(0);" class="media">
+														<img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
+														<div class="media-body">
+															<span class="name">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">菲利普·史密斯</font>
+																</font>
+															</span>
+															<div class="message">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">它起源于公元前45年的一部古典拉丁文学作品</font>
+																</font>
+															</div>
+															<small>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">33分钟前</font>
+																</font>
+															</small>
+															<span class="badge badge-outline status"></span>
+														</div>
+													</a>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">肯·史密斯全读</font>
+												</font>
+											</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span
+											 class="badge badge-primary nav-unread"></span></a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<ul class="list-unstyled feeds_widget">
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-blue"><i class="fa fa-check"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">广告活动</font>
+															</font><strong class="text-blue font-weight-bold">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">假期</font>
+																</font>
+															</strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">即将达到预算上限。</font>
+															</font>
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-green"><i class="fa fa-user"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">计算机部门</font>
+																<font style="vertical-align: inherit;">新入学</font>
+															</font><strong class="text-green font-weight-bold">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">32</font>
+																</font>
+															</strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">。</font>
+															</font>
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-red"><i class="fa fa-info"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">第六学期成绩</font>
+																<font style="vertical-align: inherit;">在计算机系</font>
+															</font><strong class="text-red font-weight-bold">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">占67％</font>
+																</font>
+															</strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">。</font>
+															</font>
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="feeds-left">
+														<span class="avatar avatar-azure"><i class="fa fa-thumbs-o-up"></i></span>
+													</div>
+													<div class="feeds-body ml-3">
+														<p class="text-muted mb-0">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">大学评估的</font>
+																<font style="vertical-align: inherit;">新反馈</font>
+															</font><strong class="text-azure font-weight-bold">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">53</font>
+																</font>
+															</strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">。</font>
+															</font>
+														</p>
+													</div>
+												</li>
+											</ul>
+											<div class="dropdown-divider"></div>
+											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">肯·史密斯全读</font>
+												</font>
+											</a>
+										</div>
+									</div>
+									<div class="dropdown d-flex">
+										<a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
+											<span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span>
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;"> 乔治</font>
+											</font>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i>
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 个人资料</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i>
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 设定值</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="app-email.html"><span class="float-right"><span class="badge badge-primary">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">6</font>
+														</font>
+													</span></span><i class="dropdown-icon fe fe-mail"></i>
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;"> 收件箱</font>
+												</font>
+											</a>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need
+												help?</a>
+											<a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start Page title and tab -->
+				<div class="section-body">
+					<div class="container-fluid">
+						<div class="d-flex justify-content-between align-items-center ">
+							<div class="header-action">
+								<h1 class="page-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">设置</font>
+									</font>
+								</h1>
+								<ol class="breadcrumb page-breadcrumb">
+									<li class="breadcrumb-item"><a href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">爱立信</font>
+											</font>
+										</a></li>
+									<li class="breadcrumb-item active" aria-current="page">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">设置</font>
+										</font>
+									</li>
+								</ol>
+							</div>
+							<ul class="nav nav-tabs page-header-tab">
+								<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Company_Settings">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">公司</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Localization">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">本土化</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Roles_Permissions">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">角色和权限</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Email_Settings">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">电子邮件</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Invoice_Settings">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">发票</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Notifications">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">通知事项 </font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Change_Password">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">更改密码 </font>
+										</font>
+									</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="section-body mt-4">
+					<div class="container-fluid">
+						<div class="tab-content">
+							<div class="tab-pane active show" id="Company_Settings">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">公司设定</font>
+											</font>
+										</h3>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="row">
+												<div class="col-md-4 col-sm-12">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">公司名称</font>
+															</font><span class="text-danger">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">*</font>
+																</font>
+															</span>
+														</label>
+														<input class="form-control" type="text" value="">
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">联系人</font>
+															</font>
+														</label>
+														<input class="form-control" value="Louis Pierce" type="text">
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">手机号码</font>
+															</font><span class="text-danger">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">*</font>
+																</font>
+															</span>
+														</label>
+														<input class="form-control" value="+1 882-635-7531" type="text">
+													</div>
+												</div>
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">地址</font>
+															</font>
+														</label>
+														<textarea class="form-control" placeholder="伊利诺伊州西芝加哥，Shirley Ave 44号，60185" aria-label="与textarea"></textarea>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">电邮</font>
+															</font><span class="text-danger">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">*</font>
+																</font>
+															</span>
+														</label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"><i class="icon-envelope"></i></span>
+															</div>
+															<input type="text" class="form-control" value="LouisPierce@example.com">
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">网址</font>
+															</font>
+														</label>
+														<div class="input-group">
+															<div class="input-group-prepend">
+																<span class="input-group-text"><i class="icon-globe"></i></span>
+															</div>
+															<input type="text" class="form-control" placeholder="http：//">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-lg-3">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">国家</font>
+															</font>
+														</label>
+														<select class="form-control">
+															<option value="">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">- 选择国家 - </font>
+																</font>
+															</option>
+															<option value="AF">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿富汗</font>
+																</font>
+															</option>
+															<option value="AX">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">奥兰群岛</font>
+																</font>
+															</option>
+															<option value="AL">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿尔巴尼亚</font>
+																</font>
+															</option>
+															<option value="DZ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿尔及利亚</font>
+																</font>
+															</option>
+															<option value="AS">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">美属萨摩亚</font>
+																</font>
+															</option>
+															<option value="AD">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">安道尔</font>
+																</font>
+															</option>
+															<option value="AO">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">安哥拉</font>
+																</font>
+															</option>
+															<option value="AI">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">安圭拉岛</font>
+																</font>
+															</option>
+															<option value="AQ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">南极洲</font>
+																</font>
+															</option>
+															<option value="AG">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">安提瓜和巴布达</font>
+																</font>
+															</option>
+															<option value="AR">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿根廷</font>
+																</font>
+															</option>
+															<option value="AM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">亚美尼亚</font>
+																</font>
+															</option>
+															<option value="AW">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿鲁巴岛</font>
+																</font>
+															</option>
+															<option value="AU">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">澳大利亚</font>
+																</font>
+															</option>
+															<option value="AT">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">奥地利</font>
+																</font>
+															</option>
+															<option value="AZ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿塞拜疆</font>
+																</font>
+															</option>
+															<option value="BS">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">巴哈马</font>
+																</font>
+															</option>
+															<option value="BH">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">巴林</font>
+																</font>
+															</option>
+															<option value="BD">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">孟加拉国</font>
+																</font>
+															</option>
+															<option value="BB">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">巴巴多斯</font>
+																</font>
+															</option>
+															<option value="BY">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">白俄罗斯</font>
+																</font>
+															</option>
+															<option value="BE">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">比利时</font>
+																</font>
+															</option>
+															<option value="BZ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">伯利兹</font>
+																</font>
+															</option>
+															<option value="BJ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">贝宁</font>
+																</font>
+															</option>
+															<option value="BM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">百慕大</font>
+																</font>
+															</option>
+															<option value="BT">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">不丹</font>
+																</font>
+															</option>
+															<option value="BO">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">玻利维亚多民族国</font>
+																</font>
+															</option>
+															<option value="BQ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">博内尔，圣尤斯特歇斯和萨巴</font>
+																</font>
+															</option>
+															<option value="BA">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">波斯尼亚和黑塞哥维那</font>
+																</font>
+															</option>
+															<option value="BW">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">博茨瓦纳</font>
+																</font>
+															</option>
+															<option value="BV">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">布维岛</font>
+																</font>
+															</option>
+															<option value="BR">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">巴西</font>
+																</font>
+															</option>
+															<option value="IO">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">英属印度洋领地</font>
+																</font>
+															</option>
+															<option value="BN">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">文莱达鲁萨兰国</font>
+																</font>
+															</option>
+															<option value="BG">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">保加利亚</font>
+																</font>
+															</option>
+															<option value="BF">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">布基纳法索</font>
+																</font>
+															</option>
+															<option value="BI">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">布隆迪</font>
+																</font>
+															</option>
+															<option value="KH">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">柬埔寨</font>
+																</font>
+															</option>
+															<option value="CM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">喀麦隆</font>
+																</font>
+															</option>
+															<option value="CA">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">加拿大</font>
+																</font>
+															</option>
+															<option value="CV">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">佛得角</font>
+																</font>
+															</option>
+															<option value="KY">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">开曼群岛</font>
+																</font>
+															</option>
+															<option value="CF">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">中非共和国</font>
+																</font>
+															</option>
+															<option value="TD">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">乍得</font>
+																</font>
+															</option>
+															<option value="CL">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">智利</font>
+																</font>
+															</option>
+															<option value="CN">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">中国</font>
+																</font>
+															</option>
+															<option value="CX">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">圣诞岛</font>
+																</font>
+															</option>
+															<option value="CC">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">科科斯（基林）群岛</font>
+																</font>
+															</option>
+															<option value="CO">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">哥伦比亚</font>
+																</font>
+															</option>
+															<option value="KM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">科摩罗</font>
+																</font>
+															</option>
+															<option value="CG">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">刚果</font>
+																</font>
+															</option>
+															<option value="CD">Congo, the Democratic Republic of the</option>
+															<option value="CK">Cook Islands</option>
+															<option value="CR">Costa Rica</option>
+															<option value="CI">Côte d'Ivoire</option>
+															<option value="HR">Croatia</option>
+															<option value="CU">Cuba</option>
+															<option value="CW">Curaçao</option>
+															<option value="CY">Cyprus</option>
+															<option value="CZ">Czech Republic</option>
+															<option value="DK">Denmark</option>
+															<option value="DJ">Djibouti</option>
+															<option value="DM">Dominica</option>
+															<option value="DO">Dominican Republic</option>
+															<option value="EC">Ecuador</option>
+															<option value="EG">Egypt</option>
+															<option value="SV">El Salvador</option>
+															<option value="GQ">Equatorial Guinea</option>
+															<option value="ER">Eritrea</option>
+															<option value="EE">Estonia</option>
+															<option value="ET">Ethiopia</option>
+															<option value="FK">Falkland Islands (Malvinas)</option>
+															<option value="FO">Faroe Islands</option>
+															<option value="FJ">Fiji</option>
+															<option value="FI">Finland</option>
+															<option value="FR">France</option>
+															<option value="GF">French Guiana</option>
+															<option value="PF">French Polynesia</option>
+															<option value="TF">French Southern Territories</option>
+															<option value="GA">Gabon</option>
+															<option value="GM">Gambia</option>
+															<option value="GE">Georgia</option>
+															<option value="DE">Germany</option>
+															<option value="GH">Ghana</option>
+															<option value="GI">Gibraltar</option>
+															<option value="GR">Greece</option>
+															<option value="GL">Greenland</option>
+															<option value="GD">Grenada</option>
+															<option value="GP">Guadeloupe</option>
+															<option value="GU">Guam</option>
+															<option value="GT">Guatemala</option>
+															<option value="GG">Guernsey</option>
+															<option value="GN">Guinea</option>
+															<option value="GW">Guinea-Bissau</option>
+															<option value="GY">Guyana</option>
+															<option value="HT">Haiti</option>
+															<option value="HM">Heard Island and McDonald Islands</option>
+															<option value="VA">Holy See (Vatican City State)</option>
+															<option value="HN">Honduras</option>
+															<option value="HK">Hong Kong</option>
+															<option value="HU">Hungary</option>
+															<option value="IS">Iceland</option>
+															<option value="IN">India</option>
+															<option value="ID">Indonesia</option>
+															<option value="IR">Iran, Islamic Republic of</option>
+															<option value="IQ">Iraq</option>
+															<option value="IE">Ireland</option>
+															<option value="IM">Isle of Man</option>
+															<option value="IL">Israel</option>
+															<option value="IT">Italy</option>
+															<option value="JM">Jamaica</option>
+															<option value="JP">Japan</option>
+															<option value="JE">Jersey</option>
+															<option value="JO">Jordan</option>
+															<option value="KZ">Kazakhstan</option>
+															<option value="KE">Kenya</option>
+															<option value="KI">Kiribati</option>
+															<option value="KP">Korea, Democratic People's Republic of</option>
+															<option value="KR">Korea, Republic of</option>
+															<option value="KW">Kuwait</option>
+															<option value="KG">Kyrgyzstan</option>
+															<option value="LA">Lao People's Democratic Republic</option>
+															<option value="LV">Latvia</option>
+															<option value="LB">Lebanon</option>
+															<option value="LS">Lesotho</option>
+															<option value="LR">Liberia</option>
+															<option value="LY">Libya</option>
+															<option value="LI">Liechtenstein</option>
+															<option value="LT">Lithuania</option>
+															<option value="LU">Luxembourg</option>
+															<option value="MO">Macao</option>
+															<option value="MK">Macedonia, the former Yugoslav Republic of</option>
+															<option value="MG">Madagascar</option>
+															<option value="MW">Malawi</option>
+															<option value="MY">Malaysia</option>
+															<option value="MV">Maldives</option>
+															<option value="ML">Mali</option>
+															<option value="MT">Malta</option>
+															<option value="MH">Marshall Islands</option>
+															<option value="MQ">Martinique</option>
+															<option value="MR">Mauritania</option>
+															<option value="MU">Mauritius</option>
+															<option value="YT">Mayotte</option>
+															<option value="MX">Mexico</option>
+															<option value="FM">Micronesia, Federated States of</option>
+															<option value="MD">Moldova, Republic of</option>
+															<option value="MC">Monaco</option>
+															<option value="MN">Mongolia</option>
+															<option value="ME">Montenegro</option>
+															<option value="MS">Montserrat</option>
+															<option value="MA">Morocco</option>
+															<option value="MZ">Mozambique</option>
+															<option value="MM">Myanmar</option>
+															<option value="NA">Namibia</option>
+															<option value="NR">Nauru</option>
+															<option value="NP">Nepal</option>
+															<option value="NL">Netherlands</option>
+															<option value="NC">New Caledonia</option>
+															<option value="NZ">New Zealand</option>
+															<option value="NI">Nicaragua</option>
+															<option value="NE">Niger</option>
+															<option value="NG">Nigeria</option>
+															<option value="NU">Niue</option>
+															<option value="NF">Norfolk Island</option>
+															<option value="MP">Northern Mariana Islands</option>
+															<option value="NO">Norway</option>
+															<option value="OM">Oman</option>
+															<option value="PK">Pakistan</option>
+															<option value="PW">Palau</option>
+															<option value="PS">Palestinian Territory, Occupied</option>
+															<option value="PA">Panama</option>
+															<option value="PG">Papua New Guinea</option>
+															<option value="PY">Paraguay</option>
+															<option value="PE">Peru</option>
+															<option value="PH">Philippines</option>
+															<option value="PN">Pitcairn</option>
+															<option value="PL">Poland</option>
+															<option value="PT">Portugal</option>
+															<option value="PR">Puerto Rico</option>
+															<option value="QA">Qatar</option>
+															<option value="RE">Réunion</option>
+															<option value="RO">Romania</option>
+															<option value="RU">Russian Federation</option>
+															<option value="RW">Rwanda</option>
+															<option value="BL">Saint Barthélemy</option>
+															<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+															<option value="KN">Saint Kitts and Nevis</option>
+															<option value="LC">Saint Lucia</option>
+															<option value="MF">Saint Martin (French part)</option>
+															<option value="PM">Saint Pierre and Miquelon</option>
+															<option value="VC">Saint Vincent and the Grenadines</option>
+															<option value="WS">Samoa</option>
+															<option value="SM">San Marino</option>
+															<option value="ST">Sao Tome and Principe</option>
+															<option value="SA">Saudi Arabia</option>
+															<option value="SN">Senegal</option>
+															<option value="RS">Serbia</option>
+															<option value="SC">Seychelles</option>
+															<option value="SL">Sierra Leone</option>
+															<option value="SG">Singapore</option>
+															<option value="SX">Sint Maarten (Dutch part)</option>
+															<option value="SK">Slovakia</option>
+															<option value="SI">Slovenia</option>
+															<option value="SB">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">所罗门群岛</font>
+																</font>
+															</option>
+															<option value="SO">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">索马里</font>
+																</font>
+															</option>
+															<option value="ZA">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">南非</font>
+																</font>
+															</option>
+															<option value="GS">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">南乔治亚岛和南桑威奇群岛</font>
+																</font>
+															</option>
+															<option value="SS">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">南苏丹</font>
+																</font>
+															</option>
+															<option value="ES">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">西班牙</font>
+																</font>
+															</option>
+															<option value="LK">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">斯里兰卡</font>
+																</font>
+															</option>
+															<option value="SD">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">苏丹</font>
+																</font>
+															</option>
+															<option value="SR">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">苏里南</font>
+																</font>
+															</option>
+															<option value="SJ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">斯瓦尔巴群岛和扬马延</font>
+																</font>
+															</option>
+															<option value="SZ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">斯威士兰</font>
+																</font>
+															</option>
+															<option value="SE">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">瑞典</font>
+																</font>
+															</option>
+															<option value="CH">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">瑞士</font>
+																</font>
+															</option>
+															<option value="SY">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿拉伯叙利亚共和国</font>
+																</font>
+															</option>
+															<option value="TW">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">中国台湾省</font>
+																</font>
+															</option>
+															<option value="TJ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">塔吉克斯坦</font>
+																</font>
+															</option>
+															<option value="TZ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">坦桑尼亚联合共和国</font>
+																</font>
+															</option>
+															<option value="TH">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">泰国</font>
+																</font>
+															</option>
+															<option value="TL">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">东帝汶</font>
+																</font>
+															</option>
+															<option value="TG">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">多哥</font>
+																</font>
+															</option>
+															<option value="TK">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">托克劳</font>
+																</font>
+															</option>
+															<option value="TO">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">汤加</font>
+																</font>
+															</option>
+															<option value="TT">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">特立尼达和多巴哥</font>
+																</font>
+															</option>
+															<option value="TN">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">突尼斯</font>
+																</font>
+															</option>
+															<option value="TR">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">火鸡</font>
+																</font>
+															</option>
+															<option value="TM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">土库曼斯坦</font>
+																</font>
+															</option>
+															<option value="TC">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">特克斯和凯科斯群岛</font>
+																</font>
+															</option>
+															<option value="TV">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">图瓦卢</font>
+																</font>
+															</option>
+															<option value="UG">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">乌干达</font>
+																</font>
+															</option>
+															<option value="UA">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">乌克兰</font>
+																</font>
+															</option>
+															<option value="AE">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿拉伯联合酋长国</font>
+																</font>
+															</option>
+															<option value="GB">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">英国</font>
+																</font>
+															</option>
+															<option value="US">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">美国</font>
+																</font>
+															</option>
+															<option value="UM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">美国本土外小岛屿</font>
+																</font>
+															</option>
+															<option value="UY">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">乌拉圭</font>
+																</font>
+															</option>
+															<option value="UZ">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">乌兹别克斯坦</font>
+																</font>
+															</option>
+															<option value="VU">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">瓦努阿图</font>
+																</font>
+															</option>
+															<option value="VE">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">委内瑞拉玻利瓦尔共和国</font>
+																</font>
+															</option>
+															<option value="VN">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">越南</font>
+																</font>
+															</option>
+															<option value="VG">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">英属维尔京群岛</font>
+																</font>
+															</option>
+															<option value="VI">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">美国维尔京群岛</font>
+																</font>
+															</option>
+															<option value="WF">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">瓦利斯和富图纳群岛</font>
+																</font>
+															</option>
+															<option value="EH">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">撒哈拉沙漠西部</font>
+																</font>
+															</option>
+															<option value="YE">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">也门</font>
+																</font>
+															</option>
+															<option value="ZM">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">赞比亚</font>
+																</font>
+															</option>
+															<option value="ZW">
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">津巴布韦</font>
+																</font>
+															</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-6 col-lg-3">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">州/省</font>
+															</font>
+														</label>
+														<select class="form-control">
+															<option>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">加利福尼亚州</font>
+																</font>
+															</option>
+															<option>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿拉斯加州</font>
+																</font>
+															</option>
+															<option>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">阿拉巴马州</font>
+																</font>
+															</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-6 col-lg-3">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">市</font>
+															</font>
+														</label>
+														<input class="form-control" value="New York" type="text">
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-6 col-lg-3">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">邮政编码</font>
+															</font>
+														</label>
+														<input class="form-control" value="91403" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">电话号码</font>
+															</font>
+														</label>
+														<input class="form-control" value="818-978-7102" type="text">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">传真</font>
+															</font>
+														</label>
+														<input class="form-control" value="818-978-7102" type="text">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12 text-right m-t-20">
+													<button type="button" class="btn btn-primary">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">保存</font>
+														</font>
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Localization">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Basic Settings</h3>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Default Country</label>
+														<select class="form-control">
+															<option selected="selected">USA</option>
+															<option>United Kingdom</option>
+															<option>India</option>
+															<option>French</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Date Format</label>
+														<select class="form-control">
+															<option value="d/m/Y">15/05/2016</option>
+															<option value="d.m.Y">15.05.2016</option>
+															<option value="d-m-Y">15-05-2016</option>
+															<option value="m/d/Y">05/15/2016</option>
+															<option value="Y/m/d">2016/05/15</option>
+															<option value="Y-m-d">2016-05-15</option>
+															<option value="M d Y">May 15 2016</option>
+															<option selected="selected" value="d M Y">15 May 2016</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Timezone</label>
+														<select class="form-control">
+															<option>10:45am Chicago (GMT-6)</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Default Language</label>
+														<select class="form-control">
+															<option selected="selected">English</option>
+															<option>Russian</option>
+															<option>Arabic</option>
+															<option>French</option>
+															<option>Hindi</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Currency Code</label>
+														<select class="form-control">
+															<option selected="selected">USD</option>
+															<option>Pound</option>
+															<option>EURO</option>
+															<option>Ringgit</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Currency Symbol</label>
+														<input class="form-control" value="$" type="text">
+													</div>
+												</div>
+												<div class="col-sm-12 text-right m-t-20">
+													<button type="button" class="btn btn-primary">Save</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Roles_Permissions">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Roles &amp; Permissions</h3>
+									</div>
+									<div class="card-body">
+										<ul class="list-group mb-3 tp-setting">
+											<li class="list-group-item">
+												Anyone seeing my profile page
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone send me a message
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone posts a comment on my post
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone invite me to group
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" checked="">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+										</ul>
+										<div class="table-responsive">
+											<table class="table table-striped mb-0">
+												<thead>
+													<tr>
+														<th>Module Permission</th>
+														<th>Read</th>
+														<th>Write</th>
+														<th>Create</th>
+														<th>Delete</th>
+														<th>Import</th>
+														<th>Export</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Employee</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+													</tr>
+													<tr>
+														<td>Holidays</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+													</tr>
+													<tr>
+														<td>Leave Request</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+													</tr>
+													<tr>
+														<td>Events</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" checked="">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+														<td>
+															<label class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input">
+																<span class="custom-control-label">&nbsp;</span>
+															</label>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Email_Settings">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">SMTP Email Settings</h3>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="form-group">
+												<label class="fancy-radio custom-color-green"><input name="gender3" value="PHP Mail" type="radio" checked=""><span><i></i>PHP
+														Mail</span></label>
+												<label class="fancy-radio custom-color-green"><input name="gender3" value="SMTP" type="radio"><span><i></i>SMTP</span></label>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Email From Address</label>
+														<input class="form-control" type="email">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Emails From Name</label>
+														<input class="form-control" type="text">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>SMTP HOST</label>
+														<input class="form-control" type="text">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>SMTP USER</label>
+														<input class="form-control" type="text">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>SMTP PASSWORD</label>
+														<input class="form-control" type="password">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>SMTP PORT</label>
+														<input class="form-control" type="text">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>SMTP Security</label>
+														<select class="form-control">
+															<option>None</option>
+															<option>SSL</option>
+															<option>TLS</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>SMTP Authentication Domain</label>
+														<input class="form-control" type="text">
+													</div>
+												</div>
+												<div class="col-sm-12 m-t-20 text-right">
+													<button type="button" class="btn btn-primary">SAVE</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Invoice_Settings">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Invoice Settings</h3>
+									</div>
+									<div class="card-body">
+										<form>
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label>Invoice prefix</label>
+														<input class="form-control" type="email">
+													</div>
+													<div class="dropify-wrapper">
+														<div class="dropify-message"><span class="file-icon"></span>
+															<p>Drag and drop a file here or click</p>
+															<p class="dropify-error">Ooops, something wrong appended.</p>
+														</div>
+														<div class="dropify-loader"></div>
+														<div class="dropify-errors-container">
+															<ul></ul>
+														</div><input type="file" class="dropify"><button type="button" class="dropify-clear">Remove</button>
+														<div class="dropify-preview"><span class="dropify-render"></span>
+															<div class="dropify-infos">
+																<div class="dropify-infos-inner">
+																	<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>
+																	<p class="dropify-infos-message">Drag and drop or click to replace</p>
+																</div>
+															</div>
+														</div>
+													</div>
+													<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the
+														above input. It's a bit lighter and easily wraps to a new line.</small>
+												</div>
+												<div class="col-sm-12 m-t-20 text-right">
+													<button type="button" class="btn btn-primary">SAVE</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Notifications">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Notifications Settings</h3>
+									</div>
+									<div class="card-body">
+										<ul class="list-group">
+											<li class="list-group-item">
+												Anyone send me a message
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone seeing my profile page
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" checked="">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone posts a comment on my post
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" checked="">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone send me a message
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+											<li class="list-group-item">
+												Anyone seeing my profile page
+												<div class="float-right">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input">
+														<span class="custom-control-label">&nbsp;</span>
+													</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="Change_Password">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Change Password</h3>
+									</div>
+									<div class="card-body">
+										<div class="row clearfix">
+											<div class="col-lg-4 col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control" value="louispierce" disabled="" placeholder="Username">
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-12">
+												<div class="form-group">
+													<input type="email" class="form-control" value="louis.info@yourdomain.com" placeholder="Email">
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="Phone Number">
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12">
+												<hr>
+												<h6>Change Password</h6>
+												<div class="form-group">
+													<input type="password" class="form-control" placeholder="Current Password">
+												</div>
+												<div class="form-group">
+													<input type="password" class="form-control" placeholder="New Password">
+												</div>
+												<div class="form-group">
+													<input type="password" class="form-control" placeholder="Confirm New Password">
+												</div>
+											</div>
+											<div class="col-sm-12 m-t-20 text-right">
+												<button type="button" class="btn btn-primary">SAVE</button> &nbsp;
+												<button type="button" class="btn btn-default">CANCEL</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start main footer -->
+				<div class="section-body">
+					<footer class="footer">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">
+											版权所有©2019 </font>
+									</font><a href="https://themeforest.net/user/puffintheme/portfolio">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">PuffinTheme</font>
+										</font>
+									</a>
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">。
+										</font>
+									</font>
+								</div>
+								<div class="col-md-6 col-sm-12 text-md-right">
+									<ul class="list-inline mb-0">
+										<li class="list-inline-item"><a href="../doc/index.html">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">文献资料</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">常问问题</font>
+												</font>
+											</a></li>
+										<li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">立即购买</font>
+												</font>
+											</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+
+		<!-- Start Main project js, jQuery, Bootstrap -->
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+
+		<!-- Start Plugin Js -->
+		<script src="../assets/plugins/dropify/js/dropify.min.js"></script>
+
+		<!-- Start project main js  and page js -->
+		<script src="../assets/js/core.js"></script>
+		<script src="assets/js/form/dropify.js"></script>
+		<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
+			<div style="padding: 8px;">
+				<div>
+					<div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20"
+						 height="20" alt="Google 翻译"></div>
+				</div>
+			</div>
+			<div class="top" style="padding: 8px; float: left; width: 100%;">
+				<h1 class="title gray">原文</h1>
+			</div>
+			<div class="middle" style="padding: 8px;">
+				<div class="original-text"></div>
+			</div>
+			<div class="bottom" style="padding: 8px;">
+				<div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div>
+				<div class="started-activity-container">
+					<hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
+					<div class="activity-root"></div>
+				</div>
+			</div>
+			<div class="status-message" style="display: none;"></div>
+		</div>
+
+
+		<div class="goog-te-spinner-pos">
+			<div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px"
+				 height="96px" viewBox="0 0 66 66">
+					<circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+				</svg></div>
+		</div>
+	</body>
+</html>

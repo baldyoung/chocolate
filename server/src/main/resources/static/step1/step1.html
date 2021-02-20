@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<title> - 基础表格</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+		<link href="../css/plugins/nouslider/nouislider.css" rel="stylesheet">
+		<style>
+			.timeCellOption-selected {
+				background-color: #C0A16B !important;
+			}
+			.timeCellOption {
+				padding:10px; background-color: #C7D3D6; border-radius:3px; text-align: center; padding-top:20px;
+			}
+		</style>
+
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js?v=2.1.4"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+
+		<!-- NouSlider  
+		<script src="js/plugins/nouslider/jquery.nouislider.min.js"></script>
+		-->
+		<script src="../js/plugins/nouslider/nouislider.js"></script>
+		<script>
+			// 获取指定周的日期情况（参数weekIndex默认为零，代表当前所在周）
+			function getTargetWeekDays(weekIndex) {
+				if (weekIndex == undefined) {
+					weekIndex = 0;
+				}
+				var a = new Date(new Date().valueOf() + (weekIndex * 7 * 24 * 60 * 60 * 1000));
+				var theWeekMonday = a.getDay();
+				theWeekMonday = theWeekMonday == 0 ? 7 : theWeekMonday;
+				theWeekMonday -= 1;
+				console.log(theWeekMonday);
+				theWeekMonday = a.valueOf() - theWeekMonday * 24 * 60 * 60 * 1000;
+				theWeekMonday = new Date(theWeekMonday);
+				var result = [];
+				for(var i=0; i<7; i++) {
+					result[i] = new Date(theWeekMonday.valueOf() + (i * 24 * 60 * 60 * 1000));
+					result[i].formatDateString = result[i].getFullYear() + "-" + (result[i].getMonth()+1) + "-" + result[i].getDate();
+				}
+				return result;
+			}
+			$(document).ready(function() {
+				for(var i=1; i<=5; i++) {
+					for(var j=1; j<=7; j++) {
+						var timeTipCellHtml = '<div class="timeCellOption" id="timeCellOption'+j+i+'" style="">'+
+												'<button type="button" class="btn btn-w-m btn-danger">空闲班级 13</button>' +
+												'<button type="button" class="btn btn-w-m btn-primary">空闲教师 10</button>' +
+												'<button type="button" class="btn btn-w-m btn-info">空闲教室 120</button>' +
+											'</div>';
+						$('#timeCell'+j+i).html(timeTipCellHtml);
+					}
+				}
+				$('.timeCellOption').on('click', function() {
+					var target = $(this);
+					if (target.is('.timeCellOption-selected')) {
+						target.removeClass('timeCellOption-selected');
+					} else {
+						target.addClass('timeCellOption-selected');
+					}
+				});
+				
+				var slider2 = document.getElementById('basic_slider');
+				noUiSlider.create(slider2, {
+						range : {
+							min : 0,
+							max : 10,
+						},
+				        start: [0],
+						step: 1,
+				        pips: {mode: 'count', values: 11}
+				});
+				slider2.noUiSlider.on('update', function (values, handle) {
+					var t = parseInt(values[handle]);
+					var tipData = t == 0 ? "本周" : ("未来第"+t+"周");
+					$('#currentSelectWeekIndex').text(tipData);
+					var weekDays = getTargetWeekDays(t);
+					var temp;
+					var currentDay = new Date();
+					for(var i=0; i<weekDays.length; i++) {
+						if (weekDays[i].getFullYear() == currentDay.getFullYear() && weekDays[i].getMonth() == currentDay.getMonth() && weekDays[i].getDate() == currentDay.getDate() ) {
+							temp = "<span >"+weekDays[i].formatDateString+"</span><span style='color:red;font-weight:bolder;'>今天</span>";
+						} else {
+							temp = weekDays[i].formatDateString;
+						}
+						$('#weekDayDate'+i).html(temp);
+					}
+				});
+			});
+		</script>
+
+	</head>
+
+	<body class="black-bg">
+		<div class="wrapper wrapper-content animated fadeInRight" style="min-width:1300px; max-width: 1400px; margin:0 auto;">
+			<div class="row">
+				<div class="col-sm-7" style="margin-bottom: 20px;">
+					<div class="ibox-title">
+						<h5>时间轴</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
+								<i class="fa fa-wrench"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-user">
+								<li><a href="table_basic.html#">选项1</a>
+								</li>
+								<li><a href="table_basic.html#">选项2</a>
+								</li>
+							</ul>
+							<a class="close-link">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+						
+					</div>
+					<div class="ibox-content" >
+						<button onclick="location.href='../step2/step2.html'" type="button" class="btn btn-w-s btn-primary">下一步</button>
+					</div>
+					<div class="ibox-content" style="padding-bottom:70px; ">
+						<p id="currentSelectWeekIndex" class="font-bold">周标</p>
+						<div id="basic_slider"></div>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div class="ibox-title">
+						<h5>当前课程</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
+								<i class="fa fa-wrench"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-user">
+								<li><a href="table_basic.html#">选项1</a>
+								</li>
+								<li><a href="table_basic.html#">选项2</a>
+								</li>
+							</ul>
+							<a class="close-link">
+								<i class="fa fa-times"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content" style="height: 200px; padding-bottom: 20px;">
+						<ul class="sortable-list connectList agile-list ui-sortable" style="height:180px; overflow: auto;">
+							<li class="warning-element">
+								软开2001 C语言
+								<span style="float:right;"><i class="fa fa-clock-o"></i> 2015.09.01</span>
+							</li>
+							<li class="success-element">
+								软开2001 C语言
+								<span style="float:right;"><i class="fa fa-clock-o"></i> 2015.09.01</span>
+							</li>
+							<li class="info-element">
+								软开2001 C语言
+								<span style="float:right;"><i class="fa fa-clock-o"></i> 2015.09.01</span>
+							</li>
+							<li class="danger-element">
+								软开2001 C语言
+								<span style="float:right;"><i class="fa fa-clock-o"></i> 2015.09.01</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div temp="ibox float-e-margins">
+						<div temp="ibox-content">
+							<table class="ibox-content table table-bordered" border="1" style="">
+								<thead>
+									<tr>
+										<th colspan="2" width="7%">时间</th>
+										<th width="10%">周一 <span id="weekDayDate0"></span></th>
+										<th width="10%">周二 <span id="weekDayDate1"></span></th>
+										<th width="10%">周三 <span id="weekDayDate2"></span></th>
+										<th width="10%">周四 <span id="weekDayDate3"></span></th>
+										<th width="10%">周五 <span id="weekDayDate4"></span></th>
+										<th width="10%">周六 <span id="weekDayDate5"></span></th>
+										<th width="10%">周日 <span id="weekDayDate6"></span></th>
+									</tr>
+								</thead>
+								<tbody id="courseTableData">
+									<tr>
+										<td rowspan="2" style="background-color: #DDDDDD;">上午</td>
+										<td>
+											第一节 8:30-9:10
+											第二节 9:20-10:00
+										</td>
+										<td id="timeCell11">
+
+										</td>
+										<td id="timeCell21"></td>
+										<td id="timeCell31"></td>
+										<td id="timeCell41"></td>
+										<td id="timeCell51"></td>
+										<td id="timeCell61"></td>
+										<td id="timeCell71"></td>
+									</tr>
+									<tr>
+										<td>
+											第三节 10:20-11:00
+											第四节 11:10-11:50
+										</td>
+										<td id="timeCell12">
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+										</td>
+										<td id="timeCell22"></td>
+										<td id="timeCell32"></td>
+										<td id="timeCell42"></td>
+										<td id="timeCell52"></td>
+										<td id="timeCell62"></td>
+										<td id="timeCell72"></td>
+									</tr>
+									<tr style="background-color: #D6E9C6;">
+										<td colspan="9" style="text-align: center; font-size:15px; font-weight:bolder;">午休</td>
+									</tr>
+									<tr>
+										<td rowspan="2" style="background-color: #DDDDDD;">下午</td>
+										<td>
+											第五节 14:30-15:10
+											第六节 15:20-16:00
+										</td>
+										<td id="timeCell13">
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+										</td>
+										<td id="timeCell23"></td>
+										<td id="timeCell33"></td>
+										<td id="timeCell43"></td>
+										<td id="timeCell53"></td>
+										<td id="timeCell63"></td>
+										<td id="timeCell73"></td>
+									</tr>
+									<tr>
+										<td>第二课堂 16:10-17:20</td>
+										<td id="timeCell14">
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+											<button type="button" class="btn btn-w-m btn-link">无空闲</button>
+										</td>
+										<td id="timeCell24"></td>
+										<td id="timeCell34"></td>
+										<td id="timeCell44"></td>
+										<td id="timeCell54"></td>
+										<td id="timeCell64"></td>
+										<td id="timeCell74"></td>
+									</tr>
+									<tr>
+										<td rowspan="2" style="background-color: #DDDDDD;">晚上</td>
+										<td>
+											晚一 18:40-19:20
+											晚二 19:30-20:10
+										</td>
+										<td id="timeCell15"></td>
+										<td id="timeCell25"></td>
+										<td id="timeCell35"></td>
+										<td id="timeCell45"></td>
+										<td id="timeCell55"></td>
+										<td id="timeCell65"></td>
+										<td id="timeCell75"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+	</body>
+
+</html>
