@@ -71,7 +71,30 @@ create table specialty (
 	id int UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
 	specialtyNumber varchar(10),
 	specialtyName varchar(20),
-	specialtyInfo
+	specialtyInfo varchar(1000),
+	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updateDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+-- 专业计划表
+drop table if exists specialtyPlan;
+create table specialtyPlan (
+	id int UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
+	specialtyId int not null,
+	specialtyName varchar(30),
+	planParameters smallint comment'计划优先级',
+	startDatetime datetime,
+	endDatetime datetime,
+	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updateDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+-- 学科表
+-- 专业学科计划表
+-- 教师授课表
+-- 班级表
+-- 教室表
+-- 课程信息表
+-- 课程班级关联表
+-- 课程时间安排表
 
 	
 
