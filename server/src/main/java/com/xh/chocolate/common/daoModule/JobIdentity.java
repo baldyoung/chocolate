@@ -1,4 +1,4 @@
-package com.xh.chocolate.common.dao;
+package com.xh.chocolate.common.daoModule;
 @Deprecated
 public interface JobIdentity {
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xh.chocolate.common.daoModule.SpecialtyPlanDao">
+
+    <insert id="insertSpecialtyPlan" parameterType="Map">
+        insert into SpecialtyPlan(specialtyId, specialtyName, planParameters, startDatetime, endDatetime) values (#{specialtyId}, #{specialtyName}, #{planParameters}, #{startDatetime}, #{endDatetime})
+    </insert>
+
+    <delete id="deleteSpecialtyPlan" parameterType="int">
+        delete from SpecialtyPlan where id = #{id}
+    </delete>
+
+    <select id="selectSpecialtyPlan" parameterType="int" resultType="map">
+        select id, specialtyId, specialtyName, planParameters, startDatetime, endDatetime from classInCourse where specialtyId = #{specialtyId}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xh.chocolate.common.daoModule.SubjectDao">
+
+    <insert id="insertSubject" parameterType="Map">
+        insert into Subject(subjectNumber, subjectName, standardHours, subjectInfo) values (#{subjectNumber}, #{subjectName}, #{standarHours}, #{subjectInfo})
+    </insert>
+
+    <delete id="deleteSubject" parameterType="int">
+        delete from Subject where id = #{id}
+    </delete>
+
+    <select id="selectSubject" parameterType="int" resultType="map">
+        select id, subjectNumber, subjectName, standardHours, subjectInfo from Subject where id = #{id}
+    </select>
+
+
+</mapper>

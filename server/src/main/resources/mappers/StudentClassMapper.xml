@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xh.chocolate.common.daoModule.StudentClassDao">
+
+    <insert id="insertStudentClass" parameterType="Map">
+        insert into StudentClass(specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus) values
+        (#{specialtyId}, #{classNumber}, #{className}, #{holderStaffId}, #{classBirthday}, #{initStudentAmount}, #{currentStudentAmount}, #{currentStatus})
+    </insert>
+
+    <delete id="deleteStudentClass" parameterType="int">
+        delete from StudentClass where id = #{id}
+    </delete>
+
+    <select id="selectClassInCourse" parameterType="Map" resultType="map">
+        select id, specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus from StudentClass where id = #{id}
+    </select>
+
+
+</mapper>

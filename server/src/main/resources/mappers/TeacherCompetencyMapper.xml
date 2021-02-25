@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xh.chocolate.common.daoModule.TeacherCompetencyDao">
+
+    <insert id="insertTeacherCompetency" parameterType="Map">
+        insert into TeacherCompetency(staffId, subjectId, score) values (#{staffId}, #{subjectId}, #{score})
+    </insert>
+
+    <delete id="deleteTeacherCompetency" parameterType="int">
+        delete from TeacherCompetency where id = #{id}
+    </delete>
+
+    <select id="selectClassInCourse" parameterType="int" resultType="map">
+        select id, staffId, subjectId, score from TeacherCompetency where id = #{id}
+    </select>
+
+
+</mapper>

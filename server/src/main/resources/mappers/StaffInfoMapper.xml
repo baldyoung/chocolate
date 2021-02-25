@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xh.chocolate.common.daoModule.StaffInfoDao">
+
+    <insert id="insertStaffInfo" parameterType="Map">
+        insert into StaffInfo(staffName, staffSex, staffBirthday, staffNation, staffRace, staffEmail, staffPhoneNumber) values
+        (#{staffName}, #{staffSex}, #{staffBirthday}, #{staffNation}, #{staffRace}, #{staffEmail}, #{staffPhoneNumber})
+    </insert>
+
+    <delete id="deleteStaffInfo" parameterType="int">
+        delete from StaffInfo where id = #{id}
+    </delete>
+
+    <select id="selectStaffInfo" parameterType="int" resultType="map">
+        select id, staffName, staffSex, staffBirthday, staffNation, staffRace, staffEmail, staffPhoneNumber where id = #{id}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xh.chocolate.common.daoModule.SpecialtyPlanDetailDao">
+
+    <insert id="insertSpecialtyPlanDetail" parameterType="Map">
+        insert into SpecialtyPlanDetail(specialtyPlanId, subjectId, referenceHours, sortParament) values (#{specialtyPlanId}, #{subjectId}, #{referenceHours}, #{sortParament})
+    </insert>
+
+    <delete id="deleteSpecialtyPlanDetail" parameterType="int">
+        delete from SpecialtyPlanDetail where specialtyPlanId = #{specialtyPlanId}
+    </delete>
+
+    <select id="selectSpecialtyPlanDetail" parameterType="Map" resultType="map">
+        select id, specialtyPlanId, subjectId, referenceHours, sortParament from SpecialtyPlanDetail where specialtyPlanId = #{specialtyPlanId}
+    </select>
+
+
+</mapper>
