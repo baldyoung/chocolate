@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
-		<title>::爱立信::教授</title>
+		<title>教师</title>
 
 		<!-- Bootstrap Core and vandor -->
 		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -31,6 +31,16 @@
 		<script src="../assets/js/core.js"></script>
 		<script src="assets/js/page/summernote.js"></script>
 		<script src='assets/js/page/jquery-3.4.1.min.js'></script>
+
+		<!-- Start Main project js, jQuery, Bootstrap -->
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+
+		<!-- Start Plugin Js -->
+		<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+		<script src="../assets/plugins/dropify/js/dropify.min.js"></script>
+
+		<!-- Start project main js  and page js -->
+		<script src="assets/js/form/dropify.js"></script>
 		<script>
 			// 获取URL中的参数
 			function getQueryVariable(variable)
@@ -388,18 +398,18 @@
 							<div class="header-action">
 								<h1 class="page-title">
 									<font style="vertical-align: inherit;">
-										<font style="vertical-align: inherit;">教授</font>
+										<font style="vertical-align: inherit;">职工</font>
 									</font>
 								</h1>
 								<ol class="breadcrumb page-breadcrumb">
 									<li class="breadcrumb-item"><a href="#">
 											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">爱立信</font>
+												<font style="vertical-align: inherit;">江西新华</font>
 											</font>
 										</a></li>
 									<li class="breadcrumb-item active" aria-current="page">
 										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">教授</font>
+											<font style="vertical-align: inherit;">职工</font>
 										</font>
 									</li>
 								</ol>
@@ -1898,7 +1908,7 @@
 									<div class="col-lg-8 col-md-12 col-sm-12">
 										<div class="card">
 											<div class="card-header">
-												<h3 class="card-title">Basic Information</h3>
+												<h3 class="card-title">基础信息</h3>
 												<div class="card-options ">
 													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -1908,93 +1918,90 @@
 												<div class="row clearfix">
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>First Name</label>
+															<label>姓名<span style="color:red;">*</span></label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>Last Name</label>
+															<label>编号</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>Date of Birth</label>
+															<label>生日</label>
 															<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Date of Birth">
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
-														<label>Gender</label>
+														<label>性别</label>
 														<select class="form-control show-tick">
-															<option value="">-- Gender --</option>
-															<option value="10">Male</option>
-															<option value="20">Female</option>
+															<option value="">-- 性别 --</option>
+															<option value="10">男</option>
+															<option value="20">女</option>
 														</select>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>Department</label>
+															<label>国籍</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>Position</label>
+															<label>名族</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
-															<label>Phone</label>
+															<label>电话</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
-															<label>Enter Your Email</label>
+															<label>邮箱</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
-															<label>Website URL</label>
+															<label>籍贯</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
-													<div class="col-sm-12">
-														<div class="form-group mt-2 mb-3">
-															<div class="dropify-wrapper">
-																<div class="dropify-message"><span class="file-icon"></span>
-																	<p>Drag and drop a file here or click</p>
-																	<p class="dropify-error">Ooops, something wrong appended.</p>
-																</div>
-																<div class="dropify-loader"></div>
-																<div class="dropify-errors-container">
-																	<ul></ul>
-																</div><input type="file" class="dropify"><button type="button" class="dropify-clear">Remove</button>
-																<div class="dropify-preview"><span class="dropify-render"></span>
-																	<div class="dropify-infos">
-																		<div class="dropify-infos-inner">
-																			<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>
-																			<p class="dropify-infos-message">Drag and drop or click to replace</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the
-																above input. It's a bit lighter and easily wraps to a new line.</small>
+													<div class="col-sm-12" style="border-bottom:1px solid gray; margin-bottom:10px;">
+														<h3 class="card-title">工作信息</h3>
+													</div>
+													<div class="col-md-5 col-sm-12">
+														<div class="form-group">
+															<label>所在部门</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-12">
+														<div class="form-group">
+															<label>工作类别</label>
+															<input type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-12">
+														<div class="form-group">
+															<label>员工职称（等级）</label>
+															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group mt-3">
-															<label>Messages</label>
-															<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+															<label>其它备注</label>
+															<textarea rows="4" class="form-control no-resize" placeholder="关于该职工的其它备注信息..."></textarea>
 														</div>
 													</div>
 													<div class="col-sm-12">
-														<button type="submit" class="btn btn-primary">Submit</button>
-														<button type="submit" class="btn btn-outline-secondary">Cancel</button>
+														<button type="submit" class="btn btn-primary">保存</button>
+														<button type="submit" class="btn btn-outline-secondary">取消</button>
 													</div>
 												</div>
 											</div>
@@ -2003,42 +2010,7 @@
 									<div class="col-lg-4 col-md-12 col-sm-12">
 										<div class="card">
 											<div class="card-header">
-												<h3 class="card-title">Account Information</h3>
-												<div class="card-options ">
-													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-												</div>
-											</div>
-											<div class="card-body">
-												<div class="row clearfix">
-													<div class="col-sm-12">
-														<div class="form-group">
-															<label>User Name</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Password</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Confirm Password</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-sm-12">
-														<button type="submit" class="btn btn-primary">Submit</button>
-														<button type="submit" class="btn btn-outline-secondary">Cancel</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header">
-												<h3 class="card-title">Account Information</h3>
+												<h3 class="card-title">可授课程</h3>
 												<div class="card-options ">
 													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -2046,30 +2018,26 @@
 											</div>
 											<div class="card-body">
 												<div class="form-group">
-													<label>Facebook</label>
-													<input type="text" class="form-control" placeholder="Facebook">
+													<div type="text" class="form-control" style="background-color:#e9ecef;"  >
+														HTML5+CSS3<i class="fe fe-x" style="float:right; cursor:pointer;"></i>
+													</div>
 												</div>
 												<div class="form-group">
-													<label>Twitter</label>
-													<input type="text" class="form-control" placeholder="Twitter">
+													<div type="text" class="form-control" style="background-color:#e9ecef;" >
+														JavaScript<i class="fe fe-x" style="float:right; cursor:pointer;"></i>
+													</div>
 												</div>
 												<div class="form-group">
-													<label>LinkedIN</label>
-													<input type="text" class="form-control" placeholder="LinkedIN ">
+													<div type="text" class="form-control" style="background-color:#e9ecef;"  >
+														Java<i class="fe fe-x" style="float:right; cursor:pointer;"></i>
+													</div>
 												</div>
-												<div class="form-group">
-													<label>Behance</label>
-													<input type="text" class="form-control" placeholder="Behance">
-												</div>
-												<div class="form-group">
-													<label>dribbble</label>
-													<input type="text" class="form-control" placeholder="dribbble">
-												</div>
-												<button type="submit" class="btn btn-primary">Submit</button>
-												<button type="submit" class="btn btn-outline-secondary">Cancel</button>
+												<button type="submit"  class="btn btn-success" data-toggle="modal" href="#addEnableSubjectForStaff">新增</button>
+
 											</div>
 										</div>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -2119,20 +2087,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Start Main project js, jQuery, Bootstrap -->
-		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
-
-		<!-- Start Plugin Js -->
-		<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="../assets/plugins/dropify/js/dropify.min.js"></script>
-		<script src="../assets/bundles/summernote.bundle.js"></script>
-
-		<!-- Start project main js  and page js -->
-		<script src="../assets/js/core.js"></script>
-		<script src="assets/js/form/dropify.js"></script>
-		<script src="assets/js/page/summernote.js"></script>
-
 
 		<div class="note-popover popover in note-link-popover bottom">
 			<div class="arrow"></div>
@@ -2187,5 +2141,43 @@
 					<circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
 				</svg></div>
 		</div>
+		<!-- 新增可授课程 -->
+		<div class="modal fade" id="addEnableSubjectForStaff" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">添加教师可授课程</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="form-group">
+									<label>课程</label>
+									<select name="event-bg" class="form-control">
+										<option value="success">C语言</option>
+										<option value="danger">HTML</option>
+										<option value="info">JS</option>
+										<option value="primary">Java</option>
+										<option value="warning">数据库</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>课程评分</label>
+									<input class="form-control" name="event-name" type="text">
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn save-btn btn-success">确定</button>
+						<button class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</body>
 </html>

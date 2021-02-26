@@ -35,6 +35,7 @@ public class IndexController {
                 "</head>"+
                 "<body style='text-align:center; color:red;'>"+
                 "<h1><b>chocolate</b></h1><h3><b style='color:green;'>江西新华课程系统</b></h3></br>2021-01-20" +
+                "<script>setTimeout(function(){window.location.replace(\"university/index.html\");}, 2000);</script>" +
                 "</body>"+
                 "</html>";
         writer.println(html);

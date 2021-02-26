@@ -4,81 +4,107 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
-		<title>班级</title>
+		<title></title>
 
 		<!-- Bootstrap Core and vandor -->
 		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
 		<link rel="stylesheet" href="../assets/plugins/datatable/dataTables.bootstrap4.min.css">
-		<link rel="stylesheet" href="../assets/plugins/datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
-		<link rel="stylesheet" href="../assets/plugins/datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
-		<style>
-			::-webkit-scrollbar {
-				/*滚动条整体样式*/
-				width: 4px;
-				/*高宽分别对应横竖滚动条的尺寸*/
-				height: 4px;
-				scrollbar-arrow-color: red;
-
-			}
-		</style>
-		<style type="text/css">
-			.jqstooltip {
-				position: absolute;
-				left: 0px;
-				top: 0px;
-				visibility: hidden;
-				background: rgb(0, 0, 0) transparent;
-				background-color: rgba(0, 0, 0, 0.6);
-				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
-				color: white;
-				font: 10px arial, san serif;
-				text-align: left;
-				white-space: nowrap;
-				padding: 5px;
-				border: 1px solid white;
-				box-sizing: content-box;
-				z-index: 10000;
-			}
-
-			.jqsfield {
-				color: white;
-				font: 10px arial, san serif;
-				text-align: left;
-			}
-		</style>
-		<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
-
 		<!-- Core css -->
 		<link rel="stylesheet" href="../assets/css/style.min.css">
-		<script src='assets/js/page/jquery-3.4.1.min.js'></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/plugins/dataTables/dataTables.bootstrap.js"></script>
+		<script src="../js/plugins/dataTables/jquery.dataTables.js"></script>
+
+        <style>
+            ::-webkit-scrollbar {
+                /*滚动条整体样式*/
+                width: 4px;
+                /*高宽分别对应横竖滚动条的尺寸*/
+                height: 4px;
+                scrollbar-arrow-color: red;
+            }
+        </style>
+
 		<script>
 			// 获取URL中的参数
-			function getQueryVariable(variable)
-			{
-			       var query = window.location.search.substring(1);
-			       var vars = query.split("&");
-			       for (var i=0;i<vars.length;i++) {
-			               var pair = vars[i].split("=");
-			               if(pair[0] == variable){return pair[1];}
-			       }
-			       return undefined;
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return undefined;
+        }
+
+        $(function () {
+            // 同步URL中的父级样式
+            var parentClass = getQueryVariable('parentClass');
+            console.log(parentClass);
+            if (undefined != parentClass) {
+                parentClass = parentClass.split(',').join(' ');
+                document.body.setAttribute('class', parentClass);
+            }
+			// -------------
+			setTimeout(function() {
+				$('.page-loader-wrapper').fadeOut();
+			}, 50);
+            // ------------- datatable   subjectListArea
+			var productList = [{
+				index : 1,
+				subjectName : 'JavaScript',
+				subjectNumber : '10010',
+				standardHours : '120',
+				subjectInfo : '软件开发，前端开发必学课程'
+
+			}]
+			var dataTable = $('#subjectListArea');
+			if ($.fn.dataTable.isDataTable(dataTable)) {
+				dataTable.DataTable().destroy();
 			}
-			$(function() {
-			    
-				// 同步URL中的父级样式
-				var parentClass = getQueryVariable('parentClass');
-				console.log(parentClass);
-				if (undefined != parentClass) {
-					
-					parentClass = parentClass.split(',').join(' ');
-					document.body.setAttribute('class', parentClass);
-				}
-				
+			dataTable.DataTable({
+				'searching': false, //去掉搜索框
+				'bLengthChange': false, //去掉每页显示多少条数据方法
+				"serverSide": false, //关闭分页操作，默认就是关闭
+				"autoWidth": false, //
+				"bSort": false, //打开排序功能
+				"order": [
+					[1, "desc"],
+					[0, 'asc']
+				], //默认排序的指标
+				'data': productList, //表格的数据源
+				"pageLength": 20, //默认每页显示的数据条数
+				"info": false,
+				"paging": false,
+				'columns': [{
+					data: 'index'
+				}, {
+					data: 'subjectName'
+				}, {
+					data: 'subjectNumber'
+				}, {
+					data: 'standardHours'
+				}, {
+					data: 'subjectInfo'
+				}],
+				"columnDefs": [{
+					"render": function(data, type, row) {
+						var a = "";
+						a += "<button class=\"btn btn-primary \" style='margin-top:3px;' type=\"button\"  onclick=\"OptionModule.deleteProduct('" + row.productId + "', '" + row.productName + "')\"><i class=\"fa fa-building-o\"></i>删除"
+						a += "</button>"
+						a += "<button class=\"btn btn-primary \" style='margin-top:3px; margin-left:5px; ' type=\"button\" data-toggle=\"modal\" data-target=\"#myModal5\" onclick=\"ProductEditModule.initProductEditWindow('" + row.productId + "')\"><i class=\"fa fa-building-o\"></i>修改"
+						a += "</button>"
+						return a;
+					},
+					"targets": 5
+				}]
 			});
-		</script>
+
+        });
+    </script>
 	</head>
 
 	<body class="font-muli theme-cyan gradient close_rightbar">
@@ -89,7 +115,7 @@
 			</div>
 		</div>
 
-		<div >
+		<div>
 			<!-- Start project content area -->
 			<div class="" style="margin:0 auto; left:0px;">
 				<!-- Start Page header -->
@@ -253,7 +279,8 @@
 															</span>
 															<div class="message">
 																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">Lorem Ipsum的段落有很多变化</font>
+																	<font style="vertical-align: inherit;">Lorem
+																		Ipsum的段落有很多变化</font>
 																</font>
 															</div>
 															<small>
@@ -276,7 +303,8 @@
 															</span>
 															<div class="message">
 																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">与普遍的看法相反，Lorem Ipsum并非简单</font>
+																	<font style="vertical-align: inherit;">与普遍的看法相反，Lorem
+																		Ipsum并非简单</font>
 																</font>
 															</div>
 															<small>
@@ -444,18 +472,18 @@
 							<div class="header-action">
 								<h1 class="page-title">
 									<font style="vertical-align: inherit;">
-										<font style="vertical-align: inherit;">图书馆</font>
+										<font style="vertical-align: inherit;">学科</font>
 									</font>
 								</h1>
 								<ol class="breadcrumb page-breadcrumb">
 									<li class="breadcrumb-item"><a href="#">
 											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">爱立信</font>
+												<font style="vertical-align: inherit;">江西新华</font>
 											</font>
 										</a></li>
 									<li class="breadcrumb-item active" aria-current="page">
 										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">图书馆</font>
+											<font style="vertical-align: inherit;">学科</font>
 										</font>
 									</li>
 								</ol>
@@ -463,17 +491,12 @@
 							<ul class="nav nav-tabs page-header-tab">
 								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Library-all">
 										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">列表显示</font>
-										</font>
-									</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Library-add">
-										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">加</font>
+											<font style="vertical-align: inherit;">已有学科</font>
 										</font>
 									</a></li>
 								<li class="nav-item"><a class="nav-link" id="Library-tab-Boot" data-toggle="tab" href="#Library-add-Boot">
 										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">添加引导样式</font>
+											<font style="vertical-align: inherit;">添加学科</font>
 										</font>
 									</a></li>
 							</ul>
@@ -488,93 +511,30 @@
 									<div class="card-body">
 										<div class="table-responsive">
 											<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-												<div class="row">
-													<div class="col-sm-12 col-md-6">
-														<div class="dataTables_length" id="DataTables_Table_0_length"><label>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">节目 </font>
-																</font><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control">
-																	<option value="10">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">10</font>
-																		</font>
-																	</option>
-																	<option value="25">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">25</font>
-																		</font>
-																	</option>
-																	<option value="50">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">50</font>
-																		</font>
-																	</option>
-																	<option value="100">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">100</font>
-																		</font>
-																	</option>
-																</select>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;"> 参赛作品</font>
-																</font>
-															</label></div>
-													</div>
-													<div class="col-sm-12 col-md-6">
-														<div id="DataTables_Table_0_filter" class="dataTables_filter"><label>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">搜索：</font>
-																</font><input type="search" class="form-control" placeholder="" aria-controls="DataTables_Table_0">
-															</label></div>
-													</div>
-												</div>
+
 												<div class="row">
 													<div class="col-sm-12">
 														<table class="table table-hover js-basic-example dataTable table-striped table_custom border-style spacing5 no-footer"
-														 id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+														 id="subjectListArea" role="grid" aria-describedby="DataTables_Table_0_info">
 															<thead>
 																<tr role="row">
-																	<th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-																	 aria-sort="ascending" aria-label="＃：激活以对列降序排序" style="width: 22px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">＃</font>
-																		</font>
+																	<th style="width: 8%;">
+																		序号
 																	</th>
-																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="标题：激活以对列升序排序"
-																	 style="width: 184px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">标题</font>
-																		</font>
+																	<th  style="width: 26%;">
+																		学科名称
 																	</th>
-																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="主题：激活以对列升序排序"
-																	 style="width: 98px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">学科</font>
-																		</font>
+																	<th  style="width: 10%;">
+																		学科编号
 																	</th>
-																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="部门：激活以升序排序"
-																	 style="width: 173px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">部门</font>
-																		</font>
+																	<th  style="width: 9%;">
+																		学时
 																	</th>
-																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="年：激活以对列升序排序"
-																	 style="width: 94px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">年</font>
-																		</font>
+																	<th  style="width: 27%;">
+																		简介
 																	</th>
-																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="类型：激活以对列升序进行排序"
-																	 style="width: 84px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">类型</font>
-																		</font>
-																	</th>
-																	<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="状态：激活以对列升序排序"
-																	 style="width: 95px;">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">状态</font>
-																		</font>
+																	<th  style="width: 20%;">
+																		操作
 																	</th>
 																</tr>
 															</thead>
@@ -582,388 +542,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-																<tr role="row" class="odd">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">1个</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">管理基础</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">设计中</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">建筑</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第二年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">光盘</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="even">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">2</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">Java黑皮书</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">图形</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">工商管理硕士</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第三年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">DVD</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="odd">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">3</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">并行运算</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">政治</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">建筑</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第三年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">报纸</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="even">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">4</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">联网</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">电脑</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">工商管理硕士</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">去年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">报纸</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">有现货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="odd">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">5</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">网页程式设计</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">机械学</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">电脑</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第三年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">书</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">有现货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="even">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">6</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">设计中</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">机械学</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">电脑</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第三年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">报纸</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="odd">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">7</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">机械学</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">电脑</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">计算机工程</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第二年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">DVD</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="even">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">8</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">计算机基础</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">动画</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">机械</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第三年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">光盘</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">有现货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="odd">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">9</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">时间记录</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">管理</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">机械</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第三年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">报纸</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
-																<tr role="row" class="even">
-																	<td class="sorting_1">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">10</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">政治</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">设计中</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">机械</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">第二年</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">报纸</font>
-																		</font>
-																	</td>
-																	<td>
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">缺货</font>
-																		</font>
-																	</td>
-																</tr>
 															</tbody>
 														</table>
 													</div>
@@ -1012,58 +590,10 @@
 									</div>
 								</div>
 							</div>
-							<div class="tab-pane" id="Library-add">
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">Add Library</h3>
-										<div class="card-options ">
-											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text" value="" placeholder="Enter Title" class="form-control">
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text" value="" placeholder="Enter Subject" class="form-control">
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text" value="" placeholder="Department" class="form-control">
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text" value="" placeholder="Enter Type" class="form-control">
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text" value="" placeholder="Enter Year" class="form-control">
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div class="form-group">
-													<input type="text" value="" placeholder="Enter Status" class="form-control">
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<button class="btn btn-primary btn-lg btn-simple">Add Library</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 							<div class="tab-pane" id="Library-add-Boot">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Add Library</h3>
+										<h3 class="card-title">新增学科</h3>
 										<div class="card-options ">
 											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -1071,13 +601,13 @@
 									</div>
 									<form class="card-body">
 										<div class="form-group row">
-											<label class="col-md-3 col-form-label">Title <span class="text-danger">*</span></label>
+											<label class="col-md-3 col-form-label">学科名称 <span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<input type="text" class="form-control">
 											</div>
 										</div>
-										<div class="form-group row">
-											<label class="col-md-3 col-form-label">Subject <span class="text-danger">*</span></label>
+										<div class="form-group row" style="display:none;">
+											<label class="col-md-3 col-form-label">专业类别<span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<select class="form-control input-height" name="sub">
 													<option value="">Select...</option>
@@ -1088,31 +618,37 @@
 												</select>
 											</div>
 										</div>
-										<div class="form-group row">
-											<label class="col-md-3 col-form-label">Purchase Date <span class="text-danger">*</span></label>
+										<div class="form-group row" style="display:none;">
+											<label class="col-md-3 col-form-label">学科编号<span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-md-3 col-form-label">Auther Name <span class="text-danger">*</span></label>
+											<label class="col-md-3 col-form-label">参考学时<span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
+											<label class="col-md-3 col-form-label">学科编号</label>
+											<div class="col-md-7">
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row" style="display:none;">
 											<label class="col-md-3 col-form-label">Publisher <span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<input type="text" class="form-control">
 											</div>
 										</div>
-										<div class="form-group row">
+										<div class="form-group row" style="display:none;">
 											<label class="col-md-3 col-form-label">Price <span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<input type="text" class="form-control">
 											</div>
 										</div>
-										<div class="form-group row">
+										<div class="form-group row" style="display:none;">
 											<label class="col-md-3 col-form-label">Department <span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<select class="form-control input-height" name="departmnt">
@@ -1124,7 +660,7 @@
 												</select>
 											</div>
 										</div>
-										<div class="form-group row">
+										<div class="form-group row" style="display:none;">
 											<label class="col-md-3 col-form-label">Asset Type <span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<select class="form-control input-height" name="assttype">
@@ -1137,16 +673,16 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-md-3 col-form-label">Asset Details <span class="text-danger">*</span></label>
+											<label class="col-md-3 col-form-label">学科描述</label>
 											<div class="col-md-7">
-												<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+												<textarea rows="4" class="form-control no-resize" placeholder="学科简述..."></textarea>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label"></label>
 											<div class="col-md-7">
-												<button type="submit" class="btn btn-primary">Submit</button>
-												<button type="submit" class="btn btn-outline-secondary">Cancel</button>
+												<button type="submit" class="btn btn-primary">提交保存</button>
+												<button type="submit" class="btn btn-outline-secondary">关闭</button>
 											</div>
 										</div>
 									</form>
@@ -1155,92 +691,11 @@
 						</div>
 					</div>
 				</div>
-				<!-- Start main footer -->
-				<div class="section-body">
-					<footer class="footer">
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-md-6 col-sm-12">
-									<font style="vertical-align: inherit;">
-										<font style="vertical-align: inherit;">
-											版权所有©2019 </font>
-									</font><a href="https://themeforest.net/user/puffintheme/portfolio">
-										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">PuffinTheme</font>
-										</font>
-									</a>
-									<font style="vertical-align: inherit;">
-										<font style="vertical-align: inherit;">。
-										</font>
-									</font>
-								</div>
-								<div class="col-md-6 col-sm-12 text-md-right">
-									<ul class="list-inline mb-0">
-										<li class="list-inline-item"><a href="../doc/index.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">文献资料</font>
-												</font>
-											</a></li>
-										<li class="list-inline-item"><a href="javascript:void(0)">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">常问问题</font>
-												</font>
-											</a></li>
-										<li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-outline-primary btn-sm">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">立即购买</font>
-												</font>
-											</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
+
 			</div>
 		</div>
 
-		<!-- Start Main project js, jQuery, Bootstrap -->
-		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
-
-		<!-- Start Plugin Js -->
-		<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-		<script src="../assets/bundles/dataTables.bundle.js"></script>
-		<script src="../assets/plugins/sweetalert/sweetalert.min.js"></script>
-
-		<!-- Start project main js  and page js -->
-		<script src="../assets/js/core.js"></script>
-		<script src="assets/js/page/dialogs.js"></script>
-		<script src="assets/js/table/datatable.js"></script>
-		<div id="goog-gt-tt" class="skiptranslate" dir="ltr">
-			<div style="padding: 8px;">
-				<div>
-					<div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20"
-						 height="20" alt="Google 翻译"></div>
-				</div>
-			</div>
-			<div class="top" style="padding: 8px; float: left; width: 100%;">
-				<h1 class="title gray">原文</h1>
-			</div>
-			<div class="middle" style="padding: 8px;">
-				<div class="original-text"></div>
-			</div>
-			<div class="bottom" style="padding: 8px;">
-				<div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div>
-				<div class="started-activity-container">
-					<hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;">
-					<div class="activity-root"></div>
-				</div>
-			</div>
-			<div class="status-message" style="display: none;"></div>
-		</div>
 
 
-		<div class="goog-te-spinner-pos">
-			<div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px"
-				 height="96px" viewBox="0 0 66 66">
-					<circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-				</svg></div>
-		</div>
 	</body>
 </html>

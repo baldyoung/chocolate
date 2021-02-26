@@ -1,13 +1,13 @@
 $(function() {
     "use strict";    
-    
+
     /** Constant div card */
     const DIV_CARD = 'div.card';
 
     setTimeout(function() {
         $('.page-loader-wrapper').fadeOut();
     }, 50);
-
+    return ;
     $('.dropdown-menu').on('click', function(e) {
         e.stopPropagation();
     });
