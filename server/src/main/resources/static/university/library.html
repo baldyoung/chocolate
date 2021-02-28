@@ -60,25 +60,37 @@
 				standardHours : '120',
 				subjectInfo : '软件开发，前端开发必学课程'
 
-			}]
+			},{
+				index : 2,
+				subjectName : 'Java',
+				subjectNumber : '10011',
+				subjectInfo : '软件开发必修课',
+				standardHours: '100'
+			},{
+				index : 3,
+				subjectName : 'C语言',
+				subjectNumber: '10012',
+				subjectInfo: '软件开发必修课',
+				standardHours: '100'
+			}];
 			var dataTable = $('#subjectListArea');
 			if ($.fn.dataTable.isDataTable(dataTable)) {
 				dataTable.DataTable().destroy();
 			}
 			dataTable.DataTable({
-				'searching': false, //去掉搜索框
-				'bLengthChange': false, //去掉每页显示多少条数据方法
+				'searching': true, //搜索框
+				'bLengthChange': true, //每页显示多少条数据方法
 				"serverSide": false, //关闭分页操作，默认就是关闭
 				"autoWidth": false, //
-				"bSort": false, //打开排序功能
+				"bSort": true, //排序功能
 				"order": [
 					[1, "desc"],
 					[0, 'asc']
 				], //默认排序的指标
 				'data': productList, //表格的数据源
 				"pageLength": 20, //默认每页显示的数据条数
-				"info": false,
-				"paging": false,
+				"info": true,
+				"paging": true,
 				'columns': [{
 					data: 'index'
 				}, {
@@ -93,9 +105,9 @@
 				"columnDefs": [{
 					"render": function(data, type, row) {
 						var a = "";
-						a += "<button class=\"btn btn-primary \" style='margin-top:3px;' type=\"button\"  onclick=\"OptionModule.deleteProduct('" + row.productId + "', '" + row.productName + "')\"><i class=\"fa fa-building-o\"></i>删除"
+						a += "<button class=\"btn btn-danger \" style='margin-top:3px;' type=\"button\"  onclick=\"OptionModule.deleteProduct('" + row.productId + "', '" + row.productName + "')\"><i class=\"fa fa-building-o\"></i>删除"
 						a += "</button>"
-						a += "<button class=\"btn btn-primary \" style='margin-top:3px; margin-left:5px; ' type=\"button\" data-toggle=\"modal\" data-target=\"#myModal5\" onclick=\"ProductEditModule.initProductEditWindow('" + row.productId + "')\"><i class=\"fa fa-building-o\"></i>修改"
+						a += "<button class=\"btn btn-warning \" style='margin-top:3px; margin-left:5px; ' type=\"button\" data-toggle=\"modal\" data-target=\"#myModal5\" onclick=\"ProductEditModule.initProductEditWindow('" + row.productId + "')\"><i class=\"fa fa-building-o\"></i>修改"
 						a += "</button>"
 						return a;
 					},
@@ -557,30 +569,13 @@
 													<div class="col-sm-12 col-md-7">
 														<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
 															<ul class="pagination">
-																<li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#"
-																	 aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">以前</font>
-																		</font>
-																	</a></li>
-																<li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1"
-																	 tabindex="0" class="page-link">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">1个</font>
-																		</font>
-																	</a></li>
-																<li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2"
-																	 tabindex="0" class="page-link">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">2</font>
-																		</font>
-																	</a></li>
-																<li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0"
-																	 data-dt-idx="3" tabindex="0" class="page-link">
-																		<font style="vertical-align: inherit;">
-																			<font style="vertical-align: inherit;">下一个</font>
-																		</font>
-																	</a></li>
+																<li class="paginate_button page-item previous disabled">
+																	<button class="btn btn-primary" style='margin-right:25px;' type="button">上一页</button>
+																</li>
+																
+																<li class=" page-item next" id="DataTables_Table_0_next">
+																	<button class="btn btn-primary" type="button">下一页</button>
+																</li>
 															</ul>
 														</div>
 													</div>
