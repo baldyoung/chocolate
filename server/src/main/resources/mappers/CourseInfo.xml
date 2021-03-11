@@ -13,8 +13,8 @@
 
     </delete>
 
-    <select id="selectCourseInfo" parameterType="Map" resultType="map">
-
+    <select id="selectCourseInfo" parameterType="int" resultType="map">
+      select * from courseInfo;
     </select>
 
 

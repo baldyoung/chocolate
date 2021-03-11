@@ -13,8 +13,30 @@
         delete from Subject where id = #{id}
     </delete>
 
+    <update id="updateSubject" parameterType="Map">
+        update Subject
+        set id = #{id}
+        <if test="subjectNumber != null">
+            , subjectNumber = #{subjectNumber}
+        </if>
+         <if test="subjectName != null">
+             , subjectName = #{subjectName}
+         </if>
+         <if test="standardHours != null">
+             , standardHours = #{standardHours}
+         </if>
+         <if test="subjectInfo != null">
+             , subjectInfo = #{subjectInfo}
+         </if>
+        where id = #{id}
+    </update>
+
     <select id="selectSubject" parameterType="int" resultType="map">
         select id, subjectNumber, subjectName, standardHours, subjectInfo from Subject where id = #{id}
+    </select>
+
+    <select id="querySubjectList" resultType="Map">
+        select id, subjectNumber, subjectName, standardHours, subjectInfo from Subject order by id;
     </select>
 
 
