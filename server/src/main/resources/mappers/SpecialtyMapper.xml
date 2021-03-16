@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xh.chocolate.common.daoModule.SpecialtyDao">
+<mapper namespace="com.xh.chocolate.common.jpaModule.SpecialtyDao">
 
     <insert id="insertSpecialty" parameterType="Map">
         insert into Specialty(specialtyNumber, specialtyName, specialtyInfo) values (#{specialtyNumber}, #{specialtyName}, #{specialtyInfo})

@@ -1,4 +1,4 @@
-package com.xh.chocolate.common.daoModule;
+package com.xh.chocolate.common.mybatisModule;
 
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.stereotype.Repository;

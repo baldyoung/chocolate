@@ -1,9 +1,6 @@
-package com.xh.chocolate.common.daoModule;
+package com.xh.chocolate.common.mybatisModule;
 
 import org.springframework.stereotype.Repository;
-
-import java.util.Map;
-
 
 import java.util.Map;
 

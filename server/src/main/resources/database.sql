@@ -197,6 +197,7 @@ CREATE TABLE courseInfo (
 -- 课程班级关联表
 DROP TABLE IF EXISTS classInCourse;
 CREATE TABLE classInCourse (
+	id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
 	courseId INT,
 	studentClassId INT
 );

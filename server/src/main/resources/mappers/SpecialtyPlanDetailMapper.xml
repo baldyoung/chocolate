@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xh.chocolate.common.daoModule.SpecialtyPlanDetailDao">
+<mapper namespace="com.xh.chocolate.common.jpaModule.SpecialtyPlanDetailDao">
 
     <insert id="insertSpecialtyPlanDetail" parameterType="Map">
         insert into SpecialtyPlanDetail(specialtyPlanId, subjectId, referenceHours, sortParament) values (#{specialtyPlanId}, #{subjectId}, #{referenceHours}, #{sortParament})
