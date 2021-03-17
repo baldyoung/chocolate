@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xh.chocolate.common.mybatisModule.SubjectDao">
+<mapper namespace="com.xh.chocolate.common.jpaModule.SubjectDao">
 
     <insert id="insertSubject" parameterType="Map">
         insert into Subject(subjectNumber, subjectName, standardHours, subjectInfo) values (#{subjectNumber}, #{subjectName}, #{standarHours}, #{subjectInfo})

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xh.chocolate.common.mybatisModule.StudentClassDao">
+<mapper namespace="com.xh.chocolate.common.jpaModule.StudentClassDao">
 
     <insert id="insertStudentClass" parameterType="Map">
         insert into StudentClass(specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus) values

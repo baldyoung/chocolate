@@ -1,18 +1,15 @@
 package com.xh.chocolate;
 
 import com.xh.chocolate.common.jpaModule.*;
-import com.xh.chocolate.common.mybatisModule.StudentClassDao;
-import com.xh.chocolate.common.mybatisModule.SubjectDao;
+import com.xh.chocolate.common.jpaModule.StudentClassDao;
+import com.xh.chocolate.common.jpaModule.SubjectDao;
 import com.xh.chocolate.pojo.entity.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.Table;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
 import static java.lang.System.*;
 @SpringBootTest
 class ChocolateApplicationTests {
@@ -36,34 +33,21 @@ class ChocolateApplicationTests {
     private StaffInfoDao staffInfoDao;
     @Autowired
     private StaffInfoInCompanyDao staffInfoInCompanyDao;
+    @Autowired
+    private StudentClassRoomDao studentClassRoomDao;
+    @Autowired
+    private TeacherCompetencyDao teacherCompetencyDao;
+
 
     @Test
     void contextLoads() {
 
-        subjectDao.querySubjectList();
     }
 
-    @Test
-    void studentClassTest() {
-        Map<String, String> map = new HashMap();
-        map.put("specialtyId", "1");
-        map.put("classNumber", "20200301");
-        map.put("className", "APP软件开发02班");
-        map.put("holderStaffId", "100101");
-        map.put("classBirthday", "2020-03-06");
-        map.put("initStudentAmount", "41");
-        map.put("currentStudentAmount", "39");
-        map.put("currentStatus", "1");
-        //studentClassDao.insertStudentClass(map);
-        List<Map> list = new LinkedList();
-        list.add(map);
-        studentClassDao.insertStudentClassList(list);
 
-    }
 
     @Test
     void classInCourseTest() {
-        studentClassTest();
         ClassInCourseEntity entity = new ClassInCourseEntity();
         entity.setId(1);
         entity.setCourseId(10010);
@@ -135,4 +119,35 @@ class ChocolateApplicationTests {
         out.println(staffInfoInCompanyDao.findAll());
     }
 
+    @Test
+    void StudentClassTest() {
+        StudentClassEntity entity = new StudentClassEntity();
+        entity.setSpecialtyId(3366);
+        studentClassDao.save(entity);
+        out.println(studentClassDao.findAll());
+    }
+
+    @Test
+    void StudentClassRoomTest() {
+        StudentClassRoomEntity entity = new StudentClassRoomEntity();
+        entity.setClassRoomName("教学楼404");
+        studentClassRoomDao.save(entity);
+        out.println(studentClassRoomDao.findAll());
+    }
+
+    @Test
+    void SubjectTest() {
+        SubjectEntity entity = new SubjectEntity();
+        entity.setSubjectName("Java 程序设计");
+        subjectDao.save(entity);
+        out.println(subjectDao.findAll());
+    }
+
+    @Test
+    void TeacherCompetencyTest() {
+        TeacherCompetencyEntity entity = new TeacherCompetencyEntity();
+        entity.setStaffId(1033);
+        teacherCompetencyDao.save(entity);
+        out.println(teacherCompetencyDao.findAll());
+    }
 }
