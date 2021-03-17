@@ -1,4 +1,4 @@
-package com.xh.chocolate.common.daoModule;
+package com.xh.chocolate.common.mybatisModule;
 
 import org.springframework.stereotype.Repository;
 

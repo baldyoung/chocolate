@@ -3,20 +3,60 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xh.chocolate.common.daoModule.StudentClassDao">
+<mapper namespace="com.xh.chocolate.common.jpaModule.StudentClassDao">
 
     <insert id="insertStudentClass" parameterType="Map">
         insert into StudentClass(specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus) values
         (#{specialtyId}, #{classNumber}, #{className}, #{holderStaffId}, #{classBirthday}, #{initStudentAmount}, #{currentStudentAmount}, #{currentStatus})
     </insert>
 
+    <insert id="insertStudentClassList" >
+        insert into StudentClass(specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus) values
+        <foreach collection="studentClassList" index="index" item="item" open="" separator=", " close="">
+            (#{item.specialtyId}, #{item.classNumber}, #{item.className}, #{item.holderStaffId}, #{item.classBirthday}, #{item.initStudentAmount}, #{item.currentStudentAmount}, #{item.currentStatus})
+        </foreach>
+    </insert>
+
     <delete id="deleteStudentClass" parameterType="int">
         delete from StudentClass where id = #{id}
     </delete>
 
-    <select id="selectClassInCourse" parameterType="Map" resultType="map">
+    <select id="selectStudentClass" parameterType="int" resultType="map">
         select id, specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus from StudentClass where id = #{id}
     </select>
 
+    <select id="queryAllStudentClass" resultType="map">
+         select id, specialtyId, classNumber, className, holderStaffId, classBirthday, initStudentAmount, currentStudentAmount, currentStatus from StudentClass
+    </select>
+
+    <update id="updateStudentClass" parameterType="map">
+        update studentClass
+        set id = #{id}
+        <if test="specialtyId != null">
+            , specialtyId = #{specialtyId}
+        </if>
+        <if test="classNumber != null">
+            , classNumber = #{classNumber}
+        </if>
+        <if test="className != null">
+            , className = #{className}
+        </if>
+        <if test="holderStaffId != null">
+            , holderStaffId = #{holderStaffId}
+        </if>
+        <if test="classBirthday != null">
+            , classBirthday = #{classBirthday}
+        </if>
+        <if test="initStudentAmount != null">
+            , initStudentAmount = #{initStudentAmount}
+        </if>
+        <if test="currentStudentAmount != null">
+            , currentStudentAmount = #{currentStudentAmount}
+        </if>
+        <if test="currentStatus != null">
+            , currentStatus = #{currentStatus}
+        </if>
+        where id = #{id}
+    </update>
 
 </mapper>

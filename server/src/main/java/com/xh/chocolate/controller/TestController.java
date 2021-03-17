@@ -1,6 +1,6 @@
 package com.xh.chocolate.controller;
 
-import com.xh.chocolate.common.daoModule.DBConnectionTestDao;
+import com.xh.chocolate.common.mybatisModule.DBConnectionTestDao;
 import com.xh.chocolate.common.redisModule.RedisConnectionTestService;
 import com.xh.chocolate.pojo.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xh.chocolate.common.daoModule.SubjectDao">
+<mapper namespace="com.xh.chocolate.common.jpaModule.SubjectDao">
 
     <insert id="insertSubject" parameterType="Map">
         insert into Subject(subjectNumber, subjectName, standardHours, subjectInfo) values (#{subjectNumber}, #{subjectName}, #{standarHours}, #{subjectInfo})
@@ -13,8 +13,30 @@
         delete from Subject where id = #{id}
     </delete>
 
+    <update id="updateSubject" parameterType="Map">
+        update Subject
+        set id = #{id}
+        <if test="subjectNumber != null">
+            , subjectNumber = #{subjectNumber}
+        </if>
+         <if test="subjectName != null">
+             , subjectName = #{subjectName}
+         </if>
+         <if test="standardHours != null">
+             , standardHours = #{standardHours}
+         </if>
+         <if test="subjectInfo != null">
+             , subjectInfo = #{subjectInfo}
+         </if>
+        where id = #{id}
+    </update>
+
     <select id="selectSubject" parameterType="int" resultType="map">
         select id, subjectNumber, subjectName, standardHours, subjectInfo from Subject where id = #{id}
+    </select>
+
+    <select id="querySubjectList" resultType="Map">
+        select id, subjectNumber, subjectName, standardHours, subjectInfo from Subject order by id;
     </select>
 
 
