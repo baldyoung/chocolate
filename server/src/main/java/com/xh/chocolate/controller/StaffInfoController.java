@@ -17,7 +17,7 @@ import static com.xh.chocolate.pojo.dto.ResponseResult.*;
  */
 @RestController
 @RequestMapping("staffInfo")
-//@CrossOrigin
+@CrossOrigin(allowCredentials="true")
 public class StaffInfoController {
     @Autowired
     private StaffInfoDao staffInfoDao;

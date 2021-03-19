@@ -12,6 +12,9 @@ import java.util.List;
 
 import static com.xh.chocolate.pojo.dto.ResponseResult.success;
 
+/**
+ * 专业
+ */
 @RestController
 @RequestMapping("specialty")
 public class SpecialtyController {

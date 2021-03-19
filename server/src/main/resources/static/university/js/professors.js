@@ -86,17 +86,35 @@ function requestAndLoadTeacherList() {
 			});
 			*/
 			// -----------------
-			var temp = '{"id":"1", "staffName":"磊磊刘", "staffNation":"中国-南昌"}';
+			var temp = '{"id":"1", "staffName":"肖静-男", "staffNation":"中国-南昌"}';
 			$.ajax({
 				url: "http://localhost:8080/staffInfo/1",
 				type: "PATCH",
+				/*
 				xhrFields: {
 					withCredentials: true
 				},
+				crossDomain: true,
+				*/
 				dataType: 'json',
 				contentType: "application/json; charset=utf-8",
 				data : temp,
+				success: function (data) {
+					console.log(data);
+				}
+			});
+			$.ajax({
+				url: "http://localhost:8080/staffInfo/all",
+				type: "GET",
+				/*
+				xhrFields: {
+					withCredentials: true
+				},
 				crossDomain: true,
+				*/
+				dataType: 'json',
+				contentType: "application/json; charset=utf-8",
+				data : null,
 				success: function (data) {
 					console.log(data);
 				}
