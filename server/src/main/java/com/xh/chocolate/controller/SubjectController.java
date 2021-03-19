@@ -52,15 +52,12 @@ public class SubjectController {
      * @return
      */
     @PatchMapping("{id}")
-    public ResponseResult patchSubject(@PathVariable("id")Integer id, SubjectEntity subjectEntity) {
-        if (null != id) {
-            SubjectEntity subjectEntityOld = subjectDao.findById(id).get();
-            EntityUtil.copyNotNullProperties(subjectEntity, subjectEntityOld);
-            subjectEntity = subjectEntityOld;
-            subjectDao.save(subjectEntity);
-            return success();
-        }
-        return defeat();
+    public ResponseResult patchSubject(@PathVariable("id")Integer id, @RequestBody SubjectEntity subjectEntity) {
+        SubjectEntity subjectEntityOld = subjectDao.findById(id).get();
+        subjectEntity.setId(null);
+        EntityUtil.copyNotNullProperties(subjectEntity, subjectEntityOld);
+        subjectDao.save(subjectEntityOld);
+        return success();
     }
 
     /**
