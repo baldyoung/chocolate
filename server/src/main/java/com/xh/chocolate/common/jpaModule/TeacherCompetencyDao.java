@@ -9,4 +9,5 @@ import java.util.Map;
 @Repository
 public interface TeacherCompetencyDao extends JpaRepository<TeacherCompetencyEntity, Integer> {
 
+    TeacherCompetencyEntity findByStaffId(Integer staffId);
 }
