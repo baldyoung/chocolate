@@ -18,11 +18,11 @@ public class CorsFilter implements Filter {
             throws IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpServletRequest req = (HttpServletRequest) request;
-        System.out.println("kkk");
+        System.out.println("已修改HTTP报文头");
         // 设置允许Cookie
         res.addHeader("Access-Control-Allow-Credentials", "true");
-        // 允许http://www.xxx.com域（自行设置，这里只做示例）发起跨域请求
-        res.addHeader("Access-Control-Allow-Origin", req.getHeader("Origin"));
+        // 允许http://www.xxx.com域（自行设置，这里只做示例）发起跨域请求     req.getHeader("Origin")
+        res.addHeader("Access-Control-Allow-Origin", "*");
         // 设置允许跨域请求的方法
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH");
         // 允许跨域请求包含content-type
