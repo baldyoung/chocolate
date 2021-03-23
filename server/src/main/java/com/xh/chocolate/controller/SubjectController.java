@@ -29,13 +29,13 @@ public class SubjectController {
      * 获取当前所有的 学科
      * @return
      */
-    @GetMapping("all")
+    @GetMapping
     public ResponseResult getSubjectList() {
         return success(subjectDao.findAll());
     }
 
     /**
-     * 新增一个 学科
+     * 新增一个或多个 学科
      * @param subjectEntityList
      * @return
      */
@@ -69,6 +69,16 @@ public class SubjectController {
     public ResponseResult deleteSubject(@PathVariable("id")Integer id) {
         subjectDao.deleteById(id);
         return success();
+    }
+
+    /**
+     * 获取指定学科的信息
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseResult getSubject(@PathVariable("id")Integer id) {
+        return success(subjectDao.findById(id));
     }
 
 }

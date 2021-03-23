@@ -66,8 +66,18 @@ public class StudentClassRoomController {
      * 获取所有教室信息
      * @return
      */
-    @GetMapping("all")
+    @GetMapping
     public ResponseResult getStudentClassRoomList() {
         return success(studentClassRoomDao.findAll());
+    }
+
+    /**
+     * 获取指定教室的信息
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseResult getStudentClassRoom(@PathVariable("id")Integer id) {
+        return success(studentClassRoomDao.findById(id));
     }
 }

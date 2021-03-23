@@ -63,8 +63,18 @@ public class StaffInfoController {
      * 获取当前 所有的职工
      * @return
      */
-    @GetMapping("all")
+    @GetMapping
     public ResponseResult getStaffInfoList() {
         return success(staffInfoDao.findAll());
+    }
+
+    /**
+     * 获取指定员工的信息
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseResult getStaffInfo(@PathVariable("id")Integer id) {
+        return success(staffInfoDao.findById(id));
     }
 }

@@ -63,9 +63,19 @@ public class SpecialtyController {
      * 获取当前所有专业
      * @return
      */
-    @GetMapping("all")
+    @GetMapping
     public ResponseResult getSpecialtyList() {
         return success(specialtyDao.findAll());
+    }
+
+    /**
+     * 获取指定专业的详细内容
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseResult getSpecialty(@PathVariable("id")Integer id) {
+        return success(specialtyDao.findById(id));
     }
 
 

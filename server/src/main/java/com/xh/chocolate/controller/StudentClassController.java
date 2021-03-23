@@ -62,10 +62,19 @@ public class StudentClassController {
      * 获取当前所有的班级
      * @return
      */
-    @GetMapping("all")
+    @GetMapping
     public ResponseResult getStudentClassList() {
         return success(studentClassDao.findAll());
     }
 
+    /**
+     * 获取指定班级的信息
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseResult getStudentClass(@PathVariable("id")Integer id) {
+        return success(studentClassDao.findById(id));
+    }
 
 }
