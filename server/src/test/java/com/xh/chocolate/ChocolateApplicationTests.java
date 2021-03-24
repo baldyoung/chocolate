@@ -90,7 +90,7 @@ class ChocolateApplicationTests {
     void SpecialtyPlanTest() {
         SpecialtyPlanEntity entity = new SpecialtyPlanEntity();
         entity.setSpecialtyId(3333);
-        entity.setSpecialtyName("HTML5+CSS3");
+        entity.setPlanName("HTML5+CSS3");
         specialtyPlanDao.save(entity);
         out.println(specialtyPlanDao.findAll());
     }

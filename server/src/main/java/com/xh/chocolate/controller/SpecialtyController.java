@@ -75,7 +75,7 @@ public class SpecialtyController {
      */
     @GetMapping("{id}")
     public ResponseResult getSpecialty(@PathVariable("id")Integer id) {
-        return success(specialtyDao.findById(id));
+        return success(specialtyDao.findById(id).get());
     }
 
 

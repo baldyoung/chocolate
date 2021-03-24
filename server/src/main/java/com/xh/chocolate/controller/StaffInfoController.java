@@ -75,6 +75,6 @@ public class StaffInfoController {
      */
     @GetMapping("{id}")
     public ResponseResult getStaffInfo(@PathVariable("id")Integer id) {
-        return success(staffInfoDao.findById(id));
+        return success(staffInfoDao.findById(id).get());
     }
 }

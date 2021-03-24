@@ -78,6 +78,6 @@ public class StudentClassRoomController {
      */
     @GetMapping("{id}")
     public ResponseResult getStudentClassRoom(@PathVariable("id")Integer id) {
-        return success(studentClassRoomDao.findById(id));
+        return success(studentClassRoomDao.findById(id).get());
     }
 }

@@ -2,6 +2,9 @@
 chocolate
 # 版本号:Version 1.0.00 --- 2021-02-20
  初始化创建
+# specialtyPlan 表修改 --- 2021-03-24
+ specialtyName => planName
+ add : planInfo
 
 */
 /*
@@ -109,7 +112,8 @@ DROP TABLE IF EXISTS specialtyPlan;
 CREATE TABLE specialtyPlan (
 	id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
 	specialtyId INT NOT NULL,
-	specialtyName VARCHAR(30),
+	planName VARCHAR(30),
+	planInfo varchar(200),
 	planParameters SMALLINT COMMENT'计划优先级',
 	startDatetime DATETIME,
 	endDatetime DATETIME,

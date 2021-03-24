@@ -78,7 +78,7 @@ public class TeacherCompetencyController {
      */
     @GetMapping("{recordId}")
     public ResponseResult getTeacherCompetencyByRecordId(@PathVariable("recordId")Integer recordId) {
-        return success(teacherCompetencyDao.findById(recordId));
+        return success(teacherCompetencyDao.findById(recordId).get());
     }
 
     /**

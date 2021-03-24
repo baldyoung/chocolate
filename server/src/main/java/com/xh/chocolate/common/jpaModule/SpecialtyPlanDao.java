@@ -10,4 +10,5 @@ import java.util.Map;
 @Repository
 public interface SpecialtyPlanDao extends JpaRepository<SpecialtyPlanEntity, Integer> {
 
+    List<SpecialtyPlanEntity> findSpecialtyPlanEntitiesBySpecialtyId(Integer specialtyId);
 }

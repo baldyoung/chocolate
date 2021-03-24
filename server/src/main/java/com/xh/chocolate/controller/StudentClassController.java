@@ -74,7 +74,7 @@ public class StudentClassController {
      */
     @GetMapping("{id}")
     public ResponseResult getStudentClass(@PathVariable("id")Integer id) {
-        return success(studentClassDao.findById(id));
+        return success(studentClassDao.findById(id).get());
     }
 
 }

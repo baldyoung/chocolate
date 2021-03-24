@@ -17,7 +17,9 @@ public class SpecialtyPlanEntity {
     @Column(nullable = false)
     private Integer specialtyId;
     @Column(length = 30)
-    private String specialtyName;
+    private String planName;
+    @Column(length = 200)
+    private String planInfo;
     private Integer planParameters;
     private Date startDatetime;
     private Date endDatetime;
@@ -40,14 +42,6 @@ public class SpecialtyPlanEntity {
 
     public void setSpecialtyId(Integer specialtyId) {
         this.specialtyId = specialtyId;
-    }
-
-    public String getSpecialtyName() {
-        return specialtyName;
-    }
-
-    public void setSpecialtyName(String specialtyName) {
-        this.specialtyName = specialtyName;
     }
 
     public Integer getPlanParameters() {
@@ -95,12 +89,29 @@ public class SpecialtyPlanEntity {
         return "SpecialtyPlanEntity{" +
                 "id=" + id +
                 ", specialtyId=" + specialtyId +
-                ", specialtyName='" + specialtyName + '\'' +
+                ", planName=" + planName +
+                ", planInfo=" + planInfo +
                 ", planParameters=" + planParameters +
                 ", startDatetime=" + startDatetime +
                 ", endDatetime=" + endDatetime +
                 ", createDateTime=" + createDateTime +
                 ", updateDateTime=" + updateDateTime +
                 '}';
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
+
+    public String getPlanInfo() {
+        return planInfo;
+    }
+
+    public void setPlanInfo(String planInfo) {
+        this.planInfo = planInfo;
     }
 }

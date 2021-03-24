@@ -78,7 +78,7 @@ public class SubjectController {
      */
     @GetMapping("{id}")
     public ResponseResult getSubject(@PathVariable("id")Integer id) {
-        return success(subjectDao.findById(id));
+        return success(subjectDao.findById(id).get());
     }
 
 }
