@@ -27,7 +27,12 @@ public class CourseInfoController {
      */
     @PostMapping
     public ResponseResult postCourseInfo(@RequestBody List<CourseInfoEntity> courseInfoEntityList) {
-        return success(courseInfoDao.findAll());
+        // 检查教师Id、学科Id、教室Id是否合法
+        // ...
+
+        courseInfoEntityList.forEach(cell->cell.setId(null));
+        courseInfoDao.saveAll(courseInfoEntityList);
+        return success();
     }
 
     /**
@@ -74,6 +79,27 @@ public class CourseInfoController {
     public ResponseResult getCourseInfo(@PathVariable("id")Integer id) {
         return success(courseInfoDao.findById(id).get());
     }
+
+    /**
+     * 获取指定教师的所有 课程
+     * @param teacherId
+     * @return
+     */
+    @GetMapping("teacherId={teacherId}")
+    public ResponseResult getCourseInfoByTeacherId(@PathVariable("teacherId")Integer teacherId) {
+        return success(courseInfoDao.getCourseInfoEntitiesByStaffId(teacherId));
+    }
+
+    /**
+     * 获取指定教室下的所有 课程
+     * @param classRoomId
+     * @return
+     */
+    @GetMapping("classRoomId={classRoomId}")
+    public ResponseResult getCourseInfoByClassRoomId(@PathVariable("classRoomId")Integer classRoomId) {
+        return success(courseInfoDao.getCourseInfoEntitiesByClassRoomId(classRoomId));
+    }
+
 
 
 }

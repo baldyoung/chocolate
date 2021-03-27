@@ -9,4 +9,12 @@ import java.util.List;
 import java.util.Map;
 @Repository
 public interface ClassInCourseDao  extends JpaRepository<ClassInCourseEntity, Integer> {
+
+    List<ClassInCourseEntity> getClassInCourseEntitiesByCourseId(Integer courseId);
+
+    List<ClassInCourseEntity> getClassInCourseEntitiesByStudentClassId(Integer courseId);
+
+    void deleteByCourseId(Integer courseId);
+
+    void deleteByStudentClassId(Integer studentClassId);
 }
