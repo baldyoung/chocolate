@@ -15,6 +15,11 @@ import static com.xh.chocolate.pojo.dto.ResponseResult.*;
 public class DateTimeOfCourseController {
     private DateTimeOfCourseDao dateTimeOfCourseDao;
 
+    /**
+     * 新增一条或多条 课程时间关联
+     * @param dateTimeOfCourseEntityList
+     * @return
+     */
     @PostMapping
     public ResponseResult postDateTimeOfCourse(@RequestBody List<DateTimeOfCourseEntity> dateTimeOfCourseEntityList) {
         // 对课程Id和时间点Id进行合法性检验
@@ -24,17 +29,45 @@ public class DateTimeOfCourseController {
         return success();
     }
 
+    /**
+     * 删除指定的 课程时间关联
+     * @param id
+     * @return
+     */
     @DeleteMapping("id")
     public ResponseResult deleteDateTimeOfCourse(@PathVariable("id")Integer id) {
         dateTimeOfCourseDao.deleteById(id);
         return success();
     }
 
+    /**
+     * 删除指定课程下所有的 课程时间关联
+     * @param courseId
+     * @return
+     */
     @DeleteMapping("courseId={courseId}")
     public ResponseResult deleteDateTimeOfCourseByCourseId(@PathVariable("courseId")Integer courseId) {
+        dateTimeOfCourseDao.deleteByCourseId(courseId);
         return success();
     }
 
-    //@DeleteMapping("date")
+    /**
+     * 获取所有的 课程时间关联
+     * @return
+     */
+    @GetMapping
+    public ResponseResult getDateTimeOfCourse() {
+        return success(dateTimeOfCourseDao.findAll());
+    }
+
+    /**
+     * 获取指定课程下所有的 课程时间关联
+     * @param courseId
+     * @return
+     */
+    @GetMapping("courseId={courseId}")
+    public ResponseResult getDateTimeOfCourseByCourseId(@PathVariable("courseId")Integer courseId) {
+        return success(dateTimeOfCourseDao.getDateTimeOfCourseEntitiesByCourseId(courseId));
+    }
 
 }
