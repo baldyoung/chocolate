@@ -46,6 +46,17 @@ public class TeacherCompetencyController {
     }
 
     /**
+     * 删除指定员工的所有 授课记录
+     * @param teacherId
+     * @return
+     */
+    @DeleteMapping("teacherId={teacherId}")
+    public ResponseResult deleteTeacherCompetencyByTeacherId(@PathVariable("teacherId")Integer teacherId) {
+        teacherCompetencyDao.deleteByStaffId(teacherId);
+        return success();
+    }
+
+    /**
      * 修改指定记录的内容
      * @param recordId
      * @param teacherCompetencyEntity
@@ -91,6 +102,8 @@ public class TeacherCompetencyController {
         return success(teacherCompetencyDao.findTeacherCompetencyEntitiesByStaffId(teacherId));
     }
 
+
+
     /**
      * 获取指定学科下所有的 授课记录
      * @param subjectId
@@ -101,5 +114,8 @@ public class TeacherCompetencyController {
         return success(teacherCompetencyDao.findTeacherCompetencyEntitiesBySubjectId(subjectId));
     }
 
+    public List<TeacherCompetencyEntity> getTeacherCompetencyByStaffIds(List<Integer> staffIdList) {
+        return teacherCompetencyDao.findByStaffIdIn(staffIdList);
+    }
 
 }

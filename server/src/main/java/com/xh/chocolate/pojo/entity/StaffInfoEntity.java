@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "StaffInfo")
@@ -30,6 +31,32 @@ public class StaffInfoEntity {
     private Date createDateTime;
     @LastModifiedDate
     private Date updateDateTime;
+
+    public StaffInfoEntity(StaffInfoEntity sourceObject) {
+        this.staffName = sourceObject.staffName;
+        this.staffSex = sourceObject.staffSex;
+        this.staffBirthday = sourceObject.staffBirthday;
+        this.staffNation = sourceObject.staffNation;
+        this.staffRace = sourceObject.staffRace;
+        this.staffEmail = sourceObject.staffEmail;
+        this.staffPhoneNumber = sourceObject.staffPhoneNumber;
+    }
+
+    public StaffInfoEntity() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StaffInfoEntity that = (StaffInfoEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(staffName, that.staffName) && Objects.equals(staffSex, that.staffSex) && Objects.equals(staffBirthday, that.staffBirthday) && Objects.equals(staffNation, that.staffNation) && Objects.equals(staffRace, that.staffRace) && Objects.equals(staffEmail, that.staffEmail) && Objects.equals(staffPhoneNumber, that.staffPhoneNumber) && Objects.equals(createDateTime, that.createDateTime) && Objects.equals(updateDateTime, that.updateDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, staffName, staffSex, staffBirthday, staffNation, staffRace, staffEmail, staffPhoneNumber, createDateTime, updateDateTime);
+    }
 
     public Integer getId() {
         return id;

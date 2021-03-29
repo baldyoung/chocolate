@@ -15,4 +15,10 @@ public interface TeacherCompetencyDao extends JpaRepository<TeacherCompetencyEnt
 
     // 获取指定学科下所有的 授课记录
     List<TeacherCompetencyEntity> findTeacherCompetencyEntitiesBySubjectId(Integer SubjectId);
+
+    // 删除指定教师下所有的 授课记录
+    void deleteByStaffId(Integer staffId);
+
+    // 获取给定集合内所有教师的 授课记录
+    List<TeacherCompetencyEntity> findByStaffIdIn(List<Integer> staffIdList);
 }
