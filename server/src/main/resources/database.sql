@@ -5,7 +5,7 @@ chocolate
 # specialtyPlan 表修改 --- 2021-03-24
  specialtyName => planName
  add : planInfo
-
+# 新增studentClassSubjectInHistory表，用于记录班级已授学科，但是非必要！ --- 2020-03-29
 */
 /*
 查看建数据库的语句
@@ -167,6 +167,21 @@ CREATE TABLE studentClass (
 	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updateDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- 班级已授学科  (暂废）
+DROP TABLE IF EXISTS studentClassSubjectInHistory;
+CREATE TABLE studentClassSubjectInHistory (
+	id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
+	studentClassId INT,
+	subjectId INT,
+	subjectName VARCHAR(15),
+	subjectNumber VARCHAR(6),
+	standardHours INT,
+	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updateDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
 -- 教室表
 DROP TABLE IF EXISTS studentClassRoom;
 CREATE TABLE studentClassRoom (
