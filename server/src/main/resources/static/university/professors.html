@@ -30,6 +30,9 @@
 				height: 4px;
 				scrollbar-arrow-color: red;
 			}
+			.unAble {
+				 pointer-events: none; 
+			}
 		</style>
 	</head>
 	<body class="close_rightbar">
@@ -75,24 +78,24 @@
 								</ol>
 							</div>
 							<ul class="nav nav-tabs page-header-tab">
-								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#pro-all">
+								<li onclick='requestAndLoadTeacherList()' class="nav-item"><a class="nav-link active" data-toggle="tab" href="#pro-all">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">列表显示</font>
 										</font>
 									</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pro-grid">
+								<!-- li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pro-grid">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">网格视图</font>
 										</font>
-									</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pro-profile">
+									</a></li -->
+								<!-- li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pro-profile">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">个人资料</font>
 										</font>
-									</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pro-add">
+									</a></li -->
+								<li  class="nav-item"><a id='editStaffInfoBtn' onclick='resetEditPanel()' class="nav-link" data-toggle="tab" href="#pro-add">
 										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">加</font>
+											<font style="vertical-align: inherit;">新增</font>
 										</font>
 									</a></li>
 							</ul>
@@ -102,101 +105,109 @@
 				<div class="section-body mt-4">
 					<div class="container-fluid">
 						<div class="tab-content">
+							<!-- 列表视图 -->
 							<div class="tab-pane active" id="pro-all">
 								<div class="table-responsive card">
-									<table class="table table-hover table-vcenter table_custom text-nowrap spacing5 border-style mb-0">
-										<thead>
-											<tr>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit; font-size:12px;">系统编号</font>
-													</font>
-												</th>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">名称</font>
-													</font>
-												</th>
-												<th></th>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">部门</font>
-													</font>
-												</th>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">邮件</font>
-													</font>
-												</th>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">电话</font>
-													</font>
-												</th>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">入职日期</font>
-													</font>
-												</th>
-												<th>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">操作</font>
-													</font>
-												</th>
-											</tr>
-										</thead>
-										<!-- 教师信息 -->
-										<tbody id='teacherListArea'>
-											<tr>
-												<td class="w60">
-													<div class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">
-														<span>
+									
+									<div  style='max-height:500px !important; overflow: auto; '>
+										<table class="table table-hover table-vcenter table_custom text-nowrap spacing5 border-style mb-0">
+											<thead>
+												<tr>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit; font-size:12px;">系统编号</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">名称</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">编号</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">部门</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">电话</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">入职日期</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">状态</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">操作</font>
+														</font>
+													</th>
+												</tr>
+											</thead>
+											<!-- 教师信息 -->
+											<tbody id='teacherListArea'>
+												<tr>
+													<td class="w60">
+														<div class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">
+															<span>
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">#{index}</font>
+																</font>
+															</span>
+														</div>
+													</td>
+													<td>
+														<div class="font-15">
 															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">#{index}</font>
+																<font style="vertical-align: inherit;">#{name} (#{sex})</font>
 															</font>
-														</span>
-													</div>
-												</td>
-												<td>
-													<div class="font-15">
+														</div>
+													</td>
+													<td><span>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">#{number}</font>
+															</font>
+														</span></td>
+													<td><span class="text-muted">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">#{departmentName}</font>
+															</font>
+														</span></td>
+													<td>
 														<font style="vertical-align: inherit;">
-															<font style="vertical-align: inherit;">#{name}</font>
+															<font style="vertical-align: inherit;">#{phone}</font>
 														</font>
-													</div>
-												</td>
-												<td><span>
-														<font style="vertical-align: inherit;">
-															<font style="vertical-align: inherit;">#{number}</font>
-														</font>
-													</span></td>
-												<td><span class="text-muted">
-														<font style="vertical-align: inherit;">
-															<font style="vertical-align: inherit;">#{departmentName}</font>
-														</font>
-													</span></td>
-												<td>
-													<font style="vertical-align: inherit;">
-														<font style="vertical-align: inherit;">#{phone}</font>
-													</font>
-												</td>
-												<td><strong>
-														<font style="vertical-align: inherit;">
-															<font style="vertical-align: inherit;">#{workDate}</font>
-														</font>
-													</strong></td>
-												<td><span class="tag tag-#{stateColor}">
-														<font style="vertical-align: inherit;">
-															<font style="vertical-align: inherit;">#{state}</font>
-														</font>
-													</span></td>
-												<td>
-													<button type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
-													<button type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
-													<button type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+													</td>
+													<td><strong>
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">#{workDate}</font>
+															</font>
+														</strong></td>
+													<td><span class="tag tag-#{stateColor}">
+															<font style="vertical-align: inherit;">
+																<font style="vertical-align: inherit;">#{state}</font>
+															</font>
+														</span></td>
+													<td>
+														<button onclick='getAndLoadStaffInfo("#{index}")' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
+														<button onclick='getAndLoadStaffInfo("#{index}")' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
+														<button onclick='deleteStaff("#{index}")' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 							<!-- 网格视图 -->
@@ -230,6 +241,7 @@
 									</div>
 								</div>
 							</div>
+							<!-- 个人资料 -->
 							<div class="tab-pane" id="pro-profile">
 								<div class="row">
 									<div class="col-xl-4 col-md-12">
@@ -338,6 +350,7 @@
 									</div>
 								</div>
 							</div>
+							<!-- 新增职工时的 编辑面板 -->
 							<div class="tab-pane" id="pro-add">
 								<div class="row clearfix">
 									<div class="col-lg-8 col-md-12 col-sm-12">
@@ -345,8 +358,7 @@
 											<div class="card-header">
 												<h3 class="card-title">基础信息</h3>
 												<div class="card-options ">
-													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+												
 												</div>
 											</div>
 											<div class="card-body">
@@ -354,57 +366,57 @@
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label>姓名<span style="color:red;">*</span></label>
-															<input type="text" class="form-control">
+															<input id='newStaffName' type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>编号</label>
-															<input type="text" class="form-control">
+															<label>编号（暂不支持）</label>
+															<input id='newStaffNumber' type="text" class="form-control" disabled>
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>生日</label>
-															<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Date of Birth">
+															<label>生日（暂不支持）</label>
+															<input disabled data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Date of Birth">
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<label>性别</label>
-														<select class="form-control show-tick">
-															<option value="">-- 性别 --</option>
-															<option value="10">男</option>
-															<option value="20">女</option>
+														<select id='newStaffSex' class="form-control show-tick">
+															<option value="2">-- 性别 --</option>
+															<option value="1">男</option>
+															<option value="0">女</option>
 														</select>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>国籍</label>
-															<input type="text" class="form-control">
+															<label>国籍（暂不支持）</label>
+															<input disabled id='newStaffNation' type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>名族</label>
-															<input type="text" class="form-control">
+															<label>名族（暂不支持）</label>
+															<input disabled id='newStaffRace' type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
 															<label>电话</label>
-															<input type="text" class="form-control">
+															<input id='newStaffPhoneNumber' type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
-															<label>邮箱</label>
-															<input type="text" class="form-control">
+															<label>邮箱（暂不支持）</label>
+															<input id='newStaffEmail' type="text" class="form-control" disabled>
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
-															<label>籍贯</label>
-															<input type="text" class="form-control">
+															<label>籍贯（暂不支持）</label>
+															<input type="text" class="form-control" disabled>
 														</div>
 													</div>
 													<div class="col-sm-12" style="border-bottom:1px solid gray; margin-bottom:10px;">
@@ -412,31 +424,31 @@
 													</div>
 													<div class="col-md-5 col-sm-12">
 														<div class="form-group">
-															<label>所在部门</label>
-															<input type="text" class="form-control">
+															<label>所在部门（暂不支持）</label>
+															<input type="text" class="form-control" disabled>
 														</div>
 													</div>
 													<div class="col-md-3 col-sm-12">
 														<div class="form-group">
-															<label>工作类别</label>
-															<input type="text" class="form-control">
+															<label>工作类别（暂不支持）</label>
+															<input type="text" class="form-control" disabled>
 														</div>
 													</div>
 													<div class="col-md-4 col-sm-12">
 														<div class="form-group">
-															<label>员工职称（等级）</label>
-															<input type="text" class="form-control">
+															<label>员工职称（暂不支持）</label>
+															<input type="text" class="form-control" disabled>
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group mt-3">
-															<label>其它备注</label>
-															<textarea rows="4" class="form-control no-resize" placeholder="关于该职工的其它备注信息..."></textarea>
+															<label>其它备注（暂不支持）</label>
+															<textarea disabled rows="4" class="form-control no-resize" placeholder="关于该职工的其它备注信息..."></textarea>
 														</div>
 													</div>
 													<div class="col-sm-12">
-														<button type="submit" class="btn btn-primary">保存</button>
-														<button type="submit" class="btn btn-outline-secondary">取消</button>
+														<button onclick='addNewStaff()' type="submit" class="btn btn-primary float-right">保存</button>
+														<button type="submit" class="btn btn-outline-secondary float-right" style='margin-right:10px;'>取消</button>
 													</div>
 												</div>
 											</div>
@@ -447,8 +459,7 @@
 											<div class="card-header">
 												<h3 class="card-title">可授课程</h3>
 												<div class="card-options ">
-													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+												
 												</div>
 											</div>
 											<div class="card-body">
@@ -482,7 +493,7 @@
 		</div>
 
 
-		<!-- 新增可授课程 -->
+		<!-- 新增可授课程  -->
 		<div class="modal fade" id="addEnableSubjectForStaff" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
