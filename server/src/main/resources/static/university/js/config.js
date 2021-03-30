@@ -1,9 +1,14 @@
 
 
 var XConfig = {
-	serverAddress : 'localhost:8080/'
+	serverAddress : 'http://localhost:8080/'
 }
-
+function noUndefined(o) {
+	if (undefined == 0) {
+		return ""
+	}
+	return o;
+}
 
 
 // 获取URL中的参数

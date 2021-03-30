@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-//@Component
-//@WebFilter(urlPatterns = "/*", filterName = "authFilter")
+@Component
+@WebFilter(urlPatterns = "/*", filterName = "authFilter")
 public class CorsFilter implements Filter {
 
     @Override
