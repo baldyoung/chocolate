@@ -3,14 +3,7 @@
 var staffShowTemplate; // 职工信息的展示模板
 var staffInfoListBuffer; // 职工信息的本地缓存
 var currentStaffId = undefined; // 当前选中的职工Id
-$(function() {
-	// 同步URL中的父级样式
-	var parentClass = getQueryVariable('parentClass');
-	if (undefined != parentClass) {
-		parentClass = parentClass.split(',').join(' ');
-		document.body.setAttribute('class', parentClass);
-	}
-});
+
 $(function() {
 	var target = $('#teacherListArea');
 	staffShowTemplate = target.html();

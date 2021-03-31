@@ -55,6 +55,15 @@ function getQueryVariable(variable) {
 }
 
 
+$(function() {
+	// 同步URL中的父级样式
+	var parentClass = getQueryVariable('parentClass');
+	if (undefined != parentClass) {
+		parentClass = parentClass.split(',').join(' ');
+		document.body.setAttribute('class', parentClass);
+	}
+});
+
 /*
 $.ajax({
 	url: XConfig.serverAddress + "staffInfo",

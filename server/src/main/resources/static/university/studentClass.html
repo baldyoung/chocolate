@@ -148,7 +148,7 @@
 													</th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody id='studentClassShowArea'>
 												<tr>
 													<td>
 														<font style="vertical-align: inherit;">
@@ -277,8 +277,6 @@
 									<div class="card-header">
 										<h3 class="card-title">新增班级</h3>
 										<div class="card-options ">
-											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
 										</div>
 									</div>
 									<form class="card-body">
@@ -289,9 +287,13 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-md-3 col-form-label">专业</label>
+											<label class="col-md-3 col-form-label">专业<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
+												<select id='newStaffSex' class="form-control show-tick">
+													<option value="2">-- 性别 --</option>
+													<option value="1">男</option>
+													<option value="0">女</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -327,8 +329,8 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label"></label>
 											<div class="col-md-7">
-												<button type="submit" class="btn btn-primary">保存</button>
-												<button type="submit" class="btn btn-outline-secondary">取消</button>
+												<button type="button" class="btn btn-primary">保存</button>
+												<button type="button" class="btn btn-outline-secondary">取消</button>
 											</div>
 										</div>
 									</form>
