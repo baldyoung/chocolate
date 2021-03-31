@@ -275,7 +275,7 @@
 							<div class="tab-pane" id="Dep-add-Boot">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">新增班级</h3>
+										<h3 id='editAreaTitle' class="card-title">新增班级</h3>
 										<div class="card-options ">
 										</div>
 									</div>
@@ -283,14 +283,13 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">班级名称<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
+												<input id='newStudentClassName' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">专业<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<select id='newStaffSex' class="form-control show-tick">
-													<option value="2">-- 性别 --</option>
+												<select id='newStudentClassSpecialty' class="form-control show-tick">
 													<option value="1">男</option>
 													<option value="0">女</option>
 												</select>
@@ -299,25 +298,28 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">班主任<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
+												<select id='newStudentClassHolder' class="form-control show-tick">
+													<option value="1">刘蕾蕾</option>
+													<option value="0">王青青</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">当前人数<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
+												<input id='newStudentClassCurrentPeopleNumber' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">建班人数<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
+												<input id='newStudentClassCreatePeopleNumber' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">建班日期</label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
+												<input id='newStudentClassCreateDate' type="text" class="form-control">
 											</div>
 										</div>
 										<!-- div class="form-group row">
