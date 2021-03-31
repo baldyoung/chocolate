@@ -47,7 +47,45 @@ function requestAndLoadSubjectList() {
 			alert('服务器连接失败');
 		}
 	});
+}
+
+function addNewSubject() {
+	var newSubject = {
+			subjectName : $('#newSubjectName').val(),
+			subjectNumber : $('#newSubjectNumber').val(),
+			standardHours : $('#newSubjectStandardHours').val(),
+			subjectInfo : $('#newSubjectInfo').val()
+		}
+	if (isEmpty(newSubject.subjectName)) {
+		alert('名称不能为空');
+		return ;
+	}
 	
+	var list = [];
+	list[0] = newSubject;
+	$.ajax({
+		url: XConfig.serverAddress + "staffInfo",
+		type: 'POST',
+		cache: false,
+		dataType: 'json',
+		async: true, //设置同步
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(list),
+		success: function(data) {
+			if (data.code == 0) {
+				var targetData = data.data;
+				
+			} else {
+				//swal('获取数据失败', data.desc, 'error');
+				alert('操作失败\n'+data.desc);
+			}
+		},
+		error: function() {
+			//swal('服务器连接失败', '请检查网络是否通畅', 'warning');
+			alert('服务器连接失败');
+		}
+	});
+		
 }
 
 
