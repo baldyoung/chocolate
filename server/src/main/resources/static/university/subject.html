@@ -4,119 +4,36 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title></title>
-
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<title>教师</title>
+		
 		<!-- Bootstrap Core and vandor -->
 		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../assets/plugins/datatable/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+		<link rel="stylesheet" href="../assets/plugins/dropify/css/dropify.min.css">
+		<link rel="stylesheet" href="../assets/plugins/summernote/dist/summernote.css">
+		<!-- Start project main js  and page js -->
+		<script src="js/jquery.js"></script>
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+		<!-- Start all plugin js -->
+		<script src="../assets/js/core.js"></script>
 		<!-- Core css -->
 		<link rel="stylesheet" href="../assets/css/style.min.css">
-		<script src="../js/jquery.min.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-		<script src="../js/plugins/dataTables/dataTables.bootstrap.js"></script>
-		<script src="../js/plugins/dataTables/jquery.dataTables.js"></script>
-
-        <style>
-            ::-webkit-scrollbar {
-                /*滚动条整体样式*/
-                width: 4px;
-                /*高宽分别对应横竖滚动条的尺寸*/
-                height: 4px;
-                scrollbar-arrow-color: red;
-            }
-        </style>
-
-		<script>
-			// 获取URL中的参数
-        function getQueryVariable(variable) {
-            var query = window.location.search.substring(1);
-            var vars = query.split("&");
-            for (var i = 0; i < vars.length; i++) {
-                var pair = vars[i].split("=");
-                if (pair[0] == variable) {
-                    return pair[1];
-                }
-            }
-            return undefined;
-        }
-
-        $(function () {
-            // 同步URL中的父级样式
-            var parentClass = getQueryVariable('parentClass');
-            console.log(parentClass);
-            if (undefined != parentClass) {
-                parentClass = parentClass.split(',').join(' ');
-                document.body.setAttribute('class', parentClass);
-            }
-			// -------------
-			setTimeout(function() {
-				$('.page-loader-wrapper').fadeOut();
-			}, 50);
-            // ------------- datatable   subjectListArea
-			var productList = [{
-				index : 1,
-				subjectName : 'JavaScript',
-				subjectNumber : '10010',
-				standardHours : '120',
-				subjectInfo : '软件开发，前端开发必学课程'
-
-			},{
-				index : 2,
-				subjectName : 'Java',
-				subjectNumber : '10011',
-				subjectInfo : '软件开发必修课',
-				standardHours: '100'
-			},{
-				index : 3,
-				subjectName : 'C语言',
-				subjectNumber: '10012',
-				subjectInfo: '软件开发必修课',
-				standardHours: '100'
-			}];
-			var dataTable = $('#subjectListArea');
-			if ($.fn.dataTable.isDataTable(dataTable)) {
-				dataTable.DataTable().destroy();
+		
+		<script src='js/config.js'></script>
+		<script src='js/subject.js'></script>
+		<style>
+			::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 4px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+				scrollbar-arrow-color: red;
 			}
-			dataTable.DataTable({
-				'searching': true, //搜索框
-				'bLengthChange': true, //每页显示多少条数据方法
-				"serverSide": false, //关闭分页操作，默认就是关闭
-				"autoWidth": false, //
-				"bSort": true, //排序功能
-				"order": [
-					[1, "desc"],
-					[0, 'asc']
-				], //默认排序的指标
-				'data': productList, //表格的数据源
-				"pageLength": 20, //默认每页显示的数据条数
-				"info": true,
-				"paging": true,
-				'columns': [{
-					data: 'index'
-				}, {
-					data: 'subjectName'
-				}, {
-					data: 'subjectNumber'
-				}, {
-					data: 'standardHours'
-				}, {
-					data: 'subjectInfo'
-				}],
-				"columnDefs": [{
-					"render": function(data, type, row) {
-						var a = "";
-						a += "<button class=\"btn btn-danger \" style='margin-top:3px;' type=\"button\"  onclick=\"OptionModule.deleteProduct('" + row.productId + "', '" + row.productName + "')\"><i class=\"fa fa-building-o\"></i>删除"
-						a += "</button>"
-						a += "<button class=\"btn btn-warning \" style='margin-top:3px; margin-left:5px; ' type=\"button\" data-toggle=\"modal\" data-target=\"#myModal5\" onclick=\"ProductEditModule.initProductEditWindow('" + row.productId + "')\"><i class=\"fa fa-building-o\"></i>修改"
-						a += "</button>"
-						return a;
-					},
-					"targets": 5
-				}]
-			});
-
-        });
-    </script>
+			.unAble {
+				 pointer-events: none; 
+			}
+		</style>
 	</head>
 
 	<body class="font-muli theme-cyan gradient close_rightbar">
@@ -134,346 +51,6 @@
 				<div class="section-body" id="page_top">
 					<div class="container-fluid">
 						<div class="page-header">
-							<div class="left">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="您想找到什么">
-									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button">
-											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">搜索</font>
-											</font>
-										</button>
-									</div>
-								</div>
-							</div>
-							<div class="right">
-								<ul class="nav nav-pills">
-									<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-										 aria-expanded="false">
-											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">页数</font>
-											</font>
-										</a>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" href="page-empty.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">空白页</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="page-profile.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">个人资料</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="page-search.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">搜索结果</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="page-timeline.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">时间线</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="page-invoices.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">发票</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="page-pricing.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">价钱</font>
-												</font>
-											</a>
-										</div>
-									</li>
-									<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-										 aria-expanded="false">
-											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">验证码</font>
-											</font>
-										</a>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" href="login.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">登录</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="register.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">寄存器</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="forgot-password.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">忘记密码</font>
-												</font>
-											</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="404.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">404错误</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="500.html">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">500错误</font>
-												</font>
-											</a>
-										</div>
-									</li>
-								</ul>
-								<div class="notification d-flex">
-									<div class="dropdown d-flex">
-										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-language"></i></a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/us.svg" alt="">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">英语</font>
-												</font>
-											</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/es.svg" alt="">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">西班牙文</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/jp.svg" alt="">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">日本</font>
-												</font>
-											</a>
-											<a class="dropdown-item" href="#"><img class="w20 mr-2" src="../assets/images/flags/bl.svg" alt="">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">法国</font>
-												</font>
-											</a>
-										</div>
-									</div>
-									<div class="dropdown d-flex">
-										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-envelope"></i><span
-											 class="badge badge-success nav-unread"></span></a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<ul class="right_chat list-unstyled w350 p-0">
-												<li class="online">
-													<a href="javascript:void(0);" class="media">
-														<img class="media-object" src="../assets/images/xs/avatar4.jpg" alt="">
-														<div class="media-body">
-															<span class="name">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">唐纳德·加德纳</font>
-																</font>
-															</span>
-															<div class="message">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">读者早已知道</font>
-																</font>
-															</div>
-															<small>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">11分钟前</font>
-																</font>
-															</small>
-															<span class="badge badge-outline status"></span>
-														</div>
-													</a>
-												</li>
-												<li class="online">
-													<a href="javascript:void(0);" class="media">
-														<img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
-														<div class="media-body">
-															<span class="name">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">温迪·基恩</font>
-																</font>
-															</span>
-															<div class="message">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">Lorem
-																		Ipsum的段落有很多变化</font>
-																</font>
-															</div>
-															<small>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">18分钟前</font>
-																</font>
-															</small>
-															<span class="badge badge-outline status"></span>
-														</div>
-													</a>
-												</li>
-												<li class="offline">
-													<a href="javascript:void(0);" class="media">
-														<img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
-														<div class="media-body">
-															<span class="name">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">马特·罗萨莱斯（Matt Rosales）</font>
-																</font>
-															</span>
-															<div class="message">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">与普遍的看法相反，Lorem
-																		Ipsum并非简单</font>
-																</font>
-															</div>
-															<small>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">27分钟前</font>
-																</font>
-															</small>
-															<span class="badge badge-outline status"></span>
-														</div>
-													</a>
-												</li>
-												<li class="online">
-													<a href="javascript:void(0);" class="media">
-														<img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
-														<div class="media-body">
-															<span class="name">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">菲利普·史密斯</font>
-																</font>
-															</span>
-															<div class="message">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">它起源于公元前45年的一部古典拉丁文学作品</font>
-																</font>
-															</div>
-															<small>
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">33分钟前</font>
-																</font>
-															</small>
-															<span class="badge badge-outline status"></span>
-														</div>
-													</a>
-												</li>
-											</ul>
-											<div class="dropdown-divider"></div>
-											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">标记为已读</font>
-												</font>
-											</a>
-										</div>
-									</div>
-									<div class="dropdown d-flex">
-										<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"><i class="fa fa-bell"></i><span
-											 class="badge badge-primary nav-unread"></span></a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<ul class="list-unstyled feeds_widget">
-												<li>
-													<div class="feeds-left">
-														<span class="avatar avatar-blue"><i class="fa fa-check"></i></span>
-													</div>
-													<div class="feeds-body ml-3">
-														<p class="text-muted mb-0">
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">广告活动</font>
-															</font><strong class="text-blue font-weight-bold">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">假期</font>
-																</font>
-															</strong>
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">即将达到预算上限。</font>
-															</font>
-														</p>
-													</div>
-												</li>
-												<li>
-													<div class="feeds-left">
-														<span class="avatar avatar-green"><i class="fa fa-user"></i></span>
-													</div>
-													<div class="feeds-body ml-3">
-														<p class="text-muted mb-0">
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">计算机部门</font>
-																<font style="vertical-align: inherit;">新入学</font>
-															</font><strong class="text-green font-weight-bold">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">32</font>
-																</font>
-															</strong>
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">。</font>
-															</font>
-														</p>
-													</div>
-												</li>
-												<li>
-													<div class="feeds-left">
-														<span class="avatar avatar-red"><i class="fa fa-info"></i></span>
-													</div>
-													<div class="feeds-body ml-3">
-														<p class="text-muted mb-0">
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">第六学期成绩</font>
-																<font style="vertical-align: inherit;">在计算机系</font>
-															</font><strong class="text-red font-weight-bold">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">占67％</font>
-																</font>
-															</strong>
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">。</font>
-															</font>
-														</p>
-													</div>
-												</li>
-												<li>
-													<div class="feeds-left">
-														<span class="avatar avatar-azure"><i class="fa fa-thumbs-o-up"></i></span>
-													</div>
-													<div class="feeds-body ml-3">
-														<p class="text-muted mb-0">
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">大学评估的</font>
-																<font style="vertical-align: inherit;">新反馈</font>
-															</font><strong class="text-azure font-weight-bold">
-																<font style="vertical-align: inherit;">
-																	<font style="vertical-align: inherit;">53</font>
-																</font>
-															</strong>
-															<font style="vertical-align: inherit;">
-																<font style="vertical-align: inherit;">。</font>
-															</font>
-														</p>
-													</div>
-												</li>
-											</ul>
-											<div class="dropdown-divider"></div>
-											<a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">
-												<font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;">标记为已读</font>
-												</font>
-											</a>
-										</div>
-									</div>
-									<div class="dropdown d-flex">
-										<a href="javascript:void(0)" class="chip ml-3" data-toggle="dropdown">
-											<span class="avatar" style="background-image: url(../assets/images/xs/avatar5.jpg)"></span>
-											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;"> 乔治</font>
-											</font>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
-											<a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
-											<a class="dropdown-item" href="app-email.html"><span class="float-right"><span class="badge badge-primary">6</span></span><i
-												 class="dropdown-icon fe fe-mail"></i> Inbox</a>
-											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need
-												help?</a>
-											<a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -533,41 +110,73 @@
 																	<th style="width: 8%;">
 																		<span style='font-size:12px;'>系统编号</span>
 																	</th>
-																	<th  style="width: 26%;">
+																	<th style="width: 26%;">
 																		学科名称
 																	</th>
-																	<th  style="width: 10%;">
+																	<th style="width: 10%;">
 																		学科编号
 																	</th>
-																	<th  style="width: 9%;">
+																	<th style="width: 9%;">
 																		学时
 																	</th>
-																	<th  style="width: 27%;">
+																	<th style="width: 27%;">
 																		简介
 																	</th>
-																	<th  style="width: 20%;">
+																	<th style="width: 20%;">
 																		操作
 																	</th>
 																</tr>
 															</thead>
-															<tbody>
-
+															<tbody id='subjectShowArea'>
+																<tr>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit; font-size:11px;">#{subjectId}</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">#{subjectName}</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">#{subjectNumber}</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">#{standardHours}</font>
+																		</font>
+																	</td>
+																	<td >
+																		<div style="">
+																			<font style="vertical-align: inherit; ">#{subjectInfo}</font>
+																		</div>
+																	</td>
+																	<td>
+																		<button onclick='' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
+																		<button onclick='' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
+																		<button onclick='' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+																	</td>
+																</tr>
 
 
 															</tbody>
 														</table>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<!-- 学科信息编辑 面板 -->
 							<div class="tab-pane" id="Library-add-Boot">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">新增学科</h3>
+										<h3 id='editPanelTitle' class="card-title">新增学科</h3>
 										<div class="card-options ">
 											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -577,85 +186,37 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">学科名称 <span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row" style="display:none;">
-											<label class="col-md-3 col-form-label">专业类别<span class="text-danger">*</span></label>
-											<div class="col-md-7">
-												<select class="form-control input-height" name="sub">
-													<option value="">Select...</option>
-													<option value="Category 1">Mathematics</option>
-													<option value="Category 2">Science</option>
-													<option value="Category 3">Software</option>
-													<option value="Category 3">Other</option>
-												</select>
+												<input id='newSubjectName' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row" style="display:none;">
 											<label class="col-md-3 col-form-label">学科编号<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
+												<input id='newSubjectNumber' data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">参考学时<span class="text-danger">*</span></label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
+												<input id='newSubjectStandardHours' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">学科编号</label>
 											<div class="col-md-7">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row" style="display:none;">
-											<label class="col-md-3 col-form-label">Publisher <span class="text-danger">*</span></label>
-											<div class="col-md-7">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row" style="display:none;">
-											<label class="col-md-3 col-form-label">Price <span class="text-danger">*</span></label>
-											<div class="col-md-7">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row" style="display:none;">
-											<label class="col-md-3 col-form-label">Department <span class="text-danger">*</span></label>
-											<div class="col-md-7">
-												<select class="form-control input-height" name="departmnt">
-													<option value="">Select...</option>
-													<option value="Category 1">Mathematics</option>
-													<option value="Category 2">Engineering</option>
-													<option value="Category 3">Science</option>
-													<option value="Category 3">M.B.A.</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group row" style="display:none;">
-											<label class="col-md-3 col-form-label">Asset Type <span class="text-danger">*</span></label>
-											<div class="col-md-7">
-												<select class="form-control input-height" name="assttype">
-													<option value="">Select...</option>
-													<option value="Category 1">Book</option>
-													<option value="Category 2">CD</option>
-													<option value="Category 3">DVD</option>
-													<option value="Category 3">NewsPaper</option>
-												</select>
+												<input id='newSubjectNumber' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">学科描述</label>
 											<div class="col-md-7">
-												<textarea rows="4" class="form-control no-resize" placeholder="学科简述..."></textarea>
+												<textarea id='newSubjectInfo' rows="4" class="form-control no-resize" placeholder="学科简述..."></textarea>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label"></label>
 											<div class="col-md-7">
-												<button type="submit" class="btn btn-primary">提交保存</button>
+												<button type="submit" class="btn btn-primary">保存</button>
 												<button type="submit" class="btn btn-outline-secondary">关闭</button>
 											</div>
 										</div>
