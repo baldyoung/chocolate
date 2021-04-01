@@ -18,7 +18,7 @@ public class CorsFilter implements Filter {
             throws IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpServletRequest req = (HttpServletRequest) request;
-        System.out.println("已修改HTTP报文头");
+        //System.out.println("已修改HTTP报文头");
         // 设置允许Cookie
         res.addHeader("Access-Control-Allow-Credentials", "true");
         // 允许http://www.xxx.com域（自行设置，这里只做示例）发起跨域请求     req.getHeader("Origin")

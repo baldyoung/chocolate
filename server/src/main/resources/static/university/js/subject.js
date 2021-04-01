@@ -26,6 +26,7 @@ function requestAndLoadSubjectList() {
 		success: function(data) {
 			if (data.code == 0) {
 				var targetData = data.data;
+				targetData = sortById(targetData);
 				var target = $('#subjectShowArea');
 				target.html('');
 				for(var i=0; i<targetData.length; i++) {
@@ -35,7 +36,7 @@ function requestAndLoadSubjectList() {
 					cell.subjectNumber = noUndefined(cell.subjectNumber);
 					cell.standardHours = noUndefined(cell.standardHours);
 					cell.subjectInfo = noUndefined(cell.subjectInfo);
-					cell.info = cell.subjectInfo.substring(0, 15);
+					cell.info = cell.subjectInfo.substring(0, 15); 
 					var html = SubjectShowTemplate.replace('#{subjectId}', cell.id);
 					html = html.replace('#{subjectName}', cell.subjectName);
 					html = html.replace('#{subjectNumber}', cell.subjectNumber);
@@ -46,6 +47,7 @@ function requestAndLoadSubjectList() {
 					html = html.replace('#{index}', i);
 					target.append(html);
 				}
+				subjectListBuffer = targetData;
 			} else {
 				//swal('获取数据失败', data.desc, 'error');
 				alert('操作失败\n'+data.desc);
@@ -65,18 +67,20 @@ function addNewSubject() {
 			subjectNumber : $('#newSubjectNumber').val(),
 			standardHours : $('#newSubjectStandardHours').val(),
 			subjectInfo : $('#newSubjectInfo').val()
-		}
+		};
+	console.log(newSubject);
 	if (isEmpty(newSubject.subjectName)) {
 		alert('名称不能为空');
 		return ;
 	}
 	if (undefined != newSubject.id) {
 		updateSubject(newSubject);
+		return;
 	}
 	var list = [];
 	list[0] = newSubject;
 	$.ajax({
-		url: XConfig.serverAddress + "staffInfo",
+		url: XConfig.serverAddress + "subject",
 		type: 'POST',
 		cache: false,
 		dataType: 'json',
@@ -105,7 +109,7 @@ function deleteSubject(index) {
 		return;
 	}
 	$.ajax({
-		url: XConfig.serverAddress + "staffInfo/" + subjectListBuffer[index].id,
+		url: XConfig.serverAddress + "subject/" + subjectListBuffer[index].id,
 		type: 'DELETE',
 		cache: false,
 		dataType: 'json',
@@ -131,7 +135,7 @@ function deleteSubject(index) {
 
 function updateSubject(subject) {
 	$.ajax({
-		url: XConfig.serverAddress + "staffInfo/" + subject.id,
+		url: XConfig.serverAddress + "subject/" + subject.id,
 		type: 'PATCH',
 		cache: false,
 		dataType: 'json',
@@ -156,17 +160,17 @@ function updateSubject(subject) {
 }
 
 function getAndLoadSubject(index) {
-	resetEditPanel();
-	currentSubjectId = subjectListBuffer[index].id;
-	$('#Library-tab-Boot')[0].click();
+	$('#Library-tab-Boot')[0].click(); 
 	$('#newSubjectName').val(subjectListBuffer[index].subjectName);
 	$('#newSubjectNumber').val(subjectListBuffer[index].subjectNumber);
 	$('#newSubjectStandardHours').val(subjectListBuffer[index].standardHours);
 	$('#newSubjectInfo').val(subjectListBuffer[index].subjectInfo);
-	
+	currentSubjectId = subjectListBuffer[index].id;
+	$('#editPanelTitle').text('修改学科');
 }
 
 function resetEditPanel() {
+	$('#editPanelTitle').text('新增学科');
 	$('#Library-add-Boot').find('input').val('');
 	$('#newSubjectInfo').val('');
 	currentSubjectId = undefined;

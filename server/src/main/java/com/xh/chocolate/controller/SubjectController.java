@@ -53,6 +53,7 @@ public class SubjectController {
      */
     @PatchMapping("{id}")
     public ResponseResult patchSubject(@PathVariable("id")Integer id, @RequestBody SubjectEntity subjectEntity) {
+        System.out.println(subjectEntity);
         SubjectEntity subjectEntityOld = subjectDao.findById(id).get();
         subjectEntity.setId(null);
         EntityUtil.copyNotNullProperties(subjectEntity, subjectEntityOld);
