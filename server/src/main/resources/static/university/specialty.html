@@ -92,7 +92,7 @@
 									</a></li -->
 								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Staff-add">
 										<font style="vertical-align: inherit;">
-											<font style="vertical-align: inherit;">加</font>
+											<font style="vertical-align: inherit;">新增专业</font>
 										</font>
 									</a></li>
 							</ul>
@@ -103,6 +103,7 @@
 				<div class="section-body mt-4">
 					<div class="container-fluid">
 						<div class="tab-content">
+							<!-- 专业列表  -->
 							<div class="tab-pane active" id="Staff-all">
 								<div class="card">
 									<div class="table-responsive">
@@ -170,6 +171,7 @@
 									</div>
 								</div>
 							</div>
+							<!-- 专业列表（方块） -->
 							<div class="tab-pane" id="Staff-grid">
 								<div class="row">
 									<div class="col-xl-3 col-lg-4 col-md-6">
@@ -187,6 +189,7 @@
 									</div>
 								</div>
 							</div>
+							<!--  -->
 							<div class="tab-pane" id="Staff-profile">
 								<div class="row">
 									<div class="col-xl-4 col-md-12">
@@ -1004,70 +1007,55 @@
 									</div>
 								</div>
 							</div>
+							<!-- 专业信息 编辑面板 -->
 							<div class="tab-pane" id="Staff-add">
 								<div class="row clearfix">
 									<div class="col-lg-8 col-md-12 col-sm-12">
 										<div class="card">
 											<div class="card-header">
-												<h3 class="card-title">Basic Information</h3>
+												<h3 class="card-title">新增专业</h3>
 												<div class="card-options ">
-													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
 												</div>
 											</div>
 											<div class="card-body">
 												<div class="row clearfix">
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>First Name</label>
+															<label>专业名称</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>Last Name</label>
+															<label>专业编号</label>
 															<input type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>Joining Date</label>
+															<label>学制（年）</label>
 															<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
-														<label>Gender</label>
+														<label>类型</label>
 														<select class="form-control show-tick">
-															<option value="">-- Gender --</option>
-															<option value="10">Male</option>
-															<option value="20">Female</option>
+															<option value="">-- 请选择 --</option>
+															<option value="10">短期</option>
+															<option value="20">长期</option>
 														</select>
 													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Department</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Position</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Phone</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Enter Your Email</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
 													<div class="col-sm-12">
+														<div class="form-group mt-3">
+															<label>简述</label>
+															<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+														</div>
+													</div>
+													<div class="col-sm-12" style='text-align: right;'>
+														<button type="submit" class="btn btn-primary">保存</button>
+														<button type="submit" class="btn btn-outline-secondary">取消</button>
+													</div>
+													<!-- div class="col-sm-12" disabled>
 														<div class="form-group mt-2 mb-3">
 															<div class="dropify-wrapper">
 																<div class="dropify-message"><span class="file-icon"></span>
@@ -1090,60 +1078,15 @@
 															<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the
 																above input. It's a bit lighter and easily wraps to a new line.</small>
 														</div>
-													</div>
-													<div class="col-sm-12">
-														<div class="form-group mt-3">
-															<label>Messages</label>
-															<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
-														</div>
-													</div>
-													<div class="col-sm-12">
-														<button type="submit" class="btn btn-primary">Submit</button>
-														<button type="submit" class="btn btn-outline-secondary">Cancel</button>
-													</div>
+													</div -->  
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-4 col-md-12 col-sm-12">
+									<div class="col-lg-4 col-md-12 col-sm-12"> 
 										<div class="card">
 											<div class="card-header">
-												<h3 class="card-title">Account Information</h3>
-												<div class="card-options ">
-													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-												</div>
-											</div>
-											<div class="card-body">
-												<div class="row clearfix">
-													<div class="col-sm-12">
-														<div class="form-group">
-															<label>User Name</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Password</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-md-6 col-sm-12">
-														<div class="form-group">
-															<label>Confirm Password</label>
-															<input type="text" class="form-control">
-														</div>
-													</div>
-													<div class="col-sm-12">
-														<button type="submit" class="btn btn-primary">Submit</button>
-														<button type="submit" class="btn btn-outline-secondary">Cancel</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header">
-												<h3 class="card-title">Account Information</h3>
+												<h3 class="card-title">专业 学科计划表</h3>
 												<div class="card-options ">
 													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
@@ -1151,27 +1094,27 @@
 											</div>
 											<div class="card-body">
 												<div class="form-group">
-													<label>Facebook</label>
-													<input type="text" class="form-control">
+													<div style='border:1px solid; border-radius:3px;'>
+														<label>Facebook</label>
+														<i class="fe fe-chevron-up"></i>
+														<i class="fe fe-chevron-down"></i>
+														<label style='float:right; margin-right:5px;'>&times;</label>
+													</div>
 												</div>
 												<div class="form-group">
 													<label>Twitter</label>
-													<input type="text" class="form-control">
 												</div>
 												<div class="form-group">
 													<label>LinkedIN</label>
-													<input type="text" class="form-control">
 												</div>
 												<div class="form-group">
 													<label>Behance</label>
-													<input type="text" class="form-control">
 												</div>
 												<div class="form-group">
 													<label>dribbble</label>
-													<input type="text" class="form-control">
 												</div>
-												<button type="submit" class="btn btn-primary">Submit</button>
-												<button type="submit" class="btn btn-outline-secondary">Cancel</button>
+												<button type="button" class="btn btn-primary">新增</button>
+												<!-- button type="submit" class="btn btn-outline-secondary">Cancel</button -->
 											</div>
 										</div>
 									</div>
