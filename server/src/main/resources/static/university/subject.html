@@ -83,7 +83,7 @@
 											<font style="vertical-align: inherit;">已有学科</font>
 										</font>
 									</a></li>
-								<li class="nav-item"><a class="nav-link" id="Library-tab-Boot" data-toggle="tab" href="#Library-add-Boot">
+								<li class="nav-item"><a onclick='resetEditPanel()' class="nav-link" id="Library-tab-Boot" data-toggle="tab" href="#Library-add-Boot">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">添加学科</font>
 										</font>
@@ -155,9 +155,9 @@
 																		</div>
 																	</td>
 																	<td>
-																		<button onclick='' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
-																		<button onclick='' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
-																		<button onclick='' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+																		<button onclick='getAndLoadSubject("#{index}")' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
+																		<button onclick='getAndLoadSubject("#{index}")' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
+																		<button onclick='deleteSubject("#{index}")' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
 																	</td>
 																</tr>
 
@@ -178,8 +178,6 @@
 									<div class="card-header">
 										<h3 id='editPanelTitle' class="card-title">新增学科</h3>
 										<div class="card-options ">
-											<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-											<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
 										</div>
 									</div>
 									<form class="card-body">
@@ -210,8 +208,8 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label"></label>
 											<div class="col-md-7">
-												<button type="submit" class="btn btn-primary">保存</button>
-												<button type="submit" class="btn btn-outline-secondary">关闭</button>
+												<button onclick="addNewSubject()" type="button" class="btn btn-primary">保存</button>
+												<button type="button" class="btn btn-outline-secondary">关闭</button>
 											</div>
 										</div>
 									</form>

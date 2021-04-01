@@ -9,6 +9,8 @@ function noUndefined(o) {
 	return o;
 }
 
+
+
 function toSex(sexFlag) {
 	if (0 == sexFlag) {
 		return "女";
