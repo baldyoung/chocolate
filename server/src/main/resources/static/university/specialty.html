@@ -75,7 +75,7 @@
 								</ol>
 							</div>
 							<ul class="nav nav-tabs page-header-tab">
-								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Staff-all">
+								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Specialty-all">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">列表显示</font>
 										</font>
@@ -90,7 +90,7 @@
 											<font style="vertical-align: inherit;">个人资料</font>
 										</font>
 									</a></li -->
-								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Staff-add">
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Specialty-add">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">新增专业</font>
 										</font>
@@ -104,7 +104,7 @@
 					<div class="container-fluid">
 						<div class="tab-content">
 							<!-- 专业列表  -->
-							<div class="tab-pane active" id="Staff-all">
+							<div class="tab-pane active" id="Specialty-all">
 								<div class="card">
 									<div class="table-responsive">
 										<table class="table table-hover table-vcenter text-nowrap table-striped mb-0">
@@ -137,10 +137,10 @@
 													</th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody id='specialtyListArea'>
 												<tr>
 													<td class="w60" style='font-size:11px;'>
-														#{id}
+														#{index}
 													</td>
 													<td>
 														<div class="font-15">
@@ -161,9 +161,9 @@
 														</span></td>
 													
 													<td>
-														<button type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
-														<button type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
-														<button type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+														<button onclick='getAndLoadSpecialty("#{index}")' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
+														<button onclick='getAndLoadSpecialty("#{index}")' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
+														<button onclick='deleteSpecialty("#{index}")' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
 													</td>
 												</tr>
 											</tbody>
@@ -172,7 +172,7 @@
 								</div>
 							</div>
 							<!-- 专业列表（方块） -->
-							<div class="tab-pane" id="Staff-grid">
+							<div class="tab-pane" id="Specialty-grid">
 								<div class="row">
 									<div class="col-xl-3 col-lg-4 col-md-6">
 										<div class="card">
@@ -1008,7 +1008,7 @@
 								</div>
 							</div>
 							<!-- 专业信息 编辑面板 -->
-							<div class="tab-pane" id="Staff-add">
+							<div class="tab-pane" id="Specialty-add">
 								<div class="row clearfix">
 									<div class="col-lg-8 col-md-12 col-sm-12">
 										<div class="card">
@@ -1022,24 +1022,24 @@
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label>专业名称</label>
-															<input type="text" class="form-control">
+															<input id='newSpecialtyName' type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label>专业编号</label>
-															<input type="text" class="form-control">
+															<input id='newSpecialtyNumber' type="text" class="form-control">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
-															<label>学制（年）</label>
-															<input data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
+															<label>学制（暂不支持）</label>
+															<input disabled="" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
-														<label>类型</label>
-														<select class="form-control show-tick">
+														<label>类型（暂不支持）</label>
+														<select class="form-control show-tick" disabled="">
 															<option value="">-- 请选择 --</option>
 															<option value="10">短期</option>
 															<option value="20">长期</option>
@@ -1048,12 +1048,12 @@
 													<div class="col-sm-12">
 														<div class="form-group mt-3">
 															<label>简述</label>
-															<textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+															<textarea id='newSpecialtyInfo' rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
 														</div>
 													</div>
 													<div class="col-sm-12" style='text-align: right;'>
-														<button type="submit" class="btn btn-primary">保存</button>
-														<button type="submit" class="btn btn-outline-secondary">取消</button>
+														<button onclick="addSpecialty()" type="button" class="btn btn-primary">保存</button>
+														<button type="button" class="btn btn-outline-secondary">取消</button>
 													</div>
 													<!-- div class="col-sm-12" disabled>
 														<div class="form-group mt-2 mb-3">
@@ -1088,30 +1088,22 @@
 											<div class="card-header">
 												<h3 class="card-title">专业 学科计划表</h3>
 												<div class="card-options ">
-													<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-													<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
 												</div>
 											</div>
 											<div class="card-body">
-												<div class="form-group">
-													<div style='border:1px solid; border-radius:3px;'>
-														<label>Facebook</label>
-														<i class="fe fe-chevron-up"></i>
-														<i class="fe fe-chevron-down"></i>
-														<label style='float:right; margin-right:5px;'>&times;</label>
+												<div id='specialtyPlanDetailsArea' class="form-group">
+													<div style='border:1px solid; border-radius:3px; '>
+														<div style='display:inline-block; width:70%; height:25px; padding-top:5px; overflow: hidden;'>
+															<Strong>${subjectName}</Strong>
+															<label style='margin-left:10px;'>${subjectStandardHours}</label>
+														</div>
+														<div style='display:inline-block; width:25%; height:25px; '>
+															<i class="fe fe-chevron-up"></i>
+															<i class="fe fe-chevron-down"></i>
+															<i class="fa fa-edit"></i>
+															<i class="fe fe-x"></i>
+														</div>
 													</div>
-												</div>
-												<div class="form-group">
-													<label>Twitter</label>
-												</div>
-												<div class="form-group">
-													<label>LinkedIN</label>
-												</div>
-												<div class="form-group">
-													<label>Behance</label>
-												</div>
-												<div class="form-group">
-													<label>dribbble</label>
 												</div>
 												<button type="button" class="btn btn-primary">新增</button>
 												<!-- button type="submit" class="btn btn-outline-secondary">Cancel</button -->
