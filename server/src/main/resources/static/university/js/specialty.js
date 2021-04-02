@@ -7,7 +7,9 @@ $(function() {
 	specialtyShowTemplate = $('#specialtyListArea').html();
 	
 	});
-
+/**
+ * 获取所有的 专业信息
+ */
 function requestAndLoadSpecialtyList() {
 	$.ajax({
 		url: XConfig.serverAddress + "specialty",
@@ -49,7 +51,10 @@ function requestAndLoadSpecialtyList() {
 		}
 	});
 }
-
+/**
+ * 删除指定的 专业
+ * @param {Object} index
+ */
 function deleteSpecialty(index) {
 	if (!confirm("确定删除 "+specialtyListBuffer[index].specialtyName+" 吗?")) {
 			return;
@@ -79,7 +84,9 @@ function deleteSpecialty(index) {
 		}
 	});
 }
-
+/**
+ * 新增一个 专业
+ */
 function addSpecialty() {
 	var newSpecialty = {
 		id : currentSpecialtyId,
@@ -121,7 +128,10 @@ function addSpecialty() {
 		}
 	});
 }
-
+/**
+ * 获取并加载指定的 专业
+ * @param {Object} index
+ */
 function getAndLoadSpecialty(index) {
 	var cell = specialtyListBuffer[index];
 	$('#newSpecialtyName').val(cell.specialtyName);
@@ -129,7 +139,10 @@ function getAndLoadSpecialty(index) {
 	$('#newSpecialtyInfo').val(cell.specialtyInfo);
 	currentSpecialtyId = cell.id;
 }
-
+/**
+ * 修改指定的 专业
+ * @param {Object} specialty
+ */
 function updateSpecialty(specialty) {
 	$.ajax({
 		url: XConfig.serverAddress + "specialty/" + specialty.id,
@@ -154,14 +167,40 @@ function updateSpecialty(specialty) {
 		}
 	});
 }
-
+/**
+ * 重置信息编辑面板
+ */
 function resetEditPanel() {
 	$('#Specialty-add').find('input').val('');
 	$('#newSpecialtyInfo').val('');
 }
-
+/**
+ * 新增操作 的前期准备
+ */
 function readyToAddOption() {
 	resetEditPanel();
 	currentSpecialtyId = undefined;
 }
 
+
+// ------------------------------------------------------------------------
+// 学科信息缓存
+var subjectListBuffer = []; 
+// 当前的专业的 学科计划表
+var subjectListInCurrentPlan = [];
+// 获取并加 学科信息
+function requestAndLoadSubjectList() {
+	
+}
+// 将指定学科 添加到当前的专业计划列表中
+function addSubjectToSpecialtyPlanList(index) {
+	
+}
+// 从当前的专业计划列表中 删除指定学科
+function delSubjectFromSpecialtyPlanList(index) {
+	
+}
+// 修改指定学科 在当前专业计划列表中的 位置
+function updateSubjectPositionInSpecialtyPlanList(index, ac) {
+	
+}
