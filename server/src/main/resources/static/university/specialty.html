@@ -75,12 +75,12 @@
 								</ol>
 							</div>
 							<ul class="nav nav-tabs page-header-tab">
-								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Specialty-all">
+								<li onclick='requestAndLoadSpecialtyList()' class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Specialty-all">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">列表显示</font>
 										</font>
 									</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Specialty-add">
+								<li onclick='resetEditPanel()' class="nav-item"><a id='addNewSpecialtyBtn' class="nav-link" data-toggle="tab" href="#Specialty-add">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">新增专业</font>
 										</font>
@@ -185,7 +185,7 @@
 									<div class="col-lg-8 col-md-12 col-sm-12">
 										<div class="card">
 											<div class="card-header">
-												<h3 class="card-title">新增专业</h3>
+												<h3 class="card-title panelTitle">新增专业</h3>
 												<div class="card-options ">
 												</div>
 											</div>
@@ -212,9 +212,6 @@
 													<div class="col-md-6 col-sm-12">
 														<label>类型（暂不支持）</label>
 														<select class="form-control show-tick" disabled="">
-															<option value="">-- 请选择 --</option>
-															<option value="10">短期</option>
-															<option value="20">长期</option>
 														</select>
 													</div>
 													<div class="col-sm-12">
@@ -240,20 +237,20 @@
 											</div>
 											<div class="card-body">
 												<div id='specialtyPlanDetailsArea' class="form-group">
-													<div style='border:1px solid; border-radius:3px; '>
+													<div id='kk#{index}' subjectIndex='#{subjectIndex}' subjectId='#{subjectId}' referenceHours='#{referenceHours}' sortParament='#{sortParament}'  style='border:1px solid; border-radius:3px; '>
 														<div style='display:inline-block; width:70%; height:25px; padding-top:5px; overflow: hidden;'>
-															<Strong>${subjectName}</Strong>
-															<label style='margin-left:10px;'>${subjectStandardHours}</label>
+															<Strong>#{subjectName}</Strong>
+															<label style='margin-left:10px;'>#{referenceHours}</label>
 														</div>
 														<div style='display:inline-block; width:25%; height:25px; '>
 															<i class="fe fe-chevron-up"></i>
 															<i class="fe fe-chevron-down"></i>
-															<i class="fa fa-edit"></i>
-															<i class="fe fe-x"></i>
+															<i onclick='readyToUpdate(this)' class="fa fa-edit"></i>
+															<i onclick='delSubjectFromSpecialtyPlanList(this)' class="fe fe-x"></i>
 														</div>
 													</div>
 												</div>
-												<button type="button" class="btn btn-primary"  data-toggle="modal" href="#addSubjectForSpecialtyPlan">新增</button>
+												<button id='addSubjectBtn' type="button" class="btn btn-primary"  data-toggle="modal" href="#addSubjectForPlan">新增</button>
 												<!-- button type="submit" class="btn btn-outline-secondary">Cancel</button -->
 											</div>
 										</div>
@@ -267,37 +264,51 @@
 		</div>
 
 		<!-- 新增可授课程  -->
-		<div class="modal fade" id="addEnableSubjectForStaff" tabindex="-1" role="dialog">
+		<div class="modal fade" id="addSubjectForPlan" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">添加教师可授课程</h4>
+						<h4 class="modal-title">添加方案课程</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-8">
 								<div class="form-group">
 									<label>课程</label>
-									<select name="event-bg" class="form-control">
-										<option value="success">C语言</option>
-										<option value="danger">HTML</option>
-										<option value="info">JS</option>
-										<option value="primary">Java</option>
-										<option value="warning">数据库</option>
+									<select id='selectSubjectList'  name="event-bg" class="form-control">
 									</select>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<label>课程评分</label>
-									<input class="form-control" name="event-name" type="text">
+									<label>建议学时</label>
+									<input id='newReferenceHours' class="form-control" name="event-name" type="text">
 								</div>
 							</div>
-
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>方案优先序号</label>
+									<input id='newSortParament' class="form-control" name="event-name" type="text">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>理论学时（暂不支持）</label>
+									<input class="form-control" name="event-name" type="text" disabled="">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>实操学时（暂不支持）</label>
+									<input class="form-control" name="event-name" type="text" disabled="">
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn save-btn btn-success">确定</button>
+						<button onclick='addSubjectToSpecialtyPlanList()' class="btn save-btn btn-success">确定</button>
 						<button class="btn btn-secondary" data-dismiss="modal">关闭</button>
 					</div>
 				</div>

@@ -17,11 +17,20 @@ public class SubjectEntity {
     private String subjectNumber;
     private String subjectName;
     private Integer standardHours;
+    private Integer typeFlag;
     private String subjectInfo;
     @CreatedDate
     private Date createDateTime;
     @LastModifiedDate
     private Date updateDateTime;
+
+    public Integer getTypeFlag() {
+        return typeFlag;
+    }
+
+    public void setTypeFlag(Integer typeFlag) {
+        this.typeFlag = typeFlag;
+    }
 
     public Integer getId() {
         return id;

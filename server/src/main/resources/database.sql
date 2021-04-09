@@ -6,6 +6,7 @@ chocolate
  specialtyName => planName
  add : planInfo
 # 新增studentClassSubjectInHistory表，用于记录班级已授学科，但是非必要！ --- 2020-03-29
+# subject表，新增一个typeflag字段，用于标识学科类型   --- 2020-04-09
 */
 /*
 查看建数据库的语句
@@ -127,6 +128,7 @@ CREATE TABLE SUBJECT (
 	subjectNumber VARCHAR(6),
 	subjectName VARCHAR(15),
 	standardHours INT COMMENT '标准学时',
+	typeFlag SMALLINT DEFAULT 0 COMMENT '类型标识：无限制0、需要电脑1',
 	subjectInfo VARCHAR(500),
 	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updateDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
