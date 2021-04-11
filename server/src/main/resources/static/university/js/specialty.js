@@ -193,7 +193,7 @@ var subjectListBuffer = [];
 var subjectListInCurrentPlan = [];
 // 专业 学科计划的展示单元 模板
 var subjectShowTemplate;
-var currentSubjectId; 
+var currentSubjectCell; 
 // 获取并加 学科信息
 function requestAndLoadSubjectList() {
 	$.ajax({
@@ -229,7 +229,8 @@ function requestAndLoadSubjectList() {
 }
 // 将指定学科 添加到当前的专业计划列表中
 function addSubjectToSpecialtyPlanList() {
-	var temp = subjectListBuffer[$('#selectSubjectList').val()];
+	var index = $('#selectSubjectList').val();
+	var temp = subjectListBuffer[index];
 	if (temp == undefined) {
 		alert("请选择学科");
 		return;
@@ -239,47 +240,75 @@ function addSubjectToSpecialtyPlanList() {
 			referenceHours : $('#newReferenceHours').val(),
 			sortParament : $('#newSortParament').val()
 		};
-	var target = $('#kk'+cell.subjectId);
-	if (0 != target.length) {
-		target.attr('referenceHours', cell.referenceHours);
-		target.attr('sortParament', cell.sortParament);
-		console.log(target.children());
-		target.children().eq(0).children().eq(0).text(temp.subjectName);
-		target.children().eq(0).children().eq(1).text(temp.referenceHours);
+	if (undefined != currentSubjectCell) {
+		currentSubjectCell.attr('id', 'kk'+index);
+		currentSubjectCell.attr('subjectIndex', index);
+		currentSubjectCell.attr('subjectId', cell.subjectId);
+		currentSubjectCell.attr('referenceHours', cell.referenceHours);
+		currentSubjectCell.attr('sortParament', cell.sortParament);
+		currentSubjectCell.children().eq(0).children().eq(0).text(temp.subjectName);
+		currentSubjectCell.children().eq(0).children().eq(1).text(cell.referenceHours);
 		alert('修改成功');
-		return;
+		$('#closeAddSubjectForPlanBtn').click();
+		return; 
 	}
 	var html = subjectShowTemplate.replace('#{subjectName}', temp.subjectName);
+	html = html.replace("#{index}", index);
 	html = html.replace("#{subjectId}", temp.id);
 	html = html.replace("#{subjectId}", temp.id);
-	html = html.replace("#{subjectIndex}", $('#selectSubjectList').val());
+	html = html.replace("#{subjectIndex}", index);
 	html = html.replace("#{referenceHours}", cell.referenceHours);
 	html = html.replace("#{referenceHours}", cell.referenceHours);
 	html = html.replace('#{sortParament}', cell.sortParament);
 	$('#specialtyPlanDetailsArea').append(html);
 	alert("添加成功");
 	resetAddSubjectPanel();
+	$('#closeAddSubjectForPlanBtn').click();
 }
 // 从当前的专业计划列表中 删除指定学科
 function delSubjectFromSpecialtyPlanList(t) {
 	$(t).parent().parent().remove();
 }
-// 修改指定学科 在当前专业计划列表中的 位置
-function updateSubjectPositionInSpecialtyPlanList(index, ac) {
-	
-}
+
 // 重置学科新增面板
 function resetAddSubjectPanel() {
+	$('#editSubjectPanelTitle').text('添加方案课程');
 	$('#selectSubjectList').val(-1);
 	$('#newReferenceHours').val('');
 	$('#newSortParament').val('');
+	currentSubjectCell = undefined;
 }
-
+/**
+ * 准备修改指定的 学科安排
+ * @param {Object} t
+ */
 function readyToUpdate(t) {
 	var temp = $(t).parent().parent();
 	$('#addSubjectBtn').click();
+	$('#editSubjectPanelTitle').text('修改方案课程');
 	$('#selectSubjectList').val(temp.attr('subjectIndex'));
 	$('#newReferenceHours').val(temp.attr('referenceHours'));
 	$('#newSortParament').val(temp.attr('sortParament'));
-	currentSubjectId = temp.attr('id');
+	currentSubjectCell = temp;
+}
+/**
+ * 修改指定元素 与 上下元素的位置
+ * @param {Object} t
+ * @param {Object} ac
+ */
+function changeSubjectPosition(t, ac) {
+	var t = $(t).parent().parent();
+	if (ac == 1) {
+		var target = t.prev();
+		if (undefined != target && 0 != target.length) {
+			t.remove();
+			target.before(t);
+		}
+	} else if (ac == -1) {
+		var target = t.next();
+		if (undefined != target && 0 != target.length) {
+			t.remove();
+			target.after(t);
+		}
+	}
 }
