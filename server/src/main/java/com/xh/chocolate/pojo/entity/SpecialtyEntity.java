@@ -25,6 +25,19 @@ public class SpecialtyEntity {
     @LastModifiedDate
     private Date updateDateTime;
 
+    public SpecialtyEntity(SpecialtyEntity entity) {
+        this.id = entity.id;
+        this.specialtyNumber = entity.specialtyNumber;
+        this.specialtyName = entity.specialtyName;
+        this.specialtyInfo = entity.specialtyInfo;
+        this.createDateTime = entity.createDateTime;
+        this.updateDateTime = entity.updateDateTime;
+    }
+
+    public SpecialtyEntity() {
+
+    }
+
     @Override
     public String toString() {
         return "SpecialtyEntity{" +

@@ -49,7 +49,6 @@ public class StaffInfoController {
         List<TeacherCompetencyEntity> teacherCompetencyEntityList = new LinkedList();
         createOrUpdateStaffInfoDtoList.forEach(cell-> {
             Integer newStaffId = dtoEntityMap.get(cell).getId();
-            System.out.println(newStaffId);
             if (cell.getTeacherCompetencyEntityList() != null) {
                 cell.getTeacherCompetencyEntityList().forEach(temp->{
                     // 给每一条授课记录添加员工Id
@@ -82,15 +81,25 @@ public class StaffInfoController {
     /**
      * 修改指定职工的部分属性
      * @param id
-     * @param staffInfoEntity
+     * @param
      * @return
      */
     @PatchMapping("{id}")
-    public ResponseResult patchStaffInfo(@PathVariable("id")Integer id, @RequestBody StaffInfoEntity staffInfoEntity) {
+    public ResponseResult patchStaffInfo(@PathVariable("id")Integer id, @RequestBody CreateOrUpdateStaffInfoDto createOrUpdateStaffInfoDto) {
+        StaffInfoEntity staffInfoEntity = new StaffInfoEntity(createOrUpdateStaffInfoDto);
         StaffInfoEntity staffInfoEntityOld = staffInfoDao.findById(id).get();
         staffInfoEntity.setId(null);
         EntityUtil.copyNotNullProperties(staffInfoEntity, staffInfoEntityOld);
         staffInfoDao.save(staffInfoEntityOld);
+        teacherCompetencyController.deleteTeacherCompetencyByTeacherId(id);
+        List<TeacherCompetencyEntity> teacherCompetencyEntityList = new LinkedList();
+        if (createOrUpdateStaffInfoDto.getTeacherCompetencyEntityList() != null) {
+            createOrUpdateStaffInfoDto.getTeacherCompetencyEntityList().forEach(cell->{
+                cell.setStaffId(id);
+                teacherCompetencyEntityList.add(cell);
+            });
+            teacherCompetencyController.postTeacherCompetency(teacherCompetencyEntityList);
+        }
         return success();
     }
 
