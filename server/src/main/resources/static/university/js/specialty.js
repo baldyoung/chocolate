@@ -96,7 +96,8 @@ function addSpecialty() {
 		id : currentSpecialtyId,
 		specialtyName : $('#newSpecialtyName').val(),
 		specialtyNumber : $('#newSpecialtyNumber').val(),
-		specialtyInfo : $('#newSpecialtyInfo').val()
+		specialtyInfo : $('#newSpecialtyInfo').val(),
+		subjectList : getLocalSubjectList()
 	};
 	if (isEmpty(newSpecialty.specialtyName)) {
 		alert('名称不能为空');
@@ -143,6 +144,7 @@ function getAndLoadSpecialty(index) {
 	$('#newSpecialtyNumber').val(cell.specialtyNumber);
 	$('#newSpecialtyInfo').val(cell.specialtyInfo);
 	currentSpecialtyId = cell.id;
+	loadTargetSubjectInPlanArea(cell.subjectList);
 	
 }
 /**
@@ -265,6 +267,34 @@ function addSubjectToSpecialtyPlanList() {
 	resetAddSubjectPanel();
 	$('#closeAddSubjectForPlanBtn').click();
 }
+// 加载给定的学科集合到方案列表中
+function loadTargetSubjectInPlanArea(t) {
+	var target = $('#specialtyPlanDetailsArea');
+	target.html('');
+	t.forEach(function(index, cell) {
+		var temp = getSubjectById(cell.subjectId);
+		var html = subjectShowTemplate.replace('#{subjectName}', temp.subjectName);
+		html = html.replace("#{index}", temp.index);
+		html = html.replace("#{subjectId}", temp.subjectId);
+		html = html.replace("#{subjectId}", temp.subjectId);
+		html = html.replace("#{subjectIndex}", temp.index);
+		html = html.replace("#{referenceHours}", temp.referenceHours);
+		html = html.replace("#{referenceHours}", temp.referenceHours);
+		html = html.replace('#{sortParament}', temp.sortParament);
+		target.append(html);
+	});
+}
+// 获取指定编号的学科信息
+function getSubjectById(id) {
+	var result;
+	subjectListBuffer.forEach(function(index, cell){
+		if (cell.id == id) {
+			cell.index = index;
+			result = cell;
+		}
+	});
+	return result;
+}
 // 从当前的专业计划列表中 删除指定学科
 function delSubjectFromSpecialtyPlanList(t) {
 	$(t).parent().parent().remove();
@@ -311,4 +341,18 @@ function changeSubjectPosition(t, ac) {
 			target.after(t);
 		}
 	}
+}
+
+// 获取专业计划计划详情中的 学科集合
+function getLocalSubjectList() {
+	var target = $('#specialtyPlanDetailsArea');
+	var list = [];
+	target.forEach(function(index, cell){
+		list[list.length] = {
+			subjectId:cell.attr('subjectId'),
+			referenceHours:cell.attr('referenceHours'),
+			sortParament:cell.attr('sortParament')
+		}
+	});
+	return list;
 }

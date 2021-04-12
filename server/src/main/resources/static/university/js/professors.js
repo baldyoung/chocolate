@@ -3,10 +3,12 @@
 var staffShowTemplate; // 职工信息的展示模板
 var staffInfoListBuffer; // 职工信息的本地缓存
 var currentStaffId = undefined; // 当前选中的职工Id
+var subjectCellForStaffTemplate;
 
 $(function() {
 	var target = $('#teacherListArea');
 	staffShowTemplate = target.html();
+	subjectCellForStaffTemplate = $('#subjectListForStaffArea').html();
 	requestAndLoadTeacherList();
 	resetEditPanel();
 });
@@ -190,4 +192,45 @@ function getAndLoadStaffInfo(id) {
 	$('#newStaffName').val(staffInfoListBuffer[i].staffName);
 	$('#newStaffSex').val(staffInfoListBuffer[i].staffSex);
 	$('#newStaffPhoneNumber').val(staffInfoListBuffer[i].staffPhoneNumber);
+	loadSubjectListForStaff(staffInfoListBuffer[i].subjectList);
+}
+
+// ------------------------------------------ 可授课程列表
+var subjectListBuffer = [];
+// 获取系统中所有的 学科
+
+// 加载指定员工的 可授课程列表
+function loadSubjectListForStaff(t) {
+	var target = $('#subjectListForStaffArea');
+	target.html('');
+	t.forEach(function(index, cell){
+		var html = subjectCellForStaffTemplate.replace('#{subjectId}', cell.subjectId);
+		html = html.replace('#{subjectName}', cell.subjectName);
+		target.append(html);
+	});
+}
+// 新增 可授学科到当前的老师
+function addSubjectForStaff() {
+	var target = $('#subjectListForStaffArea');
+	var index = $('#newSubjectList').val();
+	var subject = subjectListBuffer[index];
+	var html = subjectCellForStaffTemplate.replace('#{subjectId}', subject.subjectId);
+	html = html.replace('#{subjectName}', subject.subjectName);
+	target.append(html);
+}
+// 删除 当前老师的 指定可授学科
+function deleteSubjectForStaff(t) {
+	var temp = $(t);
+	temp.parent().parent().remove();
+}
+// 将当前教师的 所有可授课程打包为集合
+function getSubjectListForStaff() {
+	var target = $('#subjectListForStaffArea');
+	var list =[];
+	target.forEach(function(index, cell){
+		list[list.length] = {
+			subjectId : cell.attr('subjectId')
+		}
+	});
+	return list;
 }
