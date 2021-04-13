@@ -23,6 +23,18 @@ public class SpecialtyPlanDetailEntity {
     @LastModifiedDate
     private Date updateDateTime;
 
+    public SpecialtyPlanDetailEntity(Integer specialtyPlanId, Integer referenceHours, Integer sortParament, Date createDateTime, Date updateDateTime) {
+        this.specialtyPlanId = specialtyPlanId;
+        this.referenceHours = referenceHours;
+        this.sortParament = sortParament;
+        this.createDateTime = createDateTime;
+        this.updateDateTime = updateDateTime;
+    }
+
+    public SpecialtyPlanDetailEntity() {
+
+    }
+
     public Integer getId() {
         return id;
     }

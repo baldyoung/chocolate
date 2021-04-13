@@ -9,6 +9,7 @@ import com.xh.chocolate.pojo.entity.SpecialtyEntity;
 import com.xh.chocolate.pojo.entity.SpecialtyPlanDetailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mapping.model.SpELContext;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -70,7 +71,7 @@ public class SpecialtyController {
     @DeleteMapping("{id}")
     public ResponseResult deleteSpecialty(@PathVariable("id") Integer id) {
         specialtyDao.deleteById(id);
-        specialtyPlanDetailDao.deleteSpecialtyPlanDetailEntitiesBySpecialtyPlanId(id);
+        specialtyPlanDetailDao.deleteBySpecialtyPlanId(id);
         return success();
     }
 
@@ -81,21 +82,31 @@ public class SpecialtyController {
      * @return
      */
     @PatchMapping("{id}")
+    @Transactional
     public ResponseResult patchSpecialty(@PathVariable("id")Integer id, @RequestBody CreateOrUpdateSpecialtyDto createOrUpdateSpecialtyDto) {
+        System.out.println(createOrUpdateSpecialtyDto);
         SpecialtyEntity specialtyEntity = new SpecialtyEntity(createOrUpdateSpecialtyDto);
         SpecialtyEntity entityOld = specialtyDao.findById(id).get();
         specialtyEntity.setId(null);
         EntityUtil.copyNotNullProperties(specialtyEntity, entityOld);
         specialtyDao.save(entityOld);
-        specialtyPlanDetailDao.deleteSpecialtyPlanDetailEntitiesBySpecialtyPlanId(id);
+        System.out.println("执行对已有计划详情的删除操作");
+        specialtyPlanDetailDao.deleteBySpecialtyPlanId(id);
         List<SpecialtyPlanDetailEntity> specialtyPlanDetailEntityList = new LinkedList();
         if (createOrUpdateSpecialtyDto.getSpecialtyPlanDetailEntityList() != null) {
             createOrUpdateSpecialtyDto.getSpecialtyPlanDetailEntityList().forEach(cell->{
                 cell.setSpecialtyPlanId(id);
+                // entity中的@CreateDate注解失效，所以出此下策！
+                cell.setCreateDateTime(new Date());
+                cell.setCreateDateTime(cell.getCreateDateTime());
                 specialtyPlanDetailEntityList.add(cell);
             });
         }
-        specialtyPlanDetailDao.saveAll(specialtyPlanDetailEntityList);
+        System.out.println(specialtyPlanDetailEntityList);
+        System.out.println("专业计划详情操作");
+        if (0 != specialtyPlanDetailEntityList.size()) {
+            specialtyPlanDetailDao.saveAll(specialtyPlanDetailEntityList);
+        }
         return success();
     }
 

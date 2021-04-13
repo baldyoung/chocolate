@@ -14,5 +14,5 @@ public interface SpecialtyPlanDetailDao extends JpaRepository<SpecialtyPlanDetai
     // 获取指定专业计划下的所有 计划详情
     List<SpecialtyPlanDetailEntity> findSpecialtyPlanDetailEntitiesBySpecialtyPlanId(Integer specialtyPlanId);
     // 删除指定专业计划下的所有 计划详情
-    void deleteSpecialtyPlanDetailEntitiesBySpecialtyPlanId(Integer specialtyPlanId);
+    void deleteBySpecialtyPlanId(Integer specialtyPlanId);
 }

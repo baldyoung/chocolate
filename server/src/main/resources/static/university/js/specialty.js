@@ -97,7 +97,7 @@ function addSpecialty() {
 		specialtyName : $('#newSpecialtyName').val(),
 		specialtyNumber : $('#newSpecialtyNumber').val(),
 		specialtyInfo : $('#newSpecialtyInfo').val(),
-		subjectList : getLocalSubjectList()
+		specialtyPlanDetailEntityList : getLocalSubjectList()
 	};
 	if (isEmpty(newSpecialty.specialtyName)) {
 		alert('名称不能为空');
@@ -145,7 +145,45 @@ function getAndLoadSpecialty(index) {
 	$('#newSpecialtyInfo').val(cell.specialtyInfo);
 	currentSpecialtyId = cell.id;
 	loadTargetSubjectInPlanArea(cell.subjectList);
-	
+	$.ajax({
+		url: XConfig.serverAddress + "specialtyPlanDetail/specialtyPlanId=" + cell.id,
+		type: 'GET',
+		cache: false,
+		dataType: 'json',
+		async: true, //设置同步
+		contentType: "application/json; charset=utf-8",
+		data: null,
+		// JSON.stringify(list)
+		success: function(data) {
+			if (data.code == 0) {
+				var targetData = data.data;
+				for(var i=0; i<targetData.length; i++) {
+					for(var j=i+1; j<targetData.length; j++) {
+						if (targetData[i].sortParament > targetData[j].sortParament) {
+							var temp = targetData[i];
+							targetData[i] = targetData[j];
+							targetData[j] = temp;
+						}
+					}
+				}
+				var list = [];
+				for(var i=0; i<targetData.length; i++) {
+					var cell = getSubjectById(targetData[i].subjectId);
+					cell.index = i;
+					cell.referenceHours = targetData[i].referenceHours;
+					list[list.length] = cell;
+				}
+				loadTargetSubjectInPlanArea(list);
+			} else {
+				//swal('获取数据失败', data.desc, 'error');
+				alert('操作失败\n'+data.desc);
+			}
+		},
+		error: function() {
+			//swal('服务器连接失败', '请检查网络是否通畅', 'warning');
+			alert('服务器连接失败');
+		}
+	});
 }
 /**
  * 修改指定的 专业
@@ -216,6 +254,7 @@ function requestAndLoadSubjectList() {
 					var cell = targetData[i];
 					var html = '<option value="'+i+'">'+cell.subjectName+'</option>';
 					target.append(html);
+					cell.subjectId = cell.id;
 				}
 				subjectListBuffer = targetData;
 			} else {
@@ -242,6 +281,9 @@ function addSubjectToSpecialtyPlanList() {
 			referenceHours : $('#newReferenceHours').val(),
 			sortParament : $('#newSortParament').val()
 		};
+	if (isEmpty(cell.referenceHours)) {
+		cell.referenceHours = temp.standardHours;
+	}
 	if (undefined != currentSubjectCell) {
 		currentSubjectCell.attr('id', 'kk'+index);
 		currentSubjectCell.attr('subjectIndex', index);
@@ -268,11 +310,17 @@ function addSubjectToSpecialtyPlanList() {
 	$('#closeAddSubjectForPlanBtn').click();
 }
 // 加载给定的学科集合到方案列表中
-function loadTargetSubjectInPlanArea(t) {
+function loadTargetSubjectInPlanArea(t) { 
+	console.log("KKK");
+	console.log(t);
 	var target = $('#specialtyPlanDetailsArea');
 	target.html('');
-	t.forEach(function(index, cell) {
-		var temp = getSubjectById(cell.subjectId);
+	if (undefined == t || undefined == t.length) {
+		return;
+	}
+	for(var i=0; i<t.length; i++) {
+		var cell = t[i];
+		var temp = cell;
 		var html = subjectShowTemplate.replace('#{subjectName}', temp.subjectName);
 		html = html.replace("#{index}", temp.index);
 		html = html.replace("#{subjectId}", temp.subjectId);
@@ -282,18 +330,16 @@ function loadTargetSubjectInPlanArea(t) {
 		html = html.replace("#{referenceHours}", temp.referenceHours);
 		html = html.replace('#{sortParament}', temp.sortParament);
 		target.append(html);
-	});
+	}
 }
 // 获取指定编号的学科信息
 function getSubjectById(id) {
-	var result;
-	subjectListBuffer.forEach(function(index, cell){
-		if (cell.id == id) {
-			cell.index = index;
-			result = cell;
+	for(var i=0; i<subjectListBuffer.length; i++) {
+		var cell = subjectListBuffer[i];
+		if (cell.id == id){
+			return cell;
 		}
-	});
-	return result;
+	}
 }
 // 从当前的专业计划列表中 删除指定学科
 function delSubjectFromSpecialtyPlanList(t) {
@@ -345,14 +391,17 @@ function changeSubjectPosition(t, ac) {
 
 // 获取专业计划计划详情中的 学科集合
 function getLocalSubjectList() {
-	var target = $('#specialtyPlanDetailsArea');
+	var target = $('#specialtyPlanDetailsArea').children();
 	var list = [];
-	target.forEach(function(index, cell){
+	for(var i=0; i<target.length; i++) {
+		var cell = target.eq(i);
 		list[list.length] = {
 			subjectId:cell.attr('subjectId'),
 			referenceHours:cell.attr('referenceHours'),
-			sortParament:cell.attr('sortParament')
+			sortParament: (i + 1)
 		}
-	});
+	}
 	return list;
 }
+
+
