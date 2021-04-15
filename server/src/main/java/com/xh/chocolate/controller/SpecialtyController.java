@@ -33,6 +33,7 @@ public class SpecialtyController {
      * @return
      */
     @PostMapping
+    @Transactional
     public ResponseResult postSpecialty(@RequestBody List<CreateOrUpdateSpecialtyDto> createOrUpdateSpecialtyDtoList) {
         /*
             代码逻辑等同于隔壁的StaffInfofController
@@ -69,6 +70,7 @@ public class SpecialtyController {
      * @return
      */
     @DeleteMapping("{id}")
+    @Transactional
     public ResponseResult deleteSpecialty(@PathVariable("id") Integer id) {
         specialtyDao.deleteById(id);
         specialtyPlanDetailDao.deleteBySpecialtyPlanId(id);

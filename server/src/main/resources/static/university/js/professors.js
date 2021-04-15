@@ -9,7 +9,9 @@ $(function() {
 	var target = $('#teacherListArea');
 	staffShowTemplate = target.html();
 	subjectCellForStaffTemplate = $('#subjectListForStaffArea').html();
+	$('#subjectListForStaffArea').html('');
 	requestAndLoadTeacherList();
+	requestAndLoadSubjectList();
 	resetEditPanel();
 });
 
@@ -62,6 +64,7 @@ function resetEditPanel() {
 	$('#pro-add').find('input').val('');
 	$('#newStaffSex').val('2');
 	currentStaffId = undefined;
+	$('#subjectListForStaffArea').html('');
 }
 
 function addNewStaff() {
@@ -72,7 +75,8 @@ function addNewStaff() {
 		staffNumber : $('#newStaffNumber').val(),
 		staffSex : $('#newStaffSex').val(),
 		staffNation : $('#newStaffNation').val(),
-		staffRace : $('#newStaffRace').val()
+		staffRace : $('#newStaffRace').val(),
+		teacherCompetencyEntityList : getCurrentSelectSubjectList(),
 	}
 	if (isEmpty(newStaffInfo.staffName)) {
 		alert('姓名不能为空');
@@ -192,18 +196,27 @@ function getAndLoadStaffInfo(id) {
 	$('#newStaffName').val(staffInfoListBuffer[i].staffName);
 	$('#newStaffSex').val(staffInfoListBuffer[i].staffSex);
 	$('#newStaffPhoneNumber').val(staffInfoListBuffer[i].staffPhoneNumber);
-	loadSubjectListForStaff(staffInfoListBuffer[i].subjectList);
+	loadSubjectListForStaff(staffInfoListBuffer[i].teacherCompetencyList);
 }
 
 // ------------------------------------------ 可授课程列表
 var subjectListBuffer = [];
-// 获取系统中所有的 学科
 
+function getSubjectById(id) {
+	var t;
+	$.each(subjectListBuffer, function(index, cell) {
+		if (cell.id == id) {
+			t = cell; 
+		}
+	});
+	return t;
+}
 // 加载指定员工的 可授课程列表
 function loadSubjectListForStaff(t) {
 	var target = $('#subjectListForStaffArea');
 	target.html('');
-	t.forEach(function(index, cell){
+	$.each(t, function(index, cell){
+		cell = getSubjectById(cell.subjectId);
 		var html = subjectCellForStaffTemplate.replace('#{subjectId}', cell.subjectId);
 		html = html.replace('#{subjectName}', cell.subjectName);
 		target.append(html);
@@ -270,4 +283,30 @@ function requestAndLoadSubjectList() {
 			alert('服务器连接失败');
 		}
 	});
+}
+// 整理与获取当前教师可授学科列表中的所有 学科
+function getCurrentSelectSubjectList() {
+	var list = [];
+	$('#subjectListForStaffArea').children().each(function(index, cell){
+		list[list.length] =  {
+			subjectId : $(cell).attr('subjectId')
+		};
+	});
+	return list;
+}
+
+function addSubjectForCurrentList() {
+	var subjectIndex = $("#subjectSelectArea").val();
+	if (-1 == subjectIndex) {
+		alert("请选择学科");
+	}
+	var subject = subjectListBuffer[subjectIndex];
+	var html = subjectCellForStaffTemplate.replace('#{subjectId}', subject.id);
+	html = html.replace("#{subjectName}", subject.subjectName);
+	$('#subjectListForStaffArea').append(html); 	
+	$('#closeAddSubjectPanelBtn').click();
+}
+
+function removeSubjectForCurrentList(t) {
+	$(t).parent().parent().remove();
 }

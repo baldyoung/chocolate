@@ -20,9 +20,12 @@ function toSex(sexFlag) {
 	return "未知";
 }
 
-function isEmpty(o) {
-	if (undefined == o || null == o || '' == o) {
-		return true;
+function isEmpty() {
+	for(var i=0; i<arguments.length; i++) {
+		var o = arguments[i];
+		if (undefined == o || null == o || '' == o) {
+			return true;
+		}
 	}
 	return false;
 }

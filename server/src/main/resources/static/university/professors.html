@@ -467,7 +467,7 @@
 													<div subjectId='#{subjectId}'  class="form-group">
 														<div type="text" class="form-control" style="background-color:#e9ecef;">
 															#{subjectName}
-															<i onclick='deleteSubjectForStaff(this)' class="fe fe-x" style="float:right; cursor:pointer;"></i>
+															<i onclick='removeSubjectForCurrentList(this)' class="fe fe-x" style="float:right; cursor:pointer;" ></i>
 														</div>
 													</div>
 												</div>
@@ -517,8 +517,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn save-btn btn-success">确定</button>
-						<button class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						<button onclick='addSubjectForCurrentList()' class="btn save-btn btn-success">确定</button>
+						<button id='closeAddSubjectPanelBtn' class="btn btn-secondary" data-dismiss="modal">关闭</button>
 					</div>
 				</div>
 			</div>

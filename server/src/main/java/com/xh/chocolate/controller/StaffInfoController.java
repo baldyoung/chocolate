@@ -10,6 +10,7 @@ import com.xh.chocolate.pojo.dto.chocolate.CreateOrUpdateStaffInfoDto;
 import com.xh.chocolate.pojo.entity.StaffInfoEntity;
 import com.xh.chocolate.pojo.entity.TeacherCompetencyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -34,6 +35,7 @@ public class StaffInfoController {
      * @return
      */
     @PostMapping
+    @Transactional
     public ResponseResult postStaffInfo(@RequestBody List<CreateOrUpdateStaffInfoDto> createOrUpdateStaffInfoDtoList) {
         // 将新员工数据保存到数据库
         List<StaffInfoEntity> staffInfoEntityList = new ArrayList(createOrUpdateStaffInfoDtoList.size());
@@ -72,6 +74,7 @@ public class StaffInfoController {
      * @return
      */
     @DeleteMapping("{id}")
+    @Transactional
     public ResponseResult deleteStaffInfo(@PathVariable("id") Integer id) {
         staffInfoDao.deleteById(id);
         teacherCompetencyController.deleteTeacherCompetencyByTeacherId(id);
@@ -85,6 +88,7 @@ public class StaffInfoController {
      * @return
      */
     @PatchMapping("{id}")
+    @Transactional
     public ResponseResult patchStaffInfo(@PathVariable("id")Integer id, @RequestBody CreateOrUpdateStaffInfoDto createOrUpdateStaffInfoDto) {
         StaffInfoEntity staffInfoEntity = new StaffInfoEntity(createOrUpdateStaffInfoDto);
         StaffInfoEntity staffInfoEntityOld = staffInfoDao.findById(id).get();
@@ -110,6 +114,7 @@ public class StaffInfoController {
      * @return
      */
     @GetMapping
+    @Transactional
     public ResponseResult getStaffInfoList(@RequestBody(required = false) List<Integer> targetStaffIdList) throws JsonProcessingException {
         // System.out.println("参数："+targetStaffIdList);
         List<StaffInfoEntity> staffInfoEntityList;
