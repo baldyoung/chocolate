@@ -77,7 +77,7 @@
 								</ol>
 							</div>
 							<ul class="nav nav-tabs page-header-tab">
-								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Dep-all">
+								<li onclick='requestAndLoadStudentClassList()' class="nav-item"><a id='showClassRoomList' class="nav-link active" data-toggle="tab" href="#Dep-all">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">列表显示</font>
 										</font>
@@ -87,7 +87,7 @@
 											<font style="vertical-align: inherit;">加</font>
 										</font>
 									</a></li -->
-								<li class="nav-item"><a class="nav-link" id="Dep-tab-Boot" data-toggle="tab" href="#Dep-add-Boot">
+								<li onclick='resetEditPanel()' class="nav-item"><a class="nav-link" id="Dep-tab-Boot" data-toggle="tab" href="#Dep-add-Boot">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">新增</font>
 										</font>
@@ -186,9 +186,9 @@
 														</font>
 													</td>
 													<td>
-														<button type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
-														<button type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
-														<button type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+														<button onclick='getAndLoadStudentClass(#{index})' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
+														<button onclick='getAndLoadStudentClass(#{index})' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
+														<button onclick='removeStudentClassRoom(#{index})' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
 													</td>
 												</tr>
 												
@@ -331,7 +331,7 @@
 											<label class="col-md-3 col-form-label"></label>
 											<div class="col-md-7">
 												<button onclick='addNewStudentClass()' type="button" class="btn btn-primary">保存</button>
-												<button type="button" class="btn btn-outline-secondary">取消</button>
+												<button onclick='$("#showClassRoomList")[0].click()' type="button" class="btn btn-outline-secondary">取消</button>
 											</div>
 										</div>
 									</form>

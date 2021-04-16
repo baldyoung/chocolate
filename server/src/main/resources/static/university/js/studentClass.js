@@ -43,6 +43,7 @@ function requestAndLoadStudentClassList() {
 					html = html.replace('#{staff}', cell.staffName);
 					html = html.replace('#{currentPeopleNumber}', cell.currentPeopleNumber);
 					html = html.replace('#{createDate}', cell.createDate).replace("#{state}", cell.state);
+					html = html.replace('#{index}', index).replace('#{index}', index).replace('#{index}', index);
 					target.append(html);
 				});
 				studentClassListBuffer = targetData;
@@ -59,8 +60,16 @@ function requestAndLoadStudentClassList() {
 }
 
 // 获取指定 班级 并加载展示
-function getAndLoadStudentClass(id) {
-	
+function getAndLoadStudentClass(index) {
+	$('#Dep-tab-Boot')[0].click();
+	var classRoom = studentClassListBuffer[index];
+	$('#newStudentClassSpecialty').val(classRoom.specialtyId);
+	$('#newStudentClassName').val(classRoom.className); 
+	$('#newStudentClassHolder').val(classRoom.holderStaffId);
+	$('#newStudentClassCurrentPeopleNumber').val(classRoom.currentStudentAmount);
+	$('#newStudentClassCreatePeopleNumber').val(classRoom.initStudentAmount);
+	$('#newStudentClassCreateDate').val(classRoom.classBirthday);
+	currentStudentClassId = classRoom.id;
 }
 
 
@@ -68,6 +77,7 @@ function getAndLoadStudentClass(id) {
 // 新增班级
 function addNewStudentClass() {
 	var studentClass = {
+		id : currentStudentClassId,
 		specialtyId : $('#newStudentClassSpecialty').val(),
 		className : $('#newStudentClassName').val(),
 		holderStaffId : $('#newStudentClassHolder').val(),
@@ -79,8 +89,12 @@ function addNewStudentClass() {
 		alert("请补全信息");
 		return;
 	}
-	studentClass.specialtyId = specialtyListBuffer[studentClass.specialtyId].id;
-	studentClass.holderStaffId = staffListBuffer[studentClass.holderStaffId].id;
+	if (undefined != studentClass.id) {
+		updateClassRoom(studentClass);
+		return;
+	}
+	//studentClass.specialtyId = specialtyListBuffer[studentClass.specialtyId].id;
+	//studentClass.holderStaffId = staffListBuffer[studentClass.holderStaffId].id;
 	var list = [];
 	list.push(studentClass);
 	$.ajax({
@@ -106,14 +120,70 @@ function addNewStudentClass() {
 			alert('服务器连接失败');
 		}
 	});
-	
 }
 
+// 修改指定班级的信息
+function updateClassRoom(classRoom) {
+	$.ajax({
+		url: XConfig.serverAddress + "studentClass/" + classRoom.id,
+		type: 'PATCH',
+		cache: false,
+		dataType: 'json',
+		async: true, //设置同步
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(classRoom),
+		success: function(data) {
+			if (data.code == 0) {
+				var targetData = data.data;
+				alert('修改成功');
+			} else {
+				//swal('获取数据失败', data.desc, 'error');
+				alert('操作失败\n'+data.desc);
+			}
+		},
+		error: function() {
+			//swal('服务器连接失败', '请检查网络是否通畅', 'warning');
+			alert('服务器连接失败');
+		}
+	});
+}
+
+// 删除指定的班级
+function removeStudentClassRoom(index) {
+	var classRoom = studentClassListBuffer[index];
+	if(!confirm("确定删除 "+classRoom.className +" 吗?")) {
+		return;
+	}
+	$.ajax({
+		url: XConfig.serverAddress + "studentClass/" + classRoom.id,
+		type: 'DELETE',
+		cache: false,
+		dataType: 'json',
+		async: true, //设置同步
+		contentType: "application/json; charset=utf-8",
+		data: null,//JSON.stringify(list),
+		success: function(data) {
+			if (data.code == 0) {
+				var targetData = data.data;
+				requestAndLoadStudentClassList();
+				alert('删除成功');
+			} else {
+				//swal('获取数据失败', data.desc, 'error');
+				alert('操作失败\n'+data.desc);
+			}
+		},
+		error: function() {
+			//swal('服务器连接失败', '请检查网络是否通畅', 'warning');
+			alert('服务器连接失败');
+		}
+	});
+}
 
 //
 function resetEditPanel() {
 	$('#editAreaTitle').text("新增班级");
 	$('#Dep-add-Boot').find('div').val('');
+	currentStudentClassId = undefined;
 }
 
 // -------------------------------------- 获取初始数据
@@ -135,7 +205,7 @@ function getAndLoadSpecialtyInfo() {
 				var target = $('#newStudentClassSpecialty');
 				target.html('<option value=""> -- 选择专业 -- </option>');
 				$.each(targetData, function(index, cell) {
-					target.append('<option value="'+index+'"> '+cell.specialtyName+' </option>');
+					target.append('<option value="'+cell.id+'"> '+cell.specialtyName+' </option>');
 				});
 				specialtyListBuffer = targetData;
 			} else {
@@ -177,7 +247,7 @@ function getAndLoadStaffInfo() {
 				var target = $('#newStudentClassHolder');
 				target.html('<option value=""> -- 选择班主任 -- </option>');
 				$.each(targetData, function(index, cell) {
-					target.append("<option value='" + index + "'> " + cell.staffName + " </option>");
+					target.append("<option value='" + cell.id + "'> " + cell.staffName + " </option>");
 				});
 				staffListBuffer = targetData;
 			} else {
