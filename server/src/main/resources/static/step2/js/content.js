@@ -1,4 +1,9 @@
+var currentSelectDayTime = localStorage.getItem("currentSelectDayTime");
+
 $(function() {
+	console.log("ss");
+	console.log(currentSelectDayTime);
+	
 	//日期范围限制
 	var start = {
 		elem: '#startDate',
