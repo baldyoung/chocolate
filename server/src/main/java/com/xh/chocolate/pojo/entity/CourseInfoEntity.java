@@ -24,7 +24,7 @@ public class CourseInfoEntity {
     @Column
     private Integer classRoomId;
     @Column
-    private Integer courseNumber;
+    private String courseNumber;
     @Column(length = 30)
     private String courseName;
     @Column(length = 500)
@@ -101,11 +101,11 @@ public class CourseInfoEntity {
         this.classRoomId = classRoomId;
     }
 
-    public Integer getCourseNumber() {
+    public String getCourseNumber() {
         return courseNumber;
     }
 
-    public void setCourseNumber(Integer courseNumber) {
+    public void setCourseNumber(String courseNumber) {
         this.courseNumber = courseNumber;
     }
 

@@ -1,5 +1,6 @@
 package com.xh.chocolate.controller;
 
+import com.xh.chocolate.common.commonService.CourseService;
 import com.xh.chocolate.common.jpaModule.CourseInfoDao;
 import com.xh.chocolate.common.utils.EntityUtil;
 import com.xh.chocolate.pojo.dto.ResponseResult;
@@ -7,6 +8,9 @@ import com.xh.chocolate.pojo.entity.CourseInfoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static com.xh.chocolate.pojo.dto.ResponseResult.success;
@@ -19,6 +23,9 @@ import static com.xh.chocolate.pojo.dto.ResponseResult.success;
 public class CourseInfoController {
     @Autowired
     private CourseInfoDao courseInfoDao;
+
+    @Autowired
+    private CourseService courseService;
 
     /**
      * 新增一个或多个 课程
@@ -98,6 +105,15 @@ public class CourseInfoController {
     @GetMapping("classRoomId={classRoomId}")
     public ResponseResult getCourseInfoByClassRoomId(@PathVariable("classRoomId")Integer classRoomId) {
         return success(courseInfoDao.getCourseInfoEntitiesByClassRoomId(classRoomId));
+    }
+
+    /**
+     *
+     */
+    @GetMapping("disengagedInfo/startDate={startDate}")
+    public ResponseResult getDisengagedInfo(@PathVariable("startDate")String startDateString) throws ParseException {
+        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
+        return success(courseService.getDisengagedInfo(startDate));
     }
 
 

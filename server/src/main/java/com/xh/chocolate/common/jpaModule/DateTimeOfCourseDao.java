@@ -14,4 +14,6 @@ public interface DateTimeOfCourseDao extends JpaRepository<DateTimeOfCourseEntit
 
     List<DateTimeOfCourseEntity> getDateTimeOfCourseEntitiesByCourseId(Integer courseId);
 
+    List<DateTimeOfCourseEntity> getDateTimeOfCourseEntitiesByCourseIdIn(List<Integer> courseIds);
+
 }

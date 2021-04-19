@@ -10,6 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.Table;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import static java.lang.System.*;
 @SpringBootTest
 class ChocolateApplicationTests {
@@ -40,8 +45,11 @@ class ChocolateApplicationTests {
 
 
     @Test
-    void contextLoads() {
-
+    void contextLoads() throws ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2021-04-30");
+        Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-05-11");
+        List<CourseInfoEntity> courseInfoEntityList = courseInfoDao.getCourseInfoEntitiesByStartDateTimeInFactBeforeAndEndDateTimeInFactAfter(date, date2);
+        courseInfoEntityList.forEach(cell->System.out.println(cell));
     }
 
 
