@@ -1,6 +1,7 @@
 package com.xh.chocolate.common.commonService;
 
 import com.xh.chocolate.common.jpaModule.*;
+import com.xh.chocolate.pojo.dto.chocolate.CreateOrUpdateCourseDto;
 import com.xh.chocolate.pojo.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,13 @@ public class CourseService {
         return data;
     }
 
+    // 新增一个课程
+    public void createCourse(CreateOrUpdateCourseDto createOrUpdateCourseDto) {
+
+    }
+    // 删除指定的课程
+    public void deleteCourse() {
+
+    }
 
 }
