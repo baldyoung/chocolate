@@ -1,7 +1,7 @@
 package com.xh.chocolate.common.redisModule;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+//import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -15,7 +15,8 @@ import static java.lang.System.out;
 /**
  * redis连接测试服务
  */
-@Service
+/*
+//@Service
 public class RedisConnectionTestService {
 
     @Autowired
@@ -50,3 +51,4 @@ public class RedisConnectionTestService {
         System.out.println("resulreslutMapListtMap:"+reslutMapList);
     }
 }
+*/

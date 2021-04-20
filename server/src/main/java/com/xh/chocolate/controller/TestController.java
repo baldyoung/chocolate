@@ -1,7 +1,7 @@
 package com.xh.chocolate.controller;
 
 import com.xh.chocolate.common.mybatisModule.DBConnectionTestDao;
-import com.xh.chocolate.common.redisModule.RedisConnectionTestService;
+//import com.xh.chocolate.common.redisModule.RedisConnectionTestService;
 import com.xh.chocolate.pojo.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +22,8 @@ public class TestController {
     @Autowired
     private DBConnectionTestDao dbConnectionTestDao;
 
-    @Autowired
-    private RedisConnectionTestService redisConnectionTestService;
+    //@Autowired
+    //private RedisConnectionTestService redisConnectionTestService;
 
     @GetMapping
     public void requestTest(HttpServletResponse response) throws IOException {
@@ -47,7 +47,7 @@ public class TestController {
 
     @GetMapping("redisConnection")
     public ResponseResult requestTestRedisConnection() {
-        redisConnectionTestService.test();
+       // redisConnectionTestService.test();
         return success();
     }
 }
