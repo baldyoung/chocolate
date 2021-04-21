@@ -68,24 +68,29 @@ public class CourseService {
         }
         createOrUpdateCourseDto.setId(null);
         CourseInfoEntity courseInfoEntity = new CourseInfoEntity(createOrUpdateCourseDto);
+        // 保存课程基本信息
         courseInfoDao.save(courseInfoEntity);
         List<ClassInCourseEntity> classInCourseEntityList = createOrUpdateCourseDto.getClassInCourseEntityList();
         classInCourseEntityList.forEach(cell->{
             cell.setCourseId(courseInfoEntity.getId());
         });
+        // 保存课程的下关联的班级数据
         classInCourseDao.saveAll(classInCourseEntityList);
         List<DateTimeOfCourseEntity> dateTimeOfCourseEntityList = createOrUpdateCourseDto.getDateTimeOfCourseEntityList();
         dateTimeOfCourseEntityList.forEach(cell->{
             cell.setCourseId(courseInfoEntity.getId());
         });
+        // 保存课程的时间安排数据
         dateTimeOfCourseDao.saveAll(dateTimeOfCourseEntityList);
     }
 
 
     // 删除指定的课程
     @Transactional
-    public void deleteCourse() {
-
+    public void deleteCourse(Integer courseId) {
+        courseInfoDao.deleteById(courseId);
+        classInCourseDao.deleteByCourseId(courseId);
+        dateTimeOfCourseDao.deleteByCourseId(courseId);
     }
 
 }
