@@ -47,6 +47,29 @@ public class CourseInfoEntity {
     @LastModifiedDate
     @Column
     private Date updateDateTime;
+    public CourseInfoEntity(CourseInfoEntity o) {
+        this.subjectId = o.subjectId;
+        this.staffId = o.staffId;
+        this.classRoomId = o.classRoomId;
+        this.courseName = o.courseName;
+        this.courseNumber = o.courseNumber;
+        this.courseInfo = o.courseInfo;
+        this.referenceHours = o.referenceHours;
+        this.courseParameter = o.courseParameter;
+        this.startDateTimeInPlan = o.startDateTimeInPlan;
+        this.endDateTimeInPlan = o.endDateTimeInPlan;
+        this.startDateTimeInFact = o.startDateTimeInFact;
+        this.endDateTimeInFact = o.endDateTimeInFact;
+        this.createDateTime = o.createDateTime;
+        this.updateDateTime = o.updateDateTime;
+    }
+
+
+    public CourseInfoEntity() {
+
+    }
+
+
 
     @Override
     public String toString() {
