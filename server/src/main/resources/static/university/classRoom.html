@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="translated-ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<title>教室</title>
+
+		<!-- Bootstrap Core and vandor -->
+		<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/css/style.min.css">
+		<!-- Start project main js  and page js -->
+		<script src="js/jquery.js"></script>
+		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
+		<script src='js/config.js'></script>
+		<script src='js/classRoom.js'></script>
+		<style>
+			::-webkit-scrollbar {
+				/*滚动条整体样式*/
+				width: 4px;
+				/*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+				scrollbar-arrow-color: red;
+			}
+		</style>
+	</head>
+
+	<body class="close_rightbar">
+
+		<!-- Page Loader -->
+		<div class="page-loader-wrapper" style="display: none;">
+			<div class="loader">
+			</div>
+		</div>
+
+		<div >
+			<!-- Start project content area -->
+			<div class="" style="margin:0 auto; left:0px;">
+				<!-- Start Page header -->
+				<div class="section-body" id="page_top">
+					<div class="container-fluid">
+						<div class="page-header">
+						</div>
+					</div>
+				</div><!-- Start Page title and tab -->
+				<div class="section-body">
+					<div class="container-fluid">
+						<div class="d-flex justify-content-between align-items-center ">
+							<div class="header-action">
+								<h1 class="page-title">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">教室</font>
+									</font>
+								</h1>
+								<ol class="breadcrumb page-breadcrumb">
+									<li class="breadcrumb-item"><a href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">江西新华</font>
+											</font>
+										</a></li>
+									<li class="breadcrumb-item active" aria-current="page">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">教室</font>
+										</font>
+									</li>
+								</ol>
+							</div>
+							<ul class="nav nav-tabs page-header-tab">
+								<li class="nav-item" onclick='getAndLoadClassRoomList()'><a class="nav-link active" id="Hostel-tab" data-toggle="tab" href="#Hostel-all">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">列表显示</font>
+										</font>
+									</a></li>
+								<li class="nav-item"><a class="nav-link" id="addClassRoomBtn" data-toggle="tab" href="#classRoom-add-Panel">新增</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="section-body mt-4">
+					<div class="container-fluid">
+						<div class="tab-content">
+							<div class="tab-pane active" id="Hostel-all">
+								<div class="card">
+									<div class="table-responsive">
+										<table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+											<thead>
+												<tr>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit; font-size:11px;">系统编号</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">名称</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">类型</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">容量</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">编号</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">简介</font>
+														</font>
+													</th>
+													<th>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">操作</font>
+														</font>
+													</th>
+												</tr>
+											</thead>
+											<tbody id='classRoomListArea'>
+												<tr>
+													<td class="w60">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">#{id}</font>
+														</font>
+													</td>
+													<td>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">#{classRoomName}</font>
+														</font>
+													</td>
+													<td>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">#{typeName}</font>
+														</font>
+													</td>
+													<td>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">#{standardPeopleAmount}</font>
+														</font>
+													</td>
+													<td>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">#{classRoomNumber}</font>
+														</font>
+													</td>
+													<td>
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">#{classRoomSimpleInfo}</font>
+														</font>
+													</td>
+													<td>
+														<button onclick='getAndLoadClassRoom("#{index}")' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
+														<button onclick='getAndLoadClassRoom("#{index}")' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
+														<button onclick='deleteStaff("#{index}")' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<ul class="pagination">
+									<li class="page-item"><a class="page-link" href="javascript:void(0);">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">333条数据</font>
+											</font>
+										</a></li>
+								</ul>
+							</div>
+							<div class="tab-pane" id="classRoom-add-Panel">
+								<div class="card" >
+									<form class="card-body">
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">教室名称<span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input id='newClassRoomName' type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">容纳量<span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<input id='newClassRoomNameStandardPeopleAmount' type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">编号</label>
+											<div class="col-md-7">
+												<input id='newClassRoomNumber' type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">教室类型<span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select id='newClassRoomType' class="form-control show-tick">
+													<option value=''>-- 选择类型 --</option>
+													<option value='1'>电脑间</option>
+													<option value='0'>非电脑间</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">描述</label>
+											<div class="col-md-7">
+												<textarea id='newClassRoomInfo' rows="4" class="form-control no-resize" placeholder="关于当前教室的简要描述..."></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label"></label>
+											<div class="col-md-7">
+												<button type="submit" class="btn btn-primary">保存</button>
+												<button type="submit" class="btn btn-outline-secondary">取消</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+	</body>
+</html>

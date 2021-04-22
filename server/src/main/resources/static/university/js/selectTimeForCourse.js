@@ -122,6 +122,6 @@ function readyToNextOption() {
 	//alert(localStorage.getItem("test"));
 	//alert("");
 	console.log(t);
-	location.href='../step2/step2.html';
+	location.href='./createCourse.html';
 }
 

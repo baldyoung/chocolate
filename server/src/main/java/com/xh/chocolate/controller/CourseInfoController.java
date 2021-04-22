@@ -4,7 +4,9 @@ import com.xh.chocolate.common.commonService.CourseService;
 import com.xh.chocolate.common.jpaModule.CourseInfoDao;
 import com.xh.chocolate.common.utils.EntityUtil;
 import com.xh.chocolate.pojo.dto.ResponseResult;
+import com.xh.chocolate.pojo.dto.chocolate.CreateOrUpdateCourseDto;
 import com.xh.chocolate.pojo.entity.CourseInfoEntity;
+import com.xh.chocolate.pojo.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +34,7 @@ public class CourseInfoController {
      * @param courseInfoEntityList
      * @return
      */
-    @PostMapping
+    //@PostMapping
     public ResponseResult postCourseInfo(@RequestBody List<CourseInfoEntity> courseInfoEntityList) {
         // 检查教师Id、学科Id、教室Id是否合法
         // ...
@@ -49,7 +51,7 @@ public class CourseInfoController {
      */
     @DeleteMapping("{id}")
     public ResponseResult deleteCourseInfo(@PathVariable("id")Integer id) {
-        courseInfoDao.deleteById(id);
+        courseService.deleteCourse(id);
         return success();
     }
 
@@ -114,6 +116,18 @@ public class CourseInfoController {
     public ResponseResult getDisengagedInfo(@PathVariable("startDate")String startDateString) throws ParseException {
         Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString);
         return success(courseService.getDisengagedInfo(startDate));
+    }
+
+    /**
+     *
+     * @param createOrUpdateCourseDto
+     * @return
+     * @throws ServiceException
+     */
+    @PostMapping
+    public ResponseResult postCourse(@RequestBody CreateOrUpdateCourseDto createOrUpdateCourseDto) throws ServiceException {
+        courseService.createCourse(createOrUpdateCourseDto);
+        return success();
     }
 
 

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> - 任务清单</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+		<style>
+			.classCellSelected {
+				background-color: #FBEDB7 !important;
+			}
+			.subjectCellSelected {
+				background-color: #FBEDB7 !important;
+			}
+			.roomCellSelected {
+				background-color: #FBEDB7 !important;
+			}
+		</style>
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js?v=2.1.4"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+		<!-- layerDate plugin javascript -->
+		<script src="../js/plugins/layer/laydate/laydate.js"></script>
+		<!-- 自定义js -->
+		<script src='js/config.js'></script>
+		<script src="js/createCourse.js"></script>
+		<script>
+			
+		</script>
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content  animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="ibox">
+						<div class="ibox-content">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="ibox">
+						<div class="ibox-content">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="ibox">
+						<div class="ibox-content">
+							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="ibox">
+						<div class="ibox-content">
+							<h3>班级<span style="font-size:13px;">（多选）</span></h3>
+							<p class="small"><i class="fa fa-hand-o-up"></i> 当前时间段下空闲的班级</p>
+
+							<div class="input-group">
+								<input type="text" placeholder="添加新任务" class="input input-sm form-control">
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i> 添加</button>
+								</span>
+							</div>
+
+							<ul id="showClassArea" style="max-height:500px; overflow: auto;" class="sortable-list connectList agile-list">
+								<li class="warning-element">
+									软开APP2021
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标签</a>
+										<i class="fa fa-clock-o"></i> 人数31
+									</div>
+								</li>
+								<li class="success-element">
+									电商2021
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-danger">标签</a>
+										<i class="fa fa-clock-o"></i> 人数37
+									</div>
+								</li>
+								<li class="info-element">
+									天猫2021
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-info">标记</a>
+										<i class="fa fa-clock-o"></i> 人数36
+									</div>
+								</li>
+								<li class="danger-element">
+									环艺2021
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-primary">标记</a>
+										<i class="fa fa-clock-o"></i> 人数39
+									</div>
+								</li>
+								<li class="warning-element">
+									电竞2021
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-warning">标签</a>
+										<i class="fa fa-clock-o"></i> 人数33
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="ibox">
+						<div class="ibox-content">
+							<h3>学科<span style="font-size:13px;">（单选）</span></h3>
+							<p class="small"><i class="fa fa-hand-o-up"></i> 默认展示左侧所有班级需要教授的学科</p>
+							<ul id="showSubjectArea" style="max-height:500px; overflow: auto;" class="sortable-list connectList agile-list">
+								<li class="success-element">
+									html5+css3 （归属第2学期教学计划）
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标签</a>
+										<i class="fa fa-clock-o"></i> 参考课时100
+										<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师3
+									</div>
+								</li>
+								<li class="success-element">
+									javascript （归属第1学期教学计划）
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标签</a>
+										<i class="fa fa-clock-o"></i> 参考课时120
+										<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师4
+									</div>
+								</li>
+								<li class="success-element">
+									数据库 （归属第3学期教学计划）
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标签</a>
+										<i class="fa fa-clock-o"></i> 参考课时100
+										<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师1
+									</div>
+								</li>
+								<li class="success-element">
+									C语言 （归属第1学期教学计划）
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标签</a>
+										<i class="fa fa-clock-o"></i> 参考课时100
+										<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师1
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="ibox">
+						<div class="ibox-content">
+							<h3>教室<span style="font-size:13px;">（单选）</span></h3>
+							<p class="small"><i class="fa fa-hand-o-up"></i> 展示了当前时间段下所有空闲的教室</p>
+							<ul id="showRoomArea" style="max-height:500px; overflow: auto;" class="sortable-list connectList agile-list">
+								<li class="info-element">
+									教学楼301
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标记</a>
+										<i class="fa fa-clock-o"></i> 参考容纳50人
+									</div>
+								</li>
+								<li class="info-element">
+									教学楼305
+									<div class="agile-detail">
+										<a href="#" class="pull-right btn btn-xs btn-white">标记</a>
+										<i class="fa fa-clock-o"></i> 参考容纳40人
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 课程信息补充窗口 -->
+		<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content animated bounceInRight">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+						</button>
+						<i class="fa fa-laptop modal-icon"></i></br>
+						<input type='text' class="modal-title" placeholder="课程名称" style="border:0px solid;text-align: center; outline:none;" /></br>
+						<input type='text' class="font-bold" placeholder="学科名称" style="border:0px solid;text-align: center; outline:none; "
+						 readonly="true" />
+					</div>
+					<div class="modal-body">
+						<ul class="folder-list m-b-md" style="padding: 0">
+							<li>
+								<a href="#"> <i class="fa fa-inbox "></i> 教室 <span class="label label-warning pull-right">16</span>
+								</a>
+							</li>
+							<li>
+								<i class="fa fa-envelope-o"></i> 班级
+								<div style="padding-bottom: 5px;">
+									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2021</button>
+									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2022</button>
+								</div>
+
+							</li>
+							<li>
+								<i class="fa fa-certificate"></i> 开始时间
+								<input id="startDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
+							</li>
+							<li>
+								<i class="fa fa-file-text-o"></i> 结束时间
+								<input id="endDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
+							</li>
+							<li>
+								<i class="fa fa-trash-o"></i> 课时量<span id="courseTimeNumber">100</span>
+								<i class="fa fa-trash-o" style="margin-left:30px;"></i> 课时系数<input type='text' id="courseCoefficient" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec; width:60px; margin-left:5px; "
+								 value="1.5">
+							</li>
+						</ul>
+						<div class="form-group">
+							<label>任课教师</label>
+							<div style="">
+								<button type="button" class="btn btn-danger btn-rounded btn-outline" href="#">戴老师</button>
+								<button type="button" class="btn btn-primary btn-rounded " href="#">王老师</button>
+								<button type="button" class="btn btn-warning btn-rounded btn-outline" href="#">肖老师</button>
+								<button type="button" class="btn btn-info btn-rounded btn-outline" href="#">李老师</button>
+								<button type="button" class="btn btn-success btn-rounded btn-outline" href="#">陈老师</button>
+								<button type="button" class="btn btn-default btn-rounded btn-outline" href="#">吕老师</button>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+	</body>
+
+</html>
