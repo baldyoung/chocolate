@@ -67,7 +67,7 @@
 								</ol>
 							</div>
 							<ul class="nav nav-tabs page-header-tab">
-								<li class="nav-item" onclick='getAndLoadClassRoomList()'><a class="nav-link active" id="Hostel-tab" data-toggle="tab" href="#Hostel-all">
+								<li  class="nav-item" onclick='getAndLoadClassRoomList()'><a class="nav-link active" id="showClassRoomListBtn" data-toggle="tab" href="#Hostel-all">
 										<font style="vertical-align: inherit;">
 											<font style="vertical-align: inherit;">列表显示</font>
 										</font>
@@ -158,7 +158,7 @@
 													<td>
 														<button onclick='getAndLoadClassRoom("#{index}")' type="button" class="btn btn-icon btn-sm" title="视图"><i class="fa fa-eye"></i></button>
 														<button onclick='getAndLoadClassRoom("#{index}")' type="button" class="btn btn-icon btn-sm" title="编辑"><i class="fa fa-edit"></i></button>
-														<button onclick='deleteStaff("#{index}")' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+														<button onclick='deleteClassRoom("#{index}")' type="button" class="btn btn-icon btn-sm js-sweetalert" title="删除" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
 													</td>
 												</tr>
 											</tbody>
@@ -168,7 +168,7 @@
 								<ul class="pagination">
 									<li class="page-item"><a class="page-link" href="javascript:void(0);">
 											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">333条数据</font>
+												<font id='dataLengthArea' style="vertical-align: inherit;">333条数据</font>
 											</font>
 										</a></li>
 								</ul>
@@ -213,8 +213,8 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label"></label>
 											<div class="col-md-7">
-												<button type="submit" class="btn btn-primary">保存</button>
-												<button type="submit" class="btn btn-outline-secondary">取消</button>
+												<button onclick='addOrUpdateClassRoom()' type="button" class="btn btn-primary">保存</button>
+												<button onclick='$("#showClassRoomListBtn")[0].click()' type="button" class="btn btn-outline-secondary">取消</button>
 											</div>
 										</div>
 									</form>
