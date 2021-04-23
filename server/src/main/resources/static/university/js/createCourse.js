@@ -67,6 +67,30 @@ function getDisengagedInfo(startDate) {
 	});
 	return result;
 }
+/**
+ * 处理当前的课程信息
+ */
+var courseMapData = {};
+function checkCurrentCourseInfo(courseList, dayTimeOfCourse) {
+	$.each(courseList, function(index, cell) {
+		cell.dayTimeMap = {};
+		courseMapData[''+cell.id] = cell;
+	});
+	$.each(dayTimeOfCourse, function(index, cell){
+		var target = course[''+cell.courseId];
+		if (target != undefined) {
+			target.dayTimeMap['d'+cell.weekDay+'t'+cell.workTime] = true;
+		} else {
+			console.warn('捕获到异常[课程-时间安排]数据:'+cell);
+		}
+	});
+}
+
+
+
+
+
+
 // 班级模块
 var classModule = {
 	classData : [],
