@@ -1,7 +1,7 @@
 
 
 var currentSelectDayTime;
-var disengagedInfoBuffer;
+var disengagedInfoBuffer; // 要改名字！！！
 $(function() {
 	currentSelectDayTime = localStorage.getItem("currentSelectDayTime");
 	currentSelectDayTime = JSON.parse(currentSelectDayTime);
@@ -67,24 +67,110 @@ function getDisengagedInfo(startDate) {
 	});
 	return result;
 }
+function toFlag(d, t) {
+	return "d" + d + "t" + t;
+}
+var allStaffMap = {};
+var allClassMap = {};
+var allRoomMap = {};
+// 当前所有的课程图
+var allCourseMap = {};
+// 未安排的课程资源
+var disengagedInfoMap = {
+	getValidObject : function(key) {
+		var o = disengagedInfoMap[''+key];
+		if(undefined == o){
+			disengagedInfoMap[''+key] = {
+				staffMap : {},
+				roomMap : {},
+				classMap : {}
+			};
+		}
+		return disengagedInfoMap[''+key];
+	}
+};
+// 已安排的课程资源
+var workingInfoMap = {
+	getValidObject : function(key) {
+		var o = workingInfoMap[''+key];
+		if(undefined == o){
+			workingInfoMap[''+key] = {
+				courseMap : {},
+				staffMap : {},
+				roomMap : {},
+				classMap : {}
+			};
+		}
+		return workingInfoMap[''+key];
+	}
+};
 /**
- * 处理当前的课程信息
+ * 处理 课程数据
+ * @param {Object} courseList
+ * @param {Object} dayTimeOfCourse
+ * @param {Object} classOfCourse
  */
-var courseMapData = {};
-function checkCurrentCourseInfo(courseList, dayTimeOfCourse) {
+function checkCurrentCourseInfo(courseList, dayTimeOfCourse, classOfCourse) {
+	
+	
+	// 绘制课程映射图
 	$.each(courseList, function(index, cell) {
 		cell.dayTimeMap = {};
-		courseMapData[''+cell.id] = cell;
+		allCourseMap[''+cell.id] = cell;
 	});
+	// 将各个课程下的班级信息关联到相应的课程对象中
+	$.each(classOfCourse, function(index, cell){
+		var courseCell = allCourseMap[''+cell.courseId];
+		var t = courseCell.classList;
+		if (undefined == t) {
+			courseCell.classList = [];
+		}
+		courseCell.classList.push(cell.studentClassId);
+	});
+	// 进行当前状态下的 课程资源映射图（课程、教师、班级、教室、时间点）
 	$.each(dayTimeOfCourse, function(index, cell){
-		var target = course[''+cell.courseId];
+		var target = allCourseMap[''+cell.courseId];
+		var dtFlag = toDayTimeFlag(celll.weekDay, cell.workTime);
 		if (target != undefined) {
-			target.dayTimeMap['d'+cell.weekDay+'t'+cell.workTime] = true;
+			var t = workingInfoMap.getValidObject(dtFlag);
+			var x = disengagedInfoMap.getValidObject(dtFlag);
+			target.dayTimeMap[dtFlag] = t;
+			if (undefined != t.courseMap[''+cell.courseId]) {
+				console.warn('捕获到异常数据(课程重复):'+cell);
+			} else {
+				var courseCell = allCourseMap[''+cell.courseId];
+				var courseId = courseCell.courseId;
+				var staffId = courseCell.staffId;
+				var roomId = courseCell.classRoomId;
+				// 映射 时间点 -> 课程
+				t.courseMap[''+courseId] = courseCell;
+				if (undefined != t.staffMap[''+staffId]) {
+					console.warn('捕获到异常数据(教师冲突):'+staffId);
+				}
+				// 映射 时间点 -> 教师
+				t.staffMap[''+staffId] = courseCell;
+				if (undefined != t.roomMap[''+roomId]) {
+					console.warn('捕获到异常数据(教室冲突):'+roomId);
+				}
+				// 映射 时间点 -> 教室
+				t.roomMap[''+roomId] = courseCell;
+				// 映射 时间点 -> 班级
+				var classList = courseCell.classList;
+				if (undefined != classList) {
+					$.each(classList, function(index, cell) {
+						if (undefined != t.classMap[''+cell]) {
+							console.warn('捕获到异常数据(班级冲突):'+cell);
+						}
+						t.classMap[''+cell] = courseCell;
+					});
+				}
+			}
 		} else {
 			console.warn('捕获到异常[课程-时间安排]数据:'+cell);
 		}
 	});
 }
+
 
 
 

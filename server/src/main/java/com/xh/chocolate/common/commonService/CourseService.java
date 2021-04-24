@@ -57,6 +57,9 @@ public class CourseService {
         // 获取指定课程的时间安排
         List<DateTimeOfCourseEntity> dateTimeOfCourseEntityList = dateTimeOfCourseDao.getDateTimeOfCourseEntitiesByCourseIdIn(courseIds);
         data.put("currentCourseDayTimeInfo", dateTimeOfCourseEntityList);
+        // 获取知道课程的所以管理班级
+        List<ClassInCourseEntity> classInCourseEntityList = classInCourseDao.getClassInCourseEntitiesByCourseIdIn(courseIds);
+        data.put("currentCourseClassInfo", classInCourseEntityList);
         return data;
     }
 
