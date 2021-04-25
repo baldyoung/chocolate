@@ -104,6 +104,20 @@ var workingInfoMap = {
 		return workingInfoMap[''+key];
 	}
 };
+function checkSystemInfo(staffList, classList, roomList) {
+	$.each(staffList, function(index, cell){
+		cell.dayTimeMap = {};
+		allStaffMap[''+cell.id] = cell;
+	});
+	$.each(classList, function(index, cell){
+		cell.dayTimeMap = {};
+		allClassMap[''+cell.id] = cell;
+	});
+	$.each(roomList, function(index, cell){
+		cell.dayTimeMap = {};
+		allRoomMap[''+cell.id] = cell;
+	});
+}
 /**
  * 处理 课程数据
  * @param {Object} courseList
@@ -111,8 +125,7 @@ var workingInfoMap = {
  * @param {Object} classOfCourse
  */
 function checkCurrentCourseInfo(courseList, dayTimeOfCourse, classOfCourse) {
-	
-	
+	// --------------------------------------------------------------------
 	// 绘制课程映射图
 	$.each(courseList, function(index, cell) {
 		cell.dayTimeMap = {};
@@ -130,7 +143,7 @@ function checkCurrentCourseInfo(courseList, dayTimeOfCourse, classOfCourse) {
 	// 进行当前状态下的 课程资源映射图（课程、教师、班级、教室、时间点）
 	$.each(dayTimeOfCourse, function(index, cell){
 		var target = allCourseMap[''+cell.courseId];
-		var dtFlag = toDayTimeFlag(celll.weekDay, cell.workTime);
+		var dtFlag = toFlag(celll.weekDay, cell.workTime);
 		if (target != undefined) {
 			var t = workingInfoMap.getValidObject(dtFlag);
 			var x = disengagedInfoMap.getValidObject(dtFlag);
@@ -162,16 +175,45 @@ function checkCurrentCourseInfo(courseList, dayTimeOfCourse, classOfCourse) {
 							console.warn('捕获到异常数据(班级冲突):'+cell);
 						}
 						t.classMap[''+cell] = courseCell;
+						allClassMap[''+cell].dayTimeMap[dtFlag] = courseCell;
 					});
 				}
+				// --------------
+				allStaffMap[''+staffId].dayTimeMap[dtFlag] = courseCell;
+				allRoomMap[''+roomId].dayTimeMap[dtFlag] = courseCell;
 			}
 		} else {
 			console.warn('捕获到异常[课程-时间安排]数据:'+cell);
 		}
 	});
 }
-
-
+// 统计出空闲数据
+function filterDisengagedInfo(startDate, endDate) {
+	var data = {};
+	for(var d=1; d<=7; d++) {
+		for(var t=1; t<=5; t++) {
+			data[toFlag(d, t)] = {
+				staffList : [],
+				classList : [],
+				roomList : []
+			};
+			var temp = workingInfoMap[toFlag(d, t)];
+			for(var i in allStaffMap) {
+				var ac = true;
+				for(var k in temp.staffMap) {
+					if (i == k) {
+						ac = false;
+						break;
+					}
+				}
+				if (ac) {
+					data[toFlag(d, t)].staffList.push(i);
+				}
+			}
+		}
+	}
+	
+}
 
 
 
