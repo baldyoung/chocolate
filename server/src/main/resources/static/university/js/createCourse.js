@@ -198,21 +198,51 @@ function filterDisengagedInfo(startDate, endDate) {
 				roomList : []
 			};
 			var temp = workingInfoMap[toFlag(d, t)];
+			// 筛选出 空闲的教师
 			for(var i in allStaffMap) {
 				var ac = true;
 				for(var k in temp.staffMap) {
 					if (i == k) {
-						ac = false;
+						var course = temp.staffMap[k];
+						ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
 						break;
 					}
 				}
 				if (ac) {
-					data[toFlag(d, t)].staffList.push(i);
+					data[toFlag(d, t)].staffList.push(allStaffMap[i]);
+				}
+			}
+			// 筛选出 空闲的班级
+			for(var i in allClassMap) {
+				var ac = true;
+				for(var k in temp.classMap) {
+					if (i == k) {
+						var course = temp.classMap[k];
+						ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
+						break;
+					}
+				}
+				if (ac) {
+					data[toFlag(d, t)].classList.push(allClassMap[i]);
+				}
+			}
+			// 筛选出 空闲的教室
+			for(var i in allRoomMap) {
+				var ac = true;
+				for(var k in temp.roomMap) {
+					if (i == k) {
+						var course = temp.roomMap[k];
+						ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
+						break;
+					}
+				}
+				if (ac) {
+					data[toFlag(d, t)].roomList.push(allRoomMap[i]);
 				}
 			}
 		}
 	}
-	
+	return data;
 }
 
 
