@@ -5,9 +5,14 @@ var disengagedInfoBuffer; // 要改名字！！！
 $(function() {
 	currentSelectDayTime = localStorage.getItem("currentSelectDayTime");
 	currentSelectDayTime = JSON.parse(currentSelectDayTime);
-	console.log("ss");
-	console.log(currentSelectDayTime);
+	
 	disengagedInfoBuffer = getDisengagedInfo(currentSelectDayTime.startDate); 
+	console.log(disengagedInfoBuffer);
+	classModule.init(disengagedInfoBuffer.studentClassInfo);
+	roomModule.init(disengagedInfoBuffer.classRoomInfo);
+	
+	
+	
 	//日期范围限制
 	var start = {
 		elem: '#startDate',
@@ -36,9 +41,9 @@ $(function() {
 	laydate(end);
 	
 	// ----------------
-	classModule.init();
+	//classModule.init();
 	subjectModule.init();
-	roomModule.init();
+	//roomModule.init();
 });
 function getDisengagedInfo(startDate) {
 	var result;
@@ -67,9 +72,47 @@ function getDisengagedInfo(startDate) {
 	});
 	return result;
 }
+//
+function getCourseEditInfo() {
+	var data = {
+		
+	};
+	return 0;
+}
+// 加载班级列表
+function loadClassSelectArea(classList) {
+	
+}
+// 加载学科列表
+// 加载教室列表
+// 加载教师列表
+
+
+
 function toFlag(d, t) {
 	return "d" + d + "t" + t;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var allStaffMap = {};
 var allClassMap = {};
 var allRoomMap = {};
@@ -200,11 +243,12 @@ function filterDisengagedInfo(startDate, endDate) {
 			var temp = workingInfoMap[toFlag(d, t)];
 			// 筛选出 空闲的教师
 			for(var i in allStaffMap) {
-				var ac = true;
+				var ac = true; 
 				for(var k in temp.staffMap) {
 					if (i == k) {
 						var course = temp.staffMap[k];
-						ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
+						ac = false;
+						//ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
 						break;
 					}
 				}
@@ -218,7 +262,8 @@ function filterDisengagedInfo(startDate, endDate) {
 				for(var k in temp.classMap) {
 					if (i == k) {
 						var course = temp.classMap[k];
-						ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
+						ac = false;
+						//ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
 						break;
 					}
 				}
@@ -232,7 +277,8 @@ function filterDisengagedInfo(startDate, endDate) {
 				for(var k in temp.roomMap) {
 					if (i == k) {
 						var course = temp.roomMap[k];
-						ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
+						ac = false;
+						//ac = (course.startDateTimeInFact <= startDate && course.endDateTimeInFact >= startDate) ? false : true;
 						break;
 					}
 				}
@@ -248,15 +294,20 @@ function filterDisengagedInfo(startDate, endDate) {
 
 
 
-
+//
 // 班级模块
 var classModule = {
 	classData : [],
-	init : function() {
-		classModule.requestAndLoadClassData();
+	init : function(classList) {
+		$.each(classList, function(index, cell) {
+			cell.classId = cell.id;
+			cell.currentStudentNumber = cell.currentStudentAmount;
+		});
+		classModule.classData = classList;
+		classModule.loadClassSelectArea(classList);
 	},
-	requestAndLoadClassData : function() {
-		var data = [{
+	loadClassSelectArea : function(data) {
+		data = [{
 				classId : '10011',
 				className : '软开APP2001',
 				currentStudentNumber : 37,
@@ -412,11 +463,17 @@ var subjectModule = {
 var roomModule = {
 	roomData : [],
 	selectedCell : undefined,
-	init : function() {
-		roomModule.requestAndLoadRoomModuleData();
+	init : function(roomList) {
+		$(roomList, function(index, cell){
+			cell.roomName = cell.classRoomName;
+			cell.roomCapacity = cell.standardPeopleAmount;
+			cell.roomId = cell.id;
+		});
+		roomList = roomModule.roomData;
+		roomModule.loadRoomSelectArea(roomList);
 	},
-	requestAndLoadRoomModuleData : function() {
-		var data = [{
+	loadRoomSelectArea : function(data) {
+		data = [{
 				roomName : '教学楼402',
 				roomCapacity : 50,
 			},{
