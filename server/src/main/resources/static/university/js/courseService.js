@@ -35,10 +35,32 @@ var workingCourseMap = {
 		return workingCourseMap[key];
 	}
 };
+// 空闲数据资源映射表
+var disengagedDataMap = {
+	reset : function() {
+		for(var d=1; d<=7; d++) {
+			for(var t=1; t<=5; t++) {
+				delete disengagedDataMap[dtFlag(d, t)];
+			}
+		}
+	},
+	getValidObject : function(key) {
+		var o = disengagedDataMap[key];
+		if(undefined == o){
+			disengagedDataMap[key] = {
+				staffList : [],
+				roomList : [],
+				classList : []
+			};
+		}
+		return disengagedDataMap[key];
+	}
+}
 // 服务初始化
 $(function(){
 	requestData();
 	calculateStaticData();
+	//calculateStaticData();
 	
 	
 });
@@ -178,8 +200,53 @@ function drawCourseMap(dayTimeOfCourse) {
 	});
 }
 
+// 统计出 指定周的 空闲课程资源，将其处理成特定的映射表
+function drawDisengagedDataMap(workingDataMap) {
+	disengagedDataMap.reset();
+	for(var d=1; d<=7; d++) {
+		for(var t=1; t<=5; t++) {
+			var dtFlag = toFlag(d, t);
+			var timeNode = disengagedDataMap.getValidObject(dtFlag);
+			// 统计空闲 老师
+			var workingStaffMap = workingDataMap[dtFlag].staffMap;
+			for(var staffId in allStaffMap) {
+				if (undefined == workingStaffMap[staffId]) {
+					timeNode.staffList.push(allStaffMap[staffId]);
+				}
+			}
+			// 统计空闲 班级
+			var workingClassMap = workingDataMap[dtFlag].classMap;
+			for(var classId in allClassMap) {
+				if (undefined == workingClassMap[classId]) {
+					timeNode.classList.push(allClassMap[classId]);
+				}
+			}
+			// 统计空闲教室
+			var workingRoomMap = workingDataMap[dtFlag].roomMap;
+			for(var roomId in allRoomMap) {
+				if (undefined == workingRoomMap[roomId]) {
+					timeNode.roomList.push(allRoomMap[roomId]);
+				}
+			}
+		}
+	}
+	return disengagedDataMap;
+}
 
-
+// 获取指定日期后，指定时间点下都空闲的资源（需要业务逻辑上实现：对当前预创建的新课程与后面计划中的课程进行冲突检查！！！）
+function getTargetDisengagedDataMap(startDate, dayTimeList) {
+	loadTargetData(startDate);
+	drawDisengagedDataMap(workingCourseMap);
+	var result = {
+		};
+	var staffList = [];
+	var classList = [];
+	var roomList = [];
+	$.each(dayTimeList, function(index, cell){
+		var dtFlag = toFlag(cell.day, cell.time);
+		
+	});
+}
 
 
 
