@@ -59,6 +59,31 @@ function getQueryVariable(variable) {
 	return undefined;
 }
 
+// 获取指定周的日期情况（参数weekIndex默认为零，代表当前所在周）
+function getTargetWeekDays(weekIndex) {
+	if (weekIndex == undefined) {
+		weekIndex = 0;
+	}
+	var a = new Date(new Date().valueOf() + (weekIndex * 7 * 24 * 60 * 60 * 1000));
+	var theWeekMonday = a.getDay();
+	theWeekMonday = theWeekMonday == 0 ? 7 : theWeekMonday;
+	theWeekMonday -= 1;
+	console.log(theWeekMonday);
+	theWeekMonday = a.valueOf() - theWeekMonday * 24 * 60 * 60 * 1000;
+	theWeekMonday = new Date(theWeekMonday);
+	var result = [];
+	for (var i = 0; i < 7; i++) {
+		result[i] = new Date(theWeekMonday.valueOf() + (i * 24 * 60 * 60 * 1000));
+		var temp = result[i].getMonth() + 1;
+		temp = temp < 9 ? ("0"+temp) : temp;
+		var temp2 = result[i].getDate();
+		temp2 = temp2 < 9 ? ("0"+temp2) : temp2;
+		result[i].formatDateString = result[i].getFullYear() + "-" + temp + "-" + temp2;
+		result[i].timeValue = result[i]..valueOf();
+	}
+	return result;
+}
+
 
 $(function() {
 	// 同步URL中的父级样式
