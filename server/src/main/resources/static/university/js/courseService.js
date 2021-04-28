@@ -112,10 +112,6 @@ function calculateStaticData() {
 	$.each(allDataBuffer.allStaffList, function(index, cell){
 		allStaffMap[cell.id] = cell;
 	});
-	allClassMap = {};
-	$.each(allDataBuffer.allClassList, function(index, cell){
-		allClassMap[cell.id] = cell;
-	});
 	allRoomMap = {};
 	$.each(allDataBuffer.allRoomList, function(index, cell){
 		allRoomMap[cell.id] = cell;
@@ -123,16 +119,27 @@ function calculateStaticData() {
 	allSpecialtyMap = {};
 	$.each(allDataBuffer.allSpecialtyList, function(index, cell){
 		allSpecialtyMap[cell.id] = cell;
+		cell.subjectList = [];
 	});
 	allSubjectMap = {};
 	$.each(allDataBuffer.allSubjectList, function(index, cell){
 		allSubjectMap[cell.id] = cell;
 	});
+	$.each(allDataBuffer.allSpecialtyPlanList, function(index, cell){
+		allSpecialtyMap[cell.specialtyId].subjectList.push(allSubjectMap[cell.subjectId]);
+	}
 	allCourseMap = {};
 	$.each(allDataBuffer.allCourseList, function(index, cell){
 		allCourseMap[cell.id] = cell;
 		cell.classList = [];
 	});
+	allClassMap = {};
+	$.each(allDataBuffer.allClassList, function(index, cell){
+		allClassMap[cell.id] = cell;
+		cell.specialty = allSpecialtyMap[cell.specialtyId];
+		// 已授课程列表如何获取？！！！
+	});
+	
 	$.each(allDataBuffer.classOfCourse, function(index, cell){
 		var t = allCourseMap[cell.courseId];
 		var k = allClassMap[cell.studentClassId];
@@ -237,18 +244,50 @@ function drawDisengagedDataMap(workingDataMap) {
 function getTargetDisengagedDataMap(startDate, dayTimeList) {
 	loadTargetData(startDate);
 	drawDisengagedDataMap(workingCourseMap);
-	var result = {
-		};
-	var staffList = [];
-	var classList = [];
-	var roomList = [];
+	var staffMap = {};
+	var classMap = {};
+	var roomMap = {};
+	for(var id in allStaffMap) {
+		staffMap[id] = allStaffMap[id];
+	}
+	for(var id in allClassMap) {
+		classMap[id] = allClassMap[id];
+	}
+	for(var id in allRoomMap) {
+		roomMap[id] = allRoomMap[id];
+	}
 	$.each(dayTimeList, function(index, cell){
 		var dtFlag = toFlag(cell.day, cell.time);
-		
+		var timeNode = workingCourseMap[dtFlag];
+		for(var staffId in timeNode.staffMap) {
+			delete staffMap[staffId];
+		}
+		for(var classId in timeNode.classMap) {
+			delete classMap[classId];
+		}
+		for(var roomId in timeNode.roomMap) {
+			delete roomMap[roomId];
+		}
 	});
+	var result = {
+		staffList:[],
+		classList:[],
+		roomList:[],
+	};
+	for(var id in staffMap) {
+		result.staffList.push(staffMap[id]);
+	}
+	for(var id in classMap) {
+		result.classList.push(classMap[id]);
+	}
+	for(var id in roomMap) {
+		result.roomList.push(roomMap[id]);
+	}
+	return result;
 }
 
-
+// 获取指定班级下 都 还未教授的课程
+//function get
 
 
 
