@@ -286,8 +286,35 @@ function getTargetDisengagedDataMap(startDate, dayTimeList) {
 	return result;
 }
 
-// 获取指定班级下 都 还未教授的课程
-//function get
+// ----------------------------------------------------------------
+// 获取指定班级 已经完成的课程
+function getCompletedSubjectForClass(classIdList) {
+	/*
+		{
+			classId : {
+						subjectId : course
+					}
+		}
+	*/
+	return {};
+}
+var completedSubjectMap = {};
+// 获取指定班级 未完成的课程
+function getUncompletedSubjectForClass(classIdList) {
+	var result = {};
+	$.each(classList, function(index, classId){
+		var temp = {};
+		var subjectList = allClassMap[classId].specialty.subjectList;
+		$.each(subjectList, function(index, subject) {
+			temp[subject.id] = true;
+		});
+		var currentClassCompletedSubjectMap = completedSubjectMap[classId];
+		for(var subjectId in currentClassCompletedSubjectMap) {
+			delete temp[subjectId];
+		}
+	});
+}
+
 
 
 
