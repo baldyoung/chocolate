@@ -301,18 +301,34 @@ function getCompletedSubjectForClass(classIdList) {
 var completedSubjectMap = {};
 // 获取指定班级 未完成的课程
 function getUncompletedSubjectForClass(classIdList) {
-	var result = {};
-	$.each(classList, function(index, classId){
-		var temp = {};
+	var result = [];
+	var intersection = {};
+	// 获取给定班级都要上的课（取交集）
+	$.each(classIdList, function(index, classId){
 		var subjectList = allClassMap[classId].specialty.subjectList;
 		$.each(subjectList, function(index, subject) {
-			temp[subject.id] = true;
+			if(intersection[subject.id] == undefined) {
+				intersection[subject.id] = 0;
+			} else {
+				intersection[subject.id] += 1;
+			}
 		});
-		var currentClassCompletedSubjectMap = completedSubjectMap[classId];
-		for(var subjectId in currentClassCompletedSubjectMap) {
-			delete temp[subjectId];
-		}
 	});
+	for(var subjectId in intersection) {
+		if (intersection[subjectId] < classIdList.length) {
+			delete intersection[subjectId];
+		}
+	}
+	// 过滤掉交集中已经完成的学科
+	var currentClassCompletedSubjectMap = completedSubjectMap[classId];
+	for(var subjectId in currentClassCompletedSubjectMap) {
+		delete intersection[subjectId];
+	}
+	// 将交集对象转换为集合
+	for(var subjectId in intersection) {
+		result.push(allSubjectMap[subjectId]);
+	}
+	return result;
 }
 
 
