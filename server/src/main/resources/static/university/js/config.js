@@ -1,5 +1,5 @@
 var XConfig = {
-	serverAddress: 'http://localhost:8080/'
+serverAddress: 'http://192.168.9.233:8080/',
 }
 
 function noUndefined(o) {
@@ -79,7 +79,7 @@ function getTargetWeekDays(weekIndex) {
 		var temp2 = result[i].getDate();
 		temp2 = temp2 < 9 ? ("0"+temp2) : temp2;
 		result[i].formatDateString = result[i].getFullYear() + "-" + temp + "-" + temp2;
-		result[i].timeValue = result[i]..valueOf();
+		result[i].timeValue = result[i].valueOf();
 	}
 	return result;
 }
