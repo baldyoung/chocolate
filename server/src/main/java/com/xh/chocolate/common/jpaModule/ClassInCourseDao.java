@@ -19,4 +19,6 @@ public interface ClassInCourseDao  extends JpaRepository<ClassInCourseEntity, In
     void deleteByCourseId(Integer courseId);
 
     void deleteByStudentClassId(Integer studentClassId);
+
+    List<ClassInCourseEntity> getClassInCourseEntitiesByStudentClassIdIn(List<Integer> classIdList);
 }

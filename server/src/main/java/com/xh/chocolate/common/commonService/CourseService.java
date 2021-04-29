@@ -96,4 +96,26 @@ public class CourseService {
         dateTimeOfCourseDao.deleteByCourseId(courseId);
     }
 
+    // 获取给定班级所有完成的学科
+    public List<Map> getCompletedCourseForClassList(List<Integer> classIdList) throws ServiceException {
+        if (isEmpty(classIdList)) {
+            throw new ServiceException("...");
+        }
+        // 获取给定班级所有的班级课程关联记录
+        List<ClassInCourseEntity> classInCourseEntityList = classInCourseDao.getClassInCourseEntitiesByStudentClassIdIn(classIdList);
+        // 获取与关联记录相关的课程
+        Set<Integer> courseIdSet = new HashSet();
+        classInCourseEntityList.forEach(cell->{
+            courseIdSet.add(cell.getStudentClassId());
+        });
+        List<Integer> courseIdList = new ArrayList(courseIdSet);
+        List<CourseInfoEntity> courseInfoEntityList;
+        if (isEmpty(courseIdList)){
+            courseInfoEntityList = courseInfoDao.getCourseInfoEntitiesByIdIn(courseIdList);
+        }
+        
+        return null;
+    }
+
+
 }

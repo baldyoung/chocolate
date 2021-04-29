@@ -20,4 +20,6 @@ public interface CourseInfoDao extends JpaRepository<CourseInfoEntity, Integer> 
 
     List<CourseInfoEntity> getCourseInfoEntitiesByEndDateTimeInFactAfter(Date date);
 
+    List<CourseInfoEntity> getCourseInfoEntitiesByIdIn(List<Integer> idList);
+
 }
