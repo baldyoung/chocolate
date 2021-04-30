@@ -289,18 +289,49 @@ function getTargetDisengagedDataMap(startDate, dayTimeList) {
 // ----------------------------------------------------------------
 // 获取指定班级 已经完成的课程
 function getCompletedSubjectForClass(classIdList) {
-	/*
-		{
-			classId : {
-						subjectId : course
-					}
+	var result = {};
+	$.ajax({
+		url: XConfig.serverAddress + "courseInfo/completedCourseInfo",
+		type: 'POST',
+		cache: false,
+		dataType: 'json',
+		async: false, //设置同步
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(classIdList)
+		success: function(data) {
+			if (data.code == 0) {
+				var targetData = data.data;
+				var tempCourseMap = {};
+				$.each(targetData.courseList, function(index, cell) {
+					tempCourseMap[cell.id] = cell;
+				});
+				var tempClassMap = {};
+				$.each(targetData.classInCourseList, function(index, cell) {
+					var temp = tempClassMap[cell.studentClassId];
+					var course = tempCourseMap[cell.courseId];
+					if (undefined == temp) {
+						temp = {};
+						tempClassMap[cell.studentClassId] = temp;
+					} 
+					temp[course.subjectId] = course;
+				});
+				resutl = tempClassMap;
+			} else {
+				//swal('获取数据失败', data.desc, 'error');
+				alert('操作失败\n'+data.desc);
+			}
+		},
+		error: function() {
+			//swal('服务器连接失败', '请检查网络是否通畅', 'warning');
+			alert('服务器连接失败');
 		}
-	*/
-	return {};
+	});
+	return result;
 }
 var completedSubjectMap = {};
 // 获取指定班级 未完成的课程
 function getUncompletedSubjectForClass(classIdList) {
+	completedSubjectMap = getCompletedSubjectForClass(classIdList);
 	var result = [];
 	var intersection = {};
 	// 获取给定班级都要上的课（取交集）

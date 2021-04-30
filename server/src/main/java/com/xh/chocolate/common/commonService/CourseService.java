@@ -97,24 +97,25 @@ public class CourseService {
     }
 
     // 获取给定班级所有完成的学科
-    public List<Map> getCompletedCourseForClassList(List<Integer> classIdList) throws ServiceException {
+    public Map getCompletedCourseForClassList(List<Integer> classIdList) throws ServiceException {
         if (isEmpty(classIdList)) {
             throw new ServiceException("...");
         }
+        Map result = new HashMap();
         // 获取给定班级所有的班级课程关联记录
         List<ClassInCourseEntity> classInCourseEntityList = classInCourseDao.getClassInCourseEntitiesByStudentClassIdIn(classIdList);
+        result.put("classInCourseList", classInCourseEntityList);
         // 获取与关联记录相关的课程
-        Set<Integer> courseIdSet = new HashSet();
-        classInCourseEntityList.forEach(cell->{
-            courseIdSet.add(cell.getStudentClassId());
-        });
-        List<Integer> courseIdList = new ArrayList(courseIdSet);
-        List<CourseInfoEntity> courseInfoEntityList;
-        if (isEmpty(courseIdList)){
-            courseInfoEntityList = courseInfoDao.getCourseInfoEntitiesByIdIn(courseIdList);
+        if (!isEmpty(classInCourseEntityList)) {
+            Set<Integer> courseIdSet = new HashSet();
+            classInCourseEntityList.forEach(cell -> {
+                courseIdSet.add(cell.getStudentClassId());
+            });
+            List<Integer> courseIdList = new ArrayList(courseIdSet);
+            List<CourseInfoEntity> courseInfoEntityList = courseInfoDao.getCourseInfoEntitiesByIdIn(courseIdList);
+            result.put("courseList", courseInfoEntityList);
         }
-        
-        return null;
+        return result;
     }
 
 

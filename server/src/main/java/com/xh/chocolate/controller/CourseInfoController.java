@@ -130,6 +130,17 @@ public class CourseInfoController {
         return success();
     }
 
+    /**
+     *
+     * @param classIdList
+     * @return
+     * @throws ServiceException
+     */
+    @PostMapping("completedCourseInfo")
+    public ResponseResult getCompletedCourseInfo(@RequestBody List<Integer> classIdList) throws ServiceException {
+        return success(courseService.getCompletedCourseForClassList(classIdList));
+    }
+
 
 
 }
