@@ -19,7 +19,9 @@ var workingCourseMap = {
 	reset : function() {
 		for(var d=1; d<=7; d++) {
 			for(var t=1; t<=5; t++) {
-				delete workingCourseMap[dtFlag(d, t)];
+				var flag = toFlag(d, t);
+				delete workingCourseMap[flag];
+				workingCourseMap.getValidObject(flag);
 			}
 		}
 	},
@@ -29,7 +31,8 @@ var workingCourseMap = {
 			workingCourseMap[key] = {
 				staffMap : {},
 				roomMap : {},
-				classMap : {}
+				classMap : {},
+				courseMap : {}
 			};
 		}
 		return workingCourseMap[key];
@@ -40,7 +43,9 @@ var disengagedDataMap = {
 	reset : function() {
 		for(var d=1; d<=7; d++) {
 			for(var t=1; t<=5; t++) {
-				delete disengagedDataMap[dtFlag(d, t)];
+				var flag = toFlag(d, t);
+				delete disengagedDataMap[flag];
+				disengagedDataMap.getValidObject(flag);
 			}
 		}
 	},
@@ -58,15 +63,17 @@ var disengagedDataMap = {
 }
 // 服务初始化
 $(function(){
-	requestData();
+	var t = getTargetWeekDays();
+	requestData(t[0].formatDateString);
 	calculateStaticData();
-	//calculateStaticData();
-	
-	
 });
 
+function toFlag(day, time) {
+	return "d"+day+"t"+time;
+}
+
 // 获取课程服务的主数据(获取当前10周内的所有课程)
-function requestData() {
+function requestData(startDate) {
 	var result;
 	$.ajax({
 		url: XConfig.serverAddress + "courseInfo/disengagedInfo/startDate=" + startDate,
@@ -82,6 +89,7 @@ function requestData() {
 				var targetData = data.data;
 				result = targetData;
 				allDataBuffer = result;
+				
 			} else {
 				//swal('获取数据失败', data.desc, 'error');
 				alert('操作失败\n'+data.desc);
@@ -95,11 +103,14 @@ function requestData() {
 	return result;
 }
 // 获取指定周的所有课程相关数据
-function loadTargetData(startDate, endDate) {
+function loadTargetData(startDate) {
 	var targetDayTimeOfCourse = [];
-	$.each(allDataBuffer, function(index, record) {
+	$.each(allDataBuffer.currentCourseDayTimeInfo, function(index, record) {
 		var course = allCourseMap[record.courseId];
-		if (course.startDate <= startDate && startDate <= course.endDate) {
+		if (course == undefined) {
+			return;
+		}
+		if (course.startDate.valueOf() <= startDate && startDate <= course.endDate.valueOf()) {
 			targetDayTimeOfCourse.push(record);
 		}
 	});
@@ -111,10 +122,12 @@ function calculateStaticData() {
 	allStaffMap = {};
 	$.each(allDataBuffer.allStaffList, function(index, cell){
 		allStaffMap[cell.id] = cell;
+		cell.dayTimeMap = {};
 	});
 	allRoomMap = {};
 	$.each(allDataBuffer.allRoomList, function(index, cell){
 		allRoomMap[cell.id] = cell;
+		cell.dayTimeMap = {};
 	});
 	allSpecialtyMap = {};
 	$.each(allDataBuffer.allSpecialtyList, function(index, cell){
@@ -126,18 +139,29 @@ function calculateStaticData() {
 		allSubjectMap[cell.id] = cell;
 	});
 	$.each(allDataBuffer.allSpecialtyPlanList, function(index, cell){
-		allSpecialtyMap[cell.specialtyId].subjectList.push(allSubjectMap[cell.subjectId]);
-	}
+		if (undefined == allSpecialtyMap[cell.specialtyId]) {
+			console.warn("检测到脏数据(无法匹配到的专业计划记录)");
+		} else {
+			allSpecialtyMap[cell.specialtyId].subjectList.push(allSubjectMap[cell.subjectId]);
+		}
+	});
 	allCourseMap = {};
 	$.each(allDataBuffer.allCourseList, function(index, cell){
 		allCourseMap[cell.id] = cell;
 		cell.classList = [];
+		cell.startDateTimeInPlan = new Date(cell.startDateTimeInPlan);
+		cell.endDateTimeInPlan = new Date(cell.endDateTimeInPlan);
+		cell.startDateTimeInFact = new Date(cell.startDateTimeInFact);
+		cell.endDateTimeInFact = new Date(cell.endDateTimeInFact);
+		cell.startDate = cell.startDateTimeInFact.valueOf();
+		cell.endDate = cell.endDateTimeInFact.valueOf();
+		cell.dayTimeMap = {};
 	});
 	allClassMap = {};
 	$.each(allDataBuffer.allClassList, function(index, cell){
 		allClassMap[cell.id] = cell;
 		cell.specialty = allSpecialtyMap[cell.specialtyId];
-		// 已授课程列表如何获取？！！！
+		cell.dayTimeMap = {};
 	});
 	
 	$.each(allDataBuffer.classOfCourse, function(index, cell){
@@ -177,23 +201,25 @@ function drawCourseMap(dayTimeOfCourse) {
 				if (undefined != timeNode.staffMap[''+staffId]) {
 					console.warn('捕获到异常数据(教师冲突):'+staffId);
 				}
-				t.staffMap[staffId] = course;
+				timeNode.staffMap[staffId] = course;
 				// 映射 时间点 -> 教室
-				if (undefined != t.roomMap[roomId]) {
+				if (undefined != timeNode.roomMap[roomId]) {
 					console.warn('捕获到异常数据(教室冲突):'+roomId);
 				}
-				t.roomMap[roomId] = course;
+				timeNode.roomMap[roomId] = course;
 				// 映射 时间点 -> 班级
 				var classList = course.classList;
 				if (undefined != classList) {
 					$.each(classList, function(index, classIdCell) {
-						if (undefined != timeNode.classMap[classIdCell]) {
-							console.warn('捕获到异常数据(班级冲突):'+classIdCell);
+						if (undefined != timeNode.classMap[classIdCell.id]) {
+							console.warn('捕获到异常数据(班级冲突):'+classIdCell.id);
 						}
 						// 在指定时间节点 添加班级映射
-						timeNode.classMap[classIdCell] = course;
-						// 在班级图谱的班级节点下 添加时间节点的映射
-						allClassMap[classIdCell].dayTimeMap[dtFlag] = course;
+						timeNode.classMap[classIdCell.id] = course;
+						// 在班级图谱的班级节点下 添加时间节点的映射 
+						console.log("kkk:");
+						console.log(allClassMap[classIdCell.id]);
+						allClassMap[classIdCell.id].dayTimeMap[dtFlag] = course;
 					});
 				}
 				// 更新教师图谱下的相应时间节点
@@ -214,6 +240,7 @@ function drawDisengagedDataMap(workingDataMap) {
 		for(var t=1; t<=5; t++) {
 			var dtFlag = toFlag(d, t);
 			var timeNode = disengagedDataMap.getValidObject(dtFlag);
+			
 			// 统计空闲 老师
 			var workingStaffMap = workingDataMap[dtFlag].staffMap;
 			for(var staffId in allStaffMap) {
@@ -242,8 +269,10 @@ function drawDisengagedDataMap(workingDataMap) {
 
 // 获取指定日期后，指定时间点下都空闲的资源（需要业务逻辑上实现：对当前预创建的新课程与后面计划中的课程进行冲突检查！！！）
 function getTargetDisengagedDataMap(startDate, dayTimeList) {
+	console.log("startDate:"+startDate);
 	loadTargetData(startDate);
 	drawDisengagedDataMap(workingCourseMap);
+	
 	var staffMap = {};
 	var classMap = {};
 	var roomMap = {};
@@ -259,6 +288,10 @@ function getTargetDisengagedDataMap(startDate, dayTimeList) {
 	$.each(dayTimeList, function(index, cell){
 		var dtFlag = toFlag(cell.day, cell.time);
 		var timeNode = workingCourseMap[dtFlag];
+		if (undefined == timeNode) {
+			console.warn("异常node:"+dtFlag);
+			return;
+		}
 		for(var staffId in timeNode.staffMap) {
 			delete staffMap[staffId];
 		}
@@ -297,7 +330,7 @@ function getCompletedSubjectForClass(classIdList) {
 		dataType: 'json',
 		async: false, //设置同步
 		contentType: "application/json; charset=utf-8",
-		data: JSON.stringify(classIdList)
+		data: JSON.stringify(classIdList),
 		success: function(data) {
 			if (data.code == 0) {
 				var targetData = data.data;

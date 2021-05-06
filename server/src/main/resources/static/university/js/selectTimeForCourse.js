@@ -4,36 +4,7 @@
 var currentWeekDataBuffer = [];
 
 
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
-	console.log(getTargetWeekDays());
-	for (var i = 1; i <= 5; i++) {
-		for (var j = 1; j <= 7; j++) {
-			var timeTipCellHtml = '<div dayId="'+i+'" timeId="'+j+'" class="timeCellOption" id="timeCellOption' + j + i + '" style="">' +
-				'<button type="button" class="btn btn-w-m btn-danger">空闲班级 13</button>' +
-				'<button type="button" class="btn btn-w-m btn-primary">空闲教师 10</button>' +
-				'<button type="button" class="btn btn-w-m btn-info">空闲教室 120</button>' +
-				'</div>';
-			$('#timeCell' + j + i).html(timeTipCellHtml);
-		}
-	}
-	$('.timeCellOption').on('click', function() {
-		var target = $(this);
-		if (target.is('.timeCellOption-selected')) {
-			target.removeClass('timeCellOption-selected');
-		} else {
-			target.addClass('timeCellOption-selected');
-		}
-	});
 	var slider2 = document.getElementById('basic_slider');
 	noUiSlider.create(slider2, {
 		range: {
@@ -65,9 +36,40 @@ $(document).ready(function() {
 			}
 			$('#weekDayDate' + i).html(temp);
 		}
+		refreshCourseInfo();
 	});
 });
 
+function refreshCourseInfo() {
+	var startDate = currentWeekDataBuffer[0].valueOf();
+	for (var i = 1; i <= 5; i++) {
+		for (var j = 1; j <= 7; j++) {
+			var dayTimeCell = {
+				day : j,
+				time : i
+			};
+			var list = [dayTimeCell];
+			var result = getTargetDisengagedDataMap(startDate, list);
+			var timeTipCellHtml = '<div dayId="'+i+'" timeId="'+j+'" class="timeCellOption" id="timeCellOption' + j + i + '" style="">' +
+				'<button type="button" class="btn btn-w-m btn-danger">空闲班级 '+ result.classList.length + '</button>' +
+				'<button type="button" class="btn btn-w-m btn-primary">空闲教师 '+ result.staffList.length + '</button>' +
+				'<button type="button" class="btn btn-w-m btn-info">空闲教室 '+ result.roomList.length + '</button>' +
+				'</div>';
+			$('#timeCell' + j + i).html(timeTipCellHtml);
+		}
+	}
+	$('.timeCellOption').off('click');
+	$('.timeCellOption').on('click', function() {
+		var target = $(this);
+		if (target.is('.timeCellOption-selected')) {
+			target.removeClass('timeCellOption-selected');
+		} else {
+			target.addClass('timeCellOption-selected');
+		}
+	});
+}
+
+// 获取当前选中的所有时间节点
 function getCurrentSelectedDayTime() {
 	var cellList = $('.timeCellOption');
 	var list = [];
@@ -82,7 +84,7 @@ function getCurrentSelectedDayTime() {
 	});
 	return list;
 }
-
+// 获取当前选中的时间数据
 function getCurrentSelectedResult() {
 	var result = {
 		startDate : currentWeekDataBuffer[0].formatDateString,
@@ -90,8 +92,7 @@ function getCurrentSelectedResult() {
 	};
 	return result;
 }
-
-
+// 准备进行下一步 创建课程操作
 function readyToNextOption() {
 	var t = getCurrentSelectedResult();
 	//document.cookie = "test="+JSON.stringify(t);

@@ -68,7 +68,6 @@ function getTargetWeekDays(weekIndex) {
 	var theWeekMonday = a.getDay();
 	theWeekMonday = theWeekMonday == 0 ? 7 : theWeekMonday;
 	theWeekMonday -= 1;
-	console.log(theWeekMonday);
 	theWeekMonday = a.valueOf() - theWeekMonday * 24 * 60 * 60 * 1000;
 	theWeekMonday = new Date(theWeekMonday);
 	var result = [];

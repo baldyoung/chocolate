@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.security.auth.Subject;
 import java.util.*;
 
 import static com.xh.chocolate.common.utils.CommentUntil.isEmpty;
@@ -24,6 +25,14 @@ public class CourseService {
     @Autowired
     private DateTimeOfCourseDao dateTimeOfCourseDao;
 
+    @Autowired
+    private SpecialtyDao specialtyDao;
+
+    @Autowired
+    private SpecialtyPlanDetailDao specialtyPlanDetailDao;
+
+    @Autowired
+    private SubjectDao subjectDao;
 
     @Autowired
     private StaffInfoDao staffInfoDao;
@@ -39,13 +48,29 @@ public class CourseService {
         Map data = new HashMap();
         // 获取所有的教师信息
         List<StaffInfoEntity> staffInfoEntityList = staffInfoDao.findAll();
-        data.put("staffInfo", staffInfoEntityList);
+        data.put("allStaffList", staffInfoEntityList);
         // 获取所有的班级信息
         List<StudentClassEntity> studentClassEntityList = studentClassDao.findAll();
-        data.put("studentClassInfo", studentClassEntityList);
+        data.put("allClassList", studentClassEntityList);
         // 获取所有的教室信息
         List<StudentClassRoomEntity> studentClassRoomEntityList = studentClassRoomDao.findAll();
-        data.put("classRoomInfo", studentClassRoomEntityList);
+        data.put("allRoomList", studentClassRoomEntityList);
+        // 获取所有的专业信息
+        List<SpecialtyEntity> specialtyEntityList = specialtyDao.findAll();
+        data.put("allSpecialtyList", specialtyEntityList);
+        // 获取专业计划详情信息
+        List<SpecialtyPlanDetailEntity> specialtyPlanDetailEntityList = specialtyPlanDetailDao.findAll();
+        data.put("allSpecialtyPlanList", specialtyPlanDetailEntityList);
+        // 获取所有的 学科信息
+        List<SubjectEntity> subjectEntityList = subjectDao.findAll();
+        data.put("allSubjectList", subjectEntityList);
+        // 获取所有的 课程信息
+        List<CourseInfoEntity> allCourseInfoEntityList = courseInfoDao.findAll();
+        data.put("allCourseList", allCourseInfoEntityList);
+        // 获取所有课程的关联 班级
+        List<ClassInCourseEntity> allClassInCourseEntityList = classInCourseDao.findAll();
+        data.put("classOfCourse", allClassInCourseEntityList);
+
         // 获取所有当前所有还未结课的课程（包括还没开始上课的课程）
         List<CourseInfoEntity> courseInfoEntityList = courseInfoDao.getCourseInfoEntitiesByEndDateTimeInFactAfter(date);
         if(null == courseInfoEntityList || 0 == courseInfoEntityList.size()) {
