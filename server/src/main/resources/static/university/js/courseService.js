@@ -217,8 +217,8 @@ function drawCourseMap(dayTimeOfCourse) {
 						// 在指定时间节点 添加班级映射
 						timeNode.classMap[classIdCell.id] = course;
 						// 在班级图谱的班级节点下 添加时间节点的映射 
-						console.log("kkk:");
-						console.log(allClassMap[classIdCell.id]);
+						//console.log("kkk:");
+						//console.log(allClassMap[classIdCell.id]);
 						allClassMap[classIdCell.id].dayTimeMap[dtFlag] = course;
 					});
 				}
@@ -269,7 +269,6 @@ function drawDisengagedDataMap(workingDataMap) {
 
 // 获取指定日期后，指定时间点下都空闲的资源（需要业务逻辑上实现：对当前预创建的新课程与后面计划中的课程进行冲突检查！！！）
 function getTargetDisengagedDataMap(startDate, dayTimeList) {
-	console.log("startDate:"+startDate);
 	loadTargetData(startDate);
 	drawDisengagedDataMap(workingCourseMap);
 	

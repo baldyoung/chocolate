@@ -50,7 +50,7 @@ function refreshCourseInfo() {
 			};
 			var list = [dayTimeCell];
 			var result = getTargetDisengagedDataMap(startDate, list);
-			var timeTipCellHtml = '<div dayId="'+i+'" timeId="'+j+'" class="timeCellOption" id="timeCellOption' + j + i + '" style="">' +
+			var timeTipCellHtml = '<div dayId="'+j+'" timeId="'+i+'" class="timeCellOption" id="timeCellOption' + j + i + '" style="">' +
 				'<button type="button" class="btn btn-w-m btn-danger">空闲班级 '+ result.classList.length + '</button>' +
 				'<button type="button" class="btn btn-w-m btn-primary">空闲教师 '+ result.staffList.length + '</button>' +
 				'<button type="button" class="btn btn-w-m btn-info">空闲教室 '+ result.roomList.length + '</button>' +
@@ -77,8 +77,8 @@ function getCurrentSelectedDayTime() {
 		var temp = $(cell);
 		if (temp.is('.timeCellOption-selected')) {
 			list[list.length] = {
-				dayIndex : temp.attr('dayId'),
-				timeIndex : temp.attr('timeId')
+				day : temp.attr('dayId'),
+				time : temp.attr('timeId')
 			};
 		}
 	});
