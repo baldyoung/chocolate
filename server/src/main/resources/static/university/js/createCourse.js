@@ -11,8 +11,7 @@ $(function() {
 	console.log(disengagedData);
 	classModule.init(disengagedData.classList);
 	roomModule.init(disengagedData.roomList);
-	
-	//subjectModule.init();
+	subjectModule.init();
 	
 	//日期范围限制
 	var start = {
@@ -57,6 +56,7 @@ function toFlag(d, t) {
 // 班级模块
 var classModule = {
 	classData : [],
+	currentSelectMap : {},
 	init : function(classList) {
 		$.each(classList, function(index, cell) {
 			cell.classId = cell.id;
@@ -85,11 +85,20 @@ var classModule = {
 	},
 	onCellClick : function(t) {
 		var target = $(t);
+		console.log("你点击了:");
+		console.log(target.attr('cellId'));
 		if (target.is('.classCellSelected')) {
 			target.removeClass('classCellSelected');
+			delete classModule.currentSelectMap[target.attr('cellId')];
 		} else {
 			target.addClass('classCellSelected');
+			classModule.currentSelectMap[target.attr('cellId')] = true;
 		}
+		var classList = [];
+		for(var id in classModule.currentSelectMap) {
+			classList.push(id);
+		}
+		subjectModule.init(classList);
 	},
 	getSelectedData : function() {
 		var list = $('classCellSelected');
@@ -172,10 +181,21 @@ var roomModule = {
 var subjectModule = {
 	subjectData : [],
 	selectedCell : undefined,
-	init : function() {
-		subjectModule.requestAndLoadSubjectData();
+	init : function(idList) {
+		var classIdList = [];
+		if (undefined == idList) {
+			idList = classModule.classData;
+			$.each(idList, function(index, cell) {
+				classIdList.push(cell.id);
+			});
+		} else {
+			classIdList = idList;
+		}
+		var data = getUncompletedSubjectForClass(classIdList);
+		subjectModule.subjectData = data;
+		subjectModule.loadSubjectData(data);
 	},
-	requestAndLoadSubjectData : function() {
+	requestAndLoadSubjectData : function() { // 作废。。。。。。
 		var data = [{
 					subjectName : 'JavaScript',
 					teachingProgramName : '软件开发第二期教学计划',
@@ -192,8 +212,7 @@ var subjectModule = {
 					classHour : 100,
 					enableTeacherNumber : 2,
 				}];
-		subjectModule.subjectData = data;
-		subjectModule.loadSubjectData(data);
+		
 	},
 	loadSubjectData : function(data) {
 		var target = $('#showSubjectArea');

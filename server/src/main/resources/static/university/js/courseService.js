@@ -139,10 +139,10 @@ function calculateStaticData() {
 		allSubjectMap[cell.id] = cell;
 	});
 	$.each(allDataBuffer.allSpecialtyPlanList, function(index, cell){
-		if (undefined == allSpecialtyMap[cell.specialtyId]) {
+		if (undefined == allSpecialtyMap[cell.specialtyPlanId]) {
 			console.warn("检测到脏数据(无法匹配到的专业计划记录)");
 		} else {
-			allSpecialtyMap[cell.specialtyId].subjectList.push(allSubjectMap[cell.subjectId]);
+			allSpecialtyMap[cell.specialtyPlanId].subjectList.push(allSubjectMap[cell.subjectId]);
 		}
 	});
 	allCourseMap = {};
@@ -334,10 +334,16 @@ function getCompletedSubjectForClass(classIdList) {
 			if (data.code == 0) {
 				var targetData = data.data;
 				var tempCourseMap = {};
+				if (undefined == targetData.courseList) {
+					targetData.courseList = [];
+				}
 				$.each(targetData.courseList, function(index, cell) {
 					tempCourseMap[cell.id] = cell;
 				});
 				var tempClassMap = {};
+				if (undefined == targetData.classInCourseList) {
+					targetData.classInCourseList = [];
+				}
 				$.each(targetData.classInCourseList, function(index, cell) {
 					var temp = tempClassMap[cell.studentClassId];
 					var course = tempCourseMap[cell.courseId];
@@ -347,7 +353,7 @@ function getCompletedSubjectForClass(classIdList) {
 					} 
 					temp[course.subjectId] = course;
 				});
-				resutl = tempClassMap;
+				result = tempClassMap;
 			} else {
 				//swal('获取数据失败', data.desc, 'error');
 				alert('操作失败\n'+data.desc);
@@ -363,27 +369,35 @@ function getCompletedSubjectForClass(classIdList) {
 var completedSubjectMap = {};
 // 获取指定班级 未完成的课程
 function getUncompletedSubjectForClass(classIdList) {
+	console.log("目标班级Id:");
+	console.log(classIdList);
 	completedSubjectMap = getCompletedSubjectForClass(classIdList);
+	console.log("已完成的学科");
+	console.log(completedSubjectMap);
 	var result = [];
 	var intersection = {};
 	// 获取给定班级都要上的课（取交集）
 	$.each(classIdList, function(index, classId){
 		var subjectList = allClassMap[classId].specialty.subjectList;
+		console.log("目标班级"+classId);
+		console.log(allClassMap[classId]);
 		$.each(subjectList, function(index, subject) {
 			if(intersection[subject.id] == undefined) {
-				intersection[subject.id] = 0;
+				intersection[subject.id] = 1;
 			} else {
 				intersection[subject.id] += 1;
 			}
 		});
 	});
+	console.log("初步数据交集:");
+	console.log(intersection);
 	for(var subjectId in intersection) {
 		if (intersection[subjectId] < classIdList.length) {
 			delete intersection[subjectId];
 		}
 	}
 	// 过滤掉交集中已经完成的学科
-	var currentClassCompletedSubjectMap = completedSubjectMap[classId];
+	var currentClassCompletedSubjectMap = completedSubjectMap;
 	for(var subjectId in currentClassCompletedSubjectMap) {
 		delete intersection[subjectId];
 	}
@@ -391,6 +405,8 @@ function getUncompletedSubjectForClass(classIdList) {
 	for(var subjectId in intersection) {
 		result.push(allSubjectMap[subjectId]);
 	}
+	console.log("最终结果:");
+	console.log(result);
 	return result;
 }
 
