@@ -215,6 +215,9 @@ var subjectModule = {
 		
 	},
 	loadSubjectData : function(data) {
+		if (undefined == data) {
+			data = [];
+		}
 		var target = $('#showSubjectArea');
 		var temp;
 		target.html('');

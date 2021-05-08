@@ -347,6 +347,10 @@ function getCompletedSubjectForClass(classIdList) {
 				$.each(targetData.classInCourseList, function(index, cell) {
 					var temp = tempClassMap[cell.studentClassId];
 					var course = tempCourseMap[cell.courseId];
+					if (undefined == course) {
+						console.warn("脏数据:"+cell.courseId);
+						return;
+					}
 					if (undefined == temp) {
 						temp = {};
 						tempClassMap[cell.studentClassId] = temp;
@@ -369,6 +373,9 @@ function getCompletedSubjectForClass(classIdList) {
 var completedSubjectMap = {};
 // 获取指定班级 未完成的课程
 function getUncompletedSubjectForClass(classIdList) {
+	if (undefined == classIdList || classIdList.length == 0) {
+		return;
+	}
 	console.log("目标班级Id:");
 	console.log(classIdList);
 	completedSubjectMap = getCompletedSubjectForClass(classIdList);
@@ -378,9 +385,14 @@ function getUncompletedSubjectForClass(classIdList) {
 	var intersection = {};
 	// 获取给定班级都要上的课（取交集）
 	$.each(classIdList, function(index, classId){
-		var subjectList = allClassMap[classId].specialty.subjectList;
 		console.log("目标班级"+classId);
 		console.log(allClassMap[classId]);
+		if (undefined == allClassMap[classId].specialty) {
+			console.warn("未指定专业的班级:");
+			console.warn(allClassMap[classId]);
+			return;
+		}
+		var subjectList = allClassMap[classId].specialty.subjectList;
 		$.each(subjectList, function(index, subject) {
 			if(intersection[subject.id] == undefined) {
 				intersection[subject.id] = 1;
