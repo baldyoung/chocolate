@@ -268,10 +268,10 @@ function drawDisengagedDataMap(workingDataMap) {
 }
 
 // 获取指定日期后，指定时间点下都空闲的资源（需要业务逻辑上实现：对当前预创建的新课程与后面计划中的课程进行冲突检查！！！）
+var targetDisengagedDataMapBuffer = {};
 function getTargetDisengagedDataMap(startDate, dayTimeList) {
 	loadTargetData(startDate);
 	drawDisengagedDataMap(workingCourseMap);
-	
 	var staffMap = {};
 	var classMap = {};
 	var roomMap = {};
@@ -315,6 +315,9 @@ function getTargetDisengagedDataMap(startDate, dayTimeList) {
 	for(var id in roomMap) {
 		result.roomList.push(roomMap[id]);
 	}
+	// 缓存一下数据
+	targetDisengagedDataMapBuffer = result;
+	getDisengagedStaffForSubject();
 	return result;
 }
 
@@ -422,7 +425,13 @@ function getUncompletedSubjectForClass(classIdList) {
 	return result;
 }
 
-
+// 获取指定 学科在当前空闲资源下的所有可授教师列表
+function getDisengagedStaffForSubject(subjectList) {
+	$.each(targetDisengagedDataMapBuffer.staffList, function(index, cell) {
+		console.log("staff info:");
+		console.log(cell);
+	});
+}
 
 
 

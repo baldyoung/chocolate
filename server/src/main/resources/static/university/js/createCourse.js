@@ -225,7 +225,7 @@ var subjectModule = {
 			temp = '<li onclick="subjectModule.onCellClick(this)" cellId="'+data[i].subjectId+'" class="warning-element">' + data[i].subjectName + ' (' + data[i].teachingProgramName + ')' +
 					'<div class="agile-detail">' + 
 					'<a href="#" class="pull-right btn btn-xs btn-white">标签</a>'+
-					'<i class="fa fa-clock-o"></i> 参考课时'+data[i].classHour + 
+					'<i class="fa fa-clock-o"></i> 参考课时'+data[i].standardHours + 
 					'<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师'+data[i].enableTeacherNumber+
 					'</div>'+
 					'</li>';
