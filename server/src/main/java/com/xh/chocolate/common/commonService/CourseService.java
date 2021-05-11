@@ -42,6 +42,10 @@ public class CourseService {
 
     @Autowired
     private StudentClassRoomDao studentClassRoomDao;
+
+    @Autowired
+    private TeacherCompetencyDao teacherCompetencyDao;
+
     // 获取当前所有的课程安排信息
     @Transactional
     public Map getDisengagedInfo(Date date) {
@@ -49,6 +53,9 @@ public class CourseService {
         // 获取所有的教师信息
         List<StaffInfoEntity> staffInfoEntityList = staffInfoDao.findAll();
         data.put("allStaffList", staffInfoEntityList);
+        // 获取所有教师的可授 学科信息
+        List<TeacherCompetencyEntity> teacherCompetencyEntityList = teacherCompetencyDao.findAll();
+        data.put("allStaffTeachSubjectList", teacherCompetencyEntityList);
         // 获取所有的班级信息
         List<StudentClassEntity> studentClassEntityList = studentClassDao.findAll();
         data.put("allClassList", studentClassEntityList);

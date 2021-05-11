@@ -101,7 +101,7 @@ var classModule = {
 		subjectModule.init(classList);
 	},
 	getSelectedData : function() {
-		var list = $('classCellSelected');
+		var list = $('.classCellSelected');
 		var classList = classModule.classData;
 		var result = [];
 		for(var i=0; i<list.length; i++) {
@@ -160,7 +160,7 @@ var roomModule = {
 		roomModule.selectedCell = target;
 	},
 	getSelectedData : function() {
-		var list = $('roomCellSelected');
+		var list = $('.roomCellSelected');
 		var roomList = roomModule.roomData;
 		var result = [];
 		for(var i=0; i<list.length; i++) {
@@ -171,7 +171,7 @@ var roomModule = {
 				}
 			}
 		}
-		return result;
+		return result[0];
 	}
 };
 
@@ -181,6 +181,7 @@ var roomModule = {
 var subjectModule = {
 	subjectData : [],
 	selectedCell : undefined,
+	subjectStaffBuffer : {}, // 当前学科列表中，学科的部分缓存信息
 	init : function(idList) {
 		var classIdList = [];
 		if (undefined == idList) {
@@ -195,38 +196,21 @@ var subjectModule = {
 		subjectModule.subjectData = data;
 		subjectModule.loadSubjectData(data);
 	},
-	requestAndLoadSubjectData : function() { // 作废。。。。。。
-		var data = [{
-					subjectName : 'JavaScript',
-					teachingProgramName : '软件开发第二期教学计划',
-					classHour : 120,
-					enableTeacherNumber : 3,
-				},{
-					subjectName : 'HTML5+CSS3',
-					teachingProgramName : '软件开发第二期教学计划',
-					classHour : 100,
-					enableTeacherNumber : 5,
-				},{
-					subjectName : 'C语言',
-					teachingProgramName : '软件开发第一期教学计划',
-					classHour : 100,
-					enableTeacherNumber : 2,
-				}];
-		
-	},
 	loadSubjectData : function(data) {
 		if (undefined == data) {
 			data = [];
 		}
+		var subjectMap = getDisengagedStaffForSubject(data);
+		subjectModule.subjectStaffBuffer = subjectMap;
 		var target = $('#showSubjectArea');
 		var temp;
 		target.html('');
 		for(var i=0; i<data.length; i++) {
-			temp = '<li onclick="subjectModule.onCellClick(this)" cellId="'+data[i].subjectId+'" class="warning-element">' + data[i].subjectName + ' (' + data[i].teachingProgramName + ')' +
+			temp = '<li onclick="subjectModule.onCellClick(this)" cellId="'+data[i].subjectId+'" class="warning-element">' + data[i].subjectName +
 					'<div class="agile-detail">' + 
 					'<a href="#" class="pull-right btn btn-xs btn-white">标签</a>'+
 					'<i class="fa fa-clock-o"></i> 参考课时'+data[i].standardHours + 
-					'<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师'+data[i].enableTeacherNumber+
+					'<i class="fa fa-clock-o" style="margin-left:10px;"></i> 可授教师'+subjectMap[data[i].subjectId].length+
 					'</div>'+
 					'</li>';
 			target.append(temp);
@@ -246,23 +230,64 @@ var subjectModule = {
 		subjectModule.selectedCell = target;
 	},
 	getSelectedData : function() {
-		var list = $('subjectCellSelected');
+		var list = $('.subjectCellSelected');
 		var subjectList = subjectModule.subjectData;
 		var result = [];
 		for(var i=0; i<list.length; i++) {
 			for(var j=0; j<subjectList.length; j++) {
 				if (list[i].getAttribute('cellId') == subjectList[j].subjectId) {
-					result[result.length] = subjectList[j];
+					var temp = {
+						info : subjectList[j],
+						staffList : subjectModule.subjectStaffBuffer[subjectList[j].subjectId]
+					}
+					result[result.length] = temp;
 					break;
 				}
 			}
 		}
-		return result;
+		return result[0];
 	}
 };
 
-// 每次更新三种元素的选择情况后，对所有可选情况进行信息同步变更
-function updateElementInfo() {
+var editPanelModule = {
+	selectedClassList : [], // 已选班级
+	selectedSubject : undefined, // 已选学科
+	selectedRoom : undefined, // 已选教室
+	init : function() {
+	},
+	loadCurrentInfo : function() {
+		var subject = editPanelModule.selectedSubject;
+		var room = editPanelModule.selectedRoom;
+		var classList = editPanelModule.selectedClassList;
+		console.log(subject.info.subjectName);
+		$('#epSubjectName').prop('placeholder', subject.info.subjectName);
+		$('#epRoomName').text(room.classRoomName);
+		$('#epCourseTimeNumber').text(subject.info.standardHours);
+		var classListArea = $('#epClassList');
+		classListArea.html('');
+		$.each(classList, function(index, cell) {
+			var html = '<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>'+cell.className+'</button>';
+			classListArea.append(html);
+			
+		});
+		
+	},
+	readyCreate : function() {
+		checkAndLoadSelectedInfo();
+		editPanelModule.loadCurrentInfo();
+	}
+}
+
+function checkAndLoadSelectedInfo() {
+	
+	editPanelModule.selectedClassList = classModule.getSelectedData();;
+	editPanelModule.selectedSubject = subjectModule.getSelectedData();
+	editPanelModule.selectedRoom = roomModule.getSelectedData();
+	
+	console.log("已选择的数据:");
+	console.log(editPanelModule.selectedClassList);
+	console.log(editPanelModule.selectedSubject);
+	console.log(editPanelModule.selectedRoom);
 	
 }
 

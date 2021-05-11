@@ -123,7 +123,8 @@ function calculateStaticData() {
 	$.each(allDataBuffer.allStaffList, function(index, cell){
 		allStaffMap[cell.id] = cell;
 		cell.dayTimeMap = {};
-	});
+		cell.subjectList = [];
+	}); 
 	allRoomMap = {};
 	$.each(allDataBuffer.allRoomList, function(index, cell){
 		allRoomMap[cell.id] = cell;
@@ -137,6 +138,22 @@ function calculateStaticData() {
 	allSubjectMap = {};
 	$.each(allDataBuffer.allSubjectList, function(index, cell){
 		allSubjectMap[cell.id] = cell;
+		cell.subjectId = cell.id;
+		cell.performableStaff = [];
+	});
+	$.each(allDataBuffer.allStaffTeachSubjectList, function(index, cell){
+		var staff = allStaffMap[cell.staffId];
+		if (staff == undefined) {
+			console.warn("脏数据(无法匹配的可授学科记录(教师:"+cell.staffId);
+			return;
+		}
+		var subject = allSubjectMap[cell.subjectId];
+		if (undefined == subject) {
+			console.warn('脏数据(无法匹配的可授学科记录(学科:'+cell.subjectId);
+			return;
+		}
+		staff.subjectList.push(subject);
+		subject.performableStaff.push(staff);
 	});
 	$.each(allDataBuffer.allSpecialtyPlanList, function(index, cell){
 		if (undefined == allSpecialtyMap[cell.specialtyPlanId]) {
@@ -426,11 +443,33 @@ function getUncompletedSubjectForClass(classIdList) {
 }
 
 // 获取指定 学科在当前空闲资源下的所有可授教师列表
-function getDisengagedStaffForSubject(subjectList) {
-	$.each(targetDisengagedDataMapBuffer.staffList, function(index, cell) {
-		console.log("staff info:");
+function getDisengagedStaffForSubject(subjectList) { 
+	var disengagedStaffList = targetDisengagedDataMapBuffer.staffList;
+	var resultMap = {};
+	if (undefined == subjectList || 0 == subjectList.length) {
+		return resultMap;
+	}
+	console.log("所有学科:");
+	console.log(allSubjectMap);
+	$.each(subjectList, function(index, cell){
+		console.log("test:");
 		console.log(cell);
+		
+		var subject = allSubjectMap[cell.subjectId];
+		console.log(subject);
+		var performableStaffList = subject.performableStaff;
+		var list = [];
+		for(var i=0; i<disengagedStaffList.length; i++) {
+			for(var j=0; j<performableStaffList.length; j++) {
+				if (disengagedStaffList[i].id == performableStaffList[j].id) {
+					list.push(disengagedStaffList[i]);
+					break;
+				}
+			}
+		}
+		resultMap[cell.subjectId] = list;
 	});
+	return resultMap;
 }
 
 

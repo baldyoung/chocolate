@@ -57,7 +57,7 @@
 				<div class="col-sm-12">
 					<div class="ibox">
 						<div class="ibox-content">
-							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建</button>
+							<button onclick='editPanelModule.readyCreate()' type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建</button>
 						</div>
 					</div>
 				</div>
@@ -193,18 +193,18 @@
 						</button>
 						<i class="fa fa-laptop modal-icon"></i></br>
 						<input type='text' class="modal-title" placeholder="课程名称" style="border:0px solid;text-align: center; outline:none;" /></br>
-						<input type='text' class="font-bold" placeholder="学科名称" style="border:0px solid;text-align: center; outline:none; "
+						<input id='epSubjectName' type='text' class="font-bold" placeholder="学科名称" style="border:0px solid;text-align: center; outline:none; "
 						 readonly="true" />
 					</div>
 					<div class="modal-body">
 						<ul class="folder-list m-b-md" style="padding: 0">
 							<li>
-								<a href="#"> <i class="fa fa-inbox "></i> 教室 <span class="label label-warning pull-right">16</span>
+								<a href="#"> <i class="fa fa-inbox "></i> 教室 <span id='epRoomName' class="label label-warning">16</span>
 								</a>
 							</li>
 							<li>
 								<i class="fa fa-envelope-o"></i> 班级
-								<div style="padding-bottom: 5px;">
+								<div id='epClassList' style="padding-bottom: 5px;">
 									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2021</button>
 									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2022</button>
 								</div>
@@ -219,7 +219,7 @@
 								<input id="endDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
 							</li>
 							<li>
-								<i class="fa fa-trash-o"></i> 课时量<span id="courseTimeNumber">100</span>
+								<i class="fa fa-trash-o"></i> 课时量<span id="epCourseTimeNumber">100</span>
 								<i class="fa fa-trash-o" style="margin-left:30px;"></i> 课时系数<input type='text' id="courseCoefficient" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec; width:60px; margin-left:5px; "
 								 value="1.5">
 							</li>
