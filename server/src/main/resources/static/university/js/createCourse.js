@@ -14,8 +14,9 @@ $(function() {
 	subjectModule.init();
 	
 	//日期范围限制
-	var start = {
+	var start = laydate({
 		elem: '#startDate',
+		type : 'date',
 		format: 'YYYY-MM-DD',
 		min: laydate.now(), //设定最小日期为当前日期
 		max: '2099-06-16 23:59:59', //最大日期
@@ -24,9 +25,12 @@ $(function() {
 		choose: function(datas) {
 			end.min = datas; //开始日选好后，重置结束日的最小日期
 			end.start = datas //将结束日的初始值设定为开始日
+		},
+		ready : function() {
+			start.hint('嘻嘻');
 		}
-	};
-	var end = {
+	});
+	var end = laydate({
 		elem: '#endDate',
 		format: 'YYYY-MM-DD',
 		min: laydate.now(),
@@ -36,9 +40,7 @@ $(function() {
 		choose: function(datas) {
 			start.max = datas; //结束日选好后，重置开始日的最大日期
 		}
-	};
-	laydate(start);
-	laydate(end);
+	});
 	
 });
 
@@ -253,6 +255,8 @@ var editPanelModule = {
 	selectedClassList : [], // 已选班级
 	selectedSubject : undefined, // 已选学科
 	selectedRoom : undefined, // 已选教室
+	// ------------------
+	seletedStaffCell : undefined,
 	init : function() {
 	},
 	loadCurrentInfo : function() {
@@ -263,18 +267,35 @@ var editPanelModule = {
 		$('#epSubjectName').prop('placeholder', subject.info.subjectName);
 		$('#epRoomName').text(room.classRoomName);
 		$('#epCourseTimeNumber').text(subject.info.standardHours);
+		// 加载已选班级列表
 		var classListArea = $('#epClassList');
 		classListArea.html('');
 		$.each(classList, function(index, cell) {
 			var html = '<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>'+cell.className+'</button>';
 			classListArea.append(html);
-			
+		});
+		// 加载可授教师列表
+		var staffListArea = $('#epStaffListArea');
+		staffListArea.html('');
+		$.each(subject.staffList, function(index, cell){
+			var html = '<button staffId="'+cell.id+'" type="button" onclick="editPanelModule.clickStaffCell(this)" class="btn btn-success btn-rounded btn-outline" href="#">'+cell.staffName+'</button> &nbsp;&nbsp;';
+			staffListArea.append(html);
 		});
 		
 	},
 	readyCreate : function() {
 		checkAndLoadSelectedInfo();
 		editPanelModule.loadCurrentInfo();
+	},
+	clickStaffCell : function(t) {
+		var target = $(t);
+		if (editPanelModule.seletedStaffCell != undefined) {
+			editPanelModule.seletedStaffCell.addClass('btn-outline');
+		}
+		if (target != editPanelModule.seletedStaffCell) {
+			editPanelModule.seletedStaffCell = target;
+			target.removeClass('btn-outline');
+		}
 	}
 }
 

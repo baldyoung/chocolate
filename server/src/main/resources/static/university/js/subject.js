@@ -41,6 +41,7 @@ function requestAndLoadSubjectList() {
 					html = html.replace('#{subjectName}', cell.subjectName);
 					html = html.replace('#{subjectNumber}', cell.subjectNumber);
 					html = html.replace('#{standardHours}', cell.standardHours);
+					html = html.replace('#{standardCoefficient}', cell.standardCoefficient);
 					html = html.replace('#{subjectInfo}', cell.info);
 					html = html.replace('#{index}', i);
 					html = html.replace('#{index}', i);
@@ -66,6 +67,7 @@ function addNewSubject() {
 			subjectName : $('#newSubjectName').val(),
 			subjectNumber : $('#newSubjectNumber').val(),
 			standardHours : $('#newSubjectStandardHours').val(),
+			standardCoefficient : $('#newSubjectCoefficient').val(),
 			subjectInfo : $('#newSubjectInfo').val()
 		};
 	console.log(newSubject);
@@ -165,6 +167,7 @@ function getAndLoadSubject(index) {
 	$('#newSubjectNumber').val(subjectListBuffer[index].subjectNumber);
 	$('#newSubjectStandardHours').val(subjectListBuffer[index].standardHours);
 	$('#newSubjectInfo').val(subjectListBuffer[index].subjectInfo);
+	$('#newSubjectCoefficient').val(subjectListBuffer[index].standardCoefficient);
 	currentSubjectId = subjectListBuffer[index].id;
 	$('#editPanelTitle').text('修改学科');
 }

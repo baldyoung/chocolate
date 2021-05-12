@@ -128,6 +128,7 @@ CREATE TABLE SUBJECT (
 	subjectNumber VARCHAR(6),
 	subjectName VARCHAR(15),
 	standardHours INT COMMENT '标准学时',
+	standardCoefficient DECIMAL(10,2) COMMENT '课时系数',
 	typeFlag SMALLINT DEFAULT 0 COMMENT '类型标识：无限制0、需要电脑1',
 	subjectInfo VARCHAR(500),
 	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

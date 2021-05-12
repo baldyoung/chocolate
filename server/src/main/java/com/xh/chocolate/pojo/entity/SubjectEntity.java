@@ -5,6 +5,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -17,6 +18,7 @@ public class SubjectEntity {
     private String subjectNumber;
     private String subjectName;
     private Integer standardHours;
+    private BigDecimal standardCoefficient;
     private Integer typeFlag;
     private String subjectInfo;
     @CreatedDate
@@ -30,6 +32,14 @@ public class SubjectEntity {
 
     public void setTypeFlag(Integer typeFlag) {
         this.typeFlag = typeFlag;
+    }
+
+    public BigDecimal getStandardCoefficient() {
+        return standardCoefficient;
+    }
+
+    public void setStandardCoefficient(BigDecimal standardCoefficient) {
+        this.standardCoefficient = standardCoefficient;
     }
 
     public Integer getId() {
@@ -95,6 +105,7 @@ public class SubjectEntity {
                 ", subjectNumber='" + subjectNumber + '\'' +
                 ", subjectName='" + subjectName + '\'' +
                 ", standardHours=" + standardHours +
+                ", standardCoefficient=" + standardCoefficient +
                 ", subjectInfo='" + subjectInfo + '\'' +
                 ", createDateTime=" + createDateTime +
                 ", updateDateTime=" + updateDateTime +

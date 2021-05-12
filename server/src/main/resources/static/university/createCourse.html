@@ -219,14 +219,15 @@
 								<input id="endDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
 							</li>
 							<li>
-								<i class="fa fa-trash-o"></i> 课时量<span id="epCourseTimeNumber">100</span>
-								<i class="fa fa-trash-o" style="margin-left:30px;"></i> 课时系数<input type='text' id="courseCoefficient" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec; width:60px; margin-left:5px; "
+								<i class="fa fa-trash-o"></i> 参考课时量<span id="epCourseTimeNumber">100</span>
+								<i class="fa fa-trash-o" style="margin-left:15px;"></i> 实际课时量<span style='color:red; font-weight:bolder;' id="epCourseTimeNumberInFact">100</span>
+								<i class="fa fa-trash-o" style="margin-left:15px;"></i> 课时系数<input type='text' id="courseCoefficient" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec; width:60px; margin-left:5px; "
 								 value="1.5">
 							</li>
 						</ul>
 						<div class="form-group">
 							<label>任课教师</label>
-							<div style="">
+							<div id='epStaffListArea' style="">
 								<button type="button" class="btn btn-danger btn-rounded btn-outline" href="#">戴老师</button>
 								<button type="button" class="btn btn-primary btn-rounded " href="#">王老师</button>
 								<button type="button" class="btn btn-warning btn-rounded btn-outline" href="#">肖老师</button>

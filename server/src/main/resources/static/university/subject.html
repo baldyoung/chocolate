@@ -110,19 +110,22 @@
 																	<th style="width: 8%;">
 																		<span style='font-size:12px;'>系统编号</span>
 																	</th>
-																	<th style="width: 26%;">
+																	<th style="width: 24%;">
 																		学科名称
 																	</th>
-																	<th style="width: 10%;">
+																	<th style="width: 8%;">
 																		学科编号
 																	</th>
 																	<th style="width: 9%;">
 																		学时
 																	</th>
+																	<th style="width: 7%;">
+																		系数
+																	</th>
 																	<th style="width: 27%;">
 																		简介
 																	</th>
-																	<th style="width: 20%;">
+																	<th style="width: 17%;">
 																		操作
 																	</th>
 																</tr>
@@ -147,6 +150,11 @@
 																	<td>
 																		<font style="vertical-align: inherit;">
 																			<font style="vertical-align: inherit;">#{standardHours}</font>
+																		</font>
+																	</td>
+																	<td>
+																		<font style="vertical-align: inherit;">
+																			<font style="vertical-align: inherit;">#{standardCoefficient}</font>
 																		</font>
 																	</td>
 																	<td >
@@ -191,6 +199,12 @@
 											<label class="col-md-3 col-form-label">参考学时<span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<input id='newSubjectStandardHours' type="text" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">课时系数</label>
+											<div class="col-md-7">
+												<input id='newSubjectCoefficient' type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
