@@ -41,7 +41,9 @@ $(function() {
 			start.max = datas; //结束日选好后，重置开始日的最大日期
 		}
 	});
-	
+	$('#myModal').on('shown.bs.modal', function () {
+		checkAndLoadSelectedInfo();
+	})
 });
 
 
@@ -186,7 +188,7 @@ var subjectModule = {
 	subjectStaffBuffer : {}, // 当前学科列表中，学科的部分缓存信息
 	init : function(idList) {
 		var classIdList = [];
-		if (undefined == idList) {
+		if (undefined == idList || idList.length == 0) {
 			idList = classModule.classData;
 			$.each(idList, function(index, cell) {
 				classIdList.push(cell.id);
@@ -267,6 +269,7 @@ var editPanelModule = {
 		$('#epSubjectName').prop('placeholder', subject.info.subjectName);
 		$('#epRoomName').text(room.classRoomName);
 		$('#epCourseTimeNumber').text(subject.info.standardHours);
+		$('#epCourseCoefficient').val(subject.info.standardCoefficient);
 		// 加载已选班级列表
 		var classListArea = $('#epClassList');
 		classListArea.html('');
@@ -281,10 +284,10 @@ var editPanelModule = {
 			var html = '<button staffId="'+cell.id+'" type="button" onclick="editPanelModule.clickStaffCell(this)" class="btn btn-success btn-rounded btn-outline" href="#">'+cell.staffName+'</button> &nbsp;&nbsp;';
 			staffListArea.append(html);
 		});
-		
 	},
 	readyCreate : function() {
-		checkAndLoadSelectedInfo();
+		$('#myModal input').val('');
+		editPanelModule.seletedStaffCell = undefined;
 		editPanelModule.loadCurrentInfo();
 	},
 	clickStaffCell : function(t) {
@@ -296,20 +299,80 @@ var editPanelModule = {
 			editPanelModule.seletedStaffCell = target;
 			target.removeClass('btn-outline');
 		}
+	},
+	getEditInfo : function(){
+		var result = {
+			courseName : $('#epCourseName').val(),
+			subjectId : editPanelModule.selectedSubject.info.id,
+			roomId : editPanelModule.selectedRoom.id,
+			startDate : $('#startDate').val(),
+			endDate : $('#endDate').val(),
+			classIdList : [],
+			staffId : editPanelModule.seletedStaffCell,
+			standardCoefficient : $('#epCourseCoefficient').val()
+		};
+		if (isEmpty(result.courseName)) {
+			alert('请填写 课程名称');
+			return;
+		}
+		if (isEmpty(result.startDate)) {
+			alert('课程开始时间不能为空');
+			return ;
+		}
+		if (isEmpty(result.endDate)) {
+			alert('课程结束时间不能为空');
+			return ;
+		}
+		if (isEmpty(result.staffId)) {
+			alert('请选择 授课教师');
+			return ;
+		}
+		if (isEmpty(result.standardCoefficient)) {
+			alert('请 填写课程系数');
+			return ;
+		}
+		$.each(editPanelModule.selectedClassList, function(index, cell){
+			result.classIdList.push(cell.id);
+		});
+		result.staffId = result.staffId.attr('staffId');
+		return result;
+	},
+	postData : function() {
+		var data = editPanelModule.getEditInfo();
+		if (undefined == data) {
+			return;
+		}
+		console.log(data);
 	}
 }
 
 function checkAndLoadSelectedInfo() {
-	
 	editPanelModule.selectedClassList = classModule.getSelectedData();;
 	editPanelModule.selectedSubject = subjectModule.getSelectedData();
 	editPanelModule.selectedRoom = roomModule.getSelectedData();
-	
+
 	console.log("已选择的数据:");
 	console.log(editPanelModule.selectedClassList);
 	console.log(editPanelModule.selectedSubject);
 	console.log(editPanelModule.selectedRoom);
-	
+	editPanelModule.readyCreate();
+	return;
+	if (isEmpty(editPanelModule.selectedClassList) || editPanelModule.selectedClassList.length <= 0) {
+		$("#myModal").modal('hide');
+		alert('请选择 班级');
+		return;
+	}
+	if (isEmpty(editPanelModule.selectedSubject)) {
+		alert('请选择 学科');
+		$("#myModal").modal('hide');
+		return ;
+	}
+	if (isEmpty(editPanelModule.selectedRoom)) {
+		alert('请选择 教室');
+		$("#myModal").modal('hide');
+		return;
+	}
+	editPanelModule.readyCreate();
 }
 
 

@@ -119,6 +119,46 @@ public class CourseService {
         dateTimeOfCourseDao.saveAll(dateTimeOfCourseEntityList);
     }
 
+    public void createCourseList(List<CreateOrUpdateCourseDto> createOrUpdateCourseDtoList) throws ServiceException {
+        if (isEmpty(createOrUpdateCourseDtoList)) {
+            throw new ServiceException("createOrUpdateDtoList is empty");
+        }
+        // 制作 课程entity 和 dto的映射表
+        Map<CreateOrUpdateCourseDto, CourseInfoEntity> dtoEntityMap = new HashMap();
+        // 提取dto中的课程基本信息
+        List<CourseInfoEntity> courseInfoEntityList = new ArrayList(createOrUpdateCourseDtoList.size());
+        for(int i=0; i<createOrUpdateCourseDtoList.size(); i++) {
+            CreateOrUpdateCourseDto cell = createOrUpdateCourseDtoList.get(i);
+            if (isEmpty(cell.getClassInCourseEntityList()) || isEmpty(cell.getDateTimeOfCourseEntityList())) {
+                throw new ServiceException("cell is empty");
+            }
+            cell.setId(null);
+            CourseInfoEntity entity = new CourseInfoEntity(cell);
+            courseInfoEntityList.add(entity);
+            dtoEntityMap.put(cell, entity);
+        }
+        // 保存课程基本信息
+        courseInfoDao.saveAll(courseInfoEntityList);
+        // 提取课程班级映射（关联）数据  和   课程时间安排数据
+        List<ClassInCourseEntity> classInCourseEntityList = new LinkedList();
+        List<DateTimeOfCourseEntity> dateTimeOfCourseEntityList = new LinkedList();
+        createOrUpdateCourseDtoList.forEach(dto->{
+            dto.getClassInCourseEntityList().forEach(record->{
+                record.setCourseId(dtoEntityMap.get(dto).getId()); // 将 课程Id保存到对应的 班级课程记录中
+                classInCourseEntityList.add(record);
+            });
+            dto.getDateTimeOfCourseEntityList().forEach(record ->{
+                record.setCourseId(dtoEntityMap.get(dto).getId()); // 将 课程Id关联（保存）到对应的 课程时间安排记录中
+                dateTimeOfCourseEntityList.add(record);
+            });
+        });
+        // 保存课程与班级的关联记录
+        classInCourseDao.saveAll(classInCourseEntityList);
+        // 保存课程时间关联记录
+        dateTimeOfCourseDao.saveAll(dateTimeOfCourseEntityList);
+
+    }
+
 
     // 删除指定的课程
     @Transactional

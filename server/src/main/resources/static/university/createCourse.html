@@ -57,7 +57,7 @@
 				<div class="col-sm-12">
 					<div class="ibox">
 						<div class="ibox-content">
-							<button onclick='editPanelModule.readyCreate()' type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建</button>
+							<button onclick='' type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建</button>
 						</div>
 					</div>
 				</div>
@@ -191,56 +191,57 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
 						</button>
-						<i class="fa fa-laptop modal-icon"></i></br>
-						<input type='text' class="modal-title" placeholder="课程名称" style="border:0px solid;text-align: center; outline:none;" /></br>
-						<input id='epSubjectName' type='text' class="font-bold" placeholder="学科名称" style="border:0px solid;text-align: center; outline:none; "
+						<i class="fa fa-book modal-icon" style='color:#3498DB;'></i></br>
+						<input id='epCourseName' type='text' class="modal-title" placeholder="请填写 课程名称" style="border:1px dotted; border-radius:4px; text-align: center; outline:none;" /></br>
+						<input id='epSubjectName' type='text' class="font-bold" placeholder="学科名称" style="color:black; border:0px solid;text-align: center; outline:none; "
 						 readonly="true" />
 					</div>
 					<div class="modal-body">
 						<ul class="folder-list m-b-md" style="padding: 0">
 							<li>
-								<a href="#"> <i class="fa fa-inbox "></i> 教室 <span id='epRoomName' class="label label-warning">16</span>
+								<a href="#"> <i class="fa fa-home "></i> 教室 
+									<span id='epRoomName' class="label label-warning"></span>
 								</a>
 							</li>
 							<li>
-								<i class="fa fa-envelope-o"></i> 班级
+								<i class="fa fa-group"></i> 班级
 								<div id='epClassList' style="padding-bottom: 5px;">
-									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2021</button>
-									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2022</button>
+									<!-- <button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2021</button>
+									<button type="button" class="btn btn-w-s btn-default"><i class="fa fa-tag"></i>软开2022</button> -->
 								</div>
 
 							</li>
 							<li>
-								<i class="fa fa-certificate"></i> 开始时间
+								<i class="fa fa-calendar" style='color:green;'></i> 开始时间
 								<input id="startDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
 							</li>
 							<li>
-								<i class="fa fa-file-text-o"></i> 结束时间
+								<i class="fa fa-calendar" style='color:orange;'></i> 结束时间
 								<input id="endDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
 							</li>
 							<li>
-								<i class="fa fa-trash-o"></i> 参考课时量<span id="epCourseTimeNumber">100</span>
-								<i class="fa fa-trash-o" style="margin-left:15px;"></i> 实际课时量<span style='color:red; font-weight:bolder;' id="epCourseTimeNumberInFact">100</span>
-								<i class="fa fa-trash-o" style="margin-left:15px;"></i> 课时系数<input type='text' id="courseCoefficient" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec; width:60px; margin-left:5px; "
+								<i class="fa fa-cc"></i> 参考课时量&nbsp;&nbsp;<span id="epCourseTimeNumber" style='color:blue;'>100</span>
+								<i class="fa fa-creative-commons" style="margin-left:15px;"></i> 实际课时量&nbsp;&nbsp;<span style='color:red; font-weight:bolder;' id="epCourseTimeNumberInFact">100</span>
+								<i class="fa fa-star" style="margin-left:15px;"></i> 课时系数<input type='text' id="epCourseCoefficient" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec; width:60px; margin-left:5px; "
 								 value="1.5">
 							</li>
 						</ul>
 						<div class="form-group">
-							<label>任课教师</label>
+							<i class='fa fa-user-secret'></i> <label>任课教师</label>
 							<div id='epStaffListArea' style="">
-								<button type="button" class="btn btn-danger btn-rounded btn-outline" href="#">戴老师</button>
+								<!-- <button type="button" class="btn btn-danger btn-rounded btn-outline" href="#">戴老师</button>
 								<button type="button" class="btn btn-primary btn-rounded " href="#">王老师</button>
 								<button type="button" class="btn btn-warning btn-rounded btn-outline" href="#">肖老师</button>
 								<button type="button" class="btn btn-info btn-rounded btn-outline" href="#">李老师</button>
 								<button type="button" class="btn btn-success btn-rounded btn-outline" href="#">陈老师</button>
-								<button type="button" class="btn btn-default btn-rounded btn-outline" href="#">吕老师</button>
+								<button type="button" class="btn btn-default btn-rounded btn-outline" href="#">吕老师</button> -->
 							</div>
 						</div>
 
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">提交</button>
+						<button onclick='editPanelModule.postData()' type="button" class="btn btn-primary">提交</button>
 					</div>
 				</div>
 			</div>

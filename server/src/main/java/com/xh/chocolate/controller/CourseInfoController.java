@@ -31,16 +31,16 @@ public class CourseInfoController {
 
     /**
      * 新增一个或多个 课程
-     * @param courseInfoEntityList
+     * @param createOrUpdateCourseDtoList
      * @return
      */
-    //@PostMapping
-    public ResponseResult postCourseInfo(@RequestBody List<CourseInfoEntity> courseInfoEntityList) {
+    @PostMapping
+    public ResponseResult postCourseInfo(@RequestBody List<CreateOrUpdateCourseDto> createOrUpdateCourseDtoList) {
         // 检查教师Id、学科Id、教室Id是否合法
         // ...
 
-        courseInfoEntityList.forEach(cell->cell.setId(null));
-        courseInfoDao.saveAll(courseInfoEntityList);
+        createOrUpdateCourseDtoList.forEach(cell->cell.setId(null));
+        courseInfoDao.saveAll(createOrUpdateCourseDtoList);
         return success();
     }
 
