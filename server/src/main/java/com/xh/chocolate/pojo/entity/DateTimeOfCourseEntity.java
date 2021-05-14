@@ -1,9 +1,12 @@
 package com.xh.chocolate.pojo.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="DateTimeOfCourse")
+@EntityListeners(AuditingEntityListener.class)
 public class DateTimeOfCourseEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id

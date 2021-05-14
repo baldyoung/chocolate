@@ -1,13 +1,15 @@
 package com.xh.chocolate.pojo.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="classInCourse")
+@EntityListeners(AuditingEntityListener.class)
 public class ClassInCourseEntity {
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id
     private Integer id;
 

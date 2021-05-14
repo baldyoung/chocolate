@@ -266,7 +266,7 @@ var editPanelModule = {
 		var room = editPanelModule.selectedRoom;
 		var classList = editPanelModule.selectedClassList;
 		console.log(subject.info.subjectName);
-		$('#epSubjectName').prop('placeholder', subject.info.subjectName);
+		$('#epSubjectName').val(subject.info.subjectName);
 		$('#epRoomName').text(room.classRoomName);
 		$('#epCourseTimeNumber').text(subject.info.standardHours);
 		$('#epCourseCoefficient').val(subject.info.standardCoefficient);
@@ -304,22 +304,20 @@ var editPanelModule = {
 		var result = {
 			courseName : $('#epCourseName').val(),
 			subjectId : editPanelModule.selectedSubject.info.id,
-			roomId : editPanelModule.selectedRoom.id,
-			startDate : $('#startDate').val(),
-			endDate : $('#endDate').val(),
-			classIdList : [],
+			classRoomId : editPanelModule.selectedRoom.id,
+			referenceHours : $('#epCourseTimeNumber').text(),
+			startDateTimeInPlan : $('#startDate').val(),
+			endDateTimeInPlan : $('#endDate').val(),
+			classInCourseEntityList : [],
+			dateTimeOfCourseEntityList : [],
 			staffId : editPanelModule.seletedStaffCell,
 			standardCoefficient : $('#epCourseCoefficient').val()
 		};
-		if (isEmpty(result.courseName)) {
-			alert('请填写 课程名称');
-			return;
-		}
-		if (isEmpty(result.startDate)) {
+		if (isEmpty(result.startDateTimeInPlan)) {
 			alert('课程开始时间不能为空');
 			return ;
 		}
-		if (isEmpty(result.endDate)) {
+		if (isEmpty(result.endDateTimeInPlan)) {
 			alert('课程结束时间不能为空');
 			return ;
 		}
@@ -332,9 +330,22 @@ var editPanelModule = {
 			return ;
 		}
 		$.each(editPanelModule.selectedClassList, function(index, cell){
-			result.classIdList.push(cell.id);
+			var temp = {
+					studentClassId : cell.id
+				};
+			result.classInCourseEntityList.push(temp);
+		});
+		$.each(currentSelectDayTime.dayTimeList, function(index, cell){
+			var temp = {
+					weekDay : cell.day,
+					workTime : cell.time
+				};
+			result.dateTimeOfCourseEntityList.push(temp);
 		});
 		result.staffId = result.staffId.attr('staffId');
+		if (isEmpty(result.courseName) || "" == result.courseName) {
+			result.courseName = $('#epSubjectName').val();
+		}
 		return result;
 	},
 	postData : function() {
@@ -342,6 +353,31 @@ var editPanelModule = {
 		if (undefined == data) {
 			return;
 		}
+		return;
+		var list = [];
+		list.push(data);
+		$.ajax({
+			url: XConfig.serverAddress + "courseInfo",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			async: true, //设置同步
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(list),
+			success: function(data) {
+				if (data.code == 0) {
+					var targetData = data.data;
+					alert('新增成功');
+				} else {
+					//swal('获取数据失败', data.desc, 'error');
+					alert('操作失败\n'+data.desc);
+				}
+			},
+			error: function() {
+				//swal('服务器连接失败', '请检查网络是否通畅', 'warning');
+				alert('服务器连接失败');
+			}
+		});
 		console.log(data);
 	}
 }
@@ -351,10 +387,10 @@ function checkAndLoadSelectedInfo() {
 	editPanelModule.selectedSubject = subjectModule.getSelectedData();
 	editPanelModule.selectedRoom = roomModule.getSelectedData();
 
-	console.log("已选择的数据:");
+	/* console.log("已选择的数据:");
 	console.log(editPanelModule.selectedClassList);
 	console.log(editPanelModule.selectedSubject);
-	console.log(editPanelModule.selectedRoom);
+	console.log(editPanelModule.selectedRoom); */
 	editPanelModule.readyCreate();
 	return;
 	if (isEmpty(editPanelModule.selectedClassList) || editPanelModule.selectedClassList.length <= 0) {

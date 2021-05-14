@@ -95,7 +95,7 @@ public class CourseService {
         return data;
     }
 
-    // 新增一个课程
+    // 新增一个 课程
     @Transactional
     public void createCourse(CreateOrUpdateCourseDto createOrUpdateCourseDto) throws ServiceException {
         if (isEmpty(createOrUpdateCourseDto) || isEmpty(createOrUpdateCourseDto.getClassInCourseEntityList()) || isEmpty(createOrUpdateCourseDto.getDateTimeOfCourseEntityList())) {
@@ -119,6 +119,8 @@ public class CourseService {
         dateTimeOfCourseDao.saveAll(dateTimeOfCourseEntityList);
     }
 
+    // 批量新增 课程
+    @Transactional
     public void createCourseList(List<CreateOrUpdateCourseDto> createOrUpdateCourseDtoList) throws ServiceException {
         if (isEmpty(createOrUpdateCourseDtoList)) {
             throw new ServiceException("createOrUpdateDtoList is empty");
@@ -134,6 +136,8 @@ public class CourseService {
             }
             cell.setId(null);
             CourseInfoEntity entity = new CourseInfoEntity(cell);
+            entity.setEndDateTimeInFact(entity.getEndDateTimeInPlan());
+            entity.setStartDateTimeInFact(entity.getStartDateTimeInPlan());
             courseInfoEntityList.add(entity);
             dtoEntityMap.put(cell, entity);
         }

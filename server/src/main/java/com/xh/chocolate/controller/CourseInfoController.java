@@ -35,12 +35,11 @@ public class CourseInfoController {
      * @return
      */
     @PostMapping
-    public ResponseResult postCourseInfo(@RequestBody List<CreateOrUpdateCourseDto> createOrUpdateCourseDtoList) {
+    public ResponseResult postCourseInfo(@RequestBody List<CreateOrUpdateCourseDto> createOrUpdateCourseDtoList) throws ServiceException {
         // 检查教师Id、学科Id、教室Id是否合法
         // ...
-
         createOrUpdateCourseDtoList.forEach(cell->cell.setId(null));
-        courseInfoDao.saveAll(createOrUpdateCourseDtoList);
+        courseService.createCourseList(createOrUpdateCourseDtoList);
         return success();
     }
 
@@ -124,7 +123,7 @@ public class CourseInfoController {
      * @return
      * @throws ServiceException
      */
-    @PostMapping
+    // @PostMapping
     public ResponseResult postCourse(@RequestBody CreateOrUpdateCourseDto createOrUpdateCourseDto) throws ServiceException {
         courseService.createCourse(createOrUpdateCourseDto);
         return success();
