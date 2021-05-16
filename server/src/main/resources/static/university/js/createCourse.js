@@ -353,7 +353,6 @@ var editPanelModule = {
 		if (undefined == data) {
 			return;
 		}
-		return;
 		var list = [];
 		list.push(data);
 		$.ajax({

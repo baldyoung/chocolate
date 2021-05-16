@@ -89,7 +89,9 @@ function requestData(startDate) {
 				var targetData = data.data;
 				result = targetData;
 				allDataBuffer = result;
-				
+				if (allDataBuffer.currentCourseDayTimeInfo == undefined) {
+					allDataBuffer.currentCourseDayTimeInfo = [];
+				}
 			} else {
 				//swal('获取数据失败', data.desc, 'error');
 				alert('操作失败\n'+data.desc);
