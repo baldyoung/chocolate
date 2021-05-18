@@ -12,15 +12,16 @@ $(function() {
 	classModule.init(disengagedData.classList);
 	roomModule.init(disengagedData.roomList);
 	subjectModule.init();
+	 
 	
 	//日期范围限制
 	var start = laydate({
 		elem: '#startDate',
 		type : 'date',
 		format: 'YYYY-MM-DD',
-		min: laydate.now(), //设定最小日期为当前日期
+		min: currentSelectDayTime.startDate + ' 00:00:00', //设定最小日期为当前日期
 		max: '2099-06-16 23:59:59', //最大日期
-		istime: true,
+		istime: false,
 		istoday: false,
 		choose: function(datas) {
 			end.min = datas; //开始日选好后，重置结束日的最小日期
@@ -33,9 +34,9 @@ $(function() {
 	var end = laydate({
 		elem: '#endDate',
 		format: 'YYYY-MM-DD',
-		min: laydate.now(),
+		min: currentSelectDayTime.startDate + ' 00:00:00',
 		max: '2099-06-16 23:59:59',
-		istime: true,
+		istime: false,
 		istoday: false,
 		choose: function(datas) {
 			start.max = datas; //结束日选好后，重置开始日的最大日期
@@ -385,11 +386,7 @@ function checkAndLoadSelectedInfo() {
 	editPanelModule.selectedClassList = classModule.getSelectedData();;
 	editPanelModule.selectedSubject = subjectModule.getSelectedData();
 	editPanelModule.selectedRoom = roomModule.getSelectedData();
-
-	/* console.log("已选择的数据:");
-	console.log(editPanelModule.selectedClassList);
-	console.log(editPanelModule.selectedSubject);
-	console.log(editPanelModule.selectedRoom); */
+ 
 	editPanelModule.readyCreate();
 	return;
 	if (isEmpty(editPanelModule.selectedClassList) || editPanelModule.selectedClassList.length <= 0) {

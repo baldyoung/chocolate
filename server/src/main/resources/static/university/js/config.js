@@ -82,6 +82,25 @@ function getTargetWeekDays(weekIndex) {
 	}
 	return result;
 }
+// 获取指定日期所在周的时间情况,只支持YYYY-MM-DD格式
+function getTargetWeekDaysForDate(date) {
+	var targetDay = new Date(date);
+	var targetDayIndex = targetDay.getDay();
+	var targetWeekMonday = targetDayIndex == 0 ? 7 : targetDayIndex;
+	targetWeekMonday -= 1;
+	targetWeekMonday = new Date (targetDay.valueOf() - targetWeekMonday * 24 * 60 * 60 * 1000);
+	var result = [];
+	for (var i = 0; i < 7; i++) {
+		result[i] = new Date(targetWeekMonday.valueOf() + (i * 24 * 60 * 60 * 1000));
+		var temp = result[i].getMonth() + 1;
+		temp = temp < 9 ? ("0"+temp) : temp;
+		var temp2 = result[i].getDate();
+		temp2 = temp2 < 9 ? ("0"+temp2) : temp2;
+		result[i].formatDateString = result[i].getFullYear() + "-" + temp + "-" + temp2;
+		result[i].timeValue = result[i].valueOf();
+	}
+	return result;
+}
 
 
 $(function() {
