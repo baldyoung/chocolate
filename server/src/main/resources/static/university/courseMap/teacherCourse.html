@@ -8,6 +8,39 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
 		<link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
+		<style>
+			.courseMap {
+				/* min-width:800px; */
+				width:100%;
+				min-width:600px;
+				border:1px solid pink;
+			}
+			.courseMap tr td:first-child {
+				/* height:100%; */
+				background-color: #f2f6f7;
+				border:1px solid orange;
+				
+			}
+			.courseMap tr td {
+				border:1px dashed orange;
+				height:50px !important;
+				box-sizing: border-box;
+			}
+			.courseMap tr th {
+				height:30px !important;
+				width:10%;
+				background-color: blue;
+				border:1px solid orange;
+				text-align: center;
+			}
+			.courseMap tr {
+				/* height:50px; */
+				box-sizing: border-box;
+			}
+			/* .courseMap tr .index {
+				width:5%
+			} */
+		</style>
 		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		<script src="bootstrap/js/jquery.min.js"></script>
 		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
@@ -21,38 +54,68 @@
 						<div class="panel-heading">
 							不带 title 的面板标题
 						</div>
-						<div class="panel-body">
-							<table>
+						<div class="panel-body" style='overflow: auto;'>
+							<table class='courseMap'>
 								<tr>
-									<td>
-										
-									</td>
-									<td>
-										
-									</td>
-									<td>
-										
-									</td>
-									<td>
-										
-									</td>
-									<td>
-										
-									</td>
-									<td>
-										
-									</td><td>
-										
-									</td>
-									<td>
-										
-									</td>
+									<th>时间</th>
+									<th>星期一</th>
+									<th>星期二</th>
+									<th>星期三</th>
+									<th>星期四</th>
+									<th>星期五</th>
+									<th>星期六</th>
+									<th>星期日</th>
 								</tr>
+								
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		
+		<script>
+			var courseIndexNames = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+			var courseIndexTimes = ['', '8:30 - 9:10', '9:20 - 10:00', '10:20 - 11:00', '11:10 - 11:50', '15:00 - 15:40', '15:50 - 16:30', '?', '?', '?'];
+			$(function(){
+				
+				var courseMapCell = $('.courseMap');
+				for(var i=1; i<=9; i++) {
+					var html = '<tr><td>';
+					html += '<div style="height:100%; overflow: hidden;"><div class="text-center" style="height:50%;">第' + courseIndexNames[i] + '节课</div>';
+					html += '<div class="text-center hidden-xs" style="height:45%; overflow: hidden;">'+courseIndexTimes[i]+'</div>';
+					
+					html += '</div>';
+					html += '</td><td id="test'+i+'"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
+					courseMapCell.append(html);
+				}
+				var test = $('#test3');
+				var temp = '<div style="max-height:100%; height:50px; overflow:visible !important; "><div style="height:200%; background:gray; border-radius:5px;">';
+				temp += '<div style="height:33%; text-align:center;">语文</div>';
+				temp += '<div style="height:33%; text-align:center;">王龙庆</div>';
+				temp += '<div style="height:33%; text-align:center;">教学楼303</div>';
+				temp+='</div></div>'
+				test.css('border-bottom', '0px solid');
+				test.append(temp);
+				$('#test4').css('border-top', '0px solid');
+				
+				var t = test.children()[0];
+				console.log(t);
+				t = $(t);
+				t = $(t.children()[0]);
+				t.outerHeight(test.outerHeight() + $('#test4').outerHeight());
+				
+				
+				temp = '<div style="max-height:100%; height:50px; overflow:visible !important; "><div style="height:100%; background:green; border-radius:5px;">';
+				temp += '<div style="height:33%; text-align:center;">语文</div>';
+				temp += '<div style="height:33%; text-align:center;">王龙庆</div>';
+				temp += '<div style="height:33%; text-align:center;">教学楼303</div>';
+				temp+='</div></div>';
+				$('#test1').append(temp);
+				
+			});
+			
+		</script>
 	</body>
 </html>
