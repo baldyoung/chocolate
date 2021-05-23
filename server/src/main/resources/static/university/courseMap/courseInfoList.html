@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>课程资源列表</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="css/animate.css" rel="stylesheet">
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="bootstrap/js/jquery.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="bootstrap/js/bootstrap.js"></script>
+		<script src='../js/config.js'></script>
+		<script src='courseInfoList.js'></script>
+		<style>
+			.sourceItem {
+				font-size: 10px;
+				background-color: #f0f3f4;
+				padding: 5px 12px;
+				color: inherit;
+				border-radius: 2px;
+				border: 1px solid #e7eaec;
+				margin-right: 5px;
+				margin-top: 5px;
+				display: inline-block;
+				cursor:pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-sm-12'>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							课程资源列表
+							<span style='color:orange;'>班级列表</span>
+						</div>
+						<div class="panel-body" style='overflow: auto;'>
+							<div id='sourceArea'>
+								<div class='sourceItem'>APP2002</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -115,7 +115,7 @@ function requestData(startDate) {
 }
 // 当前课程图所在周的时间数据
 var currentWorkingCourseMapStartWeek;
-// 获取指定周的所有课程相关数据
+// 获取指定周的所有课程相关数据(startDate是2020-01-01)
 function loadTargetData(startDate) {
 	console.log('loadTargetDate中的startDate值:'+startDate);
 	startDate = new Date(startDate).valueOf();
