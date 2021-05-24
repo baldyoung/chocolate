@@ -27,7 +27,7 @@ var workingCourseMap = {
 	},
 	getValidObject : function(key) {
 		var o = workingCourseMap[key];
-		if(undefined == o){
+		if(undefined == o || null == o){
 			workingCourseMap[key] = {
 				staffMap : {},
 				roomMap : {},
@@ -70,6 +70,15 @@ $(function(){
 
 function toFlag(day, time) {
 	return "d"+day+"t"+time;
+}
+
+function flagToObject(flag) {
+	flag = flag.replace('d', '');
+	var k = flag.split('t');
+	return {
+		day : k[0],
+		time : k[1]
+	};
 }
 
 function flagToDayTime(flag){
@@ -214,13 +223,18 @@ function calculateStaticData() {
 
 // 处理 指定周的 课程数据，将其处理成特定的映射表
 function drawCourseMap(dayTimeOfCourse) {
+	// 当前周的 课程时间节点数据
+	console.log("当前周的 课程时间节点数据");
+	console.log(dayTimeOfCourse);
 	// 重置 当前周的时间节点图
 	workingCourseMap.reset();
 	$.each(dayTimeOfCourse, function(index, dayTimeCell){
 		var course = allCourseMap[dayTimeCell.courseId];
 		var dtFlag = toFlag(dayTimeCell.weekDay, dayTimeCell.workTime);
+		console.log("dtFlag:"+dtFlag);
 		// 当前dtFlag所在的日期
 		var flagDay = currentWorkingCourseMapStartWeek[parseInt(dayTimeCell.weekDay) - 1];
+		console.log("test test");
 		if (course.startDate > flagDay.valueOf() || course.endDate < flagDay.valueOf()) {
 			// 当前dtFlag所在的日期不在课程时间范围内
 			return ;
