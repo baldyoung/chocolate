@@ -65,6 +65,20 @@
 				border:1px dashed black;
 				text-align: center;
 				color:orange;
+				cursor: not-allowed;
+			}
+			.panelCourseMapBodyCell i{
+				color:#A1A5AB !important;
+			}
+			.enableSelectedForPanelSJFDCell{
+				background:#CBD5DD !important;
+				cursor: pointer;
+			}
+			.enableSelectedForPanelSJFDCell i{
+				color:#CBD5DD !important;
+			}
+			.enableSelectedForPanelSJFDCell-Selected {
+				background:#00FF00 !important;
 			}
 		</style>
 		<!-- 全局js -->
@@ -286,14 +300,14 @@
 								<input id="endDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
 							</li>
 							<li>
-								<i class="fa fa-thumb-tack" style='color:pink;'></i> 上机辅导
-								<div onclick='clickSJFD()' class="text-center" style='border:1px solid gray; display:inline-block; width:20px;height:20px;  line-height: 20px;' type="button">
+								<i class="fa fa-thumb-tack" style='color:pink;'></i> 上机辅导&nbsp;
+								<div onclick='clickSJFD()' class="text-center" style='border:1px solid gray; display:inline-block; width:20px;height:20px;  line-height: 20px; border-radius:5px;' type="button">
 									<i id='sjfd' class="fa fa-check"  style='margin-right:0px;'></i>
 								</div>
 							</li>
 							<li>
-								<div style='border-color: #dee5e7; border:1px solid;'>
-									<div style='width:482px; margin:0 auto; '>
+								<div id='panelCourseMapArea' style='  '>
+									<div style='width:482px; margin:0 auto; border-color: #dee5e7; border:1px solid; border-radius:3px;'>
 										<div id='panelCourseMapTitle'></div>
 										<div id='panelCourseMapBody'></div>
 									</div>

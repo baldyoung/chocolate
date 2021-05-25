@@ -2,12 +2,13 @@
 
 var currentSelectDayTime;
 $(function() {
-	createPanelCourseMap();
-	createDayTimeMap();
+	
 	currentSelectDayTime = localStorage.getItem("currentSelectDayTime");
 	currentSelectDayTime = JSON.parse(currentSelectDayTime);
 	console.log("时间与任务点:");
 	console.log(currentSelectDayTime);
+	createPanelCourseMap();
+	createDayTimeMap();
 	$.each(currentSelectDayTime.dayTimeList, function(index, cell){
 		$('#'+toFlag(cell.day, cell.time)).css('background', '#C0504E');
 	});
@@ -436,8 +437,11 @@ function clickSJFD() {
 	t = $('#sjfd');
 	if (t.hasClass('fa-check')) {
 		t.removeClass('fa-check');
+		$('#panelCourseMapArea').hide();
 	} else {
 		t.addClass('fa-check');
+		$('.SJFDCell').removeClass('enableSelectedForPanelSJFDCell-Selected');
+		$('#panelCourseMapArea').show();
 	}
 }
 
@@ -456,12 +460,22 @@ function createPanelCourseMap() {
 			if (d == 0) {
 				html += "<div class='panelCourseMapBodyCell'>"+timeNames[t]+"</div>";
 			} else {
-				html += "<div class='panelCourseMapBodyCell'><i class='fa fa-check' style='color:#A1A5AB;'></i></div>";
+				html += "<div onclick='clickSJFDCell(this)' id='td"+d+"t"+t+"' class='panelCourseMapBodyCell SJFDCell'><i class='fa fa-check' style=''></i></div>";
 			}
 		}
 		body.append(html);
 	}
-	
+	$.each(currentSelectDayTime.dayTimeList, function(index, cell){
+		$('#t'+toFlag(cell.day, cell.time)).addClass('enableSelectedForPanelSJFDCell');
+	});
+}
+
+function clickSJFDCell(t) {
+	if($(t).hasClass('enableSelectedForPanelSJFDCell-Selected')) {
+		$(t).removeClass('enableSelectedForPanelSJFDCell-Selected');
+	} else {
+		$(t).addClass('enableSelectedForPanelSJFDCell-Selected');
+	}
 }
 
 
