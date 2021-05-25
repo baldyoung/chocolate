@@ -30,7 +30,7 @@ $(document).ready(function() {
 			if (weekDays[i].getFullYear() == currentDay.getFullYear() && weekDays[i].getMonth() == currentDay.getMonth() &&
 				weekDays[i].getDate() == currentDay.getDate()) {
 				temp = "<span >" + weekDays[i].formatDateString +
-					"</span><span style='color:red;font-weight:bolder;'>今天</span>";
+					"</span><br><span style='color:red;font-weight:bolder; font-size:8px;'>今天</span>";
 			} else {
 				temp = weekDays[i].formatDateString;
 			}
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 function refreshCourseInfo() {
 	var startDate = currentWeekDataBuffer[0].valueOf();
-	for (var i = 1; i <= 5; i++) {
+	for (var i = 1; i <= 9; i++) {
 		for (var j = 1; j <= 7; j++) {
 			var dayTimeCell = {
 				day : j,
@@ -51,9 +51,10 @@ function refreshCourseInfo() {
 			var list = [dayTimeCell];
 			var result = getTargetDisengagedDataMap(startDate, list);
 			var timeTipCellHtml = '<div dayId="'+j+'" timeId="'+i+'" class="timeCellOption" id="timeCellOption' + j + i + '" style="">' +
-				'<button type="button" class="btn btn-w-m btn-danger">空闲班级 '+ result.classList.length + '</button>' +
-				'<button type="button" class="btn btn-w-m btn-primary">空闲教师 '+ result.staffList.length + '</button>' +
-				'<button type="button" class="btn btn-w-m btn-info">空闲教室 '+ result.roomList.length + '</button>' +
+				'<div class="timeCellContent">' +
+				' <i class="fa fa-users"></i> ' + result.classList.length + 
+				' <i class="fa fa-user-secret"></i> '+ result.staffList.length + 
+				' <i class="fa fa-university"></i> ' + result.roomList.length  + '</div>' +
 				'</div>';
 			$('#timeCell' + j + i).html(timeTipCellHtml);
 		}

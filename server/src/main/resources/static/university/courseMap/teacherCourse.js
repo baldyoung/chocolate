@@ -143,9 +143,11 @@ var courseMap = {
 			console.log("一次处理完成");
 			console.log(courseDayTimeMap);
 		}
+		
 		for(var dayTimeFlag in courseDayTimeMap) {
-			if (courseDayTimeMap[dayTimeFlag]) {
+			if (courseDayTimeMap[dayTimeFlag] != false) {
 				var t = $('#'+dayTimeFlag);
+				t.html('');
 				var temp = '<div style="max-height:100%; height:50px; overflow:visible !important; "><div style="position:relative; height:'+courseDayTimeMap[dayTimeFlag]+'00%; background:green; border-radius:5px;">';
 				temp += '<div style="height:33%; text-align:center;">'+courseInfo.courseName+'</div>';
 				temp += '<div style="height:33%; text-align:center;">'+courseInfo.teacherName+'</div>';

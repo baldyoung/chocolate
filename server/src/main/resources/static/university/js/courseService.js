@@ -18,7 +18,7 @@ var allCourseMap = {};
 var workingCourseMap = {
 	reset : function() {
 		for(var d=1; d<=7; d++) {
-			for(var t=1; t<=5; t++) {
+			for(var t=1; t<=9; t++) {
 				var flag = toFlag(d, t);
 				delete workingCourseMap[flag];
 				workingCourseMap.getValidObject(flag);
@@ -42,7 +42,7 @@ var workingCourseMap = {
 var disengagedDataMap = {
 	reset : function() {
 		for(var d=1; d<=7; d++) {
-			for(var t=1; t<=5; t++) {
+			for(var t=1; t<=9; t++) {
 				var flag = toFlag(d, t);
 				delete disengagedDataMap[flag];
 				disengagedDataMap.getValidObject(flag);
@@ -126,12 +126,12 @@ function requestData(startDate) {
 var currentWorkingCourseMapStartWeek;
 // 获取指定周的所有课程相关数据(startDate是2020-01-01)
 function loadTargetData(startDate) {
-	console.log('loadTargetDate中的startDate值:'+startDate);
+	//console.log('loadTargetDate中的startDate值:'+startDate);
 	startDate = new Date(startDate).valueOf();
-	console.log('loadTargetData中startDate转换后的值:'+startDate);
+	//console.log('loadTargetData中startDate转换后的值:'+startDate);
 	currentWorkingCourseMapStartWeek = getTargetWeekDaysForDate(startDate);
-	console.log("当前选定周的日期情况:");
-	console.log(currentWorkingCourseMapStartWeek);
+	//console.log("当前选定周的日期情况:");
+	//console.log(currentWorkingCourseMapStartWeek);
 	
 	var targetDayTimeOfCourse = [];
 	$.each(allDataBuffer.currentCourseDayTimeInfo, function(index, record) {
@@ -224,17 +224,17 @@ function calculateStaticData() {
 // 处理 指定周的 课程数据，将其处理成特定的映射表
 function drawCourseMap(dayTimeOfCourse) {
 	// 当前周的 课程时间节点数据
-	console.log("当前周的 课程时间节点数据");
-	console.log(dayTimeOfCourse);
+	//console.log("当前周的 课程时间节点数据");
+	//console.log(dayTimeOfCourse);
 	// 重置 当前周的时间节点图
 	workingCourseMap.reset();
 	$.each(dayTimeOfCourse, function(index, dayTimeCell){
 		var course = allCourseMap[dayTimeCell.courseId];
 		var dtFlag = toFlag(dayTimeCell.weekDay, dayTimeCell.workTime);
-		console.log("dtFlag:"+dtFlag);
+		//console.log("dtFlag:"+dtFlag);
 		// 当前dtFlag所在的日期
 		var flagDay = currentWorkingCourseMapStartWeek[parseInt(dayTimeCell.weekDay) - 1];
-		console.log("test test");
+		//console.log("test test");
 		if (course.startDate > flagDay.valueOf() || course.endDate < flagDay.valueOf()) {
 			// 当前dtFlag所在的日期不在课程时间范围内
 			return ;
@@ -294,7 +294,7 @@ function drawCourseMap(dayTimeOfCourse) {
 function drawDisengagedDataMap(workingDataMap) {
 	disengagedDataMap.reset();
 	for(var d=1; d<=7; d++) {
-		for(var t=1; t<=5; t++) {
+		for(var t=1; t<=9; t++) {
 			var dtFlag = toFlag(d, t);
 			var timeNode = disengagedDataMap.getValidObject(dtFlag);
 			
@@ -328,8 +328,8 @@ function drawDisengagedDataMap(workingDataMap) {
 var targetDisengagedDataMapBuffer = {};
 function getTargetDisengagedDataMap(startDate, dayTimeList) {
 	loadTargetData(startDate);
-	console.log("当前workingCourseMap:");
-	console.log(workingCourseMap);
+	//console.log("当前workingCourseMap:");
+	//console.log(workingCourseMap);
 	drawDisengagedDataMap(workingCourseMap);
 	var staffMap = {};
 	var classMap = {};
@@ -438,17 +438,17 @@ function getUncompletedSubjectForClass(classIdList) {
 	if (undefined == classIdList || classIdList.length == 0) {
 		return;
 	}
-	console.log("目标班级Id:");
-	console.log(classIdList);
+	//console.log("目标班级Id:");
+	//console.log(classIdList);
 	completedSubjectMap = getCompletedSubjectForClass(classIdList);
-	console.log("已完成的学科");
-	console.log(completedSubjectMap);
+	//console.log("已完成的学科");
+	//console.log(completedSubjectMap);
 	var result = [];
 	var intersection = {};
 	// 获取给定班级都要上的课（取交集）
 	$.each(classIdList, function(index, classId){
-		console.log("目标班级"+classId);
-		console.log(allClassMap[classId]);
+		//console.log("目标班级"+classId);
+		//console.log(allClassMap[classId]);
 		if (undefined == allClassMap[classId].specialty) {
 			console.warn("未指定专业的班级:");
 			console.warn(allClassMap[classId]);
@@ -463,8 +463,8 @@ function getUncompletedSubjectForClass(classIdList) {
 			}
 		});
 	});
-	console.log("初步数据交集:");
-	console.log(intersection);
+	//console.log("初步数据交集:");
+	//console.log(intersection);
 	for(var subjectId in intersection) {
 		if (intersection[subjectId] < classIdList.length) {
 			delete intersection[subjectId];
@@ -478,14 +478,14 @@ function getUncompletedSubjectForClass(classIdList) {
 			delete intersection[subjectId];
 		}
 	}
-	console.log("过滤后数据:");
-	console.log(intersection);
+	//console.log("过滤后数据:");
+	//console.log(intersection);
 	// 将交集对象转换为集合
 	for(var subjectId in intersection) {
 		result.push(allSubjectMap[subjectId]);
 	}
-	console.log("最终结果:");
-	console.log(result);
+	//console.log("最终结果:");
+	//console.log(result);
 	return result;
 }
 
@@ -496,14 +496,14 @@ function getDisengagedStaffForSubject(subjectList) {
 	if (undefined == subjectList || 0 == subjectList.length) {
 		return resultMap;
 	}
-	console.log("所有学科:");
-	console.log(allSubjectMap);
+	//console.log("所有学科:");
+	//console.log(allSubjectMap);
 	$.each(subjectList, function(index, cell){
-		console.log("test:");
-		console.log(cell);
+		//console.log("test:");
+		//console.log(cell);
 		
 		var subject = allSubjectMap[cell.subjectId];
-		console.log(subject);
+		//console.log(subject);
 		var performableStaffList = subject.performableStaff;
 		var list = [];
 		for(var i=0; i<disengagedStaffList.length; i++) {

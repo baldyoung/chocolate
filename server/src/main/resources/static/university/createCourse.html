@@ -20,6 +20,52 @@
 			.roomCellSelected {
 				background-color: #FBEDB7 !important;
 			}
+			.dayTimeCellTitleCell {
+				width:80px;
+				height:20px;
+				margin:1px;
+				text-align: center; 
+				display:inline-block;
+				background:gray;
+				line-height: 20px;
+				color:black;
+			}
+			.dayTimeCellCell {
+				width:80px;
+				height:20px;
+				margin:1px;
+				text-align: center; 
+				display:inline-block;
+				background:gray;
+				line-height: 20px;
+				color:white;
+				box-sizing: border-box;
+			}
+			.hideContent {
+				color:gray !important;
+			}
+			.panelCourseMapTitleCell {
+				display:inline-block;
+				width:60px;
+				background:#A1A5AB;
+				height:18px;
+				line-height: 18px;
+				font-size:10px;
+				border:1px solid black;
+				text-align: center;
+				color:orange;
+			}
+			.panelCourseMapBodyCell {
+				display:inline-block;
+				width:60px;
+				background:#A1A5AB;
+				height:18px;
+				line-height: 18px;
+				font-size:10px;
+				border:1px dashed black;
+				text-align: center;
+				color:orange;
+			}
 		</style>
 		<!-- 全局js -->
 		<script src="../js/jquery.min.js?v=2.1.4"></script>
@@ -49,6 +95,26 @@
 					<div class="ibox">
 						<div class="ibox-content">
 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="ibox">
+						<div class="ibox-content">
+							<!-- 开始日期（周一时间） -->
+							<div id='seletedDateArea' style='text-align: center;' ></div>
+							<!-- 一周中被选中的时间点 -->
+							<div style='width:670px; margin:0 auto;'>
+								<!-- 表头 -->
+								<div id='selectedDayTimeMapTitle'>
+									<div class='dayTimeCellTitleCell' style='color:gray;'> ? </div><div class='dayTimeCellTitleCell'>周一</div><div class='dayTimeCellTitleCell'>周二</div><div class='dayTimeCellTitleCell'>周三</div><div class='dayTimeCellTitleCell'>周四</div><div class='dayTimeCellTitleCell'>周五</div><div class='dayTimeCellTitleCell'>周六</div><div class='dayTimeCellTitleCell'>周日</div>
+								</div>
+								<!-- 表体 -->
+								<div id='selectedDayTimeMapBody'>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -185,7 +251,7 @@
 			</div>
 		</div>
 		<!-- 课程信息补充窗口 -->
-		<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal inmodal show" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" >
 			<div class="modal-dialog">
 				<div class="modal-content animated bounceInRight">
 					<div class="modal-header">
@@ -218,6 +284,20 @@
 							<li>
 								<i class="fa fa-calendar" style='color:orange;'></i> 结束时间
 								<input id="endDate" readonly="" class="layer-date" style="margin-top:3px; margin-bottom: 3px; text-align: center; outline:none; border:1px solid #e7eaec">
+							</li>
+							<li>
+								<i class="fa fa-thumb-tack" style='color:pink;'></i> 上机辅导
+								<div onclick='clickSJFD()' class="text-center" style='border:1px solid gray; display:inline-block; width:20px;height:20px;  line-height: 20px;' type="button">
+									<i id='sjfd' class="fa fa-check"  style='margin-right:0px;'></i>
+								</div>
+							</li>
+							<li>
+								<div style='border-color: #dee5e7; border:1px solid;'>
+									<div style='width:482px; margin:0 auto; '>
+										<div id='panelCourseMapTitle'></div>
+										<div id='panelCourseMapBody'></div>
+									</div>
+								</div>
 							</li>
 							<li>
 								<i class="fa fa-cc"></i> 参考课时量&nbsp;&nbsp;<span id="epCourseTimeNumber" style='color:blue;'>100</span>

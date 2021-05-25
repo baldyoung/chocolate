@@ -2,10 +2,17 @@
 
 var currentSelectDayTime;
 $(function() {
+	createPanelCourseMap();
+	createDayTimeMap();
 	currentSelectDayTime = localStorage.getItem("currentSelectDayTime");
 	currentSelectDayTime = JSON.parse(currentSelectDayTime);
 	console.log("时间与任务点:");
 	console.log(currentSelectDayTime);
+	$.each(currentSelectDayTime.dayTimeList, function(index, cell){
+		$('#'+toFlag(cell.day, cell.time)).css('background', '#C0504E');
+	});
+	$('#seletedDateArea').text('起始时间:'+currentSelectDayTime.startDate);
+	
 	var disengagedData = getTargetDisengagedDataMap(currentSelectDayTime.startDate, currentSelectDayTime.dayTimeList);
 	console.log("空闲资源汇总:");
 	console.log(disengagedData);
@@ -266,7 +273,7 @@ var editPanelModule = {
 		var subject = editPanelModule.selectedSubject;
 		var room = editPanelModule.selectedRoom;
 		var classList = editPanelModule.selectedClassList;
-		console.log(subject.info.subjectName);
+		//console.log(subject.info.subjectName);
 		$('#epSubjectName').val(subject.info.subjectName);
 		$('#epRoomName').text(room.classRoomName);
 		$('#epCourseTimeNumber').text(subject.info.standardHours);
@@ -387,8 +394,6 @@ function checkAndLoadSelectedInfo() {
 	editPanelModule.selectedSubject = subjectModule.getSelectedData();
 	editPanelModule.selectedRoom = roomModule.getSelectedData();
  
-	editPanelModule.readyCreate();
-	return;
 	if (isEmpty(editPanelModule.selectedClassList) || editPanelModule.selectedClassList.length <= 0) {
 		$("#myModal").modal('hide');
 		alert('请选择 班级');
@@ -408,9 +413,56 @@ function checkAndLoadSelectedInfo() {
 }
 
 
+// 绘制时间节点图
+function createDayTimeMap() {
+	var timeNames = ['', '第一节课', '第二节课', '第三节课', '第四节课', '第五节课', '第六节课', '第七节课', '第八节课', '第九节课'];
+	var target = $('#selectedDayTimeMapBody');
+	target.html('');
+	for(var t = 1; t<=9; t++) {
+		var html = '<div>';
+		for(var d = 0; d < 8; d++) {
+			if (d == 0) {
+				html += "<div id='d"+d+"t"+t+"' class='dayTimeCellCell '>"+timeNames[t]+"</div>";
+			} else {
+				html += "<div id='d"+d+"t"+t+"' class='dayTimeCellCell hideContent'><i class='fa fa-check'></i></div>";
+			}
+		}
+		target.append(html);
+	}
+}
 
+//
+function clickSJFD() {
+	t = $('#sjfd');
+	if (t.hasClass('fa-check')) {
+		t.removeClass('fa-check');
+	} else {
+		t.addClass('fa-check');
+	}
+}
 
-
+function createPanelCourseMap() {
+	var dayNames = ['时间', '周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+	var timeNames = [' ', '第一节课', '第二节课', '第三节课', '第四节课', '第五节课', '第六节课', '第七节课', '第八节课', '第九节课'];
+	var title = $('#panelCourseMapTitle');
+	var body = $('#panelCourseMapBody');
+	for(var i=0; i<8; i++) {
+		var html = '<div class="panelCourseMapTitleCell">'+dayNames[i]+'</div>';
+		title.append(html);
+	}
+	for(var t=1; t<=9; t++) {
+		var html = "<div>";
+		for(var d=0; d<=7; d++) {
+			if (d == 0) {
+				html += "<div class='panelCourseMapBodyCell'>"+timeNames[t]+"</div>";
+			} else {
+				html += "<div class='panelCourseMapBodyCell'><i class='fa fa-check' style='color:#A1A5AB;'></i></div>";
+			}
+		}
+		body.append(html);
+	}
+	
+}
 
 
 
