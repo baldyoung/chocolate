@@ -12,42 +12,56 @@ $(function() {
 	console.log("周一:"+currentWeekDays[0].formatDateString);
 	loadTargetData(currentWeekDays[0].formatDateString);
 	setTimeout(function(){
-		/* console.log('当前周的数据');
-		console.log(workingCourseMap); */
+		console.log('当前周的数据');
+		console.log(allRoomMap); 
+		console.log(allClassMap);
+		console.log(allStaffMap);
 		var type = getQueryVariable('type');
 		var id = getQueryVariable('id');
-		type = 0;// 0:room、1:class、2:teacher
-		id = '1';
+		var sourceNameText;
+		var sourceInfo
+		//type = 0;// 0:room、1:class、2:teacher
+		//id = '1';
+		if (type == 0) {
+			sourceNameText = allRoomMap[id].classRoomName;
+			sourceInfo = allRoomMap[id];
+		} else if (type == 1) {
+			sourceNameText = allClassMap[id].className;
+			sourceInfo = allClassMap[id];
+		} else if (type == 2) {
+			sourceNameText = allStaffMap[id].staffName;
+			sourceInfo = allStaffMap[id];
+		}
+		console.log(sourceNameText);
+		$('.sourceName').text(sourceNameText);
 		// 获取指定资源下的所有课程数据
-		var courseInfoList = [];
+		if (sourceInfo.dayTimeMap == undefined) {
+			// 没课
+			return;
+		}
+		var currentSourceCourseMap = {};
 		var cm;
-		for(var flag in workingCourseMap) {
-			if (type == 0) {
-				cm = workingCourseMap[flag].roomMap;
-			} else if (type == 1) {
-				cm = workingCourseMap[flag].classMap;
-			} else if (type == 2) {
-				cm = workingCourseMap[flag].staffMap;
-			}
+		for(var dayTimeFlag in sourceInfo.dayTimeMap) {
+			cm = sourceInfo.dayTimeMap[dayTimeFlag];
 			if (cm == undefined) {
 				continue;
 			}
-			/* console.log('flag:'+flag);
-			console.log('cm:');
-			console.log(cm); */
-			var tg = cm[id];
-			if (tg == undefined) {
-				continue;
-			}
-			//var targetCourse = allClassMap[tg.];
+			currentSourceCourseMap[cm.id] = cm;
+		}
+		// 当前资源下的课程
+		var courseInfoList = [];
+		for(var courseId in currentSourceCourseMap) {
+			var tempCourse = currentSourceCourseMap[courseId];
+			console.log(tempCourse);
 			var tc = {
-				courseName : tg.courseName,
+				courseName : tempCourse.courseName,
 				dayTimeList : [],
 			};
-			for(var fg in tg.dayTimeMap) {
+			for(var fg in tempCourse.dayTimeMap) {
 				var tempDayTime = flagToObject(fg);
 				tempDayTime.day = parseInt(tempDayTime.day);
 				tempDayTime.time = parseInt(tempDayTime.time);
+				tempDayTime.typeFlag = tempCourse.dayTimeTypeFlagMap[fg];
 				tc.dayTimeList.push(tempDayTime);
 			}
 			courseInfoList.push(tc);
@@ -104,46 +118,52 @@ var courseMap = {
 		}
 	},
 	setCourse : function(courseInfo) {
-		/*
-			courseInfo = {
-				dayTimeList : ['d1t1'],
-				courseName : '',
-				teacherName : '',
-				startDate : '时间戳',
-				endDate : '时间戳'
-			}
-		*/
-		console.log("开始课程数据处理:");
+		console.log("要设置的课程:");
 		console.log(courseInfo);
+		// 标记每个时间点是否有课
 		var courseDayTimeMap = {};
+		// 记录每个时间点上的时间安排记录（主要用于记录时间点类型标识）
+		var tempCourseDayTimeMap = {};
+		// 为当前课程绘制标识图（courseDayTimeMap、tempCourseDayTimeMap）
 		$.each(courseInfo.dayTimeList, function(index, cell){
 			var dayTimeFlag = toFlag(cell.day, cell.time);
 			courseDayTimeMap[dayTimeFlag] = true;
+			tempCourseDayTimeMap[dayTimeFlag] = cell;
 		});
+		// 开始处理当前课程的上课时间安排（合并连续的时间点）
 		var list = courseInfo.dayTimeList;
 		for(var i=0; i<list.length; i++) {
 			var cell = list[i];
 			var dayTimeFlag = toFlag(cell.day, cell.time);
 			if (!courseDayTimeMap[dayTimeFlag]) {
+				// 当前节点已被遍历过
 				continue;
 			}
+			// 初始化当前开始节点
 			courseDayTimeMap[dayTimeFlag] = 1;
+			var currentTimeCell = cell;
 			var nextTimeCell = getTheDayNextTime(cell);
-			console.log("下一个时间点:");
-			console.log(nextTimeCell); 
-			console.log(courseDayTimeMap);
-			var nextTime = courseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)];
-			console.log(courseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)]);
-			while(nextTime) {
+			var hasNextTime = courseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)];
+			while(hasNextTime) {
+				currentDayTimeCell = tempCourseDayTimeMap[toFlag(currentTimeCell.day, currentTimeCell.time)];
+				nextDayTimeCell = tempCourseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)];
+				if (currentDayTimeCell.typeFlag != nextDayTimeCell.typeFlag) {
+					/* console.log("时间点不相等->");
+					console.log(currentDayTimeCell);
+					console.log(nextDayTimeCell); */
+					break;
+				}
 				courseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)] = false;
-				courseDayTimeMap[dayTimeFlag] += 1;
+				courseDayTimeMap[toFlag(cell.day, cell.time)] += 1;
+				currentTimeCell = nextTimeCell;
 				nextTimeCell = getTheDayNextTime(nextTimeCell);
-				nextTime = courseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)];
+				hasNextTime = courseDayTimeMap[toFlag(nextTimeCell.day, nextTimeCell.time)];
 			}
-			console.log("一次处理完成");
-			console.log(courseDayTimeMap);
+			/* console.log("一次处理完成");
+			console.log(courseDayTimeMap); */
 		}
-		
+		console.log("---->");
+		console.log(courseDayTimeMap);
 		for(var dayTimeFlag in courseDayTimeMap) {
 			if (courseDayTimeMap[dayTimeFlag] != false) {
 				var t = $('#'+dayTimeFlag);

@@ -347,7 +347,8 @@ var editPanelModule = {
 		$.each(currentSelectDayTime.dayTimeList, function(index, cell){
 			var temp = {
 					weekDay : cell.day,
-					workTime : cell.time
+					workTime : cell.time,
+					typeFlag : 0
 				};
 			result.dateTimeOfCourseEntityList.push(temp);
 		});
@@ -355,6 +356,25 @@ var editPanelModule = {
 		if (isEmpty(result.courseName) || "" == result.courseName) {
 			result.courseName = $('#epSubjectName').val();
 		}
+		
+		// 获取上机辅导的配置
+		var sjfdCellList = $('.enableSelectedForPanelSJFDCell-Selected');
+		if (0 < sjfdCellList.length) {
+			sjfdCellList.each(function(index, cell){
+				var id = cell.getAttribute('id');
+				var tId = id.replace('t', '');
+				var dayTime = flagToDayTime(tId);
+				var tList = result.dateTimeOfCourseEntityList;
+				for(var i=0; i<tList.length; i++) {
+					var tempDayTime = tList[i];
+					if (tempDayTime.weekDay == dayTime.day && tempDayTime.workTime == dayTime.time) {
+						tempDayTime.typeFlag = 1;
+						break;
+					}
+				}
+			});
+		}
+		
 		return result;
 	},
 	postData : function() {
@@ -438,9 +458,9 @@ function clickSJFD() {
 	if (t.hasClass('fa-check')) {
 		t.removeClass('fa-check');
 		$('#panelCourseMapArea').hide();
+		$('.SJFDCell').removeClass('enableSelectedForPanelSJFDCell-Selected');
 	} else {
 		t.addClass('fa-check');
-		$('.SJFDCell').removeClass('enableSelectedForPanelSJFDCell-Selected');
 		$('#panelCourseMapArea').show();
 	}
 }

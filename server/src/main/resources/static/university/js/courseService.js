@@ -202,6 +202,7 @@ function calculateStaticData() {
 		cell.startDate = cell.startDateTimeInFact.valueOf();
 		cell.endDate = cell.endDateTimeInFact.valueOf();
 		cell.dayTimeMap = {};
+		cell.dayTimeTypeFlagMap = {};
 	});
 	allClassMap = {};
 	$.each(allDataBuffer.allClassList, function(index, cell){
@@ -231,6 +232,8 @@ function drawCourseMap(dayTimeOfCourse) {
 	$.each(dayTimeOfCourse, function(index, dayTimeCell){
 		var course = allCourseMap[dayTimeCell.courseId];
 		var dtFlag = toFlag(dayTimeCell.weekDay, dayTimeCell.workTime);
+		// 标识时间点的类型（授课、辅导...）
+		course.dayTimeTypeFlagMap[dtFlag] = dayTimeCell.typeFlag;
 		//console.log("dtFlag:"+dtFlag);
 		// 当前dtFlag所在的日期
 		var flagDay = currentWorkingCourseMapStartWeek[parseInt(dayTimeCell.weekDay) - 1];

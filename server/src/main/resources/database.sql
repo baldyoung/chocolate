@@ -7,6 +7,16 @@ chocolate
  add : planInfo
 # 新增studentClassSubjectInHistory表，用于记录班级已授学科，但是非必要！ --- 2020-03-29
 # subject表，新增一个typeflag字段，用于标识学科类型   --- 2020-04-09
+# datetimeOfCourse表，新增一个typeFlag字段，用于标识上课类型   --- 2020-05-26
+-- 课程时间安排表
+DROP TABLE IF EXISTS datetimeOfCourse;
+CREATE TABLE datetimeOfCourse (
+	id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
+	courseId INT,
+	WEEKDAY SMALLINT COMMENT'1:星期一 ... 7:星期天',
+	workTime SMALLINT COMMENT'1:第一节课 ... 3:第二节课 ...',
+	typeFlag SMALLINT comment'0代表授课、1代表辅导、2代表短训、3代表实训、4代表其它'
+);
 */
 /*
 查看建数据库的语句
@@ -229,7 +239,8 @@ CREATE TABLE datetimeOfCourse (
 	id INT UNSIGNED UNIQUE NOT NULL AUTO_INCREMENT,
 	courseId INT,
 	WEEKDAY SMALLINT COMMENT'1:星期一 ... 7:星期天',
-	workTime SMALLINT COMMENT'1:第一节课 ... 3:第二节课 ...'
+	workTime SMALLINT COMMENT'1:第一节课 ... 3:第二节课 ...',
+	typeFlag SMALLINT default 0 comment'0代表授课、1代表辅导、2代表短训、3代表实训、4代表其它'
 );
 	
 	

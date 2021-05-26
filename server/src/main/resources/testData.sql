@@ -2,7 +2,8 @@
 SQLyog Professional v12.09 (64 bit)
 MySQL - 5.6.24 : Database - chocolate
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -63,6 +64,7 @@ CREATE TABLE `datetimeofcourse` (
   `courseId` int(11) DEFAULT NULL,
   `WEEKDAY` smallint(6) DEFAULT NULL COMMENT '1:星期一 ... 7:星期天',
   `workTime` smallint(6) DEFAULT NULL COMMENT '1:第一节课 ... 3:第二节课 ...',
+  typeFlag SMALLINT DEFAULT 0 COMMENT'0代表授课、1代表辅导、2代表短训、3代表实训、4代表其它',
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

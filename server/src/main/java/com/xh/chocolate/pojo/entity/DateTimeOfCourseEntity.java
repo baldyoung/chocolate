@@ -14,6 +14,7 @@ public class DateTimeOfCourseEntity {
     private Integer courseId;
     private Integer weekDay;
     private Integer workTime;
+    private Integer typeFlag;
 
     @Override
     public String toString() {
@@ -22,6 +23,7 @@ public class DateTimeOfCourseEntity {
                 ", courseId=" + courseId +
                 ", weekDay=" + weekDay +
                 ", workTime=" + workTime +
+                ", typeFlag=" + typeFlag +
                 '}';
     }
 
@@ -55,5 +57,13 @@ public class DateTimeOfCourseEntity {
 
     public void setWorkTime(Integer workTime) {
         this.workTime = workTime;
+    }
+
+    public Integer getTypeFlag() {
+        return typeFlag;
+    }
+
+    public void setTypeFlag(Integer typeFlag) {
+        this.typeFlag = typeFlag;
     }
 }

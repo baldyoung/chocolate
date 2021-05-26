@@ -9,12 +9,19 @@ $(function() {
 
 function init(){
 	var type = parseInt(getQueryVariable('type'));
-	type = 2;
+	//type = 2;
 	typeId = type;
 	var urls = ['classRoomList', 'studentClassList', 'teacherList'];
 	var targetUrl = urls[type];
 	if (targetUrl == undefined) {
 		return;
+	}
+	if (type == 0) {
+		$('#typeNameArea').text('教室列表');
+	} else if (type == 1) {
+		$('#typeNameArea').text('班级列表');
+	} else if (type == 2) {
+		$('#typeNameArea').text('教师列表');
 	}
 	$.ajax({
 		url: XConfig.serverAddress + "openSource/"+targetUrl,
@@ -48,8 +55,10 @@ function loadSourceItemList(itemList) {
 			itemUrl : ''
 		}];
 	*/
+   
    $('#sourceArea').html('');
 	$.each(itemList, function(index, cell){
+		cell.itemUrl = "courseMap.html?type=" + typeId + "&id=" + cell.itemId;
 		var html = "<div class='sourceItem' onclick='toURL(\""+cell.itemUrl+"\")'>"+cell.itemName+"</div>";
 		$('#sourceArea').append(html);
 	});
