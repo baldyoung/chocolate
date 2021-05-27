@@ -102,6 +102,14 @@ function getTargetWeekDaysForDate(date) {
 	return result;
 }
 
+function toDateFormat(t) {
+	var temp = t.getMonth() + 1;
+	temp = temp < 9 ? ("0"+temp) : temp;
+	var temp2 = t.getDate();
+	temp2 = temp2 < 9 ? ("0"+temp2) : temp2;
+	return t.getFullYear() + "-" + temp + "-" + temp2;
+}
+
 
 $(function() {
 	// 同步URL中的父级样式

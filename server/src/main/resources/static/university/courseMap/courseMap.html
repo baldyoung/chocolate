@@ -52,28 +52,28 @@
 	<body>
 		<div class="container" >
 			<div class='row hidden-xs' style='padding:10px;'>
-				<div  class='col-sm-12 text-center sourceName' style='font-size:23px; font-weight: bolder; color:orange;'>陈国庆</div>
+				<div  class='col-sm-12 text-center sourceName' style='font-size:23px; font-weight: bolder; color:orange;'></div>
 				<div class='col-sm-4 text-center'>
-					<button class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-left'></i></button>
+					<button onclick='changeWeek(-1)' class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-left'></i></button>
 				</div>
 				<div class='col-sm-4 text-center' style='font-size:20px; font-weight:bolder; '>
 					本周课表<br>
-					2020-05-01 - 2020-05-07
+					<span class='currentDate'></span>
 				</div>
 				<div class='col-sm-4 text-center'>
-					<button class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-right'></i></button>
+					<button onclick='changeWeek(1)' class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-right'></i></button>
 				</div>
 			</div>
 			<div class='row visible-xs' style='padding:10px;'>
-				<div class='col-sm-12 text-center sourceName' style='font-size:23px; font-weight: bolder; color:orange;'>陈国庆</div>
+				<div class='col-sm-12 text-center sourceName' style='font-size:23px; font-weight: bolder; color:orange;'></div>
 				<div class='col-sm-6 text-center' style='font-size:20px; font-weight:bolder; '>
 					本周课表<br>
-					2020-05-01 - 2020-05-07
+					<span class='currentDate'></span>
 				</div>
 				<div class='col-sm-6 text-center'>
-					<button class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-left'></i></button>
+					<button onclick='changeWeek(-1)' class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-left'></i></button>
 					<div style='width:50px; height:1px; display: inline-block;'></div>
-					<button class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-right'></i></button>
+					<button onclick='changeWeek(1)' class='btn btn-circle btn-lg btn-info' style='border-radius:50%;'><i class='fa fa-arrow-right'></i></button>
 				</div>
 			</div>
 			<div class='row'>
@@ -99,6 +99,9 @@
 								</tr>
 								
 							</table>
+						</div>
+						<div id='courseListArea' class="panel-footer text-center">
+							
 						</div>
 					</div>
 				</div>
