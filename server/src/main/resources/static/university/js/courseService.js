@@ -24,6 +24,15 @@ var workingCourseMap = {
 				workingCourseMap.getValidObject(flag);
 			}
 		}
+		for(var id in allClassMap) {
+			allClassMap[id].dayTimeMap = {};
+		}
+		for(var id in allRoomMap) {
+			allRoomMap[id].dayTimeMap = {};
+		}
+		for(var id in allStaffMap) {
+			allStaffMap[id].dayTimeMap = {};
+		}
 	},
 	getValidObject : function(key) {
 		var o = workingCourseMap[key];
@@ -130,6 +139,7 @@ function loadTargetData(startDate) {
 	startDate = new Date(startDate).valueOf();
 	//console.log('loadTargetData中startDate转换后的值:'+startDate);
 	currentWorkingCourseMapStartWeek = getTargetWeekDaysForDate(startDate);
+	var endDate = currentWorkingCourseMapStartWeek[6].valueOf();
 	//console.log("当前选定周的日期情况:");
 	//console.log(currentWorkingCourseMapStartWeek);
 	
@@ -139,7 +149,8 @@ function loadTargetData(startDate) {
 		if (course == undefined) {
 			return;
 		}
-		if (course.startDate <= startDate && startDate <= course.endDate) {
+		if ((course.startDate <= startDate && startDate <= course.endDate) || 
+			(course.startDate <= endDate && endDate <= course.endDate)) {
 			targetDayTimeOfCourse.push(record);
 		}
 	});
@@ -227,6 +238,7 @@ function drawCourseMap(dayTimeOfCourse) {
 	// 当前周的 课程时间节点数据
 	//console.log("当前周的 课程时间节点数据");
 	//console.log(dayTimeOfCourse);
+	
 	// 重置 当前周的时间节点图
 	workingCourseMap.reset();
 	$.each(dayTimeOfCourse, function(index, dayTimeCell){

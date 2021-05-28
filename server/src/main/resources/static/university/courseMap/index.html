@@ -50,21 +50,21 @@
 			<div class="col-sm-4 ">
 				<div class='cell' style='background-color: ; padding:6%; border-radius:5px;'>
 					<div class='cellText' style='width:100%; height:100%; border-radius:10px; background:; margin:0 auto;'>
-						<button class='btn btn-danger btn-lg' style='width:100%; height:100%; font-size:35px;'>班 级</button>
+						<button  onclick='toURL(1)' class='btn btn-danger btn-lg' style='width:100%; height:100%; font-size:35px;'>班 级</button>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-4 ">
 				<div class='cell' style='background-color: ; padding:6%; border-radius:5px;'>
 					<div class='cellText' style='width:100%; height:100%; border-radius:10px; background:; margin:0 auto;'>
-						<button onclick='to("teacherCourse.html")' class='btn btn-primary btn-lg' style='width:100%; height:100%; font-size:35px;'>教 师</button>
+						<button  onclick='toURL(2)' onclick='to("teacherCourse.html")' class='btn btn-primary btn-lg' style='width:100%; height:100%; font-size:35px;'>教 师</button>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-4 ">
 				<div class='cell' style='background-color: ; padding:6%; border-radius:5px;'>
 					<div class='cellText' style='width:100%; height:100%; border-radius:10px; background:; margin:0 auto;'>
-						<button class='btn btn-success btn-lg' style='width:100%; height:100%; font-size:35px;'>教 室</button>
+						<button onclick='toURL(0)' class='btn btn-success btn-lg' style='width:100%; height:100%; font-size:35px;'>教 室</button>
 					</div>
 				</div>
 			</div>    
@@ -89,21 +89,21 @@
 		        	<div class="col-sm-2 col-sm-offset-1">
 		        		<div class='cell' style='background-color: ; padding:6%; border-radius:5px;'>
 		        			<div class='cellText' style='width:100%; height:100%; border-radius:10px; background:; margin:0 auto;'>
-		        				<button class='btn btn-primary btn-lg' style='width:100%; height:100%; font-size:15px;'>班 级 课 程 表</button>
+		        				<button onclick='toURL(1)' class='btn btn-primary btn-lg' style='width:100%; height:100%; font-size:15px;'>班 级 课 程 表</button>
 		        			</div>
 		        		</div>
 		        	</div>
 					<div class="col-sm-2 ">
 						<div class='cell' style='background-color: ; padding:6%; border-radius:5px;'>
 							<div class='cellText' style='width:100%; height:100%; border-radius:10px; background:; margin:0 auto;'>
-								<button class='btn btn-success btn-lg' style='width:100%; height:100%; font-size:15px;'>教 师 授 课 表</button>
+								<button onclick='toURL(2)' class='btn btn-success btn-lg' style='width:100%; height:100%; font-size:15px;'>教 师 授 课 表</button>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-2 ">
 						<div class='cell' style='background-color: ; padding:6%; border-radius:5px;'>
 							<div class='cellText' style='width:100%; height:100%; border-radius:10px; background:; margin:0 auto;'>
-								<button class='btn btn-danger btn-lg' style='width:100%; height:100%; font-size:15px;'>教 室 安 排 表</button>
+								<button onclick='toURL(0)' class='btn btn-danger btn-lg' style='width:100%; height:100%; font-size:15px;'>教 室 安 排 表</button>
 							</div>
 						</div>
 					</div>
@@ -155,8 +155,8 @@
 			$('#optionListArea').hide();
 			init();
 		}
-		function to(t) {
-			location.href = t;
+		function toURL(t) {
+			location.href = 'courseInfoList.html?type='+t;
 		}
 	</script>
 	
