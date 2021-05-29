@@ -241,6 +241,7 @@ CREATE TABLE `studentclass` (
   `classNumber` varchar(10) DEFAULT NULL,
   `className` varchar(30) DEFAULT NULL,
   `holderStaffId` int(11) DEFAULT NULL,
+  holderStaffId int(11) DEFAULT NULL,
   `classBirthday` datetime DEFAULT NULL COMMENT '建班时间',
   `initStudentAmount` int(11) DEFAULT NULL COMMENT '初始人数',
   `currentStudentAmount` int(11) DEFAULT NULL COMMENT '当前人数',

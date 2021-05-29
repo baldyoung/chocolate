@@ -17,6 +17,8 @@
 		<script src="../assets/bundles/lib.vendor.bundle.js"></script>
 		<!-- Start all plugin js -->
 		<script src="../assets/js/core.js"></script>
+		<!-- layerDate plugin javascript -->
+		<script src="../js/plugins/layer/laydate/laydate.js"></script>
 		<!-- Core css -->
 		<link rel="stylesheet" href="../assets/css/style.min.css">
 		<script src='js/config.js'></script>
@@ -66,7 +68,7 @@
 								<ol class="breadcrumb page-breadcrumb">
 									<li class="breadcrumb-item"><a href="#">
 											<font style="vertical-align: inherit;">
-												<font style="vertical-align: inherit;">爱立信</font>
+												<font style="vertical-align: inherit;">江西新华</font>
 											</font>
 										</a></li>
 									<li class="breadcrumb-item active" aria-current="page">
@@ -182,7 +184,7 @@
 													</td>
 													<td>
 														<font style="vertical-align: inherit;">
-															<font style="vertical-align: inherit;">#{state}</font>
+															<font style="vertical-align: inherit;">#{stateName}</font>
 														</font>
 													</td>
 													<td>
@@ -287,6 +289,14 @@
 											</div>
 										</div>
 										<div class="form-group row">
+											<label class="col-md-3 col-form-label">所属学院<span class="text-danger">*</span></label>
+											<div class="col-md-7">
+												<select id='newStudentClassBranch' class="form-control show-tick">
+													
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
 											<label class="col-md-3 col-form-label">专业<span class="text-danger">*</span></label>
 											<div class="col-md-7">
 												<select id='newStudentClassSpecialty' class="form-control show-tick">
@@ -318,7 +328,7 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">建班日期</label>
 											<div class="col-md-7">
-												<input id='newStudentClassCreateDate' type="text" class="form-control">
+												<input id='newStudentClassCreateDate' readonly="" type="text" class="form-control">
 											</div>
 										</div>
 										<!-- div class="form-group row">

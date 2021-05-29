@@ -18,6 +18,7 @@ public class StudentClassEntity {
     private String classNumber;
     private String className;
     private Integer holderStaffId;
+    private Integer branchId;
     private Date classBirthday;
     private Integer initStudentAmount;
     private Integer currentStudentAmount;
@@ -26,6 +27,32 @@ public class StudentClassEntity {
     private Date createDateTime;
     @LastModifiedDate
     private Date updateDateTime;
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentClassEntity{" +
+                "id=" + id +
+                ", specialtyId=" + specialtyId +
+                ", classNumber='" + classNumber + '\'' +
+                ", className='" + className + '\'' +
+                ", holderStaffId=" + holderStaffId +
+                ", branchId=" + branchId +
+                ", classBirthday=" + classBirthday +
+                ", initStudentAmount=" + initStudentAmount +
+                ", currentStudentAmount=" + currentStudentAmount +
+                ", currentStatus=" + currentStatus +
+                ", createDateTime=" + createDateTime +
+                ", updateDateTime=" + updateDateTime +
+                '}';
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
+    }
 
     public Integer getId() {
         return id;
@@ -115,20 +142,4 @@ public class StudentClassEntity {
         this.updateDateTime = updateDateTime;
     }
 
-    @Override
-    public String toString() {
-        return "StudentClassEntity{" +
-                "id=" + id +
-                ", specialtyId=" + specialtyId +
-                ", classNumber='" + classNumber + '\'' +
-                ", className='" + className + '\'' +
-                ", holderStaffId=" + holderStaffId +
-                ", classBirthday=" + classBirthday +
-                ", initStudentAmount=" + initStudentAmount +
-                ", currentStudentAmount=" + currentStudentAmount +
-                ", currentStatus=" + currentStatus +
-                ", createDateTime=" + createDateTime +
-                ", updateDateTime=" + updateDateTime +
-                '}';
-    }
 }

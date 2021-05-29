@@ -44,6 +44,8 @@ public class OpenSourceController {
             Map map = new HashMap();
             map.put("itemName", cell.getClassRoomName());
             map.put("itemId", cell.getId());
+            map.put("standardPeopleNumber", cell.getStandardPeopleAmount());
+            map.put("typeId", cell.getTypeFlag());
             list.add(map);
         });
         return success(list);
@@ -53,11 +55,27 @@ public class OpenSourceController {
     public ResponseResult getStudentClassList() {
         // 应该过滤掉无效（已毕业的）班级
         List<StudentClassEntity> studentClassEntityList = studentClassDao.findAll();
+        List<StaffInfoEntity> staffInfoEntityList = staffInfoDao.findAll();
+        Map<Integer, StaffInfoEntity> staffInfoEntityMap = new HashMap();
+        staffInfoEntityList.forEach(cell->{
+            staffInfoEntityMap.put(cell.getId(), cell);
+        });
         List<Map> list = new ArrayList(studentClassEntityList.size());
         studentClassEntityList.forEach(cell->{
             Map map = new HashMap();
             map.put("itemName", cell.getClassName());
             map.put("itemId", cell.getId());
+            map.put("typeId", cell.getBranchId());
+            StaffInfoEntity staffEntity = staffInfoEntityMap.get(cell.getHolderStaffId());
+            String holderStaffName = "";
+            String holderStaffPhone = "";
+            if (staffEntity != null) {
+                holderStaffName = staffEntity.getStaffName();
+                holderStaffPhone = staffEntity.getStaffPhoneNumber();
+            }
+            map.put("holderStaffName", holderStaffName);
+            map.put("holderStaffPhone", holderStaffPhone);
+            map.put("currentStudentNumber", cell.getCurrentStudentAmount());
             list.add(map);
         });
         return success(list);

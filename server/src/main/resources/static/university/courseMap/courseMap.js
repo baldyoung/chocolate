@@ -1,7 +1,4 @@
-$(function() {
-	courseMap.init();
 
-});
 var courseIndexNames = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
 var courseIndexTimes = ['', '8:30 - 9:10', '9:20 - 10:00', '10:20 - 11:00', '11:10 - 11:50', '15:00 - 15:40',
 	'15:50 - 16:30', '?', '?', '?'
@@ -9,12 +6,23 @@ var courseIndexTimes = ['', '8:30 - 9:10', '9:20 - 10:00', '10:20 - 11:00', '11:
 var currentWeekDays = [];
 var currentWeekIndex = 0;
 $(function() {
+	courseMap.init();
+	var urlWeekIndex = getQueryVariable('weekIndex');
+	if (undefined == urlWeekIndex) { 
+		urlWeekIndex = 0;
+	} 
+	urlWeekIndex = parseInt(urlWeekIndex);
+	if (urlWeekIndex < 0 || urlWeekIndex > 9) {
+		urlWeekIndex = 0;
+	}
+	currentWeekIndex = urlWeekIndex;
 	// 获取当前所在周
 	currentWeekDays = getTargetWeekDays();
 	$('.currentDate').text(currentWeekDays[0].formatDateString + ' 到 ' + currentWeekDays[6].formatDateString);
-	console.log("周一:"+currentWeekDays[0].formatDateString);
-	
-	init(currentWeekDays[0].formatDateString);
+	// console.log("周一:"+currentWeekDays[0].formatDateString);
+	currentWeekIndex -= 1;
+	changeWeek(1);
+	// init(currentWeekDays[0].formatDateString);
 
 });
 var courseMap = {
@@ -131,26 +139,32 @@ function changeWeek(t) {
 		currentWeekDays = getTargetWeekDays(currentWeekIndex);
 		$('.currentDate').text(currentWeekDays[0].formatDateString + ' 到 ' + currentWeekDays[6].formatDateString);
 		init(currentWeekDays[0].formatDateString);
-	} else if (t == -1 && currentWeekIndex >= 0) {
+	} else if (t == -1 && currentWeekIndex > 0) {
 		currentWeekIndex -= 1;
 		currentWeekDays = getTargetWeekDays(currentWeekIndex);
 		$('.currentDate').text(currentWeekDays[0].formatDateString + ' 到 ' + currentWeekDays[6].formatDateString);
 		init(currentWeekDays[0].formatDateString);
 	}
-	console.log(currentWeekIndex);
+	var weekNames = ['本周', '下周', '两周后', '三周后', '四周后', '五周后', '六周后', '七周后', '八周后', '九周后', '十周后', '好多周后'];
+	var temp = weekNames[currentWeekIndex] + '课表';
+	$('.currentWeekNumber').text(temp);
 }
 
 function init(startDate) {
+	var type = getQueryVariable('type');
+	var id = getQueryVariable('id');
+	if (type == undefined || undefined == id) {
+		console.log("非法请求");
+		return ;
+	}
 	loadTargetData(startDate);
 	setTimeout(function(){
-		console.log('当前周的数据');
+		/* console.log('当前周的数据');
 		console.log(allRoomMap); 
 		console.log(allClassMap);
-		console.log(allStaffMap);
-		var type = getQueryVariable('type');
-		var id = getQueryVariable('id');
+		console.log(allStaffMap); */
 		var sourceNameText;
-		var sourceInfo
+		var sourceInfo;
 		//type = 0;// 0:room、1:class、2:teacher
 		//id = '1';
 		if (type == 0) {

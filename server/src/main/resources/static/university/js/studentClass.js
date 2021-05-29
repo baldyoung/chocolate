@@ -3,7 +3,7 @@
 var StudentClassShowTemplate = undefined;
 var studentClassListBuffer = []; 
 var currentStudentClassId = undefined;
-
+var classStateNames = ['已毕业', '正常', '撤销', '其它'];
 
 
 $(function(){
@@ -11,6 +11,27 @@ $(function(){
 	getAndLoadSpecialtyInfo();
 	getAndLoadStaffInfo();
 	requestAndLoadStudentClassList();
+	$('#newStudentClassBranch').html('<option value="-1">-- 请选择学院 --</option>');
+	var branchList = ['软件网工学院', '电子商务学院', '媒体艺术学院'];
+	for(var i=0; i<branchList.length; i++) {
+		$('#newStudentClassBranch').append('<option value="'+i+'">'+branchList[i]+'</option>');
+	}
+	
+	//日期范围限制
+	var start = laydate({
+		elem: '#newStudentClassCreateDate',
+		type : 'date',
+		format: 'YYYY-MM-DD',
+		//min: , //设定最小日期为当前日期
+		max: '2099-06-16 23:59:59', //最大日期
+		istime: false,
+		istoday: false,
+		choose: function(datas) {
+		},
+		ready : function() {
+			start.hint('嘻嘻');
+		}
+	});
 });
 // 获取 班级集合  并加载展示
 function requestAndLoadStudentClassList() {
@@ -34,15 +55,25 @@ function requestAndLoadStudentClassList() {
 					cell.specialtyName = noUndefined(cell.specialtyName);
 					cell.staffName = noUndefined(cell.staffName);
 					cell.currentPeopleNumber = noUndefined(cell.currentPeopleNumber);
-					cell.createDate = noUndefined(cell.createDate);
+					cell.classBirthday = noUndefined(cell.classBirthday);
+					if (cell.classBirthday != '') {
+						cell.classBirthday = toDateFormat(new Date(cell.classBirthday));
+					}
 					cell.state = noUndefined(cell.state);
+					if (cell.state != '') {
+						cell.state = parseInt(cell.state);
+						cell.stateName = classStateNames[cell.state];
+					} else {
+						cell.stateName = '';
+					}
+					cell.branchId = (cell.branchId == undefined ? -1 : cell.branchId);
 					console.log(cell.staffName);
 					var html = StudentClassShowTemplate.replace("#{studentClassId}", cell.id);
 					html = html.replace("#{studentClassName}", cell.className);
 					html = html.replace('#{specialtyName}', cell.specialtyName);
 					html = html.replace('#{staff}', cell.staffName);
-					html = html.replace('#{currentPeopleNumber}', cell.currentPeopleNumber);
-					html = html.replace('#{createDate}', cell.createDate).replace("#{state}", cell.state);
+					html = html.replace('#{currentPeopleNumber}', cell.currentStudentAmount);
+					html = html.replace('#{createDate}', cell.classBirthday).replace("#{stateName}", cell.stateName);
 					html = html.replace('#{index}', index).replace('#{index}', index).replace('#{index}', index);
 					target.append(html);
 				});
@@ -68,8 +99,11 @@ function getAndLoadStudentClass(index) {
 	$('#newStudentClassHolder').val(classRoom.holderStaffId);
 	$('#newStudentClassCurrentPeopleNumber').val(classRoom.currentStudentAmount);
 	$('#newStudentClassCreatePeopleNumber').val(classRoom.initStudentAmount);
+	$('#newStudentClassCreatePeopleNumber').attr('readonly', '');
 	$('#newStudentClassCreateDate').val(classRoom.classBirthday);
+	$('#newStudentClassBranch').val(classRoom.branchId);
 	currentStudentClassId = classRoom.id;
+	$('#editAreaTitle').text("修改班级");
 }
 
 
@@ -83,16 +117,21 @@ function addNewStudentClass() {
 		holderStaffId : $('#newStudentClassHolder').val(),
 		initStudentAmount : $('#newStudentClassCurrentPeopleNumber').val(),
 		currentStudentAmount : $('#newStudentClassCreatePeopleNumber').val(),
+		branchId : $('#newStudentClassBranch').val(),
 		classBirthday : $('#newStudentClassCreateDate').val()
 	};
 	if (isEmpty(studentClass.specialtyId, studentClass.className, studentClass.holderStaffId, studentClass.initStudentAmount, studentClass.currentStudentAmount)) {
 		alert("请补全信息");
 		return;
 	}
+	if (-1 == studentClass.branchId) {
+		studentClass.branchId = '';
+	}
 	if (undefined != studentClass.id) {
 		updateClassRoom(studentClass);
 		return;
 	}
+	
 	//studentClass.specialtyId = specialtyListBuffer[studentClass.specialtyId].id;
 	//studentClass.holderStaffId = staffListBuffer[studentClass.holderStaffId].id;
 	var list = [];
@@ -182,7 +221,10 @@ function removeStudentClassRoom(index) {
 //
 function resetEditPanel() {
 	$('#editAreaTitle').text("新增班级");
-	$('#Dep-add-Boot').find('div').val('');
+	$('#Dep-add-Boot').find('input').val('');
+	$('#Dep-add-Boot').find('select').val('');
+	$('#newStudentClassCreatePeopleNumber')[0].removeAttribute('readonly');
+	$('#newStudentClassBranch').val('-1');
 	currentStudentClassId = undefined;
 }
 

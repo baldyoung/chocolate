@@ -173,10 +173,11 @@ CREATE TABLE studentClass (
 	classNumber VARCHAR(10),
 	className VARCHAR(30),
 	holderStaffId INT,
+	branchId INT comment'所属的学院编号 0:软件、1:电商、2:艺术',
 	classBirthday DATETIME COMMENT'建班时间',
 	initStudentAmount INT COMMENT'初始人数',
 	currentStudentAmount INT COMMENT'当前人数',
-	currentStatus SMALLINT COMMENT'当前状态  1:正常',
+	currentStatus SMALLINT COMMENT'当前状态  1:正常、0:毕业、2:取消',
 	createDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updateDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
