@@ -12,7 +12,7 @@ $(function(){
 	getAndLoadStaffInfo();
 	requestAndLoadStudentClassList();
 	$('#newStudentClassBranch').html('<option value="-1">-- 请选择学院 --</option>');
-	var branchList = ['软件网工学院', '电子商务学院', '媒体艺术学院'];
+	var branchList = ['软件网工学院', '电子商务学院', '媒体艺术学院', '其它'];
 	for(var i=0; i<branchList.length; i++) {
 		$('#newStudentClassBranch').append('<option value="'+i+'">'+branchList[i]+'</option>');
 	}

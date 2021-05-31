@@ -1,6 +1,6 @@
 
 var typeId;
-var branchList = ['软件网工学院', '电子商务学院', '媒体艺术学院'];
+var branchList = ['软件网工学院', '电子商务学院', '媒体艺术学院', '其它'];
 var roomTypeNames = ['非电脑房', '电脑房', '其它']
 $(function() {
 	
