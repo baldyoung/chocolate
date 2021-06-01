@@ -395,6 +395,8 @@ var editPanelModule = {
 			success: function(data) {
 				if (data.code == 0) {
 					var targetData = data.data;
+					$("#myModal").modal('hide');
+					location.reload();
 					alert('新增成功');
 				} else {
 					//swal('获取数据失败', data.desc, 'error');

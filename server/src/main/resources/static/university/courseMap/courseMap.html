@@ -29,7 +29,7 @@
 			.courseMap tr th {
 				height:30px !important;
 				width:10%;
-				background-color: blue;
+				background-color: #BDBDBD;
 				border:1px solid orange;
 				text-align: center;
 			}
@@ -37,6 +37,10 @@
 				/* height:50px; */
 				box-sizing: border-box;
 			}
+			.courseMap th {
+				min-width:95px;
+			}
+			
 			/* .courseMap tr .index {
 				width:5%
 			} */
@@ -50,7 +54,7 @@
 		<script src='courseMap.js'></script>
 	</head>
 	<body>
-		<div class="container" >
+		<div class="container" style=' '>
 			<div class='row hidden-xs' style='padding:10px;'>
 				<div  class='col-sm-12 text-center sourceName' style='font-size:23px; font-weight: bolder; color:orange;'>加载中...</div>
 				<div class='col-sm-4 text-center'>
@@ -77,7 +81,7 @@
 				</div>
 			</div>
 			<div class='row'>
-				<div class='col-sm-12'>
+				<div class='col-sm-12' style=''>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							课程表
@@ -88,14 +92,14 @@
 							</div>
 							<table class='courseMap' style='border-radius:15px;'>
 								<tr>
-									<th>时间</th>
-									<th>星期一</th>
-									<th>星期二</th>
-									<th>星期三</th>
-									<th>星期四</th>
-									<th>星期五</th>
-									<th>星期六</th>
-									<th>星期日</th>
+									<th>时间<br><span></span></th>
+									<th>星期一<br><span id='weekDay1'></span></th>
+									<th>星期二<br><span id='weekDay2'></span></th>
+									<th>星期三<br><span id='weekDay3'></span></th>
+									<th>星期四<br><span id='weekDay4'></span></th>
+									<th>星期五<br><span id='weekDay5'></span></th>
+									<th>星期六<br><span id='weekDay6'></span></th>
+									<th>星期日<br><span id='weekDay7'></span></th>
 								</tr>
 								
 							</table>
@@ -108,6 +112,10 @@
 			</div>
 		</div>
 		
+		
+		<div class='menuCell' style="cursor:pointer; width:80px; height:80px; border-radius:50%; border:1px dashed; position:fixed; top:100px; left:100px; background:rgb(120, 0, 0, 0.2); line-height: 80px; font-size:30px; font-weight:bolder; text-align: center;">
+			返回
+		</div>
 		
 		<script>
 			

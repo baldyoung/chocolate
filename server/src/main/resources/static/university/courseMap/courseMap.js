@@ -6,6 +6,12 @@ var courseIndexTimes = ['', '8:30 - 9:10', '9:20 - 10:00', '10:20 - 11:00', '11:
 var currentWeekDays = [];
 var currentWeekIndex = 0;
 $(function() {
+	var maxW = screen.availWidth;
+	if (maxW > 768) {
+		$('.container').css('width', '820px');
+	}
+	
+	initMenuCell();
 	courseMap.init();
 	var urlWeekIndex = getQueryVariable('weekIndex');
 	if (undefined == urlWeekIndex) { 
@@ -145,6 +151,10 @@ function changeWeek(t) {
 		$('.currentDate').text(currentWeekDays[0].formatDateString + ' 到 ' + currentWeekDays[6].formatDateString);
 		init(currentWeekDays[0].formatDateString);
 	}
+	for(var i=0; i<7; i++) {
+		var day = currentWeekDays[i];
+		$('#weekDay'+(i+1)).text(day.formatDateString);
+	}
 	var weekNames = ['本周', '下周', '两周后', '三周后', '四周后', '五周后', '六周后', '七周后', '八周后', '九周后', '十周后', '好多周后'];
 	var temp = weekNames[currentWeekIndex] + '课表';
 	$('.currentWeekNumber').text(temp);
@@ -177,7 +187,7 @@ function init(startDate) {
 			sourceNameText = allStaffMap[id].staffName;
 			sourceInfo = allStaffMap[id];
 		}
-		console.log(sourceNameText);
+		// console.log(sourceNameText);
 		$('.sourceName').text(sourceNameText);
 		// 获取指定资源下的所有课程数据
 		if (sourceInfo.dayTimeMap == undefined) {
@@ -199,7 +209,7 @@ function init(startDate) {
 		for(var courseId in currentSourceCourseMap) {
 			var tempCourse = currentSourceCourseMap[courseId];
 			
-			console.log(tempCourse);
+			//console.log(tempCourse);
 			var tc = {
 				courseName : tempCourse.courseName,
 				dayTimeList : [],
@@ -235,12 +245,43 @@ function init(startDate) {
 			}
 			var sd = toDateFormat(tempCourse.startDateTimeInPlan);
 			var ed = toDateFormat(tempCourse.endDateTimeInPlan);
-			$('#courseListArea').append(tempCourse.courseName+' --- ' + teacherCell.staffName + '(' +sd + ' - ' + ed +')<br>');
+			$('#courseListArea').append(tc.info + ' <span style="color:red;">[ ' +sd + ' - ' + ed +' ]</span><br>');
 		}
 		$.each(courseInfoList, function(i, cell) {
 			courseMap.setCourse(cell);
 		});
 	}, 1000);
 }
+
+
+function initMenuCell() {
+	var cX, cY;
+	var isBack = false;
+	$('.menuCell').on('mousedown', function(p){
+		cX = p.clientX;
+		cY = p.clientY;
+		isBack = true;
+		$('.menuCell').on('mousemove', function(e){
+			isBack = false;
+			var x = e.clientX;
+			var y = e.clientY;
+			var tX = x - cX;
+			var tY = y - cY;
+			cX = x; cY = y;
+			var targetX = parseInt($('.menuCell')[0].style.left) + tX;
+			var targetY = parseInt($('.menuCell')[0].style.top) + tY;
+			//console.log(targetX + ', ' + targetY);
+			$('.menuCell').css('top', targetY + 'px').css('left', targetX + 'px');
+		});
+	});
+	$('.menuCell').on('mouseup mouseout', function() {
+		$('.menuCell').off('mousemove');
+	});
+	$('.menuCell').on('click', function(){
+		if (isBack) history.back();
+	});
+}
+			
+		
 
 

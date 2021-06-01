@@ -135,7 +135,7 @@ function requestData(startDate) {
 var currentWorkingCourseMapStartWeek;
 // 获取指定周的所有课程相关数据(startDate是2020-01-01)
 function loadTargetData(startDate) {
-	//console.log('loadTargetDate中的startDate值:'+startDate);
+	// console.log('loadTargetDate中的startDate值:'+startDate);
 	startDate = new Date(startDate).valueOf();
 	//console.log('loadTargetData中startDate转换后的值:'+startDate);
 	currentWorkingCourseMapStartWeek = getTargetWeekDaysForDate(startDate);
@@ -154,6 +154,7 @@ function loadTargetData(startDate) {
 			targetDayTimeOfCourse.push(record);
 		}
 	});
+	calculateStaticData();
 	drawCourseMap(targetDayTimeOfCourse);
 }
 

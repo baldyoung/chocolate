@@ -17,6 +17,16 @@ import static com.xh.chocolate.pojo.dto.ResponseResult.success;
 @RestController
 public class IndexController {
 
+    @GetMapping("back")
+    public void requestBackIndex(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/university/index.html");
+    }
+
+    @GetMapping("front")
+    public void requestFrontIndex(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/university/courseMap/index.html");
+    }
+
     @GetMapping
     public void defaultRequest(HttpServletResponse response) throws IOException {
         response.sendRedirect("index.html");
