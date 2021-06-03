@@ -1,5 +1,5 @@
 var XConfig = {
-serverAddress: 'http://localhost:8080/',
+serverAddress: 'http://192.168.9.233:8080/',
 }
 
 function noUndefined(o) {

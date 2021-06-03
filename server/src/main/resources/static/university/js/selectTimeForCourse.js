@@ -50,9 +50,13 @@ function refreshCourseInfo() {
 			};
 			var list = [dayTimeCell];
 			var result = getTargetDisengagedDataMap(startDate, list);
+			var classNumberText = 0;
+			if (result.classList.length > 0) {
+				classNumberText = '<span style="color:red;">' + result.classList.length + '</span>';
+			}
 			var timeTipCellHtml = '<div dayId="'+j+'" timeId="'+i+'" class="timeCellOption" id="timeCellOption' + j + i + '" style="">' +
 				'<div class="timeCellContent">' +
-				' <i class="fa fa-users"></i> ' + result.classList.length + 
+				' <i class="fa fa-users"></i> ' + classNumberText + 
 				' <i class="fa fa-user-secret"></i> '+ result.staffList.length + 
 				' <i class="fa fa-university"></i> ' + result.roomList.length  + '</div>' +
 				'</div>';
